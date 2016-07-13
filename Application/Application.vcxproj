@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5616A7BC-3CED-45D3-BD8F-6B9C3AD0D8A4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Application</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>./;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\B00235610\Desktop\Silence Demo\Application\Theora;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="aStarException.cpp" />
+    <ClCompile Include="aStarMap.cpp" />
+    <ClCompile Include="aStarNode.cpp" />
+    <ClCompile Include="AudioFile.cpp" />
+    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Border.cpp" />
+    <ClCompile Include="Button2D.cpp" />
+    <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="DefaultCamera.cpp" />
+    <ClCompile Include="DeferredInputShader.cpp" />
+    <ClCompile Include="DeferredOutputShader.cpp" />
+    <ClCompile Include="DeferredRenderer.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
+    <ClCompile Include="FirstPersonCamera.cpp" />
+    <ClCompile Include="FontAsset.cpp" />
+    <ClCompile Include="ForwardRenderer.cpp" />
+    <ClCompile Include="Gamepad.cpp" />
+    <ClCompile Include="GeometryBuffer.cpp" />
+    <ClCompile Include="GPU.cpp" />
+    <ClCompile Include="GPU_Matrices.cpp" />
+    <ClCompile Include="GPU_Program.cpp" />
+    <ClCompile Include="GPU_Sampler.cpp" />
+    <ClCompile Include="GPU_Transfer.cpp" />
+    <ClCompile Include="Heightmap.cpp" />
+    <ClCompile Include="HighPrecisionTimer.cpp" />
+    <ClCompile Include="Hints.cpp" />
+    <ClCompile Include="Intelligence.cpp" />
+    <ClCompile Include="Buttons.cpp" />
+    <ClCompile Include="forest.cpp" />
+    <ClCompile Include="Gate.cpp" />
+    <ClCompile Include="Headers.cpp" />
+    <ClCompile Include="House.cpp" />
+    <ClCompile Include="intro.cpp" />
+    <ClCompile Include="Key.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Lights.cpp" />
+    <ClCompile Include="LocalAssetManager.cpp" />
+    <ClCompile Include="md2Model.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelFile.cpp" />
+    <ClCompile Include="ModelSet.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Music.cpp" />
+    <ClCompile Include="OptionsField.cpp" />
+    <ClCompile Include="Gameover.cpp" />
+    <ClCompile Include="Indoors.cpp" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="options.cpp" />
+    <ClCompile Include="OptionsGraphics.cpp" />
+    <ClCompile Include="OptionsVolume.cpp" />
+    <ClCompile Include="OptionsWindowSize.cpp" />
+    <ClCompile Include="OptionsWindowType.cpp" />
+    <ClCompile Include="OrthoShader.cpp" />
+    <ClCompile Include="PerFragmentShader.cpp" />
+    <ClCompile Include="Pickups.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ApplicationLayer.cpp" />
+    <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="Renderer2D.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="SolidBox.cpp" />
+    <ClCompile Include="SolidCylinder.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
+    <ClCompile Include="System.cpp" />
+    <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="Text2D.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="TextureAsset.cpp" />
+    <ClCompile Include="Trees.cpp" />
+    <ClCompile Include="Video.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actors.h" />
+    <ClInclude Include="Ai.h" />
+    <ClInclude Include="anorms.h" />
+    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="aStarException.h" />
+    <ClInclude Include="aStarMap.h" />
+    <ClInclude Include="aStarNode.h" />
+    <ClInclude Include="AudioFile.h" />
+    <ClInclude Include="Background.h" />
+    <ClInclude Include="Border.h" />
+    <ClInclude Include="Button2D.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Cube.h" />
+    <ClInclude Include="DefaultCamera.h" />
+    <ClInclude Include="DeferredInputShader.h" />
+    <ClInclude Include="DeferredOutputShader.h" />
+    <ClInclude Include="DeferredRenderer.h" />
+    <ClInclude Include="DirectionalLight.h" />
+    <ClInclude Include="EngineLayer.h" />
+    <ClInclude Include="FirstPersonCamera.h" />
+    <ClInclude Include="FontAsset.h" />
+    <ClInclude Include="ForwardRenderer.h" />
+    <ClInclude Include="Gamepad.h" />
+    <ClInclude Include="GeometryBuffer.h" />
+    <ClInclude Include="GPU.h" />
+    <ClInclude Include="GPU_Matrices.h" />
+    <ClInclude Include="GPU_Program.h" />
+    <ClInclude Include="GPU_Sampler.h" />
+    <ClInclude Include="GPU_Transfer.h" />
+    <ClInclude Include="Heightmap.h" />
+    <ClInclude Include="HighPrecisionTimer.h" />
+    <ClInclude Include="Hints.h" />
+    <ClInclude Include="HLGI.h" />
+    <ClInclude Include="Intelligence.h" />
+    <ClInclude Include="Buttons.h" />
+    <ClInclude Include="forest.h" />
+    <ClInclude Include="Gate.h" />
+    <ClInclude Include="Headers.h" />
+    <ClInclude Include="House.h" />
+    <ClInclude Include="intro.h" />
+    <ClInclude Include="Key.h" />
+    <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Lights.h" />
+    <ClInclude Include="LocalAssetManager.h" />
+    <ClInclude Include="md2Model.h" />
+    <ClInclude Include="Media.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelFile.h" />
+    <ClInclude Include="ModelSet.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Music.h" />
+    <ClInclude Include="OptionsField.h" />
+    <ClInclude Include="Gameover.h" />
+    <ClInclude Include="InteractionLayer.h" />
+    <ClInclude Include="Indoors.h" />
+    <ClInclude Include="ApplicationLayer.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="options.h" />
+    <ClInclude Include="OptionsGraphics.h" />
+    <ClInclude Include="OptionsVolume.h" />
+    <ClInclude Include="OptionsWindowSize.h" />
+    <ClInclude Include="OptionsWindowType.h" />
+    <ClInclude Include="OrthoShader.h" />
+    <ClInclude Include="PerFragmentShader.h" />
+    <ClInclude Include="Pickups.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PointLight.h" />
+    <ClInclude Include="Renderer2D.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="SolidBox.h" />
+    <ClInclude Include="SolidCylinder.h" />
+    <ClInclude Include="SpotLight.h" />
+    <ClInclude Include="System.h" />
+    <ClInclude Include="Terrain.h" />
+    <ClInclude Include="Text2D.h" />
+    <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="TextureAsset.h" />
+    <ClInclude Include="Trees.h" />
+    <ClInclude Include="Video.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Application.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

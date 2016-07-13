@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Code">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Code\Ai">
+      <UniqueIdentifier>{0edc44b8-36a4-4367-8e7d-5e00a9a08fd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\Input">
+      <UniqueIdentifier>{85a882af-731f-427e-8b85-f660adca91c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\Input\Gamepad">
+      <UniqueIdentifier>{a5633237-656c-4fb9-8809-54f50292c609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\Input\Keyboard">
+      <UniqueIdentifier>{2525d68e-728a-401a-9a9e-66e60223e058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\Input\Mouse">
+      <UniqueIdentifier>{3c0b2b6d-4968-4267-8695-4ff32a29708b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\Ai\Exception">
+      <UniqueIdentifier>{0ee221b9-c382-4b76-904d-badfe9bfec3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\Ai\Map">
+      <UniqueIdentifier>{4615931b-4dd2-4431-8234-8b5906f7415a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\Ai\Node">
+      <UniqueIdentifier>{dde0b989-1ed4-43d6-82d4-9605fb0e1ed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\Graphics">
+      <UniqueIdentifier>{9f8c9195-c615-4c29-971c-44478b097178}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Gamepad.cpp">
+      <Filter>Source Code\Input\Gamepad</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Source Code\Input\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Source Code\Input\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="aStarException.cpp">
+      <Filter>Source Code\Ai\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aStarMap.cpp">
+      <Filter>Source Code\Ai\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="aStarNode.cpp">
+      <Filter>Source Code\Ai\Node</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Gamepad.h">
+      <Filter>Source Code\Input\Gamepad</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Source Code\Input\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Source Code\Input\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="Ai.h">
+      <Filter>Source Code\Ai</Filter>
+    </ClInclude>
+    <ClInclude Include="aStarException.h">
+      <Filter>Source Code\Ai\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="aStarMap.h">
+      <Filter>Source Code\Ai\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="aStarNode.h">
+      <Filter>Source Code\Ai\Node</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
