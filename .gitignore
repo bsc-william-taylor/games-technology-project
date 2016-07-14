@@ -29,5 +29,5 @@
 *.app
 
 # Folders
-./Release
-./Debug
+Release/
+Debug/
