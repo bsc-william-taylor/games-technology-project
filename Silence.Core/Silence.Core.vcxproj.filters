@@ -1,79 +1,493 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Code">
+    <Filter Include="Core">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Code\Ai">
+    <Filter Include="Core\Ai">
       <UniqueIdentifier>{0edc44b8-36a4-4367-8e7d-5e00a9a08fd7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Code\Input">
-      <UniqueIdentifier>{85a882af-731f-427e-8b85-f660adca91c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Code\Input\Gamepad">
-      <UniqueIdentifier>{a5633237-656c-4fb9-8809-54f50292c609}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Code\Input\Keyboard">
-      <UniqueIdentifier>{2525d68e-728a-401a-9a9e-66e60223e058}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Code\Input\Mouse">
-      <UniqueIdentifier>{3c0b2b6d-4968-4267-8695-4ff32a29708b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Code\Ai\Exception">
+    <Filter Include="Core\Ai\Exception">
       <UniqueIdentifier>{0ee221b9-c382-4b76-904d-badfe9bfec3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Code\Ai\Map">
+    <Filter Include="Core\Ai\Map">
       <UniqueIdentifier>{4615931b-4dd2-4431-8234-8b5906f7415a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Code\Ai\Node">
+    <Filter Include="Core\Ai\Node">
       <UniqueIdentifier>{dde0b989-1ed4-43d6-82d4-9605fb0e1ed4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Code\Graphics">
+    <Filter Include="Core\Input">
+      <UniqueIdentifier>{85a882af-731f-427e-8b85-f660adca91c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Input\Gamepad">
+      <UniqueIdentifier>{a5633237-656c-4fb9-8809-54f50292c609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Input\Keyboard">
+      <UniqueIdentifier>{2525d68e-728a-401a-9a9e-66e60223e058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Input\Mouse">
+      <UniqueIdentifier>{3c0b2b6d-4968-4267-8695-4ff32a29708b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics">
       <UniqueIdentifier>{9f8c9195-c615-4c29-971c-44478b097178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Os">
+      <UniqueIdentifier>{54edebc3-c025-4c50-bcff-bb80bc6a9067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics">
+      <UniqueIdentifier>{a7ea6b68-d49b-42c1-a39d-cce17816c95e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Media">
+      <UniqueIdentifier>{a3c8b88d-5709-4363-9f4a-9ce6361a7315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Loading">
+      <UniqueIdentifier>{45d6eeca-2d2a-4ebe-9555-9614d0b2fe1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\SolidBox">
+      <UniqueIdentifier>{c3075527-5d48-4838-87fc-a908df31b9f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\SolidCylinder">
+      <UniqueIdentifier>{91d76f41-431c-435c-97e3-cb469dc90b51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Os\Window">
+      <UniqueIdentifier>{97a9e2af-a1bb-43f7-a345-5b6737e5ef16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Os\Timer">
+      <UniqueIdentifier>{6ba1b2ca-865f-460e-b80d-3332979b550f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Loading\Local">
+      <UniqueIdentifier>{b198b625-9b56-4629-bf39-58b8b4675d55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Loading\Asset">
+      <UniqueIdentifier>{f5a9b897-d07c-4650-b37a-0058ff624823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Loading\Asset\Audio">
+      <UniqueIdentifier>{e91e37f4-68f0-49de-845d-1491ff8eb16e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Loading\Asset\Font">
+      <UniqueIdentifier>{048ee78f-1d05-4411-bed3-42cd39f0dd92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Loading\Asset\Model">
+      <UniqueIdentifier>{b59327e6-034d-4c5e-a25a-a0b3db7535d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Loading\Asset\Texture">
+      <UniqueIdentifier>{7a72d881-9eb8-4a08-8c5a-292b070fb3c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Media\Audio">
+      <UniqueIdentifier>{4a0df892-d814-48ac-8fa2-5f01aa264b21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Media\Video">
+      <UniqueIdentifier>{e55282be-ca78-4fe7-bd1d-467f2e32ed02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level">
+      <UniqueIdentifier>{671dedcd-a6f3-4d02-98b8-5508a5093db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\Low Level">
+      <UniqueIdentifier>{8ee6a2c0-438f-496f-9e29-beda8967059f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\Low Level\Geometry Buffer">
+      <UniqueIdentifier>{a401bc68-d355-453e-bb46-1c1e642ece7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\Low Level\Matrices">
+      <UniqueIdentifier>{d39617a8-2389-45fc-b405-3427f5f68d78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\Low Level\Program">
+      <UniqueIdentifier>{3083e29b-fef7-49b5-8489-43005cee5056}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\Low Level\Sampler">
+      <UniqueIdentifier>{55fe3369-5456-4e69-bc5d-319775f73ebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\Low Level\Transfer">
+      <UniqueIdentifier>{36a6bc38-d24c-4547-ad5d-e4b3d5f0dc49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors">
+      <UniqueIdentifier>{1fb61bcc-229d-49f4-8d59-bcc5afc1fbd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Camera">
+      <UniqueIdentifier>{51e3a9b2-324c-4535-a846-5280a1fd2201}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Lights">
+      <UniqueIdentifier>{d6c67b7f-fe1b-4c6a-807b-4487bbdc0e4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Renderer">
+      <UniqueIdentifier>{a0e3cae4-a842-4c7b-9d90-1dc318d2aff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Shaders">
+      <UniqueIdentifier>{5358aa51-6c9a-456b-a4e9-89dffbfab623}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Renderer\Deferred">
+      <UniqueIdentifier>{97558435-4e1c-4434-b18c-4552bf5ae580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Renderer\Forward">
+      <UniqueIdentifier>{4c1248a9-3d2f-4443-86f3-8c241312007e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Renderer\Ortho">
+      <UniqueIdentifier>{6c09b8fd-315b-4d8c-93cc-c5702e88d53c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Shaders\Per Fragment">
+      <UniqueIdentifier>{1fe41f72-b964-40ec-bd73-946c01b5e736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Shaders\OrthographicShader">
+      <UniqueIdentifier>{9aebb8cc-2b14-4f35-8547-35ddbbf8bd94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Shaders\DeferredOutputShader">
+      <UniqueIdentifier>{b3c3a86f-b71c-431d-8400-6e2d792a9f84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Shaders\DeferredInputShader">
+      <UniqueIdentifier>{9f4d4594-8b60-4eab-9bfd-10b02c19e587}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Camera\Default Camera">
+      <UniqueIdentifier>{f5be4aa0-17f9-4e80-afd3-e8dcd05ec289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Camera\First Person">
+      <UniqueIdentifier>{b78cb015-01c9-4729-ac2b-4737372ad351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Lights\Spot">
+      <UniqueIdentifier>{12d0e84c-c0df-4081-9d97-c35510198ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Lights\Point">
+      <UniqueIdentifier>{c238c866-2223-4255-963f-062f42a220f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Lights\Direction">
+      <UniqueIdentifier>{19946a3f-2f8a-452b-9444-665bcf9af0e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors\Button">
+      <UniqueIdentifier>{3b53d5c1-d703-4319-bdd5-24d426355676}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors\Cube">
+      <UniqueIdentifier>{53b07219-5e0e-486b-b320-0a1d9ee2756c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors\Heightmap">
+      <UniqueIdentifier>{0db6872c-4e51-4ec4-823a-1672cb328c3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors\MD2">
+      <UniqueIdentifier>{69bb1a51-3e31-4577-a82c-90a4a642c19a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors\Model">
+      <UniqueIdentifier>{2b554019-d9ac-42d2-8205-19f41ab76255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors\ModelSet">
+      <UniqueIdentifier>{beb12fe8-6a99-4de3-bd68-40f8b212c194}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors\Skybox">
+      <UniqueIdentifier>{78d40fc0-bc82-46f4-8a66-8557f649a383}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors\Text">
+      <UniqueIdentifier>{be427fbe-7ceb-4e1d-b82d-067c9be73a9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors\Texture">
+      <UniqueIdentifier>{b79572ec-de32-4939-a6b8-1b842a4d5d60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Exception">
+      <UniqueIdentifier>{0188b82b-545b-4997-bcfc-d7098ee5b50c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gamepad.cpp">
-      <Filter>Source Code\Input\Gamepad</Filter>
+      <Filter>Core\Input\Gamepad</Filter>
     </ClCompile>
     <ClCompile Include="Keyboard.cpp">
-      <Filter>Source Code\Input\Keyboard</Filter>
+      <Filter>Core\Input\Keyboard</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
-      <Filter>Source Code\Input\Mouse</Filter>
+      <Filter>Core\Input\Mouse</Filter>
     </ClCompile>
     <ClCompile Include="aStarException.cpp">
-      <Filter>Source Code\Ai\Exception</Filter>
+      <Filter>Core\Ai\Exception</Filter>
     </ClCompile>
     <ClCompile Include="aStarMap.cpp">
-      <Filter>Source Code\Ai\Map</Filter>
+      <Filter>Core\Ai\Map</Filter>
     </ClCompile>
     <ClCompile Include="aStarNode.cpp">
-      <Filter>Source Code\Ai\Node</Filter>
+      <Filter>Core\Ai\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="SolidCylinder.cpp">
+      <Filter>Core\Physics\SolidCylinder</Filter>
+    </ClCompile>
+    <ClCompile Include="SolidBox.cpp">
+      <Filter>Core\Physics\SolidBox</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Core\Os\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="HighPrecisionTimer.cpp">
+      <Filter>Core\Os\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioFile.cpp">
+      <Filter>Core\Loading\Asset\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="FontAsset.cpp">
+      <Filter>Core\Loading\Asset\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelFile.cpp">
+      <Filter>Core\Loading\Asset\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAsset.cpp">
+      <Filter>Core\Loading\Asset\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>Core\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalAssetManager.cpp">
+      <Filter>Core\Loading\Local</Filter>
+    </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Core\Media\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Video.cpp">
+      <Filter>Core\Media\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="GPU.cpp">
+      <Filter>Core\Graphics\Low Level</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryBuffer.cpp">
+      <Filter>Core\Graphics\Low Level\Geometry Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="GPU_Matrices.cpp">
+      <Filter>Core\Graphics\Low Level\Matrices</Filter>
+    </ClCompile>
+    <ClCompile Include="GPU_Program.cpp">
+      <Filter>Core\Graphics\Low Level\Program</Filter>
+    </ClCompile>
+    <ClCompile Include="GPU_Sampler.cpp">
+      <Filter>Core\Graphics\Low Level\Sampler</Filter>
+    </ClCompile>
+    <ClCompile Include="GPU_Transfer.cpp">
+      <Filter>Core\Graphics\Low Level\Transfer</Filter>
+    </ClCompile>
+    <ClCompile Include="DeferredRenderer.cpp">
+      <Filter>Core\Graphics\High Level\Renderer\Deferred</Filter>
+    </ClCompile>
+    <ClCompile Include="ForwardRenderer.cpp">
+      <Filter>Core\Graphics\High Level\Renderer\Forward</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer2D.cpp">
+      <Filter>Core\Graphics\High Level\Renderer\Ortho</Filter>
+    </ClCompile>
+    <ClCompile Include="DeferredInputShader.cpp">
+      <Filter>Core\Graphics\High Level\Shaders\DeferredInputShader</Filter>
+    </ClCompile>
+    <ClCompile Include="DeferredOutputShader.cpp">
+      <Filter>Core\Graphics\High Level\Shaders\DeferredOutputShader</Filter>
+    </ClCompile>
+    <ClCompile Include="OrthoShader.cpp">
+      <Filter>Core\Graphics\High Level\Shaders\OrthographicShader</Filter>
+    </ClCompile>
+    <ClCompile Include="PerFragmentShader.cpp">
+      <Filter>Core\Graphics\High Level\Shaders\Per Fragment</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultCamera.cpp">
+      <Filter>Core\Graphics\High Level\Camera\Default Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstPersonCamera.cpp">
+      <Filter>Core\Graphics\High Level\Camera\First Person</Filter>
+    </ClCompile>
+    <ClCompile Include="Lights.cpp">
+      <Filter>Core\Graphics\High Level\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionalLight.cpp">
+      <Filter>Core\Graphics\High Level\Lights\Direction</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Core\Graphics\High Level\Lights\Point</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLight.cpp">
+      <Filter>Core\Graphics\High Level\Lights\Spot</Filter>
+    </ClCompile>
+    <ClCompile Include="Button2D.cpp">
+      <Filter>Core\Graphics\High Level\Actors\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Core\Graphics\High Level\Actors\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Heightmap.cpp">
+      <Filter>Core\Graphics\High Level\Actors\Heightmap</Filter>
+    </ClCompile>
+    <ClCompile Include="md2Model.cpp">
+      <Filter>Core\Graphics\High Level\Actors\MD2</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Core\Graphics\High Level\Actors\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelSet.cpp">
+      <Filter>Core\Graphics\High Level\Actors\ModelSet</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Core\Graphics\High Level\Actors\Skybox</Filter>
+    </ClCompile>
+    <ClCompile Include="Text2D.cpp">
+      <Filter>Core\Graphics\High Level\Actors\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Core\Graphics\High Level\Actors\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Core\Exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gamepad.h">
-      <Filter>Source Code\Input\Gamepad</Filter>
+      <Filter>Core\Input\Gamepad</Filter>
     </ClInclude>
     <ClInclude Include="Keyboard.h">
-      <Filter>Source Code\Input\Keyboard</Filter>
+      <Filter>Core\Input\Keyboard</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
-      <Filter>Source Code\Input\Mouse</Filter>
+      <Filter>Core\Input\Mouse</Filter>
     </ClInclude>
     <ClInclude Include="Ai.h">
-      <Filter>Source Code\Ai</Filter>
+      <Filter>Core\Ai</Filter>
     </ClInclude>
     <ClInclude Include="aStarException.h">
-      <Filter>Source Code\Ai\Exception</Filter>
+      <Filter>Core\Ai\Exception</Filter>
     </ClInclude>
     <ClInclude Include="aStarMap.h">
-      <Filter>Source Code\Ai\Map</Filter>
+      <Filter>Core\Ai\Map</Filter>
     </ClInclude>
     <ClInclude Include="aStarNode.h">
-      <Filter>Source Code\Ai\Node</Filter>
+      <Filter>Core\Ai\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineLayer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidCylinder.h">
+      <Filter>Core\Physics\SolidCylinder</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidBox.h">
+      <Filter>Core\Physics\SolidBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Core\Os\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="HighPrecisionTimer.h">
+      <Filter>Core\Os\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioFile.h">
+      <Filter>Core\Loading\Asset\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="FontAsset.h">
+      <Filter>Core\Loading\Asset\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelFile.h">
+      <Filter>Core\Loading\Asset\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAsset.h">
+      <Filter>Core\Loading\Asset\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>Core\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalAssetManager.h">
+      <Filter>Core\Loading\Local</Filter>
+    </ClInclude>
+    <ClInclude Include="Media.h">
+      <Filter>Core\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Core\Media\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Video.h">
+      <Filter>Core\Media\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="GPU.h">
+      <Filter>Core\Graphics\Low Level</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryBuffer.h">
+      <Filter>Core\Graphics\Low Level\Geometry Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="GPU_Matrices.h">
+      <Filter>Core\Graphics\Low Level\Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="GPU_Program.h">
+      <Filter>Core\Graphics\Low Level\Program</Filter>
+    </ClInclude>
+    <ClInclude Include="GPU_Sampler.h">
+      <Filter>Core\Graphics\Low Level\Sampler</Filter>
+    </ClInclude>
+    <ClInclude Include="GPU_Transfer.h">
+      <Filter>Core\Graphics\Low Level\Transfer</Filter>
+    </ClInclude>
+    <ClInclude Include="DeferredRenderer.h">
+      <Filter>Core\Graphics\High Level\Renderer\Deferred</Filter>
+    </ClInclude>
+    <ClInclude Include="ForwardRenderer.h">
+      <Filter>Core\Graphics\High Level\Renderer\Forward</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer2D.h">
+      <Filter>Core\Graphics\High Level\Renderer\Ortho</Filter>
+    </ClInclude>
+    <ClInclude Include="DeferredInputShader.h">
+      <Filter>Core\Graphics\High Level\Shaders\DeferredInputShader</Filter>
+    </ClInclude>
+    <ClInclude Include="DeferredOutputShader.h">
+      <Filter>Core\Graphics\High Level\Shaders\DeferredOutputShader</Filter>
+    </ClInclude>
+    <ClInclude Include="OrthoShader.h">
+      <Filter>Core\Graphics\High Level\Shaders\OrthographicShader</Filter>
+    </ClInclude>
+    <ClInclude Include="PerFragmentShader.h">
+      <Filter>Core\Graphics\High Level\Shaders\Per Fragment</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Core\Graphics\High Level\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultCamera.h">
+      <Filter>Core\Graphics\High Level\Camera\Default Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstPersonCamera.h">
+      <Filter>Core\Graphics\High Level\Camera\First Person</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights.h">
+      <Filter>Core\Graphics\High Level\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLight.h">
+      <Filter>Core\Graphics\High Level\Lights\Direction</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Core\Graphics\High Level\Lights\Point</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLight.h">
+      <Filter>Core\Graphics\High Level\Lights\Spot</Filter>
+    </ClInclude>
+    <ClInclude Include="Button2D.h">
+      <Filter>Core\Graphics\High Level\Actors\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Core\Graphics\High Level\Actors\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="Heightmap.h">
+      <Filter>Core\Graphics\High Level\Actors\Heightmap</Filter>
+    </ClInclude>
+    <ClInclude Include="md2Model.h">
+      <Filter>Core\Graphics\High Level\Actors\MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="anorms.h">
+      <Filter>Core\Graphics\High Level\Actors\MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Core\Graphics\High Level\Actors\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelSet.h">
+      <Filter>Core\Graphics\High Level\Actors\ModelSet</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Core\Graphics\High Level\Actors\Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="Text2D.h">
+      <Filter>Core\Graphics\High Level\Actors\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Core\Graphics\High Level\Actors\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Exception.h">
+      <Filter>Core\Exception</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

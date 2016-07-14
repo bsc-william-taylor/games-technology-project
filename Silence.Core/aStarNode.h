@@ -17,7 +17,7 @@ enum A_StarState {
 	OPEN, CLOSED, START, END, PATH, DEAD
 };
 
-class A_StarNode
+class SILENCE_EXPORT A_StarNode
 {
 private:
 	A_StarPoint position;

@@ -3,7 +3,7 @@
 
 #include "EngineLayer.h"
 
-class A_StarException : public std::exception
+class SILENCE_EXPORT A_StarException : public std::exception
 {
 private:
 	std::string message;

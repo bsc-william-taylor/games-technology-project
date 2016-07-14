@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -13,5 +9,268 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Game\Actors">
+      <UniqueIdentifier>{869f0341-dbdc-4c47-91ca-89711e4d8b3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stages">
+      <UniqueIdentifier>{30e1808b-c2ac-4a4b-9baf-2b733d55f608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stages\Gameover">
+      <UniqueIdentifier>{3655713e-112d-4d02-8f90-7872c98ee29e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stages\Options">
+      <UniqueIdentifier>{093faa2c-d6af-47f0-b88e-3178da2daee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stages\Menu">
+      <UniqueIdentifier>{414aaf20-a067-4b52-b24b-2cfc8d1cecc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stages\Intro">
+      <UniqueIdentifier>{309f82f0-11f5-4796-b5b3-7d9a9e435684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stages\Indoors">
+      <UniqueIdentifier>{5f555a2b-54e5-4634-97f5-63c037f90eb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stages\Forest">
+      <UniqueIdentifier>{76b28adc-bc94-44d2-9710-cf6087ec24fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest">
+      <UniqueIdentifier>{c0edb141-6b5c-401a-842b-2683f8f5d3ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Indoors">
+      <UniqueIdentifier>{2006484b-5003-4b0c-b95f-d1d29d9065da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Menu">
+      <UniqueIdentifier>{7fcfdfd8-d04e-463e-afb7-1050ed7f3bd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Options">
+      <UniqueIdentifier>{e89aaff9-a41b-4845-affe-3e628142ac71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Player">
+      <UniqueIdentifier>{57991c17-4e45-435c-9c13-e4839ef6b58f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Menu\Background">
+      <UniqueIdentifier>{48bb2685-294a-4dfc-94bd-c4c3b9f74ba2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Menu\Buttons">
+      <UniqueIdentifier>{a75832cb-440c-459a-b1fe-6344cfd0117c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Menu\Headers">
+      <UniqueIdentifier>{5452434c-a3e4-4ea8-83a9-ffa425f08380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Options\OptionsField">
+      <UniqueIdentifier>{bc4b07da-0562-4711-b420-3ab970a43759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Options\OptionsFieldElement">
+      <UniqueIdentifier>{afc8e42b-4f3c-45c2-90a8-b88399e35be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Options\OptionsFieldElement\Graphics">
+      <UniqueIdentifier>{12e89ac4-2d8a-4e35-8fcf-44f3e9ffe0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Options\OptionsFieldElement\Volume">
+      <UniqueIdentifier>{5140d5d5-6d5f-4200-86cb-c20cda23d7a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Options\OptionsFieldElement\WindowSize">
+      <UniqueIdentifier>{bd8b964d-7e3d-424e-80de-12ab458fde97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Options\OptionsFieldElement\WindowType">
+      <UniqueIdentifier>{145a302a-f206-45c0-bdeb-f3eae4d9ab20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Indoors\Hints">
+      <UniqueIdentifier>{8b545372-4de3-4e75-9d43-106fab9b4a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Indoors\Key">
+      <UniqueIdentifier>{adea1510-9282-4298-a912-629bf2de4aca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Indoors\Rocks">
+      <UniqueIdentifier>{c1d3e4c7-ef7b-450b-9c5b-bae8263d44c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Indoors\Torch">
+      <UniqueIdentifier>{2ec36a36-31a3-4d39-8b29-af42bb9195d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest\Terrain">
+      <UniqueIdentifier>{2f4f32c2-ad04-4875-b303-ce042f9dbb4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest\Pickups">
+      <UniqueIdentifier>{dacdc26e-3663-4375-bd18-5da3eeaa02c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest\Monster">
+      <UniqueIdentifier>{32a2433d-f8e5-4194-bb44-b26efb9f088c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest\Key">
+      <UniqueIdentifier>{2297b7d9-8357-4eba-9b43-b608fd8a68c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest\House">
+      <UniqueIdentifier>{fb74a63a-124f-4600-ad2d-a92535afa196}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest\Gate">
+      <UniqueIdentifier>{7b689662-3a41-4c6b-8b08-fe8fd8f50d72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest\Border">
+      <UniqueIdentifier>{b065052b-5d0f-47cc-9582-13bce18b53fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest\Monster\Brain">
+      <UniqueIdentifier>{aa6876a3-2506-48cb-a166-0bb4518f5700}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ApplicationLayer.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameover.cpp">
+      <Filter>Game\Stages\Gameover</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Game\Stages\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="intro.cpp">
+      <Filter>Game\Stages\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="Indoors.cpp">
+      <Filter>Game\Stages\Indoors</Filter>
+    </ClCompile>
+    <ClCompile Include="forest.cpp">
+      <Filter>Game\Stages\Forest</Filter>
+    </ClCompile>
+    <ClCompile Include="options.cpp">
+      <Filter>Game\Stages\Options</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game\Actors\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Game\Actors\Menu\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="Buttons.cpp">
+      <Filter>Game\Actors\Menu\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="Headers.cpp">
+      <Filter>Game\Actors\Menu\Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsField.cpp">
+      <Filter>Game\Actors\Options\OptionsField</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsVolume.cpp">
+      <Filter>Game\Actors\Options\OptionsFieldElement\Volume</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsGraphics.cpp">
+      <Filter>Game\Actors\Options\OptionsFieldElement\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsWindowSize.cpp">
+      <Filter>Game\Actors\Options\OptionsFieldElement\WindowSize</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsWindowType.cpp">
+      <Filter>Game\Actors\Options\OptionsFieldElement\WindowType</Filter>
+    </ClCompile>
+    <ClCompile Include="Hints.cpp">
+      <Filter>Game\Actors\Indoors\Hints</Filter>
+    </ClCompile>
+    <ClCompile Include="Gate.cpp">
+      <Filter>Game\Actors\Forest\Gate</Filter>
+    </ClCompile>
+    <ClCompile Include="House.cpp">
+      <Filter>Game\Actors\Forest\House</Filter>
+    </ClCompile>
+    <ClCompile Include="Key.cpp">
+      <Filter>Game\Actors\Forest\Key</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Game\Actors\Forest\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Pickups.cpp">
+      <Filter>Game\Actors\Forest\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="Border.cpp">
+      <Filter>Game\Actors\Forest\Border</Filter>
+    </ClCompile>
+    <ClCompile Include="Intelligence.cpp">
+      <Filter>Game\Actors\Forest\Monster\Brain</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Game\Actors\Forest\Monster</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ApplicationLayer.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameover.h">
+      <Filter>Game\Stages\Gameover</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Game\Stages\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="intro.h">
+      <Filter>Game\Stages\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="Indoors.h">
+      <Filter>Game\Stages\Indoors</Filter>
+    </ClInclude>
+    <ClInclude Include="forest.h">
+      <Filter>Game\Stages\Forest</Filter>
+    </ClInclude>
+    <ClInclude Include="options.h">
+      <Filter>Game\Stages\Options</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors.h">
+      <Filter>Game\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game\Actors\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Game\Actors\Menu\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Buttons.h">
+      <Filter>Game\Actors\Menu\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers.h">
+      <Filter>Game\Actors\Menu\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsField.h">
+      <Filter>Game\Actors\Options\OptionsField</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsVolume.h">
+      <Filter>Game\Actors\Options\OptionsFieldElement\Volume</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsGraphics.h">
+      <Filter>Game\Actors\Options\OptionsFieldElement\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsWindowSize.h">
+      <Filter>Game\Actors\Options\OptionsFieldElement\WindowSize</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsWindowType.h">
+      <Filter>Game\Actors\Options\OptionsFieldElement\WindowType</Filter>
+    </ClInclude>
+    <ClInclude Include="Hints.h">
+      <Filter>Game\Actors\Indoors\Hints</Filter>
+    </ClInclude>
+    <ClInclude Include="Gate.h">
+      <Filter>Game\Actors\Forest\Gate</Filter>
+    </ClInclude>
+    <ClInclude Include="House.h">
+      <Filter>Game\Actors\Forest\House</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Game\Actors\Forest\Key</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Game\Actors\Forest\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Pickups.h">
+      <Filter>Game\Actors\Forest\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="Border.h">
+      <Filter>Game\Actors\Forest\Border</Filter>
+    </ClInclude>
+    <ClInclude Include="Intelligence.h">
+      <Filter>Game\Actors\Forest\Monster\Brain</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Game\Actors\Forest\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

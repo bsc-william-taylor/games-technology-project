@@ -7,7 +7,7 @@
 #include <time.h>
 #include <queue>
 
-class A_StarMap 
+class SILENCE_EXPORT A_StarMap
 {
 private:
 	std::vector<std::vector<A_StarNode *>> map;

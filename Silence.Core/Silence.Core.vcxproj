@@ -19,21 +19,109 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="aStarException.cpp" />
     <ClCompile Include="aStarMap.cpp" />
     <ClCompile Include="aStarNode.cpp" />
+    <ClCompile Include="AudioFile.cpp" />
+    <ClCompile Include="Button2D.cpp" />
+    <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="DefaultCamera.cpp" />
+    <ClCompile Include="DeferredInputShader.cpp" />
+    <ClCompile Include="DeferredOutputShader.cpp" />
+    <ClCompile Include="DeferredRenderer.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
+    <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="FirstPersonCamera.cpp" />
+    <ClCompile Include="FontAsset.cpp" />
+    <ClCompile Include="ForwardRenderer.cpp" />
     <ClCompile Include="Gamepad.cpp" />
+    <ClCompile Include="GeometryBuffer.cpp" />
+    <ClCompile Include="GPU.cpp" />
+    <ClCompile Include="GPU_Matrices.cpp" />
+    <ClCompile Include="GPU_Program.cpp" />
+    <ClCompile Include="GPU_Sampler.cpp" />
+    <ClCompile Include="GPU_Transfer.cpp" />
+    <ClCompile Include="Heightmap.cpp" />
+    <ClCompile Include="HighPrecisionTimer.cpp" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Lights.cpp" />
+    <ClCompile Include="LocalAssetManager.cpp" />
+    <ClCompile Include="md2Model.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelFile.cpp" />
+    <ClCompile Include="ModelSet.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Music.cpp" />
+    <ClCompile Include="OrthoShader.cpp" />
+    <ClCompile Include="PerFragmentShader.cpp" />
+    <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="Renderer2D.cpp" />
+    <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="SolidBox.cpp" />
+    <ClCompile Include="SolidCylinder.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
+    <ClCompile Include="Text2D.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="TextureAsset.cpp" />
+    <ClCompile Include="Video.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ai.h" />
+    <ClInclude Include="anorms.h" />
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="aStarException.h" />
     <ClInclude Include="aStarMap.h" />
     <ClInclude Include="aStarNode.h" />
+    <ClInclude Include="AudioFile.h" />
+    <ClInclude Include="Button2D.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Cube.h" />
+    <ClInclude Include="DefaultCamera.h" />
+    <ClInclude Include="DeferredInputShader.h" />
+    <ClInclude Include="DeferredOutputShader.h" />
+    <ClInclude Include="DeferredRenderer.h" />
+    <ClInclude Include="DirectionalLight.h" />
+    <ClInclude Include="EngineLayer.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="FirstPersonCamera.h" />
+    <ClInclude Include="FontAsset.h" />
+    <ClInclude Include="ForwardRenderer.h" />
     <ClInclude Include="Gamepad.h" />
+    <ClInclude Include="GeometryBuffer.h" />
+    <ClInclude Include="GPU.h" />
+    <ClInclude Include="GPU_Matrices.h" />
+    <ClInclude Include="GPU_Program.h" />
+    <ClInclude Include="GPU_Sampler.h" />
+    <ClInclude Include="GPU_Transfer.h" />
+    <ClInclude Include="Heightmap.h" />
+    <ClInclude Include="HighPrecisionTimer.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Lights.h" />
+    <ClInclude Include="LocalAssetManager.h" />
+    <ClInclude Include="md2Model.h" />
+    <ClInclude Include="Media.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelFile.h" />
+    <ClInclude Include="ModelSet.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Music.h" />
+    <ClInclude Include="OrthoShader.h" />
+    <ClInclude Include="PerFragmentShader.h" />
+    <ClInclude Include="PointLight.h" />
+    <ClInclude Include="Renderer2D.h" />
+    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="SolidBox.h" />
+    <ClInclude Include="SolidCylinder.h" />
+    <ClInclude Include="SpotLight.h" />
+    <ClInclude Include="Text2D.h" />
+    <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="TextureAsset.h" />
+    <ClInclude Include="Video.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3A680A6D-7F46-4CAC-B6D6-631C6B265703}</ProjectGuid>
@@ -42,13 +130,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -85,12 +173,21 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>../Silence.Libs/;$(IncludePath)</IncludePath>
+    <LibraryPath>../Silence.Libs/;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>../Silence.Libs/;$(IncludePath)</IncludePath>
+    <LibraryPath>../Silence.Libs/;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -107,6 +204,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

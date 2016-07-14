@@ -1,17 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
+    <Filter Include="Api">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="Api\Exception">
+      <UniqueIdentifier>{851b7a97-c1ac-400a-867a-d27eb2426beb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Api\Scenes">
+      <UniqueIdentifier>{f0a77aa4-1a86-4e9c-a65b-eefa23d1d8a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Api\Systems">
+      <UniqueIdentifier>{0721e9c2-09e0-4306-af03-e7c5f149cdc7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Api\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Api\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>Api\Systems</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Api\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionLayer.h">
+      <Filter>Api</Filter>
+    </ClInclude>
+    <ClInclude Include="Exception.h">
+      <Filter>Api\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Api\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

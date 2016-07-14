@@ -2,7 +2,7 @@
 #ifndef _GAMEPAD_H_
 #define _GAMEPAD_H_
 
-#include "SDL2\SDL.h"
+#include "EngineLayer.h"
 
 #define DEADZONE_DEFAULT 6000
 
@@ -17,7 +17,7 @@ enum BUTTON_STATE {
 	GAMEPAD_BUTTON_NOT_PRESSED
 };
 
-class Gamepad 
+class SILENCE_EXPORT Gamepad 
 {
 private:
 	SDL_GameController * controller;
