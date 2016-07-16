@@ -26,8 +26,8 @@
 
 #pragma once
 
+#include "InteractionLayerExport.h"
 #include "EngineLayer.h"
-#include "Process.h" 
 #include "Gamepad.h"
 #include "Window.h"
 
@@ -44,7 +44,7 @@ public:
 	virtual ~Scene(){}
 };
 
-class SceneManager
+class SILENCE_EXPORT_API SceneManager
 {
 private:
 	std::vector<Scene*> engineScenes;

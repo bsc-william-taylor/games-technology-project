@@ -28,11 +28,12 @@
 #ifndef __SYSTEM_H__
 #define __SYSTEM_H__
 
+#include "InteractionLayerExport.h"
 #include "SceneManager.h"
 #include "AssetManager.h"
 #include "GPU.h"
 
-class OperatingSystem
+class SILENCE_EXPORT_API OperatingSystem
 {
 private:
 	SceneManager sceneManager;
@@ -58,6 +59,6 @@ private:
 };
 
 
-extern void onApplicationStart(OperatingSystem * os);
+SILENCE_EXPORT_API int bootstrap(std::function<void(OperatingSystem *)> onApplicationStart);
 
 #endif

@@ -10,7 +10,7 @@ enum State : unsigned int {
 	STATE_PAUSED,
 };
 
-class Video
+class SILENCE_EXPORT Video
 {
 private:
 	IMFVideoDisplayControl * videoDisplayControl;

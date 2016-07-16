@@ -9,6 +9,7 @@
 #include "Exception.h"
 #include "AssetManager.h"
 #include "EngineLayer.h"
+#include "System.h"
 #include "Media.h"
 #include "HLGI.h"
 

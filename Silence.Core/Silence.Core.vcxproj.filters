@@ -489,5 +489,8 @@
     <ClInclude Include="Exception.h">
       <Filter>Core\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="HLGI.h">
+      <Filter>Core\Graphics\High Level</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -45,4 +45,7 @@ constexpr int as_int(SceneID id)
 #include "intro.h"
 #include "menu.h"
 
+#pragma comment(lib, "Silence.Core.lib")
+#pragma comment(lib, "Silence.Api.lib")
+
 #endif

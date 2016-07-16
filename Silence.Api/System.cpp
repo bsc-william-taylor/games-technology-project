@@ -141,7 +141,8 @@ SceneManager * OperatingSystem::aquireSceneManager()
 }
 
 #include <ShellScalingApi.h>
-int main(int argc, char ** argv) 
+
+int bootstrap(std::function<void(OperatingSystem *)> onApplicationStart)
 {
 	SetProcessDpiAwareness(PROCESS_SYSTEM_DPI_AWARE);
 

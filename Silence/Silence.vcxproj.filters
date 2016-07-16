@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -115,6 +107,9 @@
     <Filter Include="Game\Actors\Forest\Monster\Brain">
       <UniqueIdentifier>{aa6876a3-2506-48cb-a166-0bb4518f5700}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Actors\Forest\Trees">
+      <UniqueIdentifier>{107f6828-264f-4141-b728-0b28bfd33769}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationLayer.cpp">
@@ -191,6 +186,9 @@
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>Game\Actors\Forest\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Trees.cpp">
+      <Filter>Game\Actors\Forest\Trees</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +269,9 @@
     </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>Game\Actors\Forest\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Trees.h">
+      <Filter>Game\Actors\Forest\Trees</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

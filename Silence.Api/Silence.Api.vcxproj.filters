@@ -5,9 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Api\Exception">
-      <UniqueIdentifier>{851b7a97-c1ac-400a-867a-d27eb2426beb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Api\Scenes">
       <UniqueIdentifier>{f0a77aa4-1a86-4e9c-a65b-eefa23d1d8a7}</UniqueIdentifier>
     </Filter>
@@ -18,9 +15,6 @@
   <ItemGroup>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Api\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Exception.cpp">
-      <Filter>Api\Exception</Filter>
     </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Api\Systems</Filter>
@@ -33,11 +27,11 @@
     <ClInclude Include="InteractionLayer.h">
       <Filter>Api</Filter>
     </ClInclude>
-    <ClInclude Include="Exception.h">
-      <Filter>Api\Exception</Filter>
-    </ClInclude>
     <ClInclude Include="System.h">
       <Filter>Api\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionLayerExport.h">
+      <Filter>Api</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

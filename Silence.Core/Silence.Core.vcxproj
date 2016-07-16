@@ -98,6 +98,7 @@
     <ClInclude Include="GPU_Transfer.h" />
     <ClInclude Include="Heightmap.h" />
     <ClInclude Include="HighPrecisionTimer.h" />
+    <ClInclude Include="HLGI.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="LocalAssetManager.h" />
