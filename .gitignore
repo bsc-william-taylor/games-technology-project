@@ -29,7 +29,7 @@
 *.app
 
 # Vs files
-.sdf
+*.sdf
 
 # Folders
 Release/

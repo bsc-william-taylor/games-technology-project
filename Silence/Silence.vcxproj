@@ -116,7 +116,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ApplicationLayer.cpp" />
+    <ClCompile Include="Silence.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Border.cpp" />
     <ClCompile Include="Buttons.cpp" />
@@ -128,11 +128,11 @@
     <ClCompile Include="House.cpp" />
     <ClCompile Include="Indoors.cpp" />
     <ClCompile Include="Intelligence.cpp" />
-    <ClCompile Include="intro.cpp" />
+    <ClCompile Include="Intro.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="Monster.cpp" />
-    <ClCompile Include="options.cpp" />
+    <ClCompile Include="Options.cpp" />
     <ClCompile Include="OptionsField.cpp" />
     <ClCompile Include="OptionsGraphics.cpp" />
     <ClCompile Include="OptionsVolume.cpp" />
@@ -145,7 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actors.h" />
-    <ClInclude Include="ApplicationLayer.h" />
+    <ClInclude Include="Silence.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Border.h" />
     <ClInclude Include="Buttons.h" />
@@ -157,11 +157,11 @@
     <ClInclude Include="House.h" />
     <ClInclude Include="Indoors.h" />
     <ClInclude Include="Intelligence.h" />
-    <ClInclude Include="intro.h" />
+    <ClInclude Include="Intro.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="Monster.h" />
-    <ClInclude Include="options.h" />
+    <ClInclude Include="Options.h" />
     <ClInclude Include="OptionsField.h" />
     <ClInclude Include="OptionsGraphics.h" />
     <ClInclude Include="OptionsVolume.h" />

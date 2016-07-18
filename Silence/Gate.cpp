@@ -1,6 +1,6 @@
 
 #include "Gate.h"
-#include "ApplicationLayer.h"
+#include "Silence.h"
 
 Gate::Gate()
 {

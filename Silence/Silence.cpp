@@ -24,7 +24,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "applicationLayer.h"
+#include "Silence.h"
 
 int main(int argc, char * argv[])
 {
@@ -39,7 +39,7 @@ int main(int argc, char * argv[])
 
         auto scenes = operatingSystem->aquireSceneManager();
 
-        scenes->setStart(static_cast<int>(SceneID::Intro));
+        scenes->setStart(as_int(SceneID::Intro));
         scenes->packSceneList({
             new Intro(operatingSystem),
             new Menu(operatingSystem),

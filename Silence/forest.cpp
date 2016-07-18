@@ -25,7 +25,7 @@
 */
 
 #include "Forest.h"
-#include "applicationLayer.h"
+#include "Silence.h"
 
 // Constructor & Deconstructor
 Forest::Forest(OperatingSystem * engine)

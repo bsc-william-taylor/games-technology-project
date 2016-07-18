@@ -24,7 +24,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "applicationLayer.h"
+#include "Silence.h"
 
 // Constructor & Deconstructor
 Options::Options(OperatingSystem * system)

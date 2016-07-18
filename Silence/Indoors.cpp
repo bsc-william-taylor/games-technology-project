@@ -25,7 +25,7 @@
 */
 
 #include "Indoors.h"
-#include "applicationLayer.h"
+#include "Silence.h"
 
 // Constructor & Deconstructor
 Indoors::Indoors(OperatingSystem * engine)

@@ -112,26 +112,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ApplicationLayer.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Gameover.cpp">
       <Filter>Game\Stages\Gameover</Filter>
     </ClCompile>
     <ClCompile Include="menu.cpp">
       <Filter>Game\Stages\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="intro.cpp">
-      <Filter>Game\Stages\Intro</Filter>
-    </ClCompile>
     <ClCompile Include="Indoors.cpp">
       <Filter>Game\Stages\Indoors</Filter>
     </ClCompile>
     <ClCompile Include="forest.cpp">
       <Filter>Game\Stages\Forest</Filter>
-    </ClCompile>
-    <ClCompile Include="options.cpp">
-      <Filter>Game\Stages\Options</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Game\Actors\Player</Filter>
@@ -190,28 +181,28 @@
     <ClCompile Include="Trees.cpp">
       <Filter>Game\Actors\Forest\Trees</Filter>
     </ClCompile>
+    <ClCompile Include="Silence.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Options.cpp">
+      <Filter>Game\Stages\Options</Filter>
+    </ClCompile>
+    <ClCompile Include="Intro.cpp">
+      <Filter>Game\Stages\Intro</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ApplicationLayer.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Gameover.h">
       <Filter>Game\Stages\Gameover</Filter>
     </ClInclude>
     <ClInclude Include="menu.h">
       <Filter>Game\Stages\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="intro.h">
-      <Filter>Game\Stages\Intro</Filter>
-    </ClInclude>
     <ClInclude Include="Indoors.h">
       <Filter>Game\Stages\Indoors</Filter>
     </ClInclude>
     <ClInclude Include="forest.h">
       <Filter>Game\Stages\Forest</Filter>
-    </ClInclude>
-    <ClInclude Include="options.h">
-      <Filter>Game\Stages\Options</Filter>
     </ClInclude>
     <ClInclude Include="Actors.h">
       <Filter>Game\Actors</Filter>
@@ -272,6 +263,15 @@
     </ClInclude>
     <ClInclude Include="Trees.h">
       <Filter>Game\Actors\Forest\Trees</Filter>
+    </ClInclude>
+    <ClInclude Include="Silence.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Options.h">
+      <Filter>Game\Stages\Options</Filter>
+    </ClInclude>
+    <ClInclude Include="Intro.h">
+      <Filter>Game\Stages\Intro</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
