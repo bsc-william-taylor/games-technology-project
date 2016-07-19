@@ -30,6 +30,8 @@
 
 # Vs files
 *.sdf
+*.tlog
+*.pdb
 
 # Folders
 Release/
