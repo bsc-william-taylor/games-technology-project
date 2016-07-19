@@ -69,11 +69,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\B0023\Desktop\Games Technology Project\Silence.Core;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Silence.Core;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Debug;$(LibraryPath)$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\B0023\Desktop\Games Technology Project\Silence.Core;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\B0023\Desktop\Games Technology Project\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Silence.Core;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
