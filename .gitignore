@@ -21,7 +21,9 @@
 *.lai
 *.la
 *.a
-*.lib
+Silence.Core/*.lib
+Silence.Api/*.lib
+Silence/*.lib
 
 # Executables
 *.exe
