@@ -7,7 +7,6 @@ class A_StarMap;
 
 struct A_StarPoint {
     int x; int y;
-
     A_StarPoint(int x, int y) {
         this->x = x; this->y = y;
     }

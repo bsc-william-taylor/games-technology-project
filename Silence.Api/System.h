@@ -35,7 +35,6 @@
 
 class SILENCE_EXPORT_API OperatingSystem
 {
-private:
     SceneManager sceneManager;
     AssetManager assetManager;
     Window windowManager;

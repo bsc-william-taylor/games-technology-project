@@ -25,6 +25,7 @@
 */
 
 
+#include <ShellScalingApi.h>
 #include "HighPrecisionTimer.h"
 #include "System.h"
 
@@ -103,7 +104,10 @@ void OperatingSystem::executeProgram()
             sceneManager.updateScene();
             sceneManager.renderScene();
 
-            if (swapBuffers) windowManager.swapBuffers();
+            if (swapBuffers) 
+            {
+                windowManager.swapBuffers();
+            }
 
             if (!windowManager.vsyncEnabled())
             {
@@ -140,13 +144,11 @@ SceneManager * OperatingSystem::aquireSceneManager()
     return &sceneManager;
 }
 
-#include <ShellScalingApi.h>
-
 int bootstrap(std::function<void(OperatingSystem *)> onApplicationStart)
 {
     SetProcessDpiAwareness(PROCESS_SYSTEM_DPI_AWARE);
 
-    auto message{ EXIT_SUCCESS };
+    auto message { EXIT_SUCCESS };
 
     try 
     {
@@ -163,12 +165,8 @@ int bootstrap(std::function<void(OperatingSystem *)> onApplicationStart)
     }
     catch (Error e) 
     {
+        SDL_ShowSimpleMessageBox(0, e.title(), e.what(), nullptr);
         message = EXIT_FAILURE;
-        SDL_ShowSimpleMessageBox(0,
-            e.title(),
-            e.what(),
-            nullptr
-        );
     }
 
     return message;

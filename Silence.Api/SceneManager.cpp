@@ -75,7 +75,7 @@ void SceneManager::renderScene()
         engineScenes[current]->onRender();
     }
 
-    if (globalScene != NULL)
+    if (globalScene != nullptr)
     {
         globalScene->onRender();
     }
@@ -135,7 +135,8 @@ void SceneManager::createScenes()
 
     if (!engineScenes.empty())
     {
-        for(auto& e : engineScenes) {
+        for(auto& e : engineScenes) 
+        {
             e->onCreate();
         }
 
