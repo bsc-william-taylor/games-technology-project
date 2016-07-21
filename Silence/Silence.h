@@ -29,12 +29,12 @@
 
 // an enum of IDs for each scene
 enum class SceneID {
-	Intro, Menu, Indoors, Forest, Gameover, Options
+    Intro, Menu, Indoors, Forest, Gameover, Options
 };
 
 constexpr int as_int(SceneID id)
 {
-	return static_cast<int>(id);
+    return static_cast<int>(id);
 }
 
 #include "InteractionLayer.h"

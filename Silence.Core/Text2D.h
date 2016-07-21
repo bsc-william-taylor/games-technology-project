@@ -34,38 +34,38 @@
 
 // Types of alignment for the text
 enum class ALIGNMENT {
-	CENTER, RIGHT, LEFT
+    CENTER, RIGHT, LEFT
 };
 
 class SILENCE_EXPORT Text2D
 {
 private:
-	// The transfer object for the vertices
-	GPU_Transfer * transfer;
-	// The sample object for the texture
-	GPU_Sampler * texture;
-	// The height and width of the texture generated
-	GLuint height;
-	GLuint width;
+    // The transfer object for the vertices
+    GPU_Transfer * transfer;
+    // The sample object for the texture
+    GPU_Sampler * texture;
+    // The height and width of the texture generated
+    GLuint height;
+    GLuint width;
 public:
-	// Constructor & Deconstructor
-	Text2D();
-	~Text2D();
+    // Constructor & Deconstructor
+    Text2D();
+    ~Text2D();
 
-	// sets the font for text as well as the text to be rendered
-	void setFont(FontAsset * text_font, const char * text);
-	// sets the area the text should be rendered inside and its alignment
-	void setArea(glm::vec2 size, ALIGNMENT textAlignment);
-	// sets the area the text should be rendered inside
-	void setArea(glm::vec2 size);
+    // sets the font for text as well as the text to be rendered
+    void setFont(FontAsset * text_font, const char * text);
+    // sets the area the text should be rendered inside and its alignment
+    void setArea(glm::vec2 size, ALIGNMENT textAlignment);
+    // sets the area the text should be rendered inside
+    void setArea(glm::vec2 size);
 
-	std::string getText();
-	// returns the ID for the texts texture
-	GPU_ID getTextureID();
-	// returns the ID for the vertex data
-	GPU_ID getDataID();
+    std::string getText();
+    // returns the ID for the texts texture
+    GPU_ID getTextureID();
+    // returns the ID for the vertex data
+    GPU_ID getDataID();
 private:
-	std::string data;
+    std::string data;
 
 };
 

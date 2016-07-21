@@ -28,95 +28,95 @@
 
 // Constructor & Deconstructor
 Skybox::Skybox()
-	: cubemap_object_mesh(NULL),
-	  cubemap_texture(NULL),
-	  distance(-1)
+    : cubemap_object_mesh(NULL),
+      cubemap_texture(NULL),
+      distance(-1)
 {
 }
 
 Skybox::~Skybox()
 {
-	SAFE_RELEASE(cubemap_object_mesh);
-	SAFE_RELEASE(cubemap_texture);
+    SAFE_RELEASE(cubemap_object_mesh);
+    SAFE_RELEASE(cubemap_texture);
 }
 
 // creates the skybox by loading all the textures which represent each cube side
 void Skybox::createSkybox(std::initializer_list<TextureAsset*> assets)
 {
-	// providing 6 textures our provided
-	if (assets.size() == 6 && distance != -1)
-	{
-		// Create the cubemap sampler object
-		cubemap_texture = new GPU_Sampler(CUBE_SAMPLER);
+    // providing 6 textures our provided
+    if (assets.size() == 6 && distance != -1)
+    {
+        // Create the cubemap sampler object
+        cubemap_texture = new GPU_Sampler(CUBE_SAMPLER);
 
-		// and pass each texture provided to it
-		for (auto& texture : assets)
-		{			
-			if (texture != NULL)
-			{
-				cubemap_texture->setBitmapData(texture->getPixels(),
-					texture->getWidth(),
-					texture->getHeight(),
-					texture->getBPP(),
-					texture->getMask()
-				);
-			}
-		}
+        // and pass each texture provided to it
+        for (auto& texture : assets)
+        {			
+            if (texture != NULL)
+            {
+                cubemap_texture->setBitmapData(texture->getPixels(),
+                    texture->getWidth(),
+                    texture->getHeight(),
+                    texture->getBPP(),
+                    texture->getMask()
+                );
+            }
+        }
 
-		// and send the textures to the GPU
-		cubemap_texture->send();
+        // and send the textures to the GPU
+        cubemap_texture->send();
 
-		// and then transfer the mesh data
-		cubemap_object_mesh = new GPU_Transfer();
-		cubemap_object_mesh->setVertices(vertices);
-		cubemap_object_mesh->setNormals(normals);
-		cubemap_object_mesh->send();
-	}
+        // and then transfer the mesh data
+        cubemap_object_mesh = new GPU_Transfer();
+        cubemap_object_mesh->setVertices(vertices);
+        cubemap_object_mesh->setNormals(normals);
+        cubemap_object_mesh->send();
+    }
 }
 
 // Sets the distance and calculates the meshes
 void Skybox::setDistance(float distance)
 {
-	// The distance to render the cube at
-	this->distance = distance;
+    // The distance to render the cube at
+    this->distance = distance;
 
-	// calculate each vertex
-	vertices = {
-		// front
-		Vertex(-distance, -distance, -distance), Vertex(distance, -distance, -distance), Vertex(distance, distance, -distance),
-		Vertex(-distance, -distance, -distance), Vertex(-distance, distance, -distance), Vertex(distance, distance, -distance),
-		// right
-		Vertex(distance, -distance, -distance), Vertex(distance, distance, -distance), Vertex(distance, distance, distance),
-		Vertex(distance, -distance, -distance), Vertex(distance, distance, distance), Vertex(distance, -distance, distance),
-		// back
-		Vertex(-distance, -distance, distance), Vertex(distance, -distance, distance), Vertex(distance, distance, distance),
-		Vertex(-distance, -distance, distance), Vertex(-distance, distance, distance), Vertex(distance, distance, distance),
-		// left
-		Vertex(-distance, -distance, -distance), Vertex(-distance, distance, -distance), Vertex(-distance, distance, distance),
-		Vertex(-distance, -distance, -distance), Vertex(-distance, distance, distance), Vertex(-distance, -distance, distance),
-		// top
-		Vertex(-distance, distance, -distance), Vertex(-distance, distance, distance), Vertex(distance, distance, distance),
-		Vertex(-distance, distance, -distance), Vertex(distance, distance, distance), Vertex(distance, distance, -distance),
-		// bottom
-		Vertex(-distance, -distance, -distance), Vertex(-distance, -distance, distance), Vertex(distance, -distance, distance),
-		Vertex(-distance, -distance, -distance), Vertex(distance, -distance, distance), Vertex(distance, -distance, -distance)
-	};
+    // calculate each vertex
+    vertices = {
+        // front
+        Vertex(-distance, -distance, -distance), Vertex(distance, -distance, -distance), Vertex(distance, distance, -distance),
+        Vertex(-distance, -distance, -distance), Vertex(-distance, distance, -distance), Vertex(distance, distance, -distance),
+        // right
+        Vertex(distance, -distance, -distance), Vertex(distance, distance, -distance), Vertex(distance, distance, distance),
+        Vertex(distance, -distance, -distance), Vertex(distance, distance, distance), Vertex(distance, -distance, distance),
+        // back
+        Vertex(-distance, -distance, distance), Vertex(distance, -distance, distance), Vertex(distance, distance, distance),
+        Vertex(-distance, -distance, distance), Vertex(-distance, distance, distance), Vertex(distance, distance, distance),
+        // left
+        Vertex(-distance, -distance, -distance), Vertex(-distance, distance, -distance), Vertex(-distance, distance, distance),
+        Vertex(-distance, -distance, -distance), Vertex(-distance, distance, distance), Vertex(-distance, -distance, distance),
+        // top
+        Vertex(-distance, distance, -distance), Vertex(-distance, distance, distance), Vertex(distance, distance, distance),
+        Vertex(-distance, distance, -distance), Vertex(distance, distance, distance), Vertex(distance, distance, -distance),
+        // bottom
+        Vertex(-distance, -distance, -distance), Vertex(-distance, -distance, distance), Vertex(distance, -distance, distance),
+        Vertex(-distance, -distance, -distance), Vertex(distance, -distance, distance), Vertex(distance, -distance, -distance)
+    };
 
-	// then push back a null normal for each vertex
-	for (auto& v : vertices) 
-	{
-		normals.push_back(Vertex(0.0, 0.0, 0.0));
-	}
+    // then push back a null normal for each vertex
+    for (auto& v : vertices) 
+    {
+        normals.push_back(Vertex(0.0, 0.0, 0.0));
+    }
 }
 
 // returns the cubemaps texture ID
 GPU_ID Skybox::getTextureID()
 {
-	return cubemap_texture->getID();
+    return cubemap_texture->getID();
 }
 
 // returns the ID for the mesh
 GPU_ID Skybox::getDataID()
 {
-	return cubemap_object_mesh->getID();
+    return cubemap_object_mesh->getID();
 }

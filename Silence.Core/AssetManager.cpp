@@ -30,134 +30,134 @@
 // Constructor & Deconstructor 
 AssetManager::AssetManager()
 {
-	stateAssetManagers.reserve(25);
-	textures.reserve(250);
-	models.reserve(250);
-	fonts.reserve(250);
+    stateAssetManagers.reserve(25);
+    textures.reserve(250);
+    models.reserve(250);
+    fonts.reserve(250);
 }
 
 AssetManager::~AssetManager()
 {
-	for (auto& tex : textures)
-		delete tex;
-	for (auto& model : models)
-		delete model;
-	for (auto& font : fonts)
-		delete font;
-	for (auto& m : music)
-		delete m;
+    for (auto& tex : textures)
+        delete tex;
+    for (auto& model : models)
+        delete model;
+    for (auto& font : fonts)
+        delete font;
+    for (auto& m : music)
+        delete m;
 
-	stateAssetManagers.clear();
+    stateAssetManagers.clear();
 }
 
 void AssetManager::recycle()
 {
-	for (auto& tex : textures)
-		tex->recycle();
+    for (auto& tex : textures)
+        tex->recycle();
 }
 
 std::vector<TextureAsset*>& AssetManager::getTextures()
 {
-	return textures;
+    return textures;
 }
 
 std::vector<AudioAsset*>& AssetManager::getAudio()
 {
-	return this->music;
+    return this->music;
 }
 
 std::vector<ModelAsset*>& AssetManager::getModels()
 {
-	return models;
+    return models;
 }
 
 std::vector<FontAsset*>& AssetManager::getFonts()
 {
-	return fonts;
+    return fonts;
 }
 
 void AssetManager::push(TextureAsset * asset)
 {
-	textures.push_back(asset);
+    textures.push_back(asset);
 }
 
 void AssetManager::push(ModelAsset * asset)
 {
-	models.push_back(asset);
+    models.push_back(asset);
 }
 
 void AssetManager::push(FontAsset * asset)
 {
-	fonts.push_back(asset);
+    fonts.push_back(asset);
 }
 
 void AssetManager::push(AudioAsset * asset)
 {
-	music.push_back(asset);
+    music.push_back(asset);
 }
 
 // Just returns a new asset manager for each state
 LocalAssetManager * AssetManager::grabLocalManager()
 {
-	LocalAssetManager * localManager = new LocalAssetManager(this);
-	this->stateAssetManagers.push_back(localManager);
-	return localManager;
+    LocalAssetManager * localManager = new LocalAssetManager(this);
+    this->stateAssetManagers.push_back(localManager);
+    return localManager;
 }
 
 bool AssetManager::checkTexture(std::string ext, std::string nm)
 {
-	if (ext == ".jpg" || ext == ".png" || ext == ".bmp")
-	{
-		for (auto& texture : textures)
-		{
-			if (texture->getName() == nm)
-			{
-				//std::cout << "Duplicate Caught " << nm << std::endl;
-				return false;
-			}
-		}
+    if (ext == ".jpg" || ext == ".png" || ext == ".bmp")
+    {
+        for (auto& texture : textures)
+        {
+            if (texture->getName() == nm)
+            {
+                //std::cout << "Duplicate Caught " << nm << std::endl;
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 bool AssetManager::checkModel(std::string ext, std::string nm)
 {
-	if (ext == ".3DS" || ext == ".obj" || ext == ".3ds" || ext == ".md2" || ext == ".md3")
-	{
-		for (auto& model : models)
-		{
-		
-			if (model->getName() == nm)
-			{
-				//std::cout << "Duplicate Caught " << nm << std::endl;
-				return false;
-			}
-		}
+    if (ext == ".3DS" || ext == ".obj" || ext == ".3ds" || ext == ".md2" || ext == ".md3")
+    {
+        for (auto& model : models)
+        {
+        
+            if (model->getName() == nm)
+            {
+                //std::cout << "Duplicate Caught " << nm << std::endl;
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 bool AssetManager::checkLabel(std::string ext, std::string nm)
 {
-	if (ext == ".ttf" || ext == ".otf")
-	{
-		for (auto& label : fonts)
-		{
-			if (label->getName() == nm)
-			{
-				//std::cout << "Duplicate Caught " << nm << std::endl;
-				return false;
-			}
-		}
+    if (ext == ".ttf" || ext == ".otf")
+    {
+        for (auto& label : fonts)
+        {
+            if (label->getName() == nm)
+            {
+                //std::cout << "Duplicate Caught " << nm << std::endl;
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	return false;
+    return false;
 }

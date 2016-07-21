@@ -3,43 +3,43 @@
 #include "intro.h"
 
 Intro::Intro(OperatingSystem * os)
-	: system(os)
+    : system(os)
 {
 }
 
 Intro::~Intro()
 {
-	introVideo.unload();
+    introVideo.unload();
 }
 
 void Intro::onUpdate()
 {
-	if (introTimer.elapsed(MS) >= 9000)
-	{
-		introTimer.clear();
-		auto sceneManager = system->aquireSceneManager();
-		system->enableDoubleBuffering();
-		sceneManager->switchScene(as_int(SceneID::Menu));
-	}
+    if (introTimer.elapsed(MS) >= 9000)
+    {
+        introTimer.clear();
+        auto sceneManager = system->aquireSceneManager();
+        system->enableDoubleBuffering();
+        sceneManager->switchScene(as_int(SceneID::Menu));
+    }
 }
 
 void Intro::onEnter(int previous)
 {
-	system->enableSingleBuffering();
-	system->aquireWindow().forceFullscreenMode();
+    system->enableSingleBuffering();
+    system->aquireWindow().forceFullscreenMode();
 
-	introTimer.start();
-	introVideo.play();
+    introTimer.start();
+    introVideo.play();
 }
 
 void Intro::onCreate()
 {
-	introVideo.streamFrom("data/media/intro.wmv");
+    introVideo.streamFrom("data/media/intro.wmv");
 }
 
 void Intro::onRender()
 {
-	introVideo.display();
+    introVideo.display();
 }
 
 void Intro::onGamepadButton(int k, int s)

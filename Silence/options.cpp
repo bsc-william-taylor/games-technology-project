@@ -29,106 +29,106 @@
 // Constructor & Deconstructor
 Options::Options(OperatingSystem * system)
 {
-	// Aquire the scene manager
-	scenes = system->aquireSceneManager();
-	// aquire a local asset manager for the scene
-	package = system->aquireAssetManager()->grabLocalManager();
-	// and grab these assets from disk
-	package->grab({ "data/textures/options.png",
-		"data/fonts/Calibri.ttf",
-		"data/textures/button.png",
-		"data/textures/back.png",
-		"data/textures/right.png",
-		"data/textures/left.png"
-	});
+    // Aquire the scene manager
+    scenes = system->aquireSceneManager();
+    // aquire a local asset manager for the scene
+    package = system->aquireAssetManager()->grabLocalManager();
+    // and grab these assets from disk
+    package->grab({ "data/textures/options.png",
+        "data/fonts/Calibri.ttf",
+        "data/textures/button.png",
+        "data/textures/back.png",
+        "data/textures/right.png",
+        "data/textures/left.png"
+    });
 
-	optionInputs = new OptionsField(&system->aquireWindow());
+    optionInputs = new OptionsField(&system->aquireWindow());
 }
 
 Options::~Options()
 {
-	// Packages need to be manually deleted
-	SAFE_RELEASE(package);
+    // Packages need to be manually deleted
+    SAFE_RELEASE(package);
 }
 
 // Handles when the scene is created
 void Options::onCreate()
 {
-	optionInputs->create(package);
+    optionInputs->create(package);
 
-	// Load all assets starting with the header
-	header.setFont(package->getL("data/fonts/Calibri", 225, { 255, 255, 255 }), "Options");
-	header.setArea(glm::vec2(1920 / 2, 900), ALIGNMENT::CENTER);
+    // Load all assets starting with the header
+    header.setFont(package->getL("data/fonts/Calibri", 225, { 255, 255, 255 }), "Options");
+    header.setArea(glm::vec2(1920 / 2, 900), ALIGNMENT::CENTER);
 
-	version.setFont(package->getL("data/fonts/Calibri", 25, { 255, 255, 255 }), "Version 1.0");
-	version.setArea(glm::vec2(1920 / 2, 100), ALIGNMENT::CENTER);
+    version.setFont(package->getL("data/fonts/Calibri", 25, { 255, 255, 255 }), "Version 1.0");
+    version.setArea(glm::vec2(1920 / 2, 100), ALIGNMENT::CENTER);
 
-	// Load the play button set the font, text and location
-	backButton.setButtonTexture(package->getT("data/textures/back"));
-	backButton.setArea(glm::vec4(10, 945, 125, 125), ALIGNMENT::RIGHT);
+    // Load the play button set the font, text and location
+    backButton.setButtonTexture(package->getT("data/textures/back"));
+    backButton.setArea(glm::vec4(10, 945, 125, 125), ALIGNMENT::RIGHT);
 
-	// Load the background texture and make it fullscreen
-	background.setTexture(package->getT("data/textures/options"));
-	background.setArea(glm::vec4(0.0, 0.0, 1920, 1080));
+    // Load the background texture and make it fullscreen
+    background.setTexture(package->getT("data/textures/options"));
+    background.setArea(glm::vec4(0.0, 0.0, 1920, 1080));
 
-	// finally create the 2D renderer
-	renderer2D.createRenderer();
+    // finally create the 2D renderer
+    renderer2D.createRenderer();
 }
 
 void Options::onGamepadButton(int key, int state)
 {
-	if ((key == SDL_CONTROLLER_BUTTON_B || key == SDL_CONTROLLER_BUTTON_BACK) && state == GAMEPAD_BUTTON_PRESSED) {
-		scenes->switchScene((unsigned)SceneID::Menu);
-	}
+    if ((key == SDL_CONTROLLER_BUTTON_B || key == SDL_CONTROLLER_BUTTON_BACK) && state == GAMEPAD_BUTTON_PRESSED) {
+        scenes->switchScene((unsigned)SceneID::Menu);
+    }
 
-	optionInputs->onGamepadButton(key, state);	
+    optionInputs->onGamepadButton(key, state);	
 }
 
 // Handle SDL / Game events
 void Options::onGameEvent(SDL_Event& e)
 {
-	optionInputs->onGameEvent(e);
+    optionInputs->onGameEvent(e);
 
-	// if the play button has been pressed
-	if (backButton.isPressed(e))
-	{
-		// go to the lvl scene
-		scenes->switchScene((unsigned)SceneID::Menu);
-	}
+    // if the play button has been pressed
+    if (backButton.isPressed(e))
+    {
+        // go to the lvl scene
+        scenes->switchScene((unsigned)SceneID::Menu);
+    }
 }
 
 // nothing needs updating so this can be empty
 void Options::onUpdate()
 {
-	optionInputs->update();
+    optionInputs->update();
 }
 
 // Handles when the scene is rendered
 void Options::onRender()
 {
-	// create our matrices
-	glm::mat4 projectionMatrix = glm::mat4();
-	glm::mat4 modelMatrix = glm::mat4();
+    // create our matrices
+    glm::mat4 projectionMatrix = glm::mat4();
+    glm::mat4 modelMatrix = glm::mat4();
 
-	// set the projection matrix
-	projectionMatrix = glm::ortho(0.0, 1920.0, 0.0, 1080.0, -1.0, 1.0);
+    // set the projection matrix
+    projectionMatrix = glm::ortho(0.0, 1920.0, 0.0, 1080.0, -1.0, 1.0);
 
-	// then prepare our 2d render send out matrices over
-	renderer2D.clear();
-	renderer2D.prepare();
-	renderer2D.setMatrixForObject("projection", projectionMatrix);
-	renderer2D.setMatrixForObject("model", modelMatrix);
-	renderer2D.setAlpha(1.0f);
+    // then prepare our 2d render send out matrices over
+    renderer2D.clear();
+    renderer2D.prepare();
+    renderer2D.setMatrixForObject("projection", projectionMatrix);
+    renderer2D.setMatrixForObject("model", modelMatrix);
+    renderer2D.setAlpha(1.0f);
 
-	// then render each object in order
-	renderer2D.renderTexture(&background);
-	renderer2D.renderButton(&backButton);
+    // then render each object in order
+    renderer2D.renderTexture(&background);
+    renderer2D.renderButton(&backButton);
 
-	//
-	optionInputs->render(&renderer2D);
-	
-	//
-	renderer2D.renderLabel(&version);
-	renderer2D.renderLabel(&header);
-	renderer2D.present();
+    //
+    optionInputs->render(&renderer2D);
+    
+    //
+    renderer2D.renderLabel(&version);
+    renderer2D.renderLabel(&header);
+    renderer2D.present();
 }

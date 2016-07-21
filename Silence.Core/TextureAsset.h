@@ -31,28 +31,28 @@
 class SILENCE_EXPORT TextureAsset
 {
 private:
-	// the surface with the loaded pixels
-	FIBITMAP * bitmap;
-	// the name of the asset
-	std::string name;
+    // the surface with the loaded pixels
+    FIBITMAP * bitmap;
+    // the name of the asset
+    std::string name;
 public:
-	// Constructor & Deconstructor
-	TextureAsset(std::string name);
-	~TextureAsset();
-	
-	// returns the name of the object (Used by asset manager to ID a resource to return)
-	std::string getName();
+    // Constructor & Deconstructor
+    TextureAsset(std::string name);
+    ~TextureAsset();
+    
+    // returns the name of the object (Used by asset manager to ID a resource to return)
+    std::string getName();
 
-	// opens and loads the file given by filename
-	void grabFromFile(const char * filename);
-	// returns a void pointer to the pixels
-	void* getPixels();
-	void recycle();
+    // opens and loads the file given by filename
+    void grabFromFile(const char * filename);
+    // returns a void pointer to the pixels
+    void* getPixels();
+    void recycle();
 
-	RGBQUAD getPixelColour(int x, int y);
-	// here we just returns stats about the surface loaded
-	int getHeight(); // returns height
-	int getWidth(); // returns width
-	int getMask(); // returns format 
-	int getBPP(); // returns bits per pixel
+    RGBQUAD getPixelColour(int x, int y);
+    // here we just returns stats about the surface loaded
+    int getHeight(); // returns height
+    int getWidth(); // returns width
+    int getMask(); // returns format 
+    int getBPP(); // returns bits per pixel
 };

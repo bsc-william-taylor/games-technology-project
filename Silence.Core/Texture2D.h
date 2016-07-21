@@ -35,22 +35,22 @@
 class SILENCE_EXPORT Texture2D
 {
 private:
-	// The GPU transfer object for the vertices, uvs etc
-	GPU_Transfer * transfer;
-	// The sampler object which is the texture that should be bound
-	GPU_Sampler * texture;
+    // The GPU transfer object for the vertices, uvs etc
+    GPU_Transfer * transfer;
+    // The sampler object which is the texture that should be bound
+    GPU_Sampler * texture;
 public:
-	// Constructor & Deconstructor
-	Texture2D();
-	~Texture2D();
+    // Constructor & Deconstructor
+    Texture2D();
+    ~Texture2D();
 
-	// Sets the texture that will be applied to the quad texture
-	void setTexture(TextureAsset * assets);
-	// Sets the area the texture will be rendered inside
-	void setArea(glm::vec4 size);
+    // Sets the texture that will be applied to the quad texture
+    void setTexture(TextureAsset * assets);
+    // Sets the area the texture will be rendered inside
+    void setArea(glm::vec4 size);
 
-	// returns the ID for the texture
-	GPU_ID getTextureID();
-	// returns the ID for the mesh
-	GPU_ID getDataID();
+    // returns the ID for the texture
+    GPU_ID getTextureID();
+    // returns the ID for the mesh
+    GPU_ID getDataID();
 };

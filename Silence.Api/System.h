@@ -36,26 +36,26 @@
 class SILENCE_EXPORT_API OperatingSystem
 {
 private:
-	SceneManager sceneManager;
-	AssetManager assetManager;
-	Window windowManager;
+    SceneManager sceneManager;
+    AssetManager assetManager;
+    Window windowManager;
 public:
-	OperatingSystem();
-	virtual ~OperatingSystem();
+    OperatingSystem();
+    virtual ~OperatingSystem();
 
-	SceneManager * aquireSceneManager();
-	AssetManager * aquireAssetManager();
-	Gamepad * aquireGamepad();
-	Window& aquireWindow();
+    SceneManager * aquireSceneManager();
+    AssetManager * aquireAssetManager();
+    Gamepad * aquireGamepad();
+    Window& aquireWindow();
 
-	bool setupLibraries();
+    bool setupLibraries();
 
-	void enableDoubleBuffering();
-	void enableSingleBuffering();
-	void releaseLibraries();
-	void executeProgram();
+    void enableDoubleBuffering();
+    void enableSingleBuffering();
+    void releaseLibraries();
+    void executeProgram();
 private:
-	bool swapBuffers;
+    bool swapBuffers;
 };
 
 

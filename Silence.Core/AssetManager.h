@@ -39,38 +39,38 @@ typedef SDL_Surface Font;
 class SILENCE_EXPORT AssetManager
 {
 private:
-	//
-	std::vector<AudioAsset *> music;
-	// a vector of all the textures loaded by the scene
-	std::vector<TextureAsset*> textures;
-	// a vector of all the models loaded by the scene
-	std::vector<ModelAsset*> models;
-	// a vector of all the fonts loaded by the scene
-	std::vector<FontAsset*> fonts;
-	// the vector of state local asset managers
-	std::vector<LocalAssetManager*> stateAssetManagers;
+    //
+    std::vector<AudioAsset *> music;
+    // a vector of all the textures loaded by the scene
+    std::vector<TextureAsset*> textures;
+    // a vector of all the models loaded by the scene
+    std::vector<ModelAsset*> models;
+    // a vector of all the fonts loaded by the scene
+    std::vector<FontAsset*> fonts;
+    // the vector of state local asset managers
+    std::vector<LocalAssetManager*> stateAssetManagers;
 public:
-	// Constructor & Deconstructor
-	AssetManager();
-	~AssetManager();
+    // Constructor & Deconstructor
+    AssetManager();
+    ~AssetManager();
 
-	std::vector<TextureAsset*>& getTextures();
-	std::vector<ModelAsset*>& getModels();
-	std::vector<AudioAsset*>& getAudio();
-	std::vector<FontAsset*>& getFonts();
+    std::vector<TextureAsset*>& getTextures();
+    std::vector<ModelAsset*>& getModels();
+    std::vector<AudioAsset*>& getAudio();
+    std::vector<FontAsset*>& getFonts();
 
-	bool checkTexture(std::string ext, std::string nm);
-	bool checkModel(std::string ext, std::string nm);
-	bool checkLabel(std::string ext, std::string nm);
+    bool checkTexture(std::string ext, std::string nm);
+    bool checkModel(std::string ext, std::string nm);
+    bool checkLabel(std::string ext, std::string nm);
 
-	void recycle();
-	void push(TextureAsset*);
-	void push(AudioAsset*);
-	void push(ModelAsset*);
-	void push(FontAsset*);
+    void recycle();
+    void push(TextureAsset*);
+    void push(AudioAsset*);
+    void push(ModelAsset*);
+    void push(FontAsset*);
 
-	// returns new instance to a local asset manager for the scene to use
-	LocalAssetManager * grabLocalManager();
+    // returns new instance to a local asset manager for the scene to use
+    LocalAssetManager * grabLocalManager();
 };
 
 #endif

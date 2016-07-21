@@ -9,13 +9,13 @@
 class House
 {
 private:
-	Matrices matrices;
-	Model house;
+    Matrices matrices;
+    Model house;
 public:
-	House();
-	~House();
+    House();
+    ~House();
 
-	void create(LocalAssetManager * manager);
-	void render(ForwardRenderer& renderer);
-	void update();
+    void create(LocalAssetManager * manager);
+    void render(ForwardRenderer& renderer);
+    void update();
 };

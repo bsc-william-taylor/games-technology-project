@@ -33,28 +33,28 @@
 class SILENCE_EXPORT DeferredOutputShader
 {
 private:
-	// The vector of point lights to renderer
-	//std::vector<PointLight> lights;
-	// The LLGI program object which simplifies creating shader
-	GPU_Program * program;
-	// our uniform buffer object which stores all static lights
-	GLuint UBO;
+    // The vector of point lights to renderer
+    //std::vector<PointLight> lights;
+    // The LLGI program object which simplifies creating shader
+    GPU_Program * program;
+    // our uniform buffer object which stores all static lights
+    GLuint UBO;
 public:
-	// Constructor & Deconstructor
-	DeferredOutputShader();
-	~DeferredOutputShader();
+    // Constructor & Deconstructor
+    DeferredOutputShader();
+    ~DeferredOutputShader();
 
-	// returns a pointer to the LLGI program object
-	GPU_Program * getProgram();
+    // returns a pointer to the LLGI program object
+    GPU_Program * getProgram();
 
-	//
-	void runIndex(int ID, int numberOfIndices);
-	// binds a VAO / object ID
-	void prepare(int ID);
-	// This functions compiles the shader source so its ready for use
-	void compile();
-	// render the object vertices from v_start, v_end
-	void run(int v_start, int v_end);
-	// render this number of vertices
-	void run(int vertex_num);
+    //
+    void runIndex(int ID, int numberOfIndices);
+    // binds a VAO / object ID
+    void prepare(int ID);
+    // This functions compiles the shader source so its ready for use
+    void compile();
+    // render the object vertices from v_start, v_end
+    void run(int v_start, int v_end);
+    // render this number of vertices
+    void run(int vertex_num);
 };

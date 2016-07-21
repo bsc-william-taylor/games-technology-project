@@ -31,48 +31,48 @@
 
 // The list of render targets for my geometry buffer
 enum GEOMETRY_BUFFER_ELEMENTS {
-	GEOMETRY_BUFFER_TEXTURE_TYPE_POSITION,
-	GEOMETRY_BUFFER_TEXTURE_TYPE_DIFFUSE,
-	GEOMETRY_BUFFER_TEXTURE_TYPE_NORMAL,
+    GEOMETRY_BUFFER_TEXTURE_TYPE_POSITION,
+    GEOMETRY_BUFFER_TEXTURE_TYPE_DIFFUSE,
+    GEOMETRY_BUFFER_TEXTURE_TYPE_NORMAL,
 };
 
 // My geometry buffer class which helps setup and run deferred shading
 class SILENCE_EXPORT GeometryBuffer
 {
 private:
-	// The ID for the final texture to be produced
-	GLuint finalTexture;
-	// the height of the GeometryBuffer
-	GLuint bufferHeight;
-	// the width of the GeometryBuffer
-	GLuint bufferWidth;
-	// the texture which stores depth and stencil values
-	GLuint depthTexture;
-	// and the ID for the combined frame buffer
-	GLuint framebuffer;
+    // The ID for the final texture to be produced
+    GLuint finalTexture;
+    // the height of the GeometryBuffer
+    GLuint bufferHeight;
+    // the width of the GeometryBuffer
+    GLuint bufferWidth;
+    // the texture which stores depth and stencil values
+    GLuint depthTexture;
+    // and the ID for the combined frame buffer
+    GLuint framebuffer;
 public:
-	// Constructor & Deconstructor
-	GeometryBuffer();
-	~GeometryBuffer();
+    // Constructor & Deconstructor
+    GeometryBuffer();
+    ~GeometryBuffer();
 
-	// This function returns the size of the geometry buffer (Width, Height)
-	glm::vec2 getBufferSize();
+    // This function returns the size of the geometry buffer (Width, Height)
+    glm::vec2 getBufferSize();
 
-	// This function sets up the geometry buffer by creating the multiple render targets
-	GLvoid setupGeometryBuffer(int w, int h);
-	// This function prepares the buffer to be read from by shaders
-	GLvoid prepareForReading();
-	// This function prepares the buffer to be written to by shaders
-	GLvoid prepareForWriting();
-	// This is a function that does some extra things to prepare for the start of the frame
-	GLvoid startFrame();
-	// This function does the final copy of the image produced in FinalTexture to the frameb uffer
-	GLvoid stopFrame();
+    // This function sets up the geometry buffer by creating the multiple render targets
+    GLvoid setupGeometryBuffer(int w, int h);
+    // This function prepares the buffer to be read from by shaders
+    GLvoid prepareForReading();
+    // This function prepares the buffer to be written to by shaders
+    GLvoid prepareForWriting();
+    // This is a function that does some extra things to prepare for the start of the frame
+    GLvoid startFrame();
+    // This function does the final copy of the image produced in FinalTexture to the frameb uffer
+    GLvoid stopFrame();
 private:
-	// The ID of the texture which stores positions 
-	GLuint positionTexture;
-	// The ID of the texture which stores the diffuse colour value
-	GLuint diffuseTexture;
-	// The ID of the texture which stores the normals for each object
-	GLuint normalTexture;
+    // The ID of the texture which stores positions 
+    GLuint positionTexture;
+    // The ID of the texture which stores the diffuse colour value
+    GLuint diffuseTexture;
+    // The ID of the texture which stores the normals for each object
+    GLuint normalTexture;
 };

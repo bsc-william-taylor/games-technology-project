@@ -32,38 +32,38 @@
 class SILENCE_EXPORT FontAsset
 {
 private:
-	// the colour for the text
-	SDL_Color colour;
-	// a pointer to the font being used
-	TTF_Font * font;
-	// the size of the font to be user
-	unsigned int sz;
+    // the colour for the text
+    SDL_Color colour;
+    // a pointer to the font being used
+    TTF_Font * font;
+    // the size of the font to be user
+    unsigned int sz;
 public:
-	// Constructor & Deconstructor
-	FontAsset(std::string name);
-	~FontAsset();
+    // Constructor & Deconstructor
+    FontAsset(std::string name);
+    ~FontAsset();
 
-	// returns a surface with the text written on it
-	SDL_Surface * generateTexture();
+    // returns a surface with the text written on it
+    SDL_Surface * generateTexture();
 
-	// grabs and loads the TTF || OTF file
-	void grabFromFile(std::string);
-	// sets the colour of the font
-	void setColour(SDL_Color c);
-	// sets the text to be rendered into the surface
-	void setText(const char *);
-	// sets the size of the text being rendered
-	void openAtSize(int);
-	//
-	void recycle();
+    // grabs and loads the TTF || OTF file
+    void grabFromFile(std::string);
+    // sets the colour of the font
+    void setColour(SDL_Color c);
+    // sets the text to be rendered into the surface
+    void setText(const char *);
+    // sets the size of the text being rendered
+    void openAtSize(int);
+    //
+    void recycle();
 
-	// returns the name of the object
-	std::string getName();
+    // returns the name of the object
+    std::string getName();
 private:
-	// the place it was loaded from
-	std::string filename;
-	// the text to be rendered
-	std::string text;
-	// and the name for this asset
-	std::string name;
+    // the place it was loaded from
+    std::string filename;
+    // the text to be rendered
+    std::string text;
+    // and the name for this asset
+    std::string name;
 };

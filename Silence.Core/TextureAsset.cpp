@@ -30,80 +30,80 @@
 // Constructor & Deconstructor
 TextureAsset::TextureAsset(std::string n)
 {
-	bitmap = NULL;
-	name = n;
+    bitmap = NULL;
+    name = n;
 }
 
 TextureAsset::~TextureAsset()
 {
-	if (bitmap != NULL)
-	{
-		FreeImage_Unload(bitmap);
-	}
+    if (bitmap != NULL)
+    {
+        FreeImage_Unload(bitmap);
+    }
 }
 
 // here we just load the image as a surface and throw an exception if something goes wrong
 void TextureAsset::grabFromFile(const char * filename)
 {
-	FIBITMAP * loadedBitmap = FreeImage_Load(FreeImage_GetFIFFromFilename(filename), filename);
+    FIBITMAP * loadedBitmap = FreeImage_Load(FreeImage_GetFIFFromFilename(filename), filename);
 
-	if (loadedBitmap == NULL)
-	{
-		throw Error(FILE_IO, std::string(filename, " couldnt load a texture"), William);
-	}
+    if (loadedBitmap == NULL)
+    {
+        throw Error(FILE_IO, std::string(filename, " couldnt load a texture"), William);
+    }
 
-	bitmap = FreeImage_ConvertTo32Bits(loadedBitmap);
-	
-	FreeImage_Unload(loadedBitmap);
+    bitmap = FreeImage_ConvertTo32Bits(loadedBitmap);
+    
+    FreeImage_Unload(loadedBitmap);
 }
 
 void TextureAsset::recycle()
 {
-	if (bitmap != NULL)
-	{
-		FreeImage_Unload(bitmap);
-		bitmap = NULL;
-	}
+    if (bitmap != NULL)
+    {
+        FreeImage_Unload(bitmap);
+        bitmap = NULL;
+    }
 }
 
 RGBQUAD TextureAsset::getPixelColour(int x, int y)
 {
-	RGBQUAD quad;
-	FreeImage_GetPixelColor(bitmap, x, y, &quad);
-	return quad;
+    RGBQUAD quad;
+    FreeImage_GetPixelColor(bitmap, x, y, &quad);
+    return quad;
 }
 
 // returns the assets name
 std::string TextureAsset::getName()
 {
-	return name;
+    return name;
 }
 
 // returns a direct void * to pixels
 void * TextureAsset::getPixels()
 {
-	return FreeImage_GetBits(bitmap);
+    return FreeImage_GetBits(bitmap);
 }
 
 // returns the amount of bpp for the texture
 int TextureAsset::getBPP()
 {
-	return FreeImage_GetBPP(bitmap);
+    return FreeImage_GetBPP(bitmap);
 }
 
 // returns the format of the texture
 int TextureAsset::getMask()
 {
-	return FreeImage_GetRedMask(bitmap);
+    return FreeImage_GetRedMask(bitmap);
 }
 // returns the width of the texture
 int TextureAsset::getWidth()
 {
-	return FreeImage_GetWidth(bitmap);
+    return FreeImage_GetWidth(bitmap);
 }
 
 // returns the height of the texture
 int TextureAsset::getHeight()
 {
-	return FreeImage_GetHeight(bitmap);
+    return FreeImage_GetHeight(bitmap);
 }

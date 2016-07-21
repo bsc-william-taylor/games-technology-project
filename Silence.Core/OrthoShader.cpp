@@ -28,85 +28,85 @@
 
 // Constructor & Deconstructor
 OrthoShader::OrthoShader()
-	: program(NULL)
+    : program(NULL)
 {
 }
 
 OrthoShader::~OrthoShader()
 {
-	SAFE_RELEASE(program)
+    SAFE_RELEASE(program)
 }
 
 void OrthoShader::compile()
 {
-	// we should only compile once so if we haven't compiled before
-	if (program == NULL)
-	{
-		// Create the program object
-		program = new GPU_Program();
-		// set the source code for the fragment shader
-		program->setFragmentSource(SRC(
-			layout(location = 0) out vec4 gl_FragColor;
-			uniform sampler2D sampler;
+    // we should only compile once so if we haven't compiled before
+    if (program == NULL)
+    {
+        // Create the program object
+        program = new GPU_Program();
+        // set the source code for the fragment shader
+        program->setFragmentSource(SRC(
+            layout(location = 0) out vec4 gl_FragColor;
+            uniform sampler2D sampler;
 
-			in float globalAlpha;
-			in vec2 uv_cords;
+            in float globalAlpha;
+            in vec2 uv_cords;
 
-			void main() {
-				gl_FragColor = texture2D(sampler, uv_cords);
-				gl_FragColor.a *= globalAlpha;
-			}
-		));
+            void main() {
+                gl_FragColor = texture2D(sampler, uv_cords);
+                gl_FragColor.a *= globalAlpha;
+            }
+        ));
 
-		// set the source code for the vertex shader
-		program->setVertexSource(SRC(
-			layout(location = 0) in vec3 positions;
-			layout(location = 1) in vec3 normals;
-			layout(location = 2) in vec3 uvs;
-			layout(location = 3) in vec3 colour;
+        // set the source code for the vertex shader
+        program->setVertexSource(SRC(
+            layout(location = 0) in vec3 positions;
+            layout(location = 1) in vec3 normals;
+            layout(location = 2) in vec3 uvs;
+            layout(location = 3) in vec3 colour;
 
-			uniform mat4 projection;
-			uniform mat4 model;
-			uniform float alpha;
+            uniform mat4 projection;
+            uniform mat4 model;
+            uniform float alpha;
 
-			out float globalAlpha;
-			out vec2 uv_cords;
+            out float globalAlpha;
+            out vec2 uv_cords;
 
-			void main() {
-				vec4 finalPosition = projection * model * vec4(positions, 1.0);
-				gl_Position = vec4(finalPosition.xy, 0.0, 1.0);
-				globalAlpha = alpha;
-				uv_cords = uvs.xy;
-			}
-		));
+            void main() {
+                vec4 finalPosition = projection * model * vec4(positions, 1.0);
+                gl_Position = vec4(finalPosition.xy, 0.0, 1.0);
+                globalAlpha = alpha;
+                uv_cords = uvs.xy;
+            }
+        ));
 
-		// Then compile the shader ready for use if we fail
-		if (!program->compile())
-		{
-			// throw an exception
-			throw Error(RENDERER, "couldnt compile ortho shader");
-		}
-	}
+        // Then compile the shader ready for use if we fail
+        if (!program->compile())
+        {
+            // throw an exception
+            throw Error(RENDERER, "couldnt compile ortho shader");
+        }
+    }
 }
 
 // runs the program and draw vertexCount number of vertices
 void OrthoShader::run(int vertexCount)
 {
-	// just call the progarms run method
-	program->run(vertexCount);
+    // just call the progarms run method
+    program->run(vertexCount);
 }
 
 // This function prepares the program for use by
 void OrthoShader::prepare(int ID, int tID)
 {
-	// bind an mesh ID / VAO
-	program->prepare(ID);
-	// and the texture it will use
-	program->bind(tID);
+    // bind an mesh ID / VAO
+    program->prepare(ID);
+    // and the texture it will use
+    program->bind(tID);
 }
 
 // just returns a point to the program
 GPU_Program * OrthoShader::getProgram()
 {
-	return program;
+    return program;
 }

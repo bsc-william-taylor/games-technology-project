@@ -28,7 +28,7 @@
 
 // Constructor & Deconstructor
 DefaultCamera::DefaultCamera()
-	: viewMatrix(glm::mat4())
+    : viewMatrix(glm::mat4())
 {
 }
 
@@ -39,7 +39,7 @@ DefaultCamera::~DefaultCamera()
 // Just returns a indentity matrix
 glm::mat4& DefaultCamera::getView()
 {
-	return viewMatrix;
+    return viewMatrix;
 }
 
 // Empty function as Default Camera == NO camera
@@ -55,7 +55,7 @@ void DefaultCamera::cancelMovement()
 // returns the center of the scene
 glm::vec3 DefaultCamera::getPosition()
 {
-	return glm::vec3(0.0, 0.0, 0.0);
+    return glm::vec3(0.0, 0.0, 0.0);
 }
 
 // Empty function as Default Camera == NO camera
@@ -76,5 +76,5 @@ void DefaultCamera::repositionCamera()
 // just return the default value of 0
 GLfloat DefaultCamera::getHeight()
 {
-	return 0.0f;
+    return 0.0f;
 }

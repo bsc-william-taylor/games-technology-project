@@ -35,45 +35,45 @@
 class AssetManager;
 
 enum LOAD_COMMAND {
-	DUPLICATE_FOUND,
-	INVALID_FORMAT,
-	NOT_FOUND
+    DUPLICATE_FOUND,
+    INVALID_FORMAT,
+    NOT_FOUND
 };
 
 enum AUDIO_LOAD {
-	STREAM = 1,
-	LOAD = 0,
-	STREAM_LOOP = 2,
-	LOAD_LOOP = 3
+    STREAM = 1,
+    LOAD = 0,
+    STREAM_LOOP = 2,
+    LOAD_LOOP = 3
 };
 
 // A class which loads assets for each application state
 class SILENCE_EXPORT LocalAssetManager
 {
 private:
-	unsigned int referenceCount;
-	AssetManager * assets;
+    unsigned int referenceCount;
+    AssetManager * assets;
 public:
-	// Constructor & Deconstructor
-	LocalAssetManager(AssetManager *);
-	~LocalAssetManager();
-	
-	// loads all the files given in the list and returns the number loaded
-	unsigned int grab(std::initializer_list<std::string>);
-	//
-	AudioAsset * grabMusic(std::string filename, AUDIO_LOAD);
+    // Constructor & Deconstructor
+    LocalAssetManager(AssetManager *);
+    ~LocalAssetManager();
+    
+    // loads all the files given in the list and returns the number loaded
+    unsigned int grab(std::initializer_list<std::string>);
+    //
+    AudioAsset * grabMusic(std::string filename, AUDIO_LOAD);
 
-	// returns a texture object via filename (without extension)
-	TextureAsset * getT(std::string filename);
-	// returns a model object via filename (without extension)
-	ModelAsset * getM(std::string filename);
-	// returns a model object via filename (without extension)
-	FontAsset * getL(std::string font, int, SDL_Color);
-	// returns a audio asset via the filename
-	AudioAsset * getA(std::string filename);
+    // returns a texture object via filename (without extension)
+    TextureAsset * getT(std::string filename);
+    // returns a model object via filename (without extension)
+    ModelAsset * getM(std::string filename);
+    // returns a model object via filename (without extension)
+    FontAsset * getL(std::string font, int, SDL_Color);
+    // returns a audio asset via the filename
+    AudioAsset * getA(std::string filename);
 
-	void recycle();
+    void recycle();
 private:
-	// a list of all the filenames that were given
-	std::vector<std::string> filenames;
+    // a list of all the filenames that were given
+    std::vector<std::string> filenames;
 };

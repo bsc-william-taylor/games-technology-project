@@ -37,60 +37,60 @@
 class SILENCE_EXPORT ModelSet
 {
 private:
-	// a vector of IDs for the textures
-	std::vector<glm::mat4> matrices;
-	std::vector<GPU_ID> tIDs;
-	// The model asset file
-	ModelAsset * file;
-	// the transfer for the vertices etc
-	GPU_Transfer * mesh;
-	//
-	GPU_ID matricesID;
-	//
-	Vertex min, max;
-	//
-	unsigned setSize;
-	unsigned indices;
+    // a vector of IDs for the textures
+    std::vector<glm::mat4> matrices;
+    std::vector<GPU_ID> tIDs;
+    // The model asset file
+    ModelAsset * file;
+    // the transfer for the vertices etc
+    GPU_Transfer * mesh;
+    //
+    GPU_ID matricesID;
+    //
+    Vertex min, max;
+    //
+    unsigned setSize;
+    unsigned indices;
 public:
-	// Constructor & Deconstructor
-	ModelSet();
-	~ModelSet();
+    // Constructor & Deconstructor
+    ModelSet();
+    ~ModelSet();
 
-	GLuint getIndices();
-	//
-	GLvoid bindModelMatrixArray();
-	// sets the asset which will contain vertex etc information
-	GLvoid setModel(ModelAsset * model);
-	//
-	GLvoid setMatrices(std::vector<glm::mat4> matrices);
-	//
-	SolidCylinder * createCylinder(glm::mat4, double);
-	SolidBox * createbox(glm::mat4);
+    GLuint getIndices();
+    //
+    GLvoid bindModelMatrixArray();
+    // sets the asset which will contain vertex etc information
+    GLvoid setModel(ModelAsset * model);
+    //
+    GLvoid setMatrices(std::vector<glm::mat4> matrices);
+    //
+    SolidCylinder * createCylinder(glm::mat4, double);
+    SolidBox * createbox(glm::mat4);
 
-	//
-	GLuint getSetSize();
-	//
-	ModelAsset * getMeshes() {
-		return file;
-	}
+    //
+    GLuint getSetSize();
+    //
+    ModelAsset * getMeshes() {
+        return file;
+    }
 
-	GPU_Transfer * getMesh() {
-		return mesh;
-	}
+    GPU_Transfer * getMesh() {
+        return mesh;
+    }
 
-	std::vector<glm::mat4>& getMatrices() {
-		return matrices;
-	}
+    std::vector<glm::mat4>& getMatrices() {
+        return matrices;
+    }
 
-	std::vector<GPU_ID>& getTextures() {
-		return tIDs;
-	}
+    std::vector<GPU_ID>& getTextures() {
+        return tIDs;
+    }
 
-	GLuint getMaterialID(GLuint);
+    GLuint getMaterialID(GLuint);
 
 
-	// returns a pointer to the model asset
-	ModelAsset * getModelAsset();
+    // returns a pointer to the model asset
+    ModelAsset * getModelAsset();
 };
 
 #endif

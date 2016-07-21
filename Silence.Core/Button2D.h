@@ -34,30 +34,30 @@
 class SILENCE_EXPORT Button2D
 {
 private:
-	// The texture for the button
-	Texture2D * buttonTexture;
-	// The text for the button
-	Text2D * buttonText;
-	// The buttons area in 2D space
-	glm::vec4 buttonArea;
+    // The texture for the button
+    Texture2D * buttonTexture;
+    // The text for the button
+    Text2D * buttonText;
+    // The buttons area in 2D space
+    glm::vec4 buttonArea;
 public:
-	// Constructor & Deconstructor
-	Button2D();
-	~Button2D();
+    // Constructor & Deconstructor
+    Button2D();
+    ~Button2D();
 
-	// This function sets the background texture for the button
-	void setButtonTexture(TextureAsset * texture);
-	// This function sets the text for the button
-	void setButtonText(FontAsset * font, const char * text);
-	// This function sets the area the button will be rendered in and the alignment of the text
-	void setArea(glm::vec4, ALIGNMENT);
-	// // This function sets the area the button
-	void setArea(glm::vec4);
-	// This function just checks a system event to see if the button was pressed
-	bool isPressed(SDL_Event&);
-	
-	// This function returns a pointer to the buttons texture object
-	Texture2D * getTexture();
-	// This function returns a pointer to the buttons text object
-	Text2D * getText();
+    // This function sets the background texture for the button
+    void setButtonTexture(TextureAsset * texture);
+    // This function sets the text for the button
+    void setButtonText(FontAsset * font, const char * text);
+    // This function sets the area the button will be rendered in and the alignment of the text
+    void setArea(glm::vec4, ALIGNMENT);
+    // // This function sets the area the button
+    void setArea(glm::vec4);
+    // This function just checks a system event to see if the button was pressed
+    bool isPressed(SDL_Event&);
+    
+    // This function returns a pointer to the buttons texture object
+    Texture2D * getTexture();
+    // This function returns a pointer to the buttons text object
+    Text2D * getText();
 };

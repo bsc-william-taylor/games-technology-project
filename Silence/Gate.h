@@ -11,20 +11,20 @@
 class Gate
 {
 private:
-	SceneManager * scenes;
-	Matrices matrices;
-	Model gate;
+    SceneManager * scenes;
+    Matrices matrices;
+    Model gate;
 
-	bool leave;
-	bool exited;
+    bool leave;
+    bool exited;
 public:
-	Gate();
-	~Gate();
+    Gate();
+    ~Gate();
 
-	void create(LocalAssetManager *, World& world, SceneManager * scene);
-	void render(ForwardRenderer&);
-	void update(Key * key);
-	void reset();
+    void create(LocalAssetManager *, World& world, SceneManager * scene);
+    void render(ForwardRenderer&);
+    void update(Key * key);
+    void reset();
 
-	bool hasHit();
+    bool hasHit();
 };

@@ -10,16 +10,16 @@
 class Terrain
 {
 private:
-	Heightmap terrain;
-	Matrices matrices;
-	Border border;
-	Trees trees;
+    Heightmap terrain;
+    Matrices matrices;
+    Border border;
+    Trees trees;
 public:
-	Terrain();
-	~Terrain();
+    Terrain();
+    ~Terrain();
 
-	void create(LocalAssetManager *, World&);
-	void render(ForwardRenderer&);
-	void update(ForwardRenderer&);
-	void event(SDL_Event& e);
+    void create(LocalAssetManager *, World&);
+    void render(ForwardRenderer&);
+    void update(ForwardRenderer&);
+    void event(SDL_Event& e);
 }; 

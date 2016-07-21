@@ -27,9 +27,9 @@
 
 Error::Error(SystemError sys, std::string msg, SystemProgrammer user)
 {
-	systemErrorLocation = sys;
-	ErrorsOwner = user;
-	error_message = msg;
+    systemErrorLocation = sys;
+    ErrorsOwner = user;
+    error_message = msg;
 }
 
 Error::~Error() throw()
@@ -38,43 +38,43 @@ Error::~Error() throw()
 
 const char * Error::what()
 {
-	static std::string message = "Error thrown by ";
+    static std::string message = "Error thrown by ";
 
-	switch (ErrorsOwner)
-	{
-		case William: message += " William Taylor\n\nMessage ->";
-			break;
-	}
+    switch (ErrorsOwner)
+    {
+        case William: message += " William Taylor\n\nMessage ->";
+            break;
+    }
 
-	message.append(error_message.c_str());
-	return(message.c_str());
+    message.append(error_message.c_str());
+    return(message.c_str());
 }
 
 const char * Error::title()
 {
-	static std::string title = "Error !!!";
+    static std::string title = "Error !!!";
 
-	switch (systemErrorLocation)
-	{
-		case NETWORKING: title = "Networking error";
-			break;
-		case RENDERER: title = "Renderer error";
-			break;
-		case TEXTURE: title = "Texture error";
-			break;
-		case FILE_IO: title = "File_IO error";
-			break;
-		case WINDOW: title = "Window error";
-			break;
-		case AUDIO: title = "Audio error";
-			break;
-		case LABEL: title = "Label error";
-			break;
-		case GAME: title = "Game error";
-			break;
-		default:
-			break;
-	}
+    switch (systemErrorLocation)
+    {
+        case NETWORKING: title = "Networking error";
+            break;
+        case RENDERER: title = "Renderer error";
+            break;
+        case TEXTURE: title = "Texture error";
+            break;
+        case FILE_IO: title = "File_IO error";
+            break;
+        case WINDOW: title = "Window error";
+            break;
+        case AUDIO: title = "Audio error";
+            break;
+        case LABEL: title = "Label error";
+            break;
+        case GAME: title = "Game error";
+            break;
+        default:
+            break;
+    }
 
-	return(title.c_str());
+    return(title.c_str());
 }

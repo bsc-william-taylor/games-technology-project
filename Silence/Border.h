@@ -7,17 +7,17 @@
 class Border
 {
 private:
-	SolidBox * borderArea;
-	Matrices matrices;
-	Model wall;
+    SolidBox * borderArea;
+    Matrices matrices;
+    Model wall;
 public:
-	Border();
-	~Border();
+    Border();
+    ~Border();
 
-	void create(LocalAssetManager *, World& world);
-	void render(ForwardRenderer&);
-	void update();
+    void create(LocalAssetManager *, World& world);
+    void render(ForwardRenderer&);
+    void update();
 private:
-	void renderLeftAndRight(ForwardRenderer& renderer);
-	void renderBackAndFront(ForwardRenderer& renderer);
+    void renderLeftAndRight(ForwardRenderer& renderer);
+    void renderBackAndFront(ForwardRenderer& renderer);
 };

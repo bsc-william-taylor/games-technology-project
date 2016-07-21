@@ -3,8 +3,8 @@
 
 Background::Background()
 {
-	alpha = 1.0f;
-	index = 0;
+    alpha = 1.0f;
+    index = 0;
 }
 
 Background::~Background()
@@ -14,24 +14,24 @@ Background::~Background()
 
 void Background::create(LocalAssetManager * package)
 {
-	this->package = package;
-	background.setTexture(package->getT("data/textures/menu1"));
-	background.setArea(glm::vec4(0.0, 0.0, 1920, 1080));
+    this->package = package;
+    background.setTexture(package->getT("data/textures/menu1"));
+    background.setArea(glm::vec4(0.0, 0.0, 1920, 1080));
 }
 
 void Background::render(Renderer2D * renderer)
 {
-	renderer->renderTexture(&background);
+    renderer->renderTexture(&background);
 }
 
 void Background::enter()
 {
-	timer.start();
+    timer.start();
 }
 
 float Background::getAlpha()
 {
-	return alpha;
+    return alpha;
 }
 
 void Background::event(SDL_Event&)
@@ -41,22 +41,22 @@ void Background::event(SDL_Event&)
 
 void Background::update()
 {
-	if (alpha + 0.01f < 1.0f)
-		alpha += 0.01f;
+    if (alpha + 0.01f < 1.0f)
+        alpha += 0.01f;
 
-	if (timer.elapsed(TimeType::SECONDS) >= 10)
-	{
-		alpha = 0.0f;
-		switch (++index)
-		{
-			case 0: background.setTexture(package->getT("data/textures/menu1")); break;
-			case 1: background.setTexture(package->getT("data/textures/menu2")); break;
-			case 2: background.setTexture(package->getT("data/textures/menu3")); break;
+    if (timer.elapsed(TimeType::SECONDS) >= 10)
+    {
+        alpha = 0.0f;
+        switch (++index)
+        {
+            case 0: background.setTexture(package->getT("data/textures/menu1")); break;
+            case 1: background.setTexture(package->getT("data/textures/menu2")); break;
+            case 2: background.setTexture(package->getT("data/textures/menu3")); break;
 
-			default: background.setTexture(package->getT("data/textures/menu1")); index = 0; break;
-		}
+            default: background.setTexture(package->getT("data/textures/menu1")); index = 0; break;
+        }
 
-		timer.clear();
-		timer.start();
-	}
+        timer.clear();
+        timer.start();
+    }
 }

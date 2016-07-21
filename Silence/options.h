@@ -34,38 +34,38 @@
 class Options : public Scene
 {
 private:
-	// Our local asset manager for the scene
-	LocalAssetManager * package;
-	// Our renderer which will render each object
-	Renderer2D renderer2D;
-	//
-	OptionsField * optionInputs;
+    // Our local asset manager for the scene
+    LocalAssetManager * package;
+    // Our renderer which will render each object
+    Renderer2D renderer2D;
+    //
+    OptionsField * optionInputs;
 public:
-	// Constructor & Deconstructor
-	Options(OperatingSystem * os);
-	~Options();
+    // Constructor & Deconstructor
+    Options(OperatingSystem * os);
+    ~Options();
 
-	// Handles when a SDL_Event is called
-	void onGameEvent(SDL_Event& e);
-	// Handles when the scene is to be created
-	void onCreate();
-	// The update function
-	void onUpdate();
-	// The render function
-	void onRender();
-	//
-	void onGamepadButton(int k, int s);
+    // Handles when a SDL_Event is called
+    void onGameEvent(SDL_Event& e);
+    // Handles when the scene is to be created
+    void onCreate();
+    // The update function
+    void onUpdate();
+    // The render function
+    void onRender();
+    //
+    void onGamepadButton(int k, int s);
 private:
-	// The background for the menu
-	Texture2D background;
-	// The play button
-	Button2D backButton;
-	// Our manager class to switch scenes
-	SceneManager * scenes;
-	// The header for the scene
-	Text2D header;
-	//
-	Text2D version;
+    // The background for the menu
+    Texture2D background;
+    // The play button
+    Button2D backButton;
+    // Our manager class to switch scenes
+    SceneManager * scenes;
+    // The header for the scene
+    Text2D header;
+    //
+    Text2D version;
 };
 
 #endif

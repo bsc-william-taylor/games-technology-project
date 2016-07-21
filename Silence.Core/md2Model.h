@@ -96,41 +96,41 @@ struct md2_model_t
 class SILENCE_EXPORT AnimatedModel
 {
 public:
-	AnimatedModel();
-	AnimatedModel(const char *fn0, const char * fn1);
-	~AnimatedModel();
-	GLuint ReadMD2Model(const char *filename, const char * f);
-	void FreeModel();
-	void Animate(int animation, float dt);
-	void Animate(float dt) { Animate(currentAnim, dt); }
-	void ResetAnimation();
-	int setCurrentAnim(int n);
-	void Cycle();
+    AnimatedModel();
+    AnimatedModel(const char *fn0, const char * fn1);
+    ~AnimatedModel();
+    GLuint ReadMD2Model(const char *filename, const char * f);
+    void FreeModel();
+    void Animate(int animation, float dt);
+    void Animate(float dt) { Animate(currentAnim, dt); }
+    void ResetAnimation();
+    int setCurrentAnim(int n);
+    void Cycle();
 private:
-	md2_model_t mdl;
-	int currentAnim;
-	int currentFrame;
-	int nextFrame;
-	float interp;
-	std::vector<GLfloat *> vertData;
-	GLuint vertDataSize;
-	GLfloat *animVerts;
-	Vertices verts;
+    md2_model_t mdl;
+    int currentAnim;
+    int currentFrame;
+    int nextFrame;
+    float interp;
+    std::vector<GLfloat *> vertData;
+    GLuint vertDataSize;
+    GLfloat *animVerts;
+    Vertices verts;
 public:
-	GLfloat* getAnimVerts() { return animVerts; }
-	GLuint getVertDataSize() { return vertDataSize; }
-	GLuint getVertDataCount() { return vertDataSize/3; }
-	GLuint getTextureID() { return sampler->getID(); }
-	GLuint getVertexID() { return vertTransfer->getID(); }
-	int getCurrentAnim() {return currentAnim;}
-	SolidBox * createbox(glm::mat4);
+    GLfloat* getAnimVerts() { return animVerts; }
+    GLuint getVertDataSize() { return vertDataSize; }
+    GLuint getVertDataCount() { return vertDataSize/3; }
+    GLuint getTextureID() { return sampler->getID(); }
+    GLuint getVertexID() { return vertTransfer->getID(); }
+    int getCurrentAnim() {return currentAnim;}
+    SolidBox * createbox(glm::mat4);
 
-	glm::vec3 getCenter(glm::mat4);
+    glm::vec3 getCenter(glm::mat4);
 private:
-	GPU_Transfer * vertTransfer;
-	GPU_Sampler * sampler;
-	Vertices vertices;
-	Vertex min, max;
+    GPU_Transfer * vertTransfer;
+    GPU_Sampler * sampler;
+    Vertices vertices;
+    Vertex min, max;
 };
 
 #endif

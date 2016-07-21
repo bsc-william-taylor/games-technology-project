@@ -34,39 +34,39 @@
 class Gameover : public Scene
 {
 private:
-	HighPrecisionTimer * survivorTimer;
-	// Our local asset manager for the scene
-	LocalAssetManager * package;
-	// Our renderer which will render each object
-	Renderer2D renderer2D;
-	//
-	SceneManager * scenes;
-	//
-	Texture2D background;
-	Texture2D boxart;
-	Button2D back;
-	Text2D time;
-	Text2D header;
-	//
-	Text2D message;
+    HighPrecisionTimer * survivorTimer;
+    // Our local asset manager for the scene
+    LocalAssetManager * package;
+    // Our renderer which will render each object
+    Renderer2D renderer2D;
+    //
+    SceneManager * scenes;
+    //
+    Texture2D background;
+    Texture2D boxart;
+    Button2D back;
+    Text2D time;
+    Text2D header;
+    //
+    Text2D message;
 
-	std::string timeSurvived;
+    std::string timeSurvived;
 public:
-	// Constructor & Deconstructor
-	Gameover(OperatingSystem * os);
-	~Gameover();
+    // Constructor & Deconstructor
+    Gameover(OperatingSystem * os);
+    ~Gameover();
 
-	// Handles when a SDL_Event is called
-	void onGameEvent(SDL_Event& e);
-	// Handles when the scene is to be created
-	void onCreate();
-	// The update function
-	void onUpdate();
-	// The render function
-	void onRender();
-	//
-	void onGamepadButton(int k, int s);
-	void onEnter(int i);
+    // Handles when a SDL_Event is called
+    void onGameEvent(SDL_Event& e);
+    // Handles when the scene is to be created
+    void onCreate();
+    // The update function
+    void onUpdate();
+    // The render function
+    void onRender();
+    //
+    void onGamepadButton(int k, int s);
+    void onEnter(int i);
 private:
 
 };

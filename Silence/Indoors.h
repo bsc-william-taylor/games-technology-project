@@ -40,72 +40,72 @@
 class Indoors : public Scene
 {
 private:
-	LocalAssetManager * package;
-	ForwardRenderer renderer3D;
-	Renderer2D renderer2D;
-	SceneManager * manager;
-	Window * window;
-	Player player;
-	World world;
+    LocalAssetManager * package;
+    ForwardRenderer renderer3D;
+    Renderer2D renderer2D;
+    SceneManager * manager;
+    Window * window;
+    Player player;
+    World world;
 
-	bool exiting;
+    bool exiting;
 
-	Music torchSound;
-	Music pickup1;
-	Music pickup2;
-	Music pickup3;
-	Music jumpSound;
-	Music doorSound;
-	Music indoorMusic;
+    Music torchSound;
+    Music pickup1;
+    Music pickup2;
+    Music pickup3;
+    Music jumpSound;
+    Music doorSound;
+    Music indoorMusic;
 
-	Matrices matrices;
+    Matrices matrices;
 
-	DirectionalLight sun;
-	PointLight lights[5];
-	SpotLight torch;
+    DirectionalLight sun;
+    PointLight lights[5];
+    SpotLight torch;
 
-	Gamepad * gamepad;
-	Hints hints;
+    Gamepad * gamepad;
+    Hints hints;
 public:
-	Indoors(OperatingSystem * os);
-	~Indoors();
+    Indoors(OperatingSystem * os);
+    ~Indoors();
 
-	Player * getPlayer();
-	Model * getKey();
+    Player * getPlayer();
+    Model * getKey();
 
-	void onGamepadButton(int key, int st);
-	void onGamepadAxis(int, float);
-	void onGameEvent(SDL_Event& e);
-	void onEnter(int);
-	void onExit(int);
-	void onCreate();
-	void onUpdate();
-	void onRender();
+    void onGamepadButton(int key, int st);
+    void onGamepadAxis(int, float);
+    void onGameEvent(SDL_Event& e);
+    void onEnter(int);
+    void onExit(int);
+    void onCreate();
+    void onUpdate();
+    void onRender();
 private:
-	Cube cube;
-	
-	AnimatedModel * monster;
-	AnimatedModel * bank;
-	AnimatedModel * bed;
+    Cube cube;
+    
+    AnimatedModel * monster;
+    AnimatedModel * bank;
+    AnimatedModel * bed;
 
-	Model key;
-	Model body;
-	Model model;
-	Model door;
-	Model torchLight;
-	Model rocks;
+    Model key;
+    Model body;
+    Model model;
+    Model door;
+    Model torchLight;
+    Model rocks;
 
-	AnimatedModel * wagon;
-	AnimatedModel * generator;
-	AnimatedModel * switchboard;
+    AnimatedModel * wagon;
+    AnimatedModel * generator;
+    AnimatedModel * switchboard;
 
-	float alpha;
-	bool showTorchLight;
-	bool showRocks;
-	bool show;
+    float alpha;
+    bool showTorchLight;
+    bool showRocks;
+    bool show;
 private:
-	void generateRandomLights();
-	void generateWorld();
+    void generateRandomLights();
+    void generateWorld();
 };
 
 #endif

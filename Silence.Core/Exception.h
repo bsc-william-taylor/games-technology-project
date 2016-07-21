@@ -40,32 +40,32 @@
 #pragma warning(disable: 4251)
 
 enum SystemError {
-	LABEL, TEXTURE, NETWORKING, GAME, WINDOW, RENDERER, 
-	AUDIO, FILE_IO, SYSTEM
+    LABEL, TEXTURE, NETWORKING, GAME, WINDOW, RENDERER, 
+    AUDIO, FILE_IO, SYSTEM
 };
 
 enum SystemProgrammer {
-	William
+    William
 };
 
 class SILENCE_EXPORT Error : public std::exception
 {
 private:
-	// The person who programmed the Error
-	SystemProgrammer ErrorsOwner;
-	// The component the Error took place in
-	SystemError systemErrorLocation;
+    // The person who programmed the Error
+    SystemProgrammer ErrorsOwner;
+    // The component the Error took place in
+    SystemError systemErrorLocation;
 public:
-	// Constructor & Deconstructor
-	Error(SystemError sys, std::string msg, SystemProgrammer user = William);
-	virtual ~Error() throw();
-	
-	// Get functions for the title and the error message
-	const char * title();
-	const char * what();
+    // Constructor & Deconstructor
+    Error(SystemError sys, std::string msg, SystemProgrammer user = William);
+    virtual ~Error() throw();
+    
+    // Get functions for the title and the error message
+    const char * title();
+    const char * what();
 private:
-	// The error message passed the programmer
-	std::string error_message;
+    // The error message passed the programmer
+    std::string error_message;
 };
 
 #endif

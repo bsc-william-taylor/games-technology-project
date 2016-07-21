@@ -43,41 +43,41 @@ typedef GLuint GPU_ID;
 class SILENCE_EXPORT GPU_Transfer
 {
 private:
-	// The vertex array object ID
-	GLuint vertexArrayObject;
-	// The array of buffer IDs
-	GLuint objectIDs[SZ];
-	// The array of vectors of vertices
-	Vertices * objectData[SZ];
-	// A pointer to indices if any
-	Indices * indices;
-	// Has the data been sent
-	GLboolean hasSent;
-	//
-	GLuint indexListSize;
+    // The vertex array object ID
+    GLuint vertexArrayObject;
+    // The array of buffer IDs
+    GLuint objectIDs[SZ];
+    // The array of vectors of vertices
+    Vertices * objectData[SZ];
+    // A pointer to indices if any
+    Indices * indices;
+    // Has the data been sent
+    GLboolean hasSent;
+    //
+    GLuint indexListSize;
 public:
-	// Constructor & Deconstructor
-	GPU_Transfer();
-	~GPU_Transfer();
+    // Constructor & Deconstructor
+    GPU_Transfer();
+    ~GPU_Transfer();
 
-	// sets the vertices colour data which will be sent
-	GLvoid setVerticesColour(Vertices& colour);
-	// sets the texture cords which will be sent
-	GLvoid setTextureCords(Vertices& coords);
-	// sets the vertices  which will be sent
-	GLvoid setVertices(Vertices& vertices);
-	// sets the normals which will be sent
-	GLvoid setNormals(Vertices& normals);
-	// sets the indices which will be sent
-	GLvoid setIndices(Indices& indices);
-	// sends all submitted data to the GPU
-	GLvoid send();
+    // sets the vertices colour data which will be sent
+    GLvoid setVerticesColour(Vertices& colour);
+    // sets the texture cords which will be sent
+    GLvoid setTextureCords(Vertices& coords);
+    // sets the vertices  which will be sent
+    GLvoid setVertices(Vertices& vertices);
+    // sets the normals which will be sent
+    GLvoid setNormals(Vertices& normals);
+    // sets the indices which will be sent
+    GLvoid setIndices(Indices& indices);
+    // sends all submitted data to the GPU
+    GLvoid send();
 
-	GLuint getIndexListSize();
-	// returns the ID for the index buffer
-	GLuint getIndexID();
-	// returns the ID for the VAO
-	GLuint getID();
+    GLuint getIndexListSize();
+    // returns the ID for the index buffer
+    GLuint getIndexID();
+    // returns the ID for the VAO
+    GLuint getID();
 };
 
 #endif

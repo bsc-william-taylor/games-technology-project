@@ -35,8 +35,8 @@
 // The struct which represents a surface in the heightmap
 struct HeightmapSurface 
 {
-	std::vector<Vertex> vertices;
-	Vertex normal;
+    std::vector<Vertex> vertices;
+    Vertex normal;
 };
 
 enum class SIDE;
@@ -45,65 +45,65 @@ enum class SIDE;
 class SILENCE_EXPORT Heightmap
 {
 private:
-	// The sampler for the heightmaps texture
-	GPU_Sampler * overlayTexture;
-	// The sampler for the heightmaps texture
-	GPU_Sampler * plotTexture;
+    // The sampler for the heightmaps texture
+    GPU_Sampler * overlayTexture;
+    // The sampler for the heightmaps texture
+    GPU_Sampler * plotTexture;
 
-	// The sampler for the heightmaps texture
-	GPU_Sampler * texture;
-	// The transfer for the heightmap mesh
-	GPU_Transfer * mesh;
-	// The number of vertices inside in mesh
-	GPU_ID vertexCount;
+    // The sampler for the heightmaps texture
+    GPU_Sampler * texture;
+    // The transfer for the heightmap mesh
+    GPU_Transfer * mesh;
+    // The number of vertices inside in mesh
+    GPU_ID vertexCount;
 public:
-	// Constructor & Deconstructor
-	Heightmap();
-	~Heightmap();
+    // Constructor & Deconstructor
+    Heightmap();
+    ~Heightmap();
 
-	// returns the heightmaps size as a 2D vector
-	glm::vec2 getHeightmapSize();
+    // returns the heightmaps size as a 2D vector
+    glm::vec2 getHeightmapSize();
 
-	// creates the heightmap and sends all the data needed to the GPU 
-	GLvoid create(TextureAsset * file, std::string, float _x, float _y);
-	// returns the number of vertices
-	GLuint getVertexCount();
-	// returns the ID for the mesh
-	GLuint getVertexID();
-	// returns the ID for the texture
-	GLuint getTexture();
-	//
-	GLvoid pushOverlay(TextureAsset * texture, TextureAsset * plotTextures);
+    // creates the heightmap and sends all the data needed to the GPU 
+    GLvoid create(TextureAsset * file, std::string, float _x, float _y);
+    // returns the number of vertices
+    GLuint getVertexCount();
+    // returns the ID for the mesh
+    GLuint getVertexID();
+    // returns the ID for the texture
+    GLuint getTexture();
+    //
+    GLvoid pushOverlay(TextureAsset * texture, TextureAsset * plotTextures);
 
-	// Returns the y value for a specific pixel value
-	GLfloat getY(FIBITMAP * sprite, int x, int y, float scale_y);
-	// Returns the height of the generated heightmap at (x, y)
-	GLfloat getHeightAt(int x, int y);
+    // Returns the y value for a specific pixel value
+    GLfloat getY(FIBITMAP * sprite, int x, int y, float scale_y);
+    // Returns the height of the generated heightmap at (x, y)
+    GLfloat getHeightAt(int x, int y);
 
-	GLfloat getScale() {
-		return scale;
-	}
-	GLuint getOverlayID();
-	GLuint getPathID();
-	bool hasOverlay();
+    GLfloat getScale() {
+        return scale;
+    }
+    GLuint getOverlayID();
+    GLuint getPathID();
+    bool hasOverlay();
 private:
-	// a 2D vector of heightmap surfaces
-	std::vector<std::vector<HeightmapSurface *>> faces;
-	// a 2D vector of terrain heights
-	std::vector<std::vector<float>> terrain_heights;
-	// a vector of normals
-	std::vector<Vertex> vn;
-	// the size of the heightmap as a 2D vector
-	glm::vec2 size;
+    // a 2D vector of heightmap surfaces
+    std::vector<std::vector<HeightmapSurface *>> faces;
+    // a 2D vector of terrain heights
+    std::vector<std::vector<float>> terrain_heights;
+    // a vector of normals
+    std::vector<Vertex> vn;
+    // the size of the heightmap as a 2D vector
+    glm::vec2 size;
 
-	// returns the connected face
-	HeightmapSurface * getFace(SIDE side, GLuint x, GLuint b, GLuint size);
-	// returns the normal for a surface
-	Vertex getSurfaceNormal(glm::vec3 v1, glm::vec3 v2, glm::vec3 v3);
-	// averages the normals across the heightmaps surface
-	GLvoid averageNormals(std::vector<Vertex>& vertices);
+    // returns the connected face
+    HeightmapSurface * getFace(SIDE side, GLuint x, GLuint b, GLuint size);
+    // returns the normal for a surface
+    Vertex getSurfaceNormal(glm::vec3 v1, glm::vec3 v2, glm::vec3 v3);
+    // averages the normals across the heightmaps surface
+    GLvoid averageNormals(std::vector<Vertex>& vertices);
 private:
-	GLuint scale;
+    GLuint scale;
 };
 
 #endif

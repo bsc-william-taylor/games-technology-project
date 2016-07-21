@@ -8,16 +8,16 @@
 class SILENCE_EXPORT Lights
 {
 private:
-	DirectionalLight * directionalLight;
-	SpotLight * spotLight;
+    DirectionalLight * directionalLight;
+    SpotLight * spotLight;
 
-	std::vector<PointLight *> pointLights;
+    std::vector<PointLight *> pointLights;
 public:
-	Lights();
-	~Lights();
+    Lights();
+    ~Lights();
 
-	void pushDirectionalLight(DirectionalLight * );
-	void pushPointLight(PointLight *);
-	void pushSpotLight(SpotLight *);
-	void sendLights(glm::vec3 p, glm::vec3 , GPU_Program *);
+    void pushDirectionalLight(DirectionalLight * );
+    void pushPointLight(PointLight *);
+    void pushSpotLight(SpotLight *);
+    void sendLights(glm::vec3 p, glm::vec3 , GPU_Program *);
 };

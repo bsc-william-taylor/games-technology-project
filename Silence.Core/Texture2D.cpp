@@ -28,74 +28,74 @@
 
 // Constructor & Deconstructor
 Texture2D::Texture2D()
-	: transfer(NULL),
-	  texture(NULL)
+    : transfer(NULL),
+      texture(NULL)
 {
 }
 
 Texture2D::~Texture2D()
 {
-	SAFE_RELEASE(transfer);
-	SAFE_RELEASE(texture);
+    SAFE_RELEASE(transfer);
+    SAFE_RELEASE(texture);
 }
 
 // The following loads and send the texture data to the GPU ready for bounding to a mesh
 void Texture2D::setTexture(TextureAsset * asset)
 {
-	// providing the asset pointer is valid
-	if (asset != NULL)
-	{
-		if (texture == NULL)
-		{
-			texture = new GPU_Sampler(SINGLE_SAMPLER);
-		} 
+    // providing the asset pointer is valid
+    if (asset != NULL)
+    {
+        if (texture == NULL)
+        {
+            texture = new GPU_Sampler(SINGLE_SAMPLER);
+        } 
 
-		// then pass the texture data ready for transfer
-		texture->setBitmapData(asset->getPixels(),
-			asset->getWidth(),
-			asset->getHeight(),
-			asset->getBPP(),
-			asset->getMask()
-		);
+        // then pass the texture data ready for transfer
+        texture->setBitmapData(asset->getPixels(),
+            asset->getWidth(),
+            asset->getHeight(),
+            asset->getBPP(),
+            asset->getMask()
+        );
 
-		// then send the texture to the GPU
-		texture->send();
-	}
+        // then send the texture to the GPU
+        texture->send();
+    }
 }
 
 // This sets the vertices data to the GPU and sets the texture ready for drawing
 void Texture2D::setArea(glm::vec4 size)
 {
-	// First create the list of vertices needed
-	Vertices vert = {
-		Vertex(size[0], size[1] + size[3], 0.1), Vertex(size[0] + size[2], size[1] + size[3], 0.1), Vertex(size[0] + size[2], size[1], 0.1),
-		Vertex(size[0], size[1] + size[3], 0.1), Vertex(size[0], size[1], 0.1), Vertex(size[0] + size[2], size[1], 0.1),
-	};
+    // First create the list of vertices needed
+    Vertices vert = {
+        Vertex(size[0], size[1] + size[3], 0.1), Vertex(size[0] + size[2], size[1] + size[3], 0.1), Vertex(size[0] + size[2], size[1], 0.1),
+        Vertex(size[0], size[1] + size[3], 0.1), Vertex(size[0], size[1], 0.1), Vertex(size[0] + size[2], size[1], 0.1),
+    };
 
-	// Then the list of uv coords for bounding the texture
-	Vertices uvs = {
-		Vertex(0.0, 1.0, 0.0), Vertex(1.0, 1.0, 0.0), Vertex(1.0, 0.0, 0.0),
-		Vertex(0.0, 1.0, 0.0), Vertex(0.0, 0.0, 0.0), Vertex(1.0, 0.0, 0.0),
-	};
+    // Then the list of uv coords for bounding the texture
+    Vertices uvs = {
+        Vertex(0.0, 1.0, 0.0), Vertex(1.0, 1.0, 0.0), Vertex(1.0, 0.0, 0.0),
+        Vertex(0.0, 1.0, 0.0), Vertex(0.0, 0.0, 0.0), Vertex(1.0, 0.0, 0.0),
+    };
 
-	if (transfer == NULL) {
-		transfer = new GPU_Transfer();
-	}
+    if (transfer == NULL) {
+        transfer = new GPU_Transfer();
+    }
 
-	// Then transfer the vertices and uvs to the GPU ready for drawing
-	transfer->setTextureCords(uvs);
-	transfer->setVertices(vert);
-	transfer->send();
+    // Then transfer the vertices and uvs to the GPU ready for drawing
+    transfer->setTextureCords(uvs);
+    transfer->setVertices(vert);
+    transfer->send();
 }
 
 // returns the texture ID for the texture
 GPU_ID Texture2D::getTextureID()
 {
-	return texture->getID();
+    return texture->getID();
 }
 
 // returns the object ID for the vertex data
 GPU_ID Texture2D::getDataID()
 {
-	return transfer->getID();
+    return transfer->getID();
 }

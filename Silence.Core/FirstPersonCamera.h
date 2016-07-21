@@ -32,93 +32,93 @@
 class SILENCE_EXPORT FirstPersonCamera : public Camera
 {
 private:
-	// The view matrix for the camera
-	glm::mat4 viewMatrix;
-	// The area the camera can walk around in
-	glm::vec4 cameraArea;
-	// The current movement value
-	glm::vec3 translate;
-	//
-	glm::vec3 last;
-	// the rotation of the camera
-	GLfloat rotation;
-	// the pitch of the camera
-	GLfloat pitch;
-	// the camera speed of movement
-	GLfloat speed;
+    // The view matrix for the camera
+    glm::mat4 viewMatrix;
+    // The area the camera can walk around in
+    glm::vec4 cameraArea;
+    // The current movement value
+    glm::vec3 translate;
+    //
+    glm::vec3 last;
+    // the rotation of the camera
+    GLfloat rotation;
+    // the pitch of the camera
+    GLfloat pitch;
+    // the camera speed of movement
+    GLfloat speed;
 
-	GLfloat terrainHeight; 
-	// the height of the camera
-	GLfloat height;
-	//
-	GLint axis[2];
-	//
-	GLfloat axisV[2];
-	// key state variables
-	GLint keys[4];
-	// should we cancel movement
-	bool cancel;
+    GLfloat terrainHeight; 
+    // the height of the camera
+    GLfloat height;
+    //
+    GLint axis[2];
+    //
+    GLfloat axisV[2];
+    // key state variables
+    GLint keys[4];
+    // should we cancel movement
+    bool cancel;
 
-	bool enabled;
+    bool enabled;
 public:
-	// Constructors and Deconstructor
-	FirstPersonCamera(Camera *);
-	FirstPersonCamera();
-	~FirstPersonCamera();
+    // Constructors and Deconstructor
+    FirstPersonCamera(Camera *);
+    FirstPersonCamera();
+    ~FirstPersonCamera();
 
-	// returns a copy of the current position
-	glm::vec3 getPosition();
-	// returns the view matrix as a reference
-	glm::mat4& getView();
+    // returns a copy of the current position
+    glm::vec3 getPosition();
+    // returns the view matrix as a reference
+    glm::mat4& getView();
 
-	// this function will updates the camera based on the key being pressed
-	void updateCameraPosition(SDL_Event&);
-	// this function will reposition the camera to a certain height
-	void handleTerrainHeight(float);
-	// this function will set the position of the camera
-	void setPosition(glm::vec3 p);
-	// this function will reposition the camera by updating the view matrix
-	void repositionCamera();
+    // this function will updates the camera based on the key being pressed
+    void updateCameraPosition(SDL_Event&);
+    // this function will reposition the camera to a certain height
+    void handleTerrainHeight(float);
+    // this function will set the position of the camera
+    void setPosition(glm::vec3 p);
+    // this function will reposition the camera by updating the view matrix
+    void repositionCamera();
 
-	void cancelMovement(glm::vec3);
-	//
-	void cancelMovement();
-	//
-	void walk();
-	void run();
+    void cancelMovement(glm::vec3);
+    //
+    void cancelMovement();
+    //
+    void walk();
+    void run();
 
-	float getSpeed() {
-		return velocity;
-	}
+    float getSpeed() {
+        return velocity;
+    }
 
-	//
-	float getRotation(){ return rotation; }
-	//
-	void prepareCamera();
-	//
-	void onGamepadAxis(int, float);
-	//
-	void setCameraArea(glm::vec4);
+    //
+    float getRotation(){ return rotation; }
+    //
+    void prepareCamera();
+    //
+    void onGamepadAxis(int, float);
+    //
+    void setCameraArea(glm::vec4);
 
-	void setCameraDirection(float r, float p) {
-		rotation = r;
-		pitch = p;
-	}
+    void setCameraDirection(float r, float p) {
+        rotation = r;
+        pitch = p;
+    }
 
-	float getPitch() {
-		return pitch;
-	}
+    float getPitch() {
+        return pitch;
+    }
 
-	glm::vec3 getCameraDirection();
+    glm::vec3 getCameraDirection();
 
-	// finally this function returns the height of the camera in 3D space
-	GLfloat getHeight();
+    // finally this function returns the height of the camera in 3D space
+    GLfloat getHeight();
 
-	GLvoid disable();
-	GLvoid enable();
+    GLvoid disable();
+    GLvoid enable();
 
-	bool gamepadEnabled;
-	bool running;
+    bool gamepadEnabled;
+    bool running;
 
-	float velocity;
+    float velocity;
 };

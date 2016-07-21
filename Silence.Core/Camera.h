@@ -33,29 +33,29 @@
 // The following is an interface which all other camera must follow
 class SILENCE_EXPORT Camera {
 public:
-	// any scene camera must implement all of the following functions
-	virtual void updateCameraPosition(SDL_Event& w) = 0;
-	virtual void handleTerrainHeight(GLfloat h) = 0;
-	virtual void setCameraArea(glm::vec4){}
-	virtual void setPosition(glm::vec3 p) = 0;
-	virtual glm::vec3 getPosition() = 0;
-	virtual void prepareCamera() = 0;
-	virtual void repositionCamera() = 0;
-	virtual glm::mat4& getView() = 0;
-	virtual void cancelMovement() = 0;
-	virtual void onGamepadAxis(int, float) = 0;
-	virtual float getHeight() = 0;
-	virtual void setCameraDirection(float, float) {}
-	virtual ~Camera() {}
+    // any scene camera must implement all of the following functions
+    virtual void updateCameraPosition(SDL_Event& w) = 0;
+    virtual void handleTerrainHeight(GLfloat h) = 0;
+    virtual void setCameraArea(glm::vec4){}
+    virtual void setPosition(glm::vec3 p) = 0;
+    virtual glm::vec3 getPosition() = 0;
+    virtual void prepareCamera() = 0;
+    virtual void repositionCamera() = 0;
+    virtual glm::mat4& getView() = 0;
+    virtual void cancelMovement() = 0;
+    virtual void onGamepadAxis(int, float) = 0;
+    virtual float getHeight() = 0;
+    virtual void setCameraDirection(float, float) {}
+    virtual ~Camera() {}
 
-	virtual glm::vec3 getCameraDirection() = 0;
+    virtual glm::vec3 getCameraDirection() = 0;
 
-	virtual float getRotation(){ return 0.0; }
+    virtual float getRotation(){ return 0.0; }
 };
 
 // The type of cameras available to the application
 enum CAMERA {
-	FIRST_PERSON, DEFAULT_CAMERA
+    FIRST_PERSON, DEFAULT_CAMERA
 };
 
 #endif

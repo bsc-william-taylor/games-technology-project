@@ -35,31 +35,31 @@
 class SILENCE_EXPORT Renderer2D
 {
 private:
-	// The 2D render object
-	OrthoShader shader;
+    // The 2D render object
+    OrthoShader shader;
 public:
-	// Constructor & Deconstructor
-	Renderer2D();
-	~Renderer2D();
-	
-	// Set a matrices value inside the shader
-	void setMatrixForObject(const char * matrix, glm::mat4& value);
-	// renders texture 2D on the screen for the user
-	void renderTexture(Texture2D * texture2D);
-	// renders buttons on the screen for the user
-	void renderButtons(Button2D * button2D, int sz);
-	// renders button 2D on the screen for the user
-	void renderButton(Button2D * button2D);
-	// renders label 2D on the screen for the user
-	void renderLabel(Text2D * text2D);
-	// create the renderer ready for use
-	void createRenderer();
-	//
-	void setAlpha(float);
-	// prepares the renderer for rendering objects
-	void prepare();
-	// presents the final object
-	void present();
+    // Constructor & Deconstructor
+    Renderer2D();
+    ~Renderer2D();
+    
+    // Set a matrices value inside the shader
+    void setMatrixForObject(const char * matrix, glm::mat4& value);
+    // renders texture 2D on the screen for the user
+    void renderTexture(Texture2D * texture2D);
+    // renders buttons on the screen for the user
+    void renderButtons(Button2D * button2D, int sz);
+    // renders button 2D on the screen for the user
+    void renderButton(Button2D * button2D);
+    // renders label 2D on the screen for the user
+    void renderLabel(Text2D * text2D);
+    // create the renderer ready for use
+    void createRenderer();
+    //
+    void setAlpha(float);
+    // prepares the renderer for rendering objects
+    void prepare();
+    // presents the final object
+    void present();
 
-	void clear();
+    void clear();
 };

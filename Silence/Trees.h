@@ -7,12 +7,12 @@
 class Trees
 {
 private:
-	ModelSet treeModels;
-	std::vector<glm::mat4> matrices;
+    ModelSet treeModels;
+    std::vector<glm::mat4> matrices;
 public:
-	Trees();
-	~Trees();
+    Trees();
+    ~Trees();
 
-	void setup(LocalAssetManager *, Heightmap * map, World& world);
-	void render(ForwardRenderer&);
+    void setup(LocalAssetManager *, Heightmap * map, World& world);
+    void render(ForwardRenderer&);
 };

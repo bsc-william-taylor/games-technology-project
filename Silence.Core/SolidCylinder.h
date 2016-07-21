@@ -7,16 +7,16 @@
 class SILENCE_EXPORT SolidCylinder
 {
 private:
-	glm::vec3 position;
-	double radius;
+    glm::vec3 position;
+    double radius;
 public:
-	SolidCylinder();
-	~SolidCylinder();
+    SolidCylinder();
+    ~SolidCylinder();
 
-	void setPositionVector(glm::vec3);
-	void setRadius(double);
+    void setPositionVector(glm::vec3);
+    void setRadius(double);
 
-	bool collides(glm::vec3);
+    bool collides(glm::vec3);
 };
 
 #endif

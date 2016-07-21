@@ -91,19 +91,19 @@
 
 // some simple macros to help with certain things
 #ifndef NULL
-	#define NULL 0
+    #define NULL 0
 #endif
 
 #ifndef SAFE_RELEASE
-	#define SAFE_RELEASE(ptr) if(ptr) { delete ptr; ptr = 0; }
+    #define SAFE_RELEASE(ptr) if(ptr) { delete ptr; ptr = 0; }
 #else
-	#error("SAFE_RELEASE macro already supplied")
+    #error("SAFE_RELEASE macro already supplied")
 #endif
 
 #ifndef PI
-	#define PI 3.14159265359F
+    #define PI 3.14159265359F
 #else
-	#error("PI macro already supplied")
+    #error("PI macro already supplied")
 #endif
 
 #pragma warning(disable: 4290)

@@ -44,78 +44,78 @@
 class SILENCE_EXPORT ForwardRenderer
 {
 private:
-	// our output shader which is the shader used during the second pass
-	PerFragmentShader shader;
-	// our camera for the scene
-	Camera * sceneCamera;
-	//
-	bool fogEnabled;
-	// and a state variable to tell the camera type
-	CAMERA cameraType;
-	//
-	Lights lights;
+    // our output shader which is the shader used during the second pass
+    PerFragmentShader shader;
+    // our camera for the scene
+    Camera * sceneCamera;
+    //
+    bool fogEnabled;
+    // and a state variable to tell the camera type
+    CAMERA cameraType;
+    //
+    Lights lights;
 public:
-	// Constructor & Deconstructor
-	ForwardRenderer();
-	~ForwardRenderer();
+    // Constructor & Deconstructor
+    ForwardRenderer();
+    ~ForwardRenderer();
 
-	Lights * getLights() {
-		return &lights;
-	}
+    Lights * getLights() {
+        return &lights;
+    }
 
-	void setCameraDirection(float, float);
-	
-	void enableFog();
-	void disableFog();
+    void setCameraDirection(float, float);
+    
+    void enableFog();
+    void disableFog();
 
-	//
-	void disableWireframeMode();
-	//
-	void enableWireframeMode();
-	//
-	void setProjectionMatrix(GPU_Matrices& matrices);
-	// This function sets a matrix variable inside the program
-	void setModelMatrix(GPU_Matrices& matrices);
-	// the function will get the terrain height and apply it to the camera
-	void handleTerrainHeight(Heightmap * heightmap);
-	// this function will set the camera position inside the scene
-	void setCameraPosition(glm::vec3 positions);
-	// this function will change the camera type
-	void changeCamera(CAMERA newCamera);
-	// this function will create the renderer for a specific screen width and height
-	void createRenderer();
-	// this function will handle a SDL event and apply the correct response for the camera
-	void updateCamera(SDL_Event& event);
-	// this function updates the view matrix for the scene
-	void repositionCamera();
-	//
-	void setAlpha(float);
-	//
-	void onGamepadAxis(int i, float x);
+    //
+    void disableWireframeMode();
+    //
+    void enableWireframeMode();
+    //
+    void setProjectionMatrix(GPU_Matrices& matrices);
+    // This function sets a matrix variable inside the program
+    void setModelMatrix(GPU_Matrices& matrices);
+    // the function will get the terrain height and apply it to the camera
+    void handleTerrainHeight(Heightmap * heightmap);
+    // this function will set the camera position inside the scene
+    void setCameraPosition(glm::vec3 positions);
+    // this function will change the camera type
+    void changeCamera(CAMERA newCamera);
+    // this function will create the renderer for a specific screen width and height
+    void createRenderer();
+    // this function will handle a SDL event and apply the correct response for the camera
+    void updateCamera(SDL_Event& event);
+    // this function updates the view matrix for the scene
+    void repositionCamera();
+    //
+    void setAlpha(float);
+    //
+    void onGamepadAxis(int i, float x);
 public:
-	// this function renders a skybox in 3D space
-	void renderSkybox(Skybox * skybox);
-	// renders animated model
-	void renderAnimatedModel(AnimatedModel * model);
-	//
-	void renderModelSet(ModelSet * set);
-	// this function renders a heightmap in 3D space
-	void renderMap(Heightmap * map);
-	// this function renders a model in 3D space
-	void renderModel(Model * model);
-	// this function renders a cube in 3D space
-	void renderCube(Cube *  cube);
-	//
-	void setCameraArea(glm::vec4);
-	// this function prepares the renderer for rendering objects
-	void prepare();
-	// this function presents the final image
-	void present();
+    // this function renders a skybox in 3D space
+    void renderSkybox(Skybox * skybox);
+    // renders animated model
+    void renderAnimatedModel(AnimatedModel * model);
+    //
+    void renderModelSet(ModelSet * set);
+    // this function renders a heightmap in 3D space
+    void renderMap(Heightmap * map);
+    // this function renders a model in 3D space
+    void renderModel(Model * model);
+    // this function renders a cube in 3D space
+    void renderCube(Cube *  cube);
+    //
+    void setCameraArea(glm::vec4);
+    // this function prepares the renderer for rendering objects
+    void prepare();
+    // this function presents the final image
+    void present();
 
-	// returns the type of camera being used in the scene
-	CAMERA getCameraType();
+    // returns the type of camera being used in the scene
+    CAMERA getCameraType();
 
-	Camera * getCamera() {
-		return sceneCamera;
-	}
+    Camera * getCamera() {
+        return sceneCamera;
+    }
 };

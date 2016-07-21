@@ -35,41 +35,41 @@
 class Menu : public Scene 
 {
 private:
-	// Our local asset manager for the scene
-	LocalAssetManager * package;
-	// Our renderer which will render each object
-	Renderer2D renderer2D;
-	//
-	SceneManager * scenes;
-	//
+    // Our local asset manager for the scene
+    LocalAssetManager * package;
+    // Our renderer which will render each object
+    Renderer2D renderer2D;
+    //
+    SceneManager * scenes;
+    //
 
-	Background background;
-	Headers headers;
-	Buttons buttons;
-	
-	Music menuMusic;
-	Music roar;
+    Background background;
+    Headers headers;
+    Buttons buttons;
+    
+    Music menuMusic;
+    Music roar;
 public:
-	// Constructor & Deconstructor
-	Menu(OperatingSystem * os);
-	~Menu();
+    // Constructor & Deconstructor
+    Menu(OperatingSystem * os);
+    ~Menu();
 
-	// Handles when a SDL_Event is called
-	void onGameEvent(SDL_Event& e);
-	// Handles when the scene is to be created
-	void onCreate();
-	// The update function
-	void onUpdate();
-	// The render function
-	void onRender();
-	//
-	void onGamepadButton(int k, int s);
-	//
-	void onEnter(int);
+    // Handles when a SDL_Event is called
+    void onGameEvent(SDL_Event& e);
+    // Handles when the scene is to be created
+    void onCreate();
+    // The update function
+    void onUpdate();
+    // The render function
+    void onRender();
+    //
+    void onGamepadButton(int k, int s);
+    //
+    void onEnter(int);
 private:
-	bool entered;
-	bool exited;
-	float alpha;
+    bool entered;
+    bool exited;
+    float alpha;
 };
 
 #endif

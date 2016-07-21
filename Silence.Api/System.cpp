@@ -29,7 +29,7 @@
 #include "System.h"
 
 OperatingSystem::OperatingSystem()
-	: sceneManager(&windowManager), swapBuffers(true)
+    : sceneManager(&windowManager), swapBuffers(true)
 {
 }
 
@@ -39,137 +39,137 @@ OperatingSystem::~OperatingSystem()
 
 Gamepad * OperatingSystem::aquireGamepad()
 {
-	return sceneManager.getGamepad();
+    return sceneManager.getGamepad();
 }
 
 bool OperatingSystem::setupLibraries()
 {
-	auto SDL_Params{ SDL_INIT_EVERYTHING };
-	auto setupSuccess{ true };
+    auto SDL_Params{ SDL_INIT_EVERYTHING };
+    auto setupSuccess{ true };
 
-	if (SDL_Init(SDL_Params) != NULL) 
-	{
-		throw Error(GAME, "Couldnt init SDL");
-	}
+    if (SDL_Init(SDL_Params) != NULL) 
+    {
+        throw Error(GAME, "Couldnt init SDL");
+    }
 
-	if (TTF_Init() != NULL) 
-	{
-		throw Error(GAME, "Couldnt init TTF");
-	}
-	
-	BASS_Init(-1, 44100, NULL, nullptr, nullptr);
+    if (TTF_Init() != NULL) 
+    {
+        throw Error(GAME, "Couldnt init TTF");
+    }
+    
+    BASS_Init(-1, 44100, NULL, nullptr, nullptr);
 
-	FreeImage_Initialise();
+    FreeImage_Initialise();
 
-	srand(time(nullptr));
+    srand(time(nullptr));
 
-	return setupSuccess;
+    return setupSuccess;
 }
 
 void OperatingSystem::releaseLibraries()
 {
-	FreeImage_DeInitialise();
-	BASS_Free();
-	TTF_Quit();
-	SDL_Quit();
+    FreeImage_DeInitialise();
+    BASS_Free();
+    TTF_Quit();
+    SDL_Quit();
 }
 
 void OperatingSystem::executeProgram()
 {
-	HighPrecisionTimer frameTimer;
-	SDL_Event systemEvent;
-	auto gpu{ GPU(true) };
-	auto run{ SDL_TRUE };
+    HighPrecisionTimer frameTimer;
+    SDL_Event systemEvent;
+    auto gpu{ GPU(true) };
+    auto run{ SDL_TRUE };
 
-	if (gpu.has(OPENGL, 3.3))
-	{
-		sceneManager.createScenes();
+    if (gpu.has(OPENGL, 3.3))
+    {
+        sceneManager.createScenes();
 
-		while (run)
-		{
-			frameTimer.start();
+        while (run)
+        {
+            frameTimer.start();
 
-			while (SDL_PollEvent(&systemEvent))
-			{
-				if (systemEvent.type == SDL_QUIT)
-				{
-					run = SDL_FALSE;
-					break;
-				}
-				
-				sceneManager.handeEventScene(systemEvent);
-			}
-			
-			sceneManager.updateScene();
-			sceneManager.renderScene();
+            while (SDL_PollEvent(&systemEvent))
+            {
+                if (systemEvent.type == SDL_QUIT)
+                {
+                    run = SDL_FALSE;
+                    break;
+                }
+                
+                sceneManager.handeEventScene(systemEvent);
+            }
+            
+            sceneManager.updateScene();
+            sceneManager.renderScene();
 
-			if (swapBuffers) windowManager.swapBuffers();
+            if (swapBuffers) windowManager.swapBuffers();
 
-			if (!windowManager.vsyncEnabled())
-			{
-				while (frameTimer.elapsed(NS) <= static_cast<float>(1.0e9 / 60.0));
-			}
-		}
-	}
+            if (!windowManager.vsyncEnabled())
+            {
+                while (frameTimer.elapsed(NS) <= static_cast<float>(1.0e9 / 60.0));
+            }
+        }
+    }
 
-	SDL_ShowCursor(TRUE);
+    SDL_ShowCursor(TRUE);
 }
 
 void OperatingSystem::enableDoubleBuffering()
 {
-	swapBuffers = true;
+    swapBuffers = true;
 }
 
 void OperatingSystem::enableSingleBuffering()
 {
-	swapBuffers = false;
+    swapBuffers = false;
 }
 
 Window& OperatingSystem::aquireWindow()
 {
-	return windowManager;
+    return windowManager;
 }
 
 AssetManager * OperatingSystem::aquireAssetManager()
 {
-	return &assetManager;
+    return &assetManager;
 }
 
 SceneManager * OperatingSystem::aquireSceneManager()
 {
-	return &sceneManager;
+    return &sceneManager;
 }
 
 #include <ShellScalingApi.h>
 
 int bootstrap(std::function<void(OperatingSystem *)> onApplicationStart)
 {
-	SetProcessDpiAwareness(PROCESS_SYSTEM_DPI_AWARE);
+    SetProcessDpiAwareness(PROCESS_SYSTEM_DPI_AWARE);
 
-	auto message{ EXIT_SUCCESS };
+    auto message{ EXIT_SUCCESS };
 
-	try 
-	{
-		OperatingSystem system;
-		if (system.setupLibraries())
-		{
-			onApplicationStart(&system);
-			system.releaseLibraries();
-		}
-		else
-		{
-			message = EXIT_FAILURE;
-		}
-	}
-	catch (Error e) 
-	{
-		message = EXIT_FAILURE;
-		SDL_ShowSimpleMessageBox(0,
-			e.title(),
-			e.what(),
-			nullptr
-		);
-	}
+    try 
+    {
+        OperatingSystem system;
+        if (system.setupLibraries())
+        {
+            onApplicationStart(&system);
+            system.releaseLibraries();
+        }
+        else
+        {
+            message = EXIT_FAILURE;
+        }
+    }
+    catch (Error e) 
+    {
+        message = EXIT_FAILURE;
+        SDL_ShowSimpleMessageBox(0,
+            e.title(),
+            e.what(),
+            nullptr
+        );
+    }
 
-	return message;
+    return message;
 }

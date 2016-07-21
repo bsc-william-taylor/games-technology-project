@@ -33,67 +33,67 @@
 class SILENCE_EXPORT Window
 {
 private:
-	// The openGL context for the window
-	SDL_GLContext windowContext;
-	// The window itself
-	SDL_Window * window;
-	// The size of the window as well as its position
-	SDL_Rect dimensions;
-	// the title of the window
-	const char * title;
-	//
-	std::string icon;
-	// and should the window be fullscreen
-	bool fullscreen;
-	bool vsync;
+    // The openGL context for the window
+    SDL_GLContext windowContext;
+    // The window itself
+    SDL_Window * window;
+    // The size of the window as well as its position
+    SDL_Rect dimensions;
+    // the title of the window
+    const char * title;
+    //
+    std::string icon;
+    // and should the window be fullscreen
+    bool fullscreen;
+    bool vsync;
 public:
-	// Constructor & Deconstructor
-	Window();
-	~Window();
+    // Constructor & Deconstructor
+    Window();
+    ~Window();
 
-	bool isFullscreen();
+    bool isFullscreen();
 
-	//
-	SDL_Rect getWindowDimensions();
-	//
-	void resizeWindow(int x, int y, int w, int h);
-	// This function sets the position of the window
-	void setPosition(int x, int y);
-	// This function sets the title of the window
-	void setTitle(const char * t);
-	// This function sets the size of the window
-	void setSize(int w, int h);
-	// This function will make the window a fullscreen window when its constructed
-	void makeFullscreen();
-	// This function swaps the back buffer with the front buffer bring a rendered image to the front
-	void swapBuffers();
-	// This function creates the window make sure to set the properties first
-	void create();
-	//
-	void forceFullscreenMode(int, int);
-	//
-	void forceFullscreenMode();
-	//
-	void adjustViewport();
-	// 
-	void setWindowIcon(std::string);
-	//
-	void forceWindowedMode();
+    //
+    SDL_Rect getWindowDimensions();
+    //
+    void resizeWindow(int x, int y, int w, int h);
+    // This function sets the position of the window
+    void setPosition(int x, int y);
+    // This function sets the title of the window
+    void setTitle(const char * t);
+    // This function sets the size of the window
+    void setSize(int w, int h);
+    // This function will make the window a fullscreen window when its constructed
+    void makeFullscreen();
+    // This function swaps the back buffer with the front buffer bring a rendered image to the front
+    void swapBuffers();
+    // This function creates the window make sure to set the properties first
+    void create();
+    //
+    void forceFullscreenMode(int, int);
+    //
+    void forceFullscreenMode();
+    //
+    void adjustViewport();
+    // 
+    void setWindowIcon(std::string);
+    //
+    void forceWindowedMode();
 
-	// returns the height and the width of the window
-	int getMaxHeight();
-	int getMaxWidth();
-	int getHeight();
-	int getWidth();
+    // returns the height and the width of the window
+    int getMaxHeight();
+    int getMaxWidth();
+    int getHeight();
+    int getWidth();
 
-	// returns a direct point to the window object SDL provides
-	SDL_Window * getWindow();
+    // returns a direct point to the window object SDL provides
+    SDL_Window * getWindow();
 
-	//
-	bool vsyncEnabled();
+    //
+    bool vsyncEnabled();
 private:
-	int maxHeight;
-	int maxWidth;
+    int maxHeight;
+    int maxWidth;
 };
 
 #endif

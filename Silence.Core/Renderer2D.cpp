@@ -38,109 +38,109 @@ Renderer2D::~Renderer2D()
 // Creates the renderer ready for use
 void Renderer2D::createRenderer()
 {
-	// here we just compile the shader
-	shader.compile();
+    // here we just compile the shader
+    shader.compile();
 }
 
 // renders buttons on the screen for the user
 void Renderer2D::renderButtons(Button2D * buttons2D, int sz)
 {
-	for (int i = 0; i < sz; i++)
-	{
-		renderButton(&buttons2D[i]);
-	}
+    for (int i = 0; i < sz; i++)
+    {
+        renderButton(&buttons2D[i]);
+    }
 }
 
 // renders a texture to the screen
 void Renderer2D::renderTexture(Texture2D * texture)
 {
 
-	// check to make sure the texture was created
-	if (texture != NULL)
-	{
-		// then render the texture
-		shader.prepare(texture->getDataID(), texture->getTextureID());
-		shader.run(6);
-	}
-	else
-	{
-		// throws an exception if a null texture was passed
-		throw Error(RENDERER, "NULL texture object was passed to the renderer", William);
-	}
+    // check to make sure the texture was created
+    if (texture != NULL)
+    {
+        // then render the texture
+        shader.prepare(texture->getDataID(), texture->getTextureID());
+        shader.run(6);
+    }
+    else
+    {
+        // throws an exception if a null texture was passed
+        throw Error(RENDERER, "NULL texture object was passed to the renderer", William);
+    }
 }
 
 //
 void Renderer2D::setAlpha(float alpha)
 {
-	GPU_Program * program = shader.getProgram();
+    GPU_Program * program = shader.getProgram();
 
-	program->setFloat("alpha", alpha);
+    program->setFloat("alpha", alpha);
 }
 
 void Renderer2D::renderLabel(Text2D* text)
 {
-	// check to make sure the texture was created
-	if (text != NULL)
-	{
-		// then render the label
-		shader.prepare(text->getDataID(), text->getTextureID());
-		shader.run(6);
-	}
-	else
-	{
-		// throws an exception if a null text was passed
-		throw Error(RENDERER, "NULL text object was passed to the renderer", William);
-	}
+    // check to make sure the texture was created
+    if (text != NULL)
+    {
+        // then render the label
+        shader.prepare(text->getDataID(), text->getTextureID());
+        shader.run(6);
+    }
+    else
+    {
+        // throws an exception if a null text was passed
+        throw Error(RENDERER, "NULL text object was passed to the renderer", William);
+    }
 }
 
 // sets the matrix for the shader
 void Renderer2D::setMatrixForObject(const char * name, glm::mat4& mat)
 {
-	// grab the raw GPU_Program
-	GPU_Program * program = shader.getProgram();
-	// and set the matrix value
-	program->setMatrix((char *)name, glm::value_ptr(mat));
+    // grab the raw GPU_Program
+    GPU_Program * program = shader.getProgram();
+    // and set the matrix value
+    program->setMatrix((char *)name, glm::value_ptr(mat));
 }
 
 void Renderer2D::renderButton(Button2D* button)
 {
-	// get the texture and label
-	Texture2D * buttonTexture = button->getTexture();
-	Text2D * buttonLabel = button->getText();
+    // get the texture and label
+    Texture2D * buttonTexture = button->getTexture();
+    Text2D * buttonLabel = button->getText();
 
-	// render the texture
-	if (buttonTexture != NULL) {
-		renderTexture(buttonTexture);
-	}
+    // render the texture
+    if (buttonTexture != NULL) {
+        renderTexture(buttonTexture);
+    }
 
-	// and the label
-	if (buttonLabel != NULL) {
-		renderLabel(buttonLabel);
-	}
+    // and the label
+    if (buttonLabel != NULL) {
+        renderLabel(buttonLabel);
+    }
 }
 
 // prepare the render for rendering 2D object
 void Renderer2D::prepare()
 {
-	// enable blend for the text
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	// disable the depth test
-	glDisable(GL_DEPTH_TEST);
+    // enable blend for the text
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    // disable the depth test
+    glDisable(GL_DEPTH_TEST);
 
-	// bind the 2D shader to render objects
-	shader.getProgram()->bindShader();
+    // bind the 2D shader to render objects
+    shader.getProgram()->bindShader();
 }
 
 void Renderer2D::clear()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void Renderer2D::present()
 {
-	// unbind the 2D shader as we no longer need to
-	shader.getProgram()->unbindShader();
-	
-	glDisable(GL_BLEND);
+    // unbind the 2D shader as we no longer need to
+    shader.getProgram()->unbindShader();
+    
+    glDisable(GL_BLEND);
 }

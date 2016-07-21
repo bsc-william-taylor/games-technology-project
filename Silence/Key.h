@@ -10,24 +10,24 @@
 class Key
 {
 private:
-	Matrices matrices;
-	PointLight * point;
-	Model * keyModel;
-	Music pickup;
-	int spawnID;
+    Matrices matrices;
+    PointLight * point;
+    Model * keyModel;
+    Music pickup;
+    int spawnID;
 
-	bool taken;
+    bool taken;
 public:
-	Key();
-	~Key();
+    Key();
+    ~Key();
 
-	glm::vec3 getPosition();
+    glm::vec3 getPosition();
 
-	void create(Model * key, LocalAssetManager * manager);
-	void spawn(World& world, PointLight * p);
-	void update();
-	void render(ForwardRenderer&);
-	void reset();
-	
-	bool hasBeenPickedUp();
+    void create(Model * key, LocalAssetManager * manager);
+    void spawn(World& world, PointLight * p);
+    void update();
+    void render(ForwardRenderer&);
+    void reset();
+    
+    bool hasBeenPickedUp();
 };

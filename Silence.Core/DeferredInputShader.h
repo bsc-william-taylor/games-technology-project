@@ -33,29 +33,29 @@
 class SILENCE_EXPORT DeferredInputShader
 {
 private:
-	// The LLGI GPU_Program object
-	GPU_Program * program;
+    // The LLGI GPU_Program object
+    GPU_Program * program;
 public:
-	// Constructor & Deconstructor
-	DeferredInputShader();
-	~DeferredInputShader();
+    // Constructor & Deconstructor
+    DeferredInputShader();
+    ~DeferredInputShader();
 
-	// returns a pointer to the GPU_Program object
-	GPU_Program * getProgram();
+    // returns a pointer to the GPU_Program object
+    GPU_Program * getProgram();
 
-	// prepares the shader ready for execution
-	void prepare(int VAO, int textureID);
-	// binds the VAO for drawing the object
-	void prepare(int VAO);
-	// compiles the shader ready for use
-	void compile();
+    // prepares the shader ready for execution
+    void prepare(int VAO, int textureID);
+    // binds the VAO for drawing the object
+    void prepare(int VAO);
+    // compiles the shader ready for use
+    void compile();
 
-	//
-	void runIndex(int ID, int numberOfIndices);
-	// runs the program with the specified geometry type
-	void run(int geometryType, int start_v, int end_v);
-	// draw the mesh through start_v to end_v
-	void run(int start_v, int end_v);
-	// draw this number of meshes
-	void run(int vertex_count);
+    //
+    void runIndex(int ID, int numberOfIndices);
+    // runs the program with the specified geometry type
+    void run(int geometryType, int start_v, int end_v);
+    // draw the mesh through start_v to end_v
+    void run(int start_v, int end_v);
+    // draw this number of meshes
+    void run(int vertex_count);
 };

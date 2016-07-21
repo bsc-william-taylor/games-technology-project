@@ -32,43 +32,43 @@
 
 // format to return time in
 enum TimeType {
-	SECONDS,
-	MS, NS
+    SECONDS,
+    MS, NS
 };
 
 // Represents a high resolution timer for frame locking
 class SILENCE_EXPORT HighPrecisionTimer
 {
 private:
-	// the current ticks
-	unsigned int m_current;
-	// the ticks taken during the start() function call
-	unsigned int m_start;
-	// the ticks taken during the stop() function call
-	unsigned int m_stop;
-	// the frequency of the processor
-	unsigned int m_freq;
+    // the current ticks
+    unsigned int m_current;
+    // the ticks taken during the start() function call
+    unsigned int m_start;
+    // the ticks taken during the stop() function call
+    unsigned int m_stop;
+    // the frequency of the processor
+    unsigned int m_freq;
 public:
-	// Constructor & Deconstructor
-	HighPrecisionTimer();
-	~HighPrecisionTimer();
-	
-	// get the time difference from start() and stop()
-	float difference(TimeType);
-	// get the current time eleapsed from start()
-	float elapsed(TimeType);
-	// start the timer
-	void start();
-	// stop the timer
-	void stop();
-	// reset the timers state
-	void clear();
-	// just returns the current ticks
-	unsigned int current();
+    // Constructor & Deconstructor
+    HighPrecisionTimer();
+    ~HighPrecisionTimer();
+    
+    // get the time difference from start() and stop()
+    float difference(TimeType);
+    // get the current time eleapsed from start()
+    float elapsed(TimeType);
+    // start the timer
+    void start();
+    // stop the timer
+    void stop();
+    // reset the timers state
+    void clear();
+    // just returns the current ticks
+    unsigned int current();
 
-	bool hasStarted() {
-		return m_start != -1;
-	}
+    bool hasStarted() {
+        return m_start != -1;
+    }
 };
 
 #endif

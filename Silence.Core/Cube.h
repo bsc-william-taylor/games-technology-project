@@ -35,26 +35,26 @@
 class SILENCE_EXPORT Cube
 {
 private:
-	// The transfer object which sends the vertices needed
-	GPU_Transfer * transfer;
-	// The sampler object which sends the bitmap data needed
-	GPU_Sampler * texture;
+    // The transfer object which sends the vertices needed
+    GPU_Transfer * transfer;
+    // The sampler object which sends the bitmap data needed
+    GPU_Sampler * texture;
 public:
-	// Constructor & Deconstructor
-	Cube();
-	~Cube();
+    // Constructor & Deconstructor
+    Cube();
+    ~Cube();
 
-	// sets the area of the cube and the amount of times you want the texture to repeat on the surface
-	void setArea(glm::vec3 position, glm::vec3 size, int texture_repeat_count);
-	// sets the area of the cube
-	void setArea(glm::vec3 position, glm::vec3 size);
-	// sets the texture which will be bound to each face
-	void setTexture(TextureAsset * asset);
+    // sets the area of the cube and the amount of times you want the texture to repeat on the surface
+    void setArea(glm::vec3 position, glm::vec3 size, int texture_repeat_count);
+    // sets the area of the cube
+    void setArea(glm::vec3 position, glm::vec3 size);
+    // sets the texture which will be bound to each face
+    void setTexture(TextureAsset * asset);
 
-	// returns the ID for the texture
-	GPU_ID getTextureID();
-	// returns the ID for the mesh
-	GPU_ID getDataID();
+    // returns the ID for the texture
+    GPU_ID getTextureID();
+    // returns the ID for the mesh
+    GPU_ID getDataID();
 };
 
 #endif

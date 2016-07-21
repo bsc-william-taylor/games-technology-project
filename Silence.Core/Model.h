@@ -37,42 +37,42 @@
 class SILENCE_EXPORT Model
 {
 private:
-	//
-	std::vector<GPU_ID> tIDs;
-	// a vector of IDs for the textures
-	GPU_Transfer * mesh;
-	// The model asset file
-	ModelAsset * file;
-	//
-	Vertex min, max;
+    //
+    std::vector<GPU_ID> tIDs;
+    // a vector of IDs for the textures
+    GPU_Transfer * mesh;
+    // The model asset file
+    ModelAsset * file;
+    //
+    Vertex min, max;
 public:
-	// Constructor & Deconstructor
-	Model();
-	~Model();
+    // Constructor & Deconstructor
+    Model();
+    ~Model();
 
-	// sets the asset which will contain vertex etc information
-	GLvoid setModel(ModelAsset * model);
-	
-	SolidCylinder * createCylinder(glm::mat4, double);
-	SolidBox * createbox(glm::mat4);
-	//
-	ModelAsset * getMeshes() {
-		return file;
-	}
+    // sets the asset which will contain vertex etc information
+    GLvoid setModel(ModelAsset * model);
+    
+    SolidCylinder * createCylinder(glm::mat4, double);
+    SolidBox * createbox(glm::mat4);
+    //
+    ModelAsset * getMeshes() {
+        return file;
+    }
 
-	GPU_Transfer * getMesh() {
-		return mesh;
-	}
+    GPU_Transfer * getMesh() {
+        return mesh;
+    }
 
-	std::vector<GPU_ID>& getTextures() {
-		return tIDs;
-	}
+    std::vector<GPU_ID>& getTextures() {
+        return tIDs;
+    }
 
-	GLuint getMaterialID(GLuint);
+    GLuint getMaterialID(GLuint);
 
 
-	// returns a pointer to the model asset
-	ModelAsset * getModelAsset();
+    // returns a pointer to the model asset
+    ModelAsset * getModelAsset();
 };
 
 #endif

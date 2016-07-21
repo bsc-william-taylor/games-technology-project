@@ -28,33 +28,33 @@
 
 // Constructor & Deconstructor
 GPU::GPU(GLboolean print)
-	: grabbedGPU(false)
+    : grabbedGPU(false)
 {
-	// init glew to access 2.0+ gl funtions	
-	if (glewInit() == GLEW_OK) 
-	{
-		// if successful and if pring it true print out details to the console
-		shaderVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
-		renderer = glGetString(GL_RENDERER);
-		version = glGetString(GL_VERSION);
-		vendor = glGetString(GL_VENDOR);
+    // init glew to access 2.0+ gl funtions	
+    if (glewInit() == GLEW_OK) 
+    {
+        // if successful and if pring it true print out details to the console
+        shaderVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
+        renderer = glGetString(GL_RENDERER);
+        version = glGetString(GL_VERSION);
+        vendor = glGetString(GL_VENDOR);
 
-		// but only if the user specifies
-		if (print) 
-		{
-			std::cout << "Shader Version : " << shaderVersion << std::endl;
-			std::cout << "Renderer : " << renderer << std::endl;
-			std::cout << "Version : " << version << std::endl;
-			std::cout << "Vendor : " << vendor << std::endl;
-		}
+        // but only if the user specifies
+        if (print) 
+        {
+            std::cout << "Shader Version : " << shaderVersion << std::endl;
+            std::cout << "Renderer : " << renderer << std::endl;
+            std::cout << "Version : " << version << std::endl;
+            std::cout << "Vendor : " << vendor << std::endl;
+        }
 
-		grabbedGPU = true;
-	}
-	else 
-	{
-		// print an error message
-		std::cout << ("Error grabbing GPU") << std::endl;
-	}
+        grabbedGPU = true;
+    }
+    else 
+    {
+        // print an error message
+        std::cout << ("Error grabbing GPU") << std::endl;
+    }
 }
 
 GPU::~GPU()
@@ -64,22 +64,22 @@ GPU::~GPU()
 // returns if a certain GPU API is supported
 GLboolean GPU::has(GRAPHIC_API type, GLdouble version) 
 {
-	// if OPENGL is supported
-	if (type == OPENGL)
-	{
-		// grab its version and check against the version requested
-		GLfloat minVersion = (GLfloat)version;
-		GLfloat f, s;
-		
-		glGetFloatv(GL_MAJOR_VERSION, &f);
-		glGetFloatv(GL_MINOR_VERSION, &s);
-		
-		// return comparison
-		return(f + s >= version);
-	}
-	else
-	{
-		// return false for now as no other API is supported.... yet
-		return false;
-	}
+    // if OPENGL is supported
+    if (type == OPENGL)
+    {
+        // grab its version and check against the version requested
+        GLfloat minVersion = (GLfloat)version;
+        GLfloat f, s;
+        
+        glGetFloatv(GL_MAJOR_VERSION, &f);
+        glGetFloatv(GL_MINOR_VERSION, &s);
+        
+        // return comparison
+        return(f + s >= version);
+    }
+    else
+    {
+        // return false for now as no other API is supported.... yet
+        return false;
+    }
 }

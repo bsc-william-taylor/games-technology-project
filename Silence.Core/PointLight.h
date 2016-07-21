@@ -5,23 +5,23 @@
 class SILENCE_EXPORT PointLight
 {
 private:
-	glm::vec3 pointPosition;
-	glm::vec3 pointColour;
-	glm::vec4 att;
+    glm::vec3 pointPosition;
+    glm::vec3 pointColour;
+    glm::vec4 att;
 
-	bool pointLightActive;
+    bool pointLightActive;
 public:
-	PointLight();
-	~PointLight();
+    PointLight();
+    ~PointLight();
 
-	void setPosition(glm::vec3 position);
-	void setColour(glm::vec3 colour);
-	void setAttribuation(glm::vec4);
+    void setPosition(glm::vec3 position);
+    void setColour(glm::vec3 colour);
+    void setAttribuation(glm::vec4);
 
-	void send(GPU_Program * p, int);
-	void toggle();
-	void turnOff();
-	void turnOn();
+    void send(GPU_Program * p, int);
+    void toggle();
+    void turnOff();
+    void turnOn();
 };
 
 

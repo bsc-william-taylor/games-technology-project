@@ -32,41 +32,41 @@
 
 // The side of the skybox
 enum SKYBOX_SIDE { 
-	RIGHT, FRONT, BACK, LEFT, TOP
+    RIGHT, FRONT, BACK, LEFT, TOP
 };
 
 // A class which stores all data needed for drawing a cube
 class SILENCE_EXPORT Skybox
 {
 private:
-	// This transfer object sends the mesh data
-	GPU_Transfer * cubemap_object_mesh;
-	// This transfer object sends the texture data
-	GPU_Sampler * cubemap_texture;
+    // This transfer object sends the mesh data
+    GPU_Transfer * cubemap_object_mesh;
+    // This transfer object sends the texture data
+    GPU_Sampler * cubemap_texture;
 public:
-	// Constructor & Deconstructor
-	Skybox();
-	~Skybox();
+    // Constructor & Deconstructor
+    Skybox();
+    ~Skybox();
 
-	// Creates the skybox where assets is the list of textures for the skybox
-	void createSkybox(std::initializer_list<TextureAsset*> assets);
-	// Sets the distance to render the skybox
-	void setDistance(float distance);
+    // Creates the skybox where assets is the list of textures for the skybox
+    void createSkybox(std::initializer_list<TextureAsset*> assets);
+    // Sets the distance to render the skybox
+    void setDistance(float distance);
 
-	// returns the ID for cubemap texture
-	GPU_ID getTextureID();
-	// returns the ID for mesh data
-	GPU_ID getDataID();
+    // returns the ID for cubemap texture
+    GPU_ID getTextureID();
+    // returns the ID for mesh data
+    GPU_ID getDataID();
 private:
-	// The vertices for the cube
-	Vertices vertices;
-	// The normals for the cube
-	Vertices normals;
-	// The uvs for the cube
-	Vertices uvs;
+    // The vertices for the cube
+    Vertices vertices;
+    // The normals for the cube
+    Vertices normals;
+    // The uvs for the cube
+    Vertices uvs;
 
-	// the distance to render it at
-	GLfloat distance;
+    // the distance to render it at
+    GLfloat distance;
 };
 
 #endif

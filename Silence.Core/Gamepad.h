@@ -7,43 +7,43 @@
 #define DEADZONE_DEFAULT 6000
 
 enum STICK_AXIS {
-	LEFT_X, LEFT_Y, RIGHT_X, RIGHT_Y,
+    LEFT_X, LEFT_Y, RIGHT_X, RIGHT_Y,
 };
 
 enum BUTTON_STATE {
-	GAMEPAD_BUTTON_PRESSED,
-	GAMEPAD_BUTTON_HOLDING,
-	GAMEPAD_BUTTON_RELEASED,
-	GAMEPAD_BUTTON_NOT_PRESSED
+    GAMEPAD_BUTTON_PRESSED,
+    GAMEPAD_BUTTON_HOLDING,
+    GAMEPAD_BUTTON_RELEASED,
+    GAMEPAD_BUTTON_NOT_PRESSED
 };
 
 class SILENCE_EXPORT Gamepad 
 {
 private:
-	SDL_GameController * controller;
-	SDL_Joystick * joystick;
-	SDL_Haptic * haptic;
+    SDL_GameController * controller;
+    SDL_Joystick * joystick;
+    SDL_Haptic * haptic;
 
-	float axisValues[SDL_CONTROLLER_AXIS_MAX];
-	
-	BUTTON_STATE buttons[SDL_CONTROLLER_BUTTON_MAX];
+    float axisValues[SDL_CONTROLLER_AXIS_MAX];
+    
+    BUTTON_STATE buttons[SDL_CONTROLLER_BUTTON_MAX];
 
-	int deadzone;
+    int deadzone;
 public:
-	Gamepad();
-	~Gamepad();
+    Gamepad();
+    ~Gamepad();
 
-	void rumble(float, int);
+    void rumble(float, int);
 
-	int getButtonValue(int);
+    int getButtonValue(int);
 
-	float getAxisValue(STICK_AXIS);
-	float getAxisValue(int);
+    float getAxisValue(STICK_AXIS);
+    float getAxisValue(int);
 
-	bool isConnected();
-	bool getState();
-	bool close();
-	bool open();
+    bool isConnected();
+    bool getState();
+    bool close();
+    bool open();
 };
 
 #endif

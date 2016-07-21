@@ -39,25 +39,25 @@
 
 // A enum for the has function which says if the platform is supported
 enum GRAPHIC_API {
-	OPENGL,
-	DIRECTX
+    OPENGL,
+    DIRECTX
 };
 
 // A class which collects info on the GPU for the user
 class SILENCE_EXPORT GPU
 {
 private:
-	const GLubyte * shaderVersion;
-	const GLubyte * renderer;
-	const GLubyte * version;
-	const GLubyte * vendor;
+    const GLubyte * shaderVersion;
+    const GLubyte * renderer;
+    const GLubyte * version;
+    const GLubyte * vendor;
 
-	GLboolean grabbedGPU;
+    GLboolean grabbedGPU;
 public:
-	explicit GPU(GLboolean printDetails = GL_TRUE);
-	~GPU();
+    explicit GPU(GLboolean printDetails = GL_TRUE);
+    ~GPU();
 
-	GLboolean has(GRAPHIC_API api, GLdouble version);
+    GLboolean has(GRAPHIC_API api, GLdouble version);
 };
 
 #endif

@@ -28,10 +28,10 @@
 // Constructor & Deconstructor
 HighPrecisionTimer::HighPrecisionTimer()
 {
-	// Grab frequency of this processor
-	m_freq = SDL_GetPerformanceFrequency();
-	m_start =- 1;
-	m_stop = - 1;
+    // Grab frequency of this processor
+    m_freq = SDL_GetPerformanceFrequency();
+    m_start =- 1;
+    m_stop = - 1;
 }
 
 HighPrecisionTimer::~HighPrecisionTimer()
@@ -41,67 +41,67 @@ HighPrecisionTimer::~HighPrecisionTimer()
 // Records current time in start variable
 void HighPrecisionTimer::start()
 {
-	m_start = SDL_GetPerformanceCounter();
+    m_start = SDL_GetPerformanceCounter();
 }
 
 // Records current time in stop variable
 void HighPrecisionTimer::stop()
 {
-	m_stop = SDL_GetPerformanceCounter();
+    m_stop = SDL_GetPerformanceCounter();
 }
 
 // Get current time from previous Start call
 float HighPrecisionTimer::elapsed(TimeType type)
 {
-	if (m_start != -1)
-	{
-		m_stop = SDL_GetPerformanceCounter();
-		return(difference(type));
-	} 
-	else
-	{
-		return -1;
-	}
+    if (m_start != -1)
+    {
+        m_stop = SDL_GetPerformanceCounter();
+        return(difference(type));
+    } 
+    else
+    {
+        return -1;
+    }
 }
 
 void HighPrecisionTimer::clear()
 {
-	m_start = -1;
-	m_stop = -1;
+    m_start = -1;
+    m_stop = -1;
 }
 
 // Time between last Start and Stop calls
 float HighPrecisionTimer::difference(TimeType type)
 {
-	float difference = 0.0f;
+    float difference = 0.0f;
 
-	switch (type)
-	{
-	case SECONDS:
-	{
-		difference = (float)(m_stop - m_start);
-		break;
-	}
+    switch (type)
+    {
+    case SECONDS:
+    {
+        difference = (float)(m_stop - m_start);
+        break;
+    }
 
-	case MS:
-	{
-		difference = (float)(1.0e3*(m_stop - m_start));
-		break;
-	}
+    case MS:
+    {
+        difference = (float)(1.0e3*(m_stop - m_start));
+        break;
+    }
 
-	case NS:
-	{
-		difference = (float)(1.0e9*(m_stop - m_start));
-		break;
-	}
-	};
+    case NS:
+    {
+        difference = (float)(1.0e9*(m_stop - m_start));
+        break;
+    }
+    };
 
-	return(difference / m_freq);
+    return(difference / m_freq);
 }
 
 // Get the current clock count
 unsigned int HighPrecisionTimer::current()
 {
-	m_current = SDL_GetPerformanceCounter();
-	return(m_current);
+    m_current = SDL_GetPerformanceCounter();
+    return(m_current);
 }

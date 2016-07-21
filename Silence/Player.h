@@ -8,29 +8,29 @@
 class Player 
 {
 private:
-	bool pickedUpRocks;
-	bool pickedUpTorch;
+    bool pickedUpRocks;
+    bool pickedUpTorch;
 
-	HighPrecisionTimer throwTimer;
+    HighPrecisionTimer throwTimer;
 
-	Music throwSound;
-	Music hitSound;
+    Music throwSound;
+    Music hitSound;
 public:
-	Player();
-	~Player();
+    Player();
+    ~Player();
 
-	void onGamepadButton(FirstPersonCamera * camera, int key, int state);
-	void onKeyEvent(FirstPersonCamera * camera, int key, int state);
-	void setTorchPickupState(bool);
-	void setRockPickupState(bool);
-	void create(LocalAssetManager * package);
-	void update(FirstPersonCamera * camera, Monster * monster);
-	void replenishRocks();
-	void reset();
+    void onGamepadButton(FirstPersonCamera * camera, int key, int state);
+    void onKeyEvent(FirstPersonCamera * camera, int key, int state);
+    void setTorchPickupState(bool);
+    void setRockPickupState(bool);
+    void create(LocalAssetManager * package);
+    void update(FirstPersonCamera * camera, Monster * monster);
+    void replenishRocks();
+    void reset();
 
-	bool hasTorch();
-	bool hasRocks();
+    bool hasTorch();
+    bool hasRocks();
 private:
-	int rocks;
-	int timeout;
+    int rocks;
+    int timeout;
 };

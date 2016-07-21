@@ -33,20 +33,20 @@
 class SILENCE_EXPORT OrthoShader
 {
 private: 
-	// The LLGI program object which makes setting up a shader easier
-	GPU_Program * program;
+    // The LLGI program object which makes setting up a shader easier
+    GPU_Program * program;
 public:
-	// Constructor & Deconstructor
-	OrthoShader();
-	~OrthoShader();
+    // Constructor & Deconstructor
+    OrthoShader();
+    ~OrthoShader();
 
-	// This function returns the raw LLGI object
-	GPU_Program * getProgram();
+    // This function returns the raw LLGI object
+    GPU_Program * getProgram();
 
-	// Binds the VAO and the Texture ready for a draw call or run calls
-	void prepare(int VAO_ID, int textureID);
-	// Compiles the shader after this call it is ready to be used
-	void compile();
-	// Begins a draw with num being the number of vertices to render
-	void run(int num);
+    // Binds the VAO and the Texture ready for a draw call or run calls
+    void prepare(int VAO_ID, int textureID);
+    // Compiles the shader after this call it is ready to be used
+    void compile();
+    // Begins a draw with num being the number of vertices to render
+    void run(int num);
 };

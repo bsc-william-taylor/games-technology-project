@@ -40,53 +40,53 @@
 class Forest : public Scene
 {
 private:
-	HighPrecisionTimer survivalTimer;
-	LocalAssetManager * package;
-	ForwardRenderer renderer3D;
-	SceneManager * manager;
-	Pickups pickups;
-	World world;
+    HighPrecisionTimer survivalTimer;
+    LocalAssetManager * package;
+    ForwardRenderer renderer3D;
+    SceneManager * manager;
+    Pickups pickups;
+    World world;
 
-	Music torchSound;
-	Music footSteps;
-	Music roar;
-	Music sign;
+    Music torchSound;
+    Music footSteps;
+    Music roar;
+    Music sign;
 
-	Matrices matrices;
-	Terrain terrain;
-	Monster monster;
-	House house;
-	Gate gate;
-	Key key;
+    Matrices matrices;
+    Terrain terrain;
+    Monster monster;
+    House house;
+    Gate gate;
+    Key key;
 public:
-	// Constructor & Deconstructor
-	Forest(OperatingSystem * os);
-	~Forest();
+    // Constructor & Deconstructor
+    Forest(OperatingSystem * os);
+    ~Forest();
 
-	void onGamepadButton(int key, int st);
-	void onGamepadAxis(int, float);
-	void onGameEvent(SDL_Event& e);
-	void onCreate();
-	void onUpdate();
-	void onRender();
+    void onGamepadButton(int key, int st);
+    void onGamepadAxis(int, float);
+    void onGameEvent(SDL_Event& e);
+    void onCreate();
+    void onUpdate();
+    void onRender();
 
-	void onEnter(int i);
-	void onExit(int i);
+    void onEnter(int i);
+    void onExit(int i);
 
-	HighPrecisionTimer * getForestTime() {
-		return &survivalTimer;
-	}
+    HighPrecisionTimer * getForestTime() {
+        return &survivalTimer;
+    }
 private:
-	Music backgroundMusic;
-	float alpha;
-	
-	DirectionalLight nightLight;
-	PointLight point;
-	SpotLight torch;
-	Player * player;
+    Music backgroundMusic;
+    float alpha;
+    
+    DirectionalLight nightLight;
+    PointLight point;
+    SpotLight torch;
+    Player * player;
 
-	HighPrecisionTimer timer;
-	Gamepad * gamepad;
+    HighPrecisionTimer timer;
+    Gamepad * gamepad;
 };
 
 #endif

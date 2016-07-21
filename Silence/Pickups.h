@@ -15,21 +15,21 @@ class Player;
 class Pickups
 {
 private:
-	Matrices matrices;
-	Music pickup3;
-	Model rocks[2];
-	Player * player;
-	PointLight pointLights[2];
+    Matrices matrices;
+    Music pickup3;
+    Model rocks[2];
+    Player * player;
+    PointLight pointLights[2];
 public:
-	Pickups();
-	~Pickups();
+    Pickups();
+    ~Pickups();
 
-	void getLights(Lights *);
+    void getLights(Lights *);
 
-	void create(LocalAssetManager * package, World&, Player *);
-	void render(ForwardRenderer& renderer);
-	void update(Camera *);
+    void create(LocalAssetManager * package, World&, Player *);
+    void render(ForwardRenderer& renderer);
+    void update(Camera *);
 private:
-	bool draw[2];
-	vec3 position[2];
+    bool draw[2];
+    vec3 position[2];
 };

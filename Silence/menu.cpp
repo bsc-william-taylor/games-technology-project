@@ -29,148 +29,148 @@
 // Constructor & Deconstructor
 Menu::Menu(OperatingSystem * system)
 {
-	// Aquire the scene manager
-	scenes = system->aquireSceneManager();
-	// aquire a local asset manager for the scene
+    // Aquire the scene manager
+    scenes = system->aquireSceneManager();
+    // aquire a local asset manager for the scene
 
-	AssetManager * assets = system->aquireAssetManager();
-	package = assets->grabLocalManager();
-	// and grab these assets from disk
-	package->grab({ "data/textures/menu1.png",
-		"data/textures/menu2.png",
-		"data/textures/menu3.png",
-		"data/fonts/Calibri.ttf",
-		"data/textures/button.png"
-	});
+    AssetManager * assets = system->aquireAssetManager();
+    package = assets->grabLocalManager();
+    // and grab these assets from disk
+    package->grab({ "data/textures/menu1.png",
+        "data/textures/menu2.png",
+        "data/textures/menu3.png",
+        "data/fonts/Calibri.ttf",
+        "data/textures/button.png"
+    });
 
-	menuMusic.open(package->grabMusic("data/media/menu.wav", STREAM_LOOP));
-	roar.open(package->grabMusic("data/media/roar.mp3", LOAD));
+    menuMusic.open(package->grabMusic("data/media/menu.wav", STREAM_LOOP));
+    roar.open(package->grabMusic("data/media/roar.mp3", LOAD));
 
-	entered = false;
-	exited = false;
+    entered = false;
+    exited = false;
 }
 
 Menu::~Menu()
 {
-	// Packages need to be manually deleted
-	SAFE_RELEASE(package);
+    // Packages need to be manually deleted
+    SAFE_RELEASE(package);
 }
 
 //
 void Menu::onEnter(int ID)
 {
-	background.enter();
+    background.enter();
 
-	if (ID == (int)SceneID::Gameover || ID == -1 || ID == (int)SceneID::Intro) {
-		menuMusic.play();
-	}
+    if (ID == (int)SceneID::Gameover || ID == -1 || ID == (int)SceneID::Intro) {
+        menuMusic.play();
+    }
 
-	entered = true;
-	exited = false;
-	alpha = 0.0f;
+    entered = true;
+    exited = false;
+    alpha = 0.0f;
 }
 
 // Handles when the scene is created
 void Menu::onCreate()
 {
-	background.create(package);
-	headers.create(package);
-	buttons.create(package);
+    background.create(package);
+    headers.create(package);
+    buttons.create(package);
 
-	// finally create the 2D renderer
-	renderer2D.createRenderer();
+    // finally create the 2D renderer
+    renderer2D.createRenderer();
 }
 
 void Menu::onGamepadButton(int key, int state)
 {
-	buttons.onGamepadButton(key, state);
-	for (int i = 0; i < 3; i++) {
-		if (buttons.isPressed(i, key, state)) {
-			switch (i) {
-				case 0: menuMusic.stop(); roar.reset(); roar.play(); exited = true; return;
-				case 1: scenes->switchScene((unsigned)SceneID::Options); return;
-				case 2: scenes->exit(); return;
+    buttons.onGamepadButton(key, state);
+    for (int i = 0; i < 3; i++) {
+        if (buttons.isPressed(i, key, state)) {
+            switch (i) {
+                case 0: menuMusic.stop(); roar.reset(); roar.play(); exited = true; return;
+                case 1: scenes->switchScene((unsigned)SceneID::Options); return;
+                case 2: scenes->exit(); return;
 
-			default: break;
-			}
-		}
-	}
+            default: break;
+            }
+        }
+    }
 
-	if (key == SDL_CONTROLLER_BUTTON_BACK && state == GAMEPAD_BUTTON_PRESSED) {
-		scenes->exit();
-	}
+    if (key == SDL_CONTROLLER_BUTTON_BACK && state == GAMEPAD_BUTTON_PRESSED) {
+        scenes->exit();
+    }
 }
 
 // Handle SDL / Game events
 void Menu::onGameEvent(SDL_Event& e)
 {
-	background.event(e);
-	headers.event(e);
-	buttons.event(e);
+    background.event(e);
+    headers.event(e);
+    buttons.event(e);
 
-	for (int i = 0; i < 3; i++) {
-		if (buttons.isPressed(i, e)) {
-			switch (i) {
-				case 0:  menuMusic.stop(); roar.reset(); roar.play(); exited = true; return;
-				case 1: scenes->switchScene(as_int(SceneID::Options)); return;
-				case 2: scenes->exit(); return;
+    for (int i = 0; i < 3; i++) {
+        if (buttons.isPressed(i, e)) {
+            switch (i) {
+                case 0:  menuMusic.stop(); roar.reset(); roar.play(); exited = true; return;
+                case 1: scenes->switchScene(as_int(SceneID::Options)); return;
+                case 2: scenes->exit(); return;
 
-				default: break;
-			}
-		}
-	}
+                default: break;
+            }
+        }
+    }
 }
 
 // nothing needs updating so this can be empty
 void Menu::onUpdate()
 {
-	background.update();
-	headers.update();
-	buttons.update();
+    background.update();
+    headers.update();
+    buttons.update();
 
-	if (entered) {
-		alpha += 0.05f;
-		if (alpha >= 1.0)
-			entered = false;
-	}
+    if (entered) {
+        alpha += 0.05f;
+        if (alpha >= 1.0)
+            entered = false;
+    }
 
-	if (exited) {
-		if (alpha < -0.5) {
-			exited = false;
-			scenes->switchScene(as_int(SceneID::Indoors));
-		}
+    if (exited) {
+        if (alpha < -0.5) {
+            exited = false;
+            scenes->switchScene(as_int(SceneID::Indoors));
+        }
 
-		alpha -= 0.005f;
-	}
+        alpha -= 0.005f;
+    }
 }
 
 // Handles when the scene is rendered
 void Menu::onRender()
 {
-	// create our matrices
-	glm::mat4 projectionMatrix = glm::mat4();
-	glm::mat4 modelMatrix = glm::mat4();
+    // create our matrices
+    glm::mat4 projectionMatrix = glm::mat4();
+    glm::mat4 modelMatrix = glm::mat4();
 
-	// set the projection matrix
-	projectionMatrix = glm::ortho(0.0, 1920.0, 0.0, 1080.0, -1.0, 1.0);
+    // set the projection matrix
+    projectionMatrix = glm::ortho(0.0, 1920.0, 0.0, 1080.0, -1.0, 1.0);
 
-	// then prepare our 2d render send out matrices over
-	renderer2D.clear();
-	renderer2D.prepare();
-	renderer2D.setMatrixForObject("projection", projectionMatrix);
-	renderer2D.setMatrixForObject("model", modelMatrix);
+    // then prepare our 2d render send out matrices over
+    renderer2D.clear();
+    renderer2D.prepare();
+    renderer2D.setMatrixForObject("projection", projectionMatrix);
+    renderer2D.setMatrixForObject("model", modelMatrix);
 
-	if (entered == false && exited == false) {
-		renderer2D.setAlpha(background.getAlpha());
-	} else {
-		renderer2D.setAlpha(alpha);
-	}
+    if (entered == false && exited == false) {
+        renderer2D.setAlpha(background.getAlpha());
+    } else {
+        renderer2D.setAlpha(alpha);
+    }
 
-	background.render(&renderer2D);
-	renderer2D.setAlpha(alpha);
+    background.render(&renderer2D);
+    renderer2D.setAlpha(alpha);
 
-	headers.render(&renderer2D);
-	buttons.render(&renderer2D);
+    headers.render(&renderer2D);
+    buttons.render(&renderer2D);
 
-	renderer2D.present();
+    renderer2D.present();
 }

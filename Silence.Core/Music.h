@@ -7,18 +7,18 @@
 class SILENCE_EXPORT Music
 {
 private:
-	AudioAsset * source;
+    AudioAsset * source;
 
-	bool playing;
+    bool playing;
 public:
-	Music();
-	~Music();
+    Music();
+    ~Music();
 
-	void open(AudioAsset *);
-	void reset();
-	void pause();
-	void play();
-	void stop();
+    void open(AudioAsset *);
+    void reset();
+    void pause();
+    void play();
+    void stop();
 
-	bool hasAudioSource();
+    bool hasAudioSource();
 };

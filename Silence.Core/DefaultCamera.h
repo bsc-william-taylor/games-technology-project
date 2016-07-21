@@ -33,37 +33,37 @@
 class SILENCE_EXPORT DefaultCamera : public Camera
 {
 private:
-	glm::mat4 viewMatrix;
+    glm::mat4 viewMatrix;
 public:
-	// Constructor & Deconstructor
-	DefaultCamera();
-	~DefaultCamera();
-	
-	// returns the position of the camera
-	glm::vec3 getPosition();
-	// returns the view matrix for the camera
-	glm::mat4& getView();
+    // Constructor & Deconstructor
+    DefaultCamera();
+    ~DefaultCamera();
+    
+    // returns the position of the camera
+    glm::vec3 getPosition();
+    // returns the view matrix for the camera
+    glm::mat4& getView();
 
-	// updates the camera based on the keys pressed
-	void updateCameraPosition(SDL_Event&);
-	// updates the height of the camera based on the height of the terrain
-	void handleTerrainHeight(float f);
-	// sets the position of the camera
-	void setPosition(glm::vec3);
-	// updates the view matrix to match the position stored in the vector provided 
-	void repositionCamera();
+    // updates the camera based on the keys pressed
+    void updateCameraPosition(SDL_Event&);
+    // updates the height of the camera based on the height of the terrain
+    void handleTerrainHeight(float f);
+    // sets the position of the camera
+    void setPosition(glm::vec3);
+    // updates the view matrix to match the position stored in the vector provided 
+    void repositionCamera();
 
-	void cancelMovement();
+    void cancelMovement();
 
-	void prepareCamera(){}
+    void prepareCamera(){}
 
-	glm::vec3 getCameraDirection() {
-		return glm::vec3(0.0, 0.0, 0.0);
-	}
+    glm::vec3 getCameraDirection() {
+        return glm::vec3(0.0, 0.0, 0.0);
+    }
 
-	//
-	void onGamepadAxis(int, float){}
+    //
+    void onGamepadAxis(int, float){}
 
-	// returns the height of the camera in 3D space
-	GLfloat getHeight();
+    // returns the height of the camera in 3D space
+    GLfloat getHeight();
 };

@@ -9,22 +9,22 @@
 class OptionsField
 {
 private:
-	OptionsWindowSize * optionsWindowSizeActor;
-	OptionsWindowType * optionsWindowTypeActor;
-	OptionsGraphics * optionsGraphicsActor;
-	OptionsVolume * optionsVolumeActor;
+    OptionsWindowSize * optionsWindowSizeActor;
+    OptionsWindowType * optionsWindowTypeActor;
+    OptionsGraphics * optionsGraphicsActor;
+    OptionsVolume * optionsVolumeActor;
 
-	LocalAssetManager * package;
-	Window * window;
+    LocalAssetManager * package;
+    Window * window;
 
-	unsigned int active;
+    unsigned int active;
 public:
-	OptionsField(Window *);
-	~OptionsField();
+    OptionsField(Window *);
+    ~OptionsField();
 
-	void onGamepadButton(int k, int s);
-	void onGameEvent(SDL_Event& e);
-	void render(Renderer2D *);
-	void create(LocalAssetManager*);
-	void update();
+    void onGamepadButton(int k, int s);
+    void onGameEvent(SDL_Event& e);
+    void render(Renderer2D *);
+    void create(LocalAssetManager*);
+    void update();
 };

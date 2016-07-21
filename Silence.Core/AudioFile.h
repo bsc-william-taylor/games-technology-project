@@ -9,24 +9,24 @@
 class SILENCE_EXPORT AudioAsset 
 {
 private:
-	std::string filename;
-	std::string name;
+    std::string filename;
+    std::string name;
 
-	HSTREAM stream;
-	HCHANNEL channel;
-	HSAMPLE sample;
+    HSTREAM stream;
+    HCHANNEL channel;
+    HSAMPLE sample;
 
-	bool _isStream;
+    bool _isStream;
 public:
-	AudioAsset(std::string str);
-	~AudioAsset();
+    AudioAsset(std::string str);
+    ~AudioAsset();
 
-	void grabFromFile(std::string filename, bool stream, bool loop);
+    void grabFromFile(std::string filename, bool stream, bool loop);
 
-	bool isStream();
+    bool isStream();
 
-	HSTREAM getStream();
-	HCHANNEL getChannel();
+    HSTREAM getStream();
+    HCHANNEL getChannel();
 
-	std::string getName();
+    std::string getName();
 };

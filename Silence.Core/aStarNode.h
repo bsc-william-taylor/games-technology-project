@@ -6,43 +6,43 @@
 class A_StarMap;
 
 struct A_StarPoint {
-	int x; int y;
+    int x; int y;
 
-	A_StarPoint(int x, int y) {
-		this->x = x; this->y = y;
-	}
+    A_StarPoint(int x, int y) {
+        this->x = x; this->y = y;
+    }
 };
 
 enum A_StarState {
-	OPEN, CLOSED, START, END, PATH, DEAD
+    OPEN, CLOSED, START, END, PATH, DEAD
 };
 
 class SILENCE_EXPORT A_StarNode
 {
 private:
-	A_StarPoint position;
-	A_StarState state;
+    A_StarPoint position;
+    A_StarState state;
 public:
-	A_StarNode(int x, int y);
-	~A_StarNode();
+    A_StarNode(int x, int y);
+    ~A_StarNode();
 
-	std::vector<A_StarNode *>& getAjacentNodes(A_StarMap * map);
-	std::string toString();
+    std::vector<A_StarNode *>& getAjacentNodes(A_StarMap * map);
+    std::string toString();
 
-	void setPosition(A_StarPoint point);
-	void setState(RGBQUAD pixelColour);
-	void setPosition(int x, int y);
-	void setState(A_StarState);
-	void close();
-	void open();
+    void setPosition(A_StarPoint point);
+    void setState(RGBQUAD pixelColour);
+    void setPosition(int x, int y);
+    void setState(A_StarState);
+    void close();
+    void open();
 
-	int getX();
-	int getY();
-	double getGain(A_StarPoint&);
+    int getX();
+    int getY();
+    double getGain(A_StarPoint&);
 
-	A_StarState getState();
+    A_StarState getState();
 
-	bool isOpen();
+    bool isOpen();
 private:
-	std::vector<A_StarNode *> ajacentNodes;
+    std::vector<A_StarNode *> ajacentNodes;
 };
