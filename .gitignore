@@ -2,7 +2,9 @@
 *.slo
 *.lo
 *.o
-*.obj
+Silence.Core/*.obj
+Silence.Api/*.obj
+Silence/*.obj
 
 # Precompiled Headers
 *.gch
@@ -11,7 +13,10 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
+Silence.Core/*.dll
+Silence.Api/*.dll
+Silence/*.dll
+
 
 # Fortran module files
 *.mod
@@ -39,3 +44,9 @@ Silence/*.lib
 Release/
 Debug/
 .vs/
+Silence.Core/Release/
+Silence.Api/Release/
+Silence/Release/
+Silence.Core/Debug/
+Silence.Api/Debug/
+Silence/Debug/
