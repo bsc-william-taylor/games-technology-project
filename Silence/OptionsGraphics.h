@@ -3,16 +3,20 @@
 
 #include "InteractionLayer.h"
 
-enum GraphicSettings {
+enum GraphicSettings 
+{
     HIGH, MEDIUM, LOW
 };
 
 class OptionsGraphics
 {
-private:
+    LocalAssetManager * package;
+    Window * window;
+
+    GraphicSettings currentSettings;
     Button2D graphicsSizeButtons[2];
     Text2D graphicsizeLabel;
-    Text2D  graphicsSize;
+    Text2D graphicsSize;
 
     SDL_Color colour;
 public:
@@ -24,8 +28,4 @@ public:
     void render(Renderer2D *);
     void event(SDL_Event&);
     void update();
-private:
-    LocalAssetManager * package;
-    GraphicSettings currentSettings;
-    Window * window;
 };

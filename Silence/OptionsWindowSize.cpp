@@ -1,7 +1,9 @@
 
 #include "OptionsWindowSize.h"
 
-OptionsWindowSize::OptionsWindowSize(Window * window)
+OptionsWindowSize::OptionsWindowSize(Window * window) :
+    package(nullptr),
+    window(window)
 {
     resolutions.push_back(new Resolution(800, 600));
     resolutions.push_back(new Resolution(1024, 720));
@@ -14,13 +16,12 @@ OptionsWindowSize::OptionsWindowSize(Window * window)
 
     currentResolution = 2;
     colour = { 255, 255, 255 };
-
-    this->window = window;
 }
 
 OptionsWindowSize::~OptionsWindowSize()
 {
-    for (auto& r : resolutions) {
+    for (auto& r : resolutions) 
+    {
         delete r;
     }
 
@@ -33,11 +34,13 @@ void OptionsWindowSize::onGamepadButton(int key, int state, int elementID)
     {
         colour = { 255, 0, 0 };
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GAMEPAD_BUTTON_PRESSED && !window->isFullscreen()) {
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GAMEPAD_BUTTON_PRESSED && !window->isFullscreen()) 
+        {
             decreaseResolution();
         }
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GAMEPAD_BUTTON_PRESSED && !window->isFullscreen()) {
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GAMEPAD_BUTTON_PRESSED && !window->isFullscreen()) 
+        {
             increaseResolution();
         }
     }
@@ -72,15 +75,18 @@ void OptionsWindowSize::render(Renderer2D * renderer)
 
 void OptionsWindowSize::update()
 {
-    SDL_Rect r = window->getWindowDimensions();
+    auto rect = window->getWindowDimensions();
+    
     std::string label = "";
 
-    if (r.w != resolutions[currentResolution]->width || r.h != resolutions[currentResolution]->height)
+    if (rect.w != resolutions[currentResolution]->width || rect.h != resolutions[currentResolution]->height)
     {
-        label = std::to_string(r.w).append("x").append(std::to_string(r.h));
+        label = std::to_string(rect.w).append("x").append(std::to_string(rect.h));
 
-        for (int i = 0; i < resolutions.size(); i++) {
-            if (r.w == resolutions[i]->width && r.h == resolutions[i]->height) {
+        for (auto i = 0; i < resolutions.size(); i++) 
+        {
+            if (rect.w == resolutions[i]->width && rect.h == resolutions[i]->height) 
+            {
                 currentResolution = i;
             }
         }
@@ -96,14 +102,11 @@ void OptionsWindowSize::update()
 
 Resolution OptionsWindowSize::convert(std::string text)
 {
-    Resolution res = Resolution(0, 0);
-
-    res.height = atoi((text.substr(text.find("x") + 1)).c_str());
-    res.width = atoi((text.substr(0, text.find("x") - 1)).c_str());
-
-    return res;
+    auto resolution = Resolution(0, 0);
+    resolution.height = atoi((text.substr(text.find("x") + 1)).c_str());
+    resolution.width = atoi((text.substr(0, text.find("x") - 1)).c_str());
+    return resolution;
 }
-
 
 void OptionsWindowSize::event(SDL_Event& e)
 {
@@ -118,11 +121,12 @@ void OptionsWindowSize::event(SDL_Event& e)
 
 void OptionsWindowSize::increaseResolution()
 {
-    if (currentResolution + 1 < resolutions.size()) {
+    if (currentResolution + 1 < resolutions.size()) 
+    {
         currentResolution++;
 
-        int newHeight = resolutions[currentResolution]->height;
-        int newWidth = resolutions[currentResolution]->width;
+        auto newHeight = resolutions[currentResolution]->height;
+        auto newWidth = resolutions[currentResolution]->width;
 
         if (newHeight <= window->getMaxHeight() && newWidth <= window->getMaxWidth())
         {
@@ -136,12 +140,13 @@ void OptionsWindowSize::increaseResolution()
 
 void OptionsWindowSize::decreaseResolution()
 {
-    if (currentResolution - 1 >= 0) {
+    if (currentResolution - 1 >= 0) 
+    {
         currentResolution--;
     }
 
-    int newHeight = resolutions[currentResolution]->height;
-    int newWidth = resolutions[currentResolution]->width;
+    auto newHeight = resolutions[currentResolution]->height;
+    auto newWidth = resolutions[currentResolution]->width;
 
     if (newHeight <= window->getMaxHeight() && newWidth <= window->getMaxWidth())
     {

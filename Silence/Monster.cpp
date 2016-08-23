@@ -47,6 +47,11 @@ void Monster::reset()
     intelligence.reset();
 }
 
+float Monster::getTravel()
+{
+    return intelligence.getTravel();
+}
+
 bool Monster::isCloseToPlayer(glm::vec3 camera)
 {
     glm::vec3 monsterPosition = getPosition();

@@ -1,12 +1,15 @@
 
 #include "Pickups.h"
 #include "Player.h"
-Pickups::Pickups()
+
+Pickups::Pickups() : 
+    player(nullptr)
 {
     position[0] = vec3(900, 2.0, 0);
     position[1] = vec3(-900, 2.0, 0);
 
-    for (int i = 0; i < 2; i++) {
+    for (auto i = 0; i < 2; i++) 
+    {
         draw[i] = true;
 
         pointLights[i].setPosition(position[i]);
@@ -30,21 +33,21 @@ void Pickups::create(LocalAssetManager * package, World& world, Player * player)
     rocks[0].setModel(package->getM("data/models/rocks/obj"));
     rocks[1].setModel(package->getM("data/models/rocks/obj"));
 
-    for (int i = 0; i < 2; i++) {
-        glm::mat4 mat = glm::mat4(1.0);
-        
+    for (auto i = 0; i < 2; i++) 
+    {
+        auto mat = glm::mat4(1.0);    
         mat = glm::translate(mat, position[i]);
         mat = glm::scale(mat, glm::vec3(0.2, 0.2, 0.2));
 
-        world.onHit(rocks[i].createbox(mat), [&](Camera * camera, SolidBox * box) {
+        auto onHitCallback = [&](Camera * camera, SolidBox * box) {
             if (box->getMin().x < 0 && this->draw[1]) {
                 this->pointLights[1].turnOff();
                 this->player->replenishRocks();
                 this->draw[1] = false;
-                
+
                 this->pickup3.reset();
                 this->pickup3.play();
-            } 
+            }
 
             if (box->getMin().x > 0 && this->draw[0]) {
                 this->pointLights[0].turnOff();
@@ -54,22 +57,28 @@ void Pickups::create(LocalAssetManager * package, World& world, Player * player)
                 this->pickup3.reset();
                 this->pickup3.play();
             }
-        });
+        };
+
+        world.onHit(rocks[i].createbox(mat), onHitCallback);
     }
 }
 
 void Pickups::getLights(Lights * lights)
 {
-    for (int i = 0; i < 2; i++) {
+    for (auto i = 0; i < 2; i++) 
+    {
         lights->pushPointLight(&pointLights[i]);
     }
 }
 
 void Pickups::render(ForwardRenderer& renderer)
 {
-    for (int i = 0; i < 2; i++) {
-        if (draw[i]) {
-            for (int z = 0; z < 3; z++) {
+    for (auto i = 0; i < 2; i++) 
+    {
+        if (draw[i]) 
+        {
+            for (auto z = 0; z < 3; z++)
+            {
                 matrices.push();
 
                 switch (z) {
@@ -93,5 +102,4 @@ void Pickups::render(ForwardRenderer& renderer)
 
 void Pickups::update(Camera * camera)
 {
-
 }

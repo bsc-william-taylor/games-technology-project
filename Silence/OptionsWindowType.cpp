@@ -1,16 +1,16 @@
 
 #include "OptionsWindowType.h"
 
-OptionsWindowType::OptionsWindowType(Window * window)
+OptionsWindowType::OptionsWindowType(Window * window) :
+    package(nullptr),
+    window(window)
 {
-    this->window = window;
     colour1 = { 255, 255, 255 };
     colour2 = { 255, 255, 255 };
 }
 
 OptionsWindowType::~OptionsWindowType()
 {
-
 }
 
 void OptionsWindowType::render(Renderer2D * renderer)
@@ -30,7 +30,9 @@ void OptionsWindowType::makeActive(unsigned int elementActiveID)
     {
         colour1 = { 255, 255, 255};
         colour2 = { 255, 0, 0 };
-    }else {
+    }
+    else 
+    {
         colour1 = { 255, 255, 255 };
         colour2 = { 255, 255, 255 };
     }

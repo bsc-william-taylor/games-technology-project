@@ -6,9 +6,8 @@
 
 class Trees
 {
-private:
     ModelSet treeModels;
-    std::vector<glm::mat4> matrices;
+    vector<glm::mat4> matrices;
 public:
     Trees();
     ~Trees();

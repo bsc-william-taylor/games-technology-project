@@ -10,12 +10,11 @@
 
 class Monster
 {
-private:
     Intelligence intelligence;
     AnimatedModel * enemy;
     Matrices matrices;
-    bool updated;
     SolidBox * box;
+    bool updated;
     float alpha;
 public:
     Monster();
@@ -23,7 +22,6 @@ public:
 
     bool hasKilledPlayer(glm::vec3);
     bool isCloseToPlayer(glm::vec3);
-
     bool isActive();
 
     void create(LocalAssetManager * package);
@@ -32,9 +30,7 @@ public:
     void distract(glm::vec3);
     void reset();
 
-    float getTravel() {
-        return intelligence.getTravel();
-    }
+    float getTravel();
 
     glm::vec3 getPosition();
 private:

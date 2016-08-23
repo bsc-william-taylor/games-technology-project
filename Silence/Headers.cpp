@@ -1,21 +1,19 @@
 
 #include "Headers.h"
 
-Headers::Headers()
+Headers::Headers() :
+    package(nullptr)
 {
-
 }
 
 Headers::~Headers()
 {
-
 }
 
 void Headers::create(LocalAssetManager * package)
 {
     this->package = package;
 
-    // Load all assets starting with the header
     header.setFont(package->getL("data/fonts/Calibri", 155, { 255, 255, 255 }), "Silence : Enter the Forest");
     header.setArea(glm::vec2(1920 / 2, 900), ALIGNMENT::CENTER);
 
@@ -31,15 +29,12 @@ void Headers::render(Renderer2D * renderer)
 
 void Headers::event(SDL_Event&)
 {
-
 }
 
 void Headers::update()
 {
-
 }
 
 void Headers::enter()
 {
-
 }

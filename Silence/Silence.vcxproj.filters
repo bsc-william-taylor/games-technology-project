@@ -74,23 +74,11 @@
     <Filter Include="Game\Actors\Indoors\Hints">
       <UniqueIdentifier>{8b545372-4de3-4e75-9d43-106fab9b4a91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Actors\Indoors\Key">
-      <UniqueIdentifier>{adea1510-9282-4298-a912-629bf2de4aca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Actors\Indoors\Rocks">
-      <UniqueIdentifier>{c1d3e4c7-ef7b-450b-9c5b-bae8263d44c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Actors\Indoors\Torch">
-      <UniqueIdentifier>{2ec36a36-31a3-4d39-8b29-af42bb9195d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Actors\Forest\Terrain">
       <UniqueIdentifier>{2f4f32c2-ad04-4875-b303-ce042f9dbb4e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Actors\Forest\Pickups">
       <UniqueIdentifier>{dacdc26e-3663-4375-bd18-5da3eeaa02c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Actors\Forest\Monster">
-      <UniqueIdentifier>{32a2433d-f8e5-4194-bb44-b26efb9f088c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Actors\Forest\Key">
       <UniqueIdentifier>{2297b7d9-8357-4eba-9b43-b608fd8a68c2}</UniqueIdentifier>
@@ -104,11 +92,14 @@
     <Filter Include="Game\Actors\Forest\Border">
       <UniqueIdentifier>{b065052b-5d0f-47cc-9582-13bce18b53fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Actors\Forest\Monster\Brain">
-      <UniqueIdentifier>{aa6876a3-2506-48cb-a166-0bb4518f5700}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Actors\Forest\Trees">
       <UniqueIdentifier>{107f6828-264f-4141-b728-0b28bfd33769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest\Monster HERE">
+      <UniqueIdentifier>{32a2433d-f8e5-4194-bb44-b26efb9f088c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Forest\Monster HERE\Brain">
+      <UniqueIdentifier>{aa6876a3-2506-48cb-a166-0bb4518f5700}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -173,10 +164,10 @@
       <Filter>Game\Actors\Forest\Border</Filter>
     </ClCompile>
     <ClCompile Include="Intelligence.cpp">
-      <Filter>Game\Actors\Forest\Monster\Brain</Filter>
+      <Filter>Game\Actors\Forest\Monster HERE\Brain</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>Game\Actors\Forest\Monster</Filter>
+      <Filter>Game\Actors\Forest\Monster HERE</Filter>
     </ClCompile>
     <ClCompile Include="Trees.cpp">
       <Filter>Game\Actors\Forest\Trees</Filter>
@@ -256,10 +247,10 @@
       <Filter>Game\Actors\Forest\Border</Filter>
     </ClInclude>
     <ClInclude Include="Intelligence.h">
-      <Filter>Game\Actors\Forest\Monster\Brain</Filter>
+      <Filter>Game\Actors\Forest\Monster HERE\Brain</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>Game\Actors\Forest\Monster</Filter>
+      <Filter>Game\Actors\Forest\Monster HERE</Filter>
     </ClInclude>
     <ClInclude Include="Trees.h">
       <Filter>Game\Actors\Forest\Trees</Filter>

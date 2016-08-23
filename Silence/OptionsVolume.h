@@ -5,15 +5,12 @@
 
 class OptionsVolume
 {
-private:
     LocalAssetManager * package;
-    //
     Button2D volumeSizeButtons[2];
     Text2D volumeSizeLabel;
     Text2D volumeSize;
 
     SDL_Color colour;
-
     int volume;
 public:
     OptionsVolume();

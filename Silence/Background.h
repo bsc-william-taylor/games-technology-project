@@ -6,12 +6,11 @@
 
 class Background 
 {
-private:
     LocalAssetManager * package;
     HighPrecisionTimer timer;
     Texture2D background;
-    unsigned int index;
     float alpha;
+    int index;
 public:
     Background();
     ~Background();

@@ -8,7 +8,8 @@
 #include "HighPrecisionTimer.h"
 #include "Gamepad.h"
 
-enum HINT_TYPES {
+enum HINT_TYPES 
+{
     KEY_HINT,
     ROCK_HINT,
     TORCH_HINT,
@@ -17,12 +18,11 @@ enum HINT_TYPES {
 
 class Hints 
 {
-private:
     LocalAssetManager * package;
     HighPrecisionTimer fadeoutTimer;
     Text2D hintRenderable;
+    
     std::string hintText;
-
     float alpha;
 public:
     Hints();

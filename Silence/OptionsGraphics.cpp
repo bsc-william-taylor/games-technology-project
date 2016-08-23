@@ -1,7 +1,9 @@
 
 #include "OptionsGraphics.h"
 
-OptionsGraphics::OptionsGraphics()
+OptionsGraphics::OptionsGraphics() :
+    package(nullptr),
+    window(nullptr)
 {
     colour = { 255, 255, 255 };
     currentSettings = MEDIUM;
@@ -11,10 +13,10 @@ OptionsGraphics::~OptionsGraphics()
 {
 }
 
-void OptionsGraphics::create(LocalAssetManager * package, Window * wnd)
+void OptionsGraphics::create(LocalAssetManager * package, Window * window)
 {
     this->package = package;
-    this->window = wnd;
+    this->window = window;
 
     graphicsSize.setFont(package->getL("data/fonts/Calibri", 60, colour ), "Game Graphics");
     graphicsSize.setArea(glm::vec2(650, 400), ALIGNMENT::CENTER);
@@ -28,26 +30,42 @@ void OptionsGraphics::create(LocalAssetManager * package, Window * wnd)
 
 void OptionsGraphics::onGamepadButton(int key, int state, int elementID)
 {
-    if (elementID == 3) {
+    if (elementID == 3) 
+    {
         colour = { 255, 0, 0 };
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GAMEPAD_BUTTON_PRESSED) {
-            switch (currentSettings) {
-                case MEDIUM: currentSettings = LOW; break;
-                case HIGH: currentSettings = MEDIUM; break;
 
-                default: break;
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GAMEPAD_BUTTON_PRESSED) 
+        {
+            switch (currentSettings) 
+            {
+                case MEDIUM: 
+                    currentSettings = LOW; 
+                    break;
+                case HIGH: 
+                    currentSettings = MEDIUM; 
+                    break;
+                default: 
+                    break;
             }
         }
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GAMEPAD_BUTTON_PRESSED) {
-            switch (currentSettings) {
-                case MEDIUM: currentSettings = HIGH; break;
-                case LOW: currentSettings = MEDIUM; break;
-
-                default: break;
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GAMEPAD_BUTTON_PRESSED) 
+        {
+            switch (currentSettings) 
+            {
+                case MEDIUM: 
+                    currentSettings = HIGH; 
+                    break;
+                case LOW: 
+                    currentSettings = MEDIUM; 
+                    break;
+                default: 
+                    break;
             }
         }
-    } else {
+    } 
+    else 
+    {
         colour = { 255, 255, 255 };
     }
 }
@@ -66,9 +84,14 @@ void OptionsGraphics::event(SDL_Event& e)
 {
     if (graphicsSizeButtons[0].isPressed(e))
     {
-        switch (currentSettings) {
-            case MEDIUM: currentSettings = LOW; break;
-            case HIGH: currentSettings = MEDIUM; break;
+        switch (currentSettings) 
+        {
+            case MEDIUM: 
+                currentSettings = LOW; 
+                break;
+            case HIGH: 
+                currentSettings = MEDIUM; 
+                break;
 
             default: break;
         }
@@ -76,9 +99,14 @@ void OptionsGraphics::event(SDL_Event& e)
 
     if (graphicsSizeButtons[1].isPressed(e))
     {
-        switch (currentSettings) {
-            case MEDIUM: currentSettings = HIGH; break;
-            case LOW: currentSettings = MEDIUM; break;
+        switch (currentSettings) 
+        {
+            case MEDIUM: 
+                currentSettings = HIGH; 
+                break;
+            case LOW: 
+                currentSettings = MEDIUM;
+                break;
 
             default: break;
         }

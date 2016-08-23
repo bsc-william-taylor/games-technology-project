@@ -8,18 +8,16 @@
 
 class OptionsField
 {
-private:
-    OptionsWindowSize * optionsWindowSizeActor;
-    OptionsWindowType * optionsWindowTypeActor;
-    OptionsGraphics * optionsGraphicsActor;
-    OptionsVolume * optionsVolumeActor;
+    OptionsWindowSize optionsWindowSizeActor;
+    OptionsWindowType optionsWindowTypeActor;
+    OptionsGraphics optionsGraphicsActor;
+    OptionsVolume optionsVolumeActor;
 
     LocalAssetManager * package;
     Window * window;
-
-    unsigned int active;
+    int active;
 public:
-    OptionsField(Window *);
+    explicit OptionsField(Window *);
     ~OptionsField();
 
     void onGamepadButton(int k, int s);

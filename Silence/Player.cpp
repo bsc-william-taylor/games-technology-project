@@ -8,7 +8,6 @@ Player::Player()
 
 Player::~Player()
 {
-
 }
 
 void Player::reset()
@@ -47,15 +46,18 @@ bool Player::hasRocks()
 
 void Player::onGamepadButton(FirstPersonCamera * camera, int key, int state)
 {
-    if (key == SDL_CONTROLLER_BUTTON_LEFTSHOULDER && state == GAMEPAD_BUTTON_PRESSED) {
+    if (key == SDL_CONTROLLER_BUTTON_LEFTSHOULDER && state == GAMEPAD_BUTTON_PRESSED) 
+    {
         camera->run();
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_LEFTSHOULDER && state == GAMEPAD_BUTTON_RELEASED) {
+    if (key == SDL_CONTROLLER_BUTTON_LEFTSHOULDER && state == GAMEPAD_BUTTON_RELEASED) 
+    {
         camera->walk();
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER && state == GAMEPAD_BUTTON_PRESSED && timeout == -1 && rocks-1 >= 0) {
+    if (key == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER && state == GAMEPAD_BUTTON_PRESSED && timeout == -1 && rocks-1 >= 0) 
+    {
         throwTimer.start();
         throwSound.reset();
         throwSound.play();
@@ -67,15 +69,18 @@ void Player::onGamepadButton(FirstPersonCamera * camera, int key, int state)
 
 void Player::onKeyEvent(FirstPersonCamera * camera, int key, int state)
 {
-    if (key == SDLK_LSHIFT && state == SDL_KEYDOWN) {
+    if (key == SDLK_LSHIFT && state == SDL_KEYDOWN) 
+    {
         camera->run();
     }
 
-    if (key == SDLK_LSHIFT && state == SDL_KEYUP) {
+    if (key == SDLK_LSHIFT && state == SDL_KEYUP) 
+    {
         camera->walk();
     }
 
-    if (key == SDLK_e && state == SDL_KEYDOWN && timeout == -1 && rocks - 1 >= 0) {
+    if (key == SDLK_e && state == SDL_KEYDOWN && timeout == -1 && rocks - 1 >= 0) 
+    {
         throwTimer.start();
         throwSound.reset();
         throwSound.play();
@@ -93,16 +98,19 @@ void Player::create(LocalAssetManager * package)
 
 void Player::update(FirstPersonCamera * camera, Monster * monster)
 {
-    if (monster != NULL) {
-        if (throwTimer.elapsed(MS) >= timeout && timeout != -1) {
+    if (monster != nullptr) 
+    {
+        if (throwTimer.elapsed(MS) >= timeout && timeout != -1) 
+        {
             throwTimer.clear();
             hitSound.reset();
             hitSound.play();
             timeout = -1;
 
-            float rotation = glm::radians(camera->getRotation());
-            glm::vec3 mag = glm::vec3(glm::sin(rotation), 0, glm::cos(rotation)) * glm::vec3(48.0F, 0.0F, -35.0F);
-            monster->distract(mag);
+            auto rotation = glm::radians(camera->getRotation());
+            auto destination = vec3(glm::sin(rotation), 0, glm::cos(rotation)) * vec3(48.0F, 0.0F, -35.0F);
+
+            monster->distract(destination);
         }
     }
 }

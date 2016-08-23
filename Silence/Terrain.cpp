@@ -34,7 +34,6 @@ void Terrain::render(ForwardRenderer& renderer)
 
 void Terrain::event(SDL_Event& e)
 {
-
 }
 
 void Terrain::update(ForwardRenderer& renderer)

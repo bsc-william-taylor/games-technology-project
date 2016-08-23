@@ -9,7 +9,6 @@
 
 class Terrain
 {
-private:
     Heightmap terrain;
     Matrices matrices;
     Border border;

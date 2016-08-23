@@ -5,12 +5,10 @@
 
 class Buttons
 {
-private:
     LocalAssetManager * package;
-    unsigned int active;
     Button2D buttons[3];
     Music roarSound;
-
+    int active;
 public:
     Buttons();
     ~Buttons();

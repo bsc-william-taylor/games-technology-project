@@ -1,20 +1,21 @@
 
 #include "Background.h"
 
-Background::Background()
+Background::Background() :
+    package(nullptr),
+    alpha(1.0f),
+    index(0)
 {
-    alpha = 1.0f;
-    index = 0;
 }
 
 Background::~Background()
 {
-
 }
 
 void Background::create(LocalAssetManager * package)
 {
     this->package = package;
+
     background.setTexture(package->getT("data/textures/menu1"));
     background.setArea(glm::vec4(0.0, 0.0, 1920, 1080));
 }
@@ -36,17 +37,19 @@ float Background::getAlpha()
 
 void Background::event(SDL_Event&)
 {
-
 }
 
 void Background::update()
 {
     if (alpha + 0.01f < 1.0f)
+    {
         alpha += 0.01f;
+    }
 
-    if (timer.elapsed(TimeType::SECONDS) >= 10)
+    if (timer.elapsed(SECONDS) >= 10)
     {
         alpha = 0.0f;
+
         switch (++index)
         {
             case 0: background.setTexture(package->getT("data/textures/menu1")); break;

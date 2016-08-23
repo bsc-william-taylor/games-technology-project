@@ -18,16 +18,16 @@ void OptionsVolume::onGamepadButton(int key, int state, int elementID)
     {
         colour = { 255, 0, 0 };
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GAMEPAD_BUTTON_PRESSED && volume >= 5) {
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GAMEPAD_BUTTON_PRESSED && volume >= 5) 
+        {
             volume -= 5;
-
-            BASS_SetVolume((double)(volume / 100.0));
+            BASS_SetVolume(static_cast<double>(volume / 100.0));
         }
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GAMEPAD_BUTTON_PRESSED && volume <= 95) {
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GAMEPAD_BUTTON_PRESSED && volume <= 95) 
+        {
             volume += 5;
-
-            BASS_SetVolume((double)(volume / 100.0));
+            BASS_SetVolume(static_cast<double>(volume / 100.0));
         }
     }
     else
@@ -40,14 +40,16 @@ void OptionsVolume::create(LocalAssetManager * package)
 {
     this->package = package;
 
-    volume = (int)(BASS_GetVolume() * 100.0f);
+    volume = static_cast<int>(BASS_GetVolume() * 100.0f);
 
-    while (volume % 5 != 0) {
+    while (volume % 5 != 0) 
+    {
         ++volume;
-        if (volume > 100) break;
+        if (volume > 100) 
+            break;
     }
 
-    BASS_SetVolume((float)(volume / 100.0));
+    BASS_SetVolume(static_cast<double>(volume / 100.0));
 
     volumeSize.setFont(package->getL("data/fonts/Calibri", 60, { 255, 255, 255 }), "Game Volume");
     volumeSize.setArea(glm::vec2(650, 250), ALIGNMENT::CENTER);
@@ -73,20 +75,19 @@ void OptionsVolume::event(SDL_Event& e)
     if (volumeSizeButtons[0].isPressed(e) && volume >= 5)
     {
         volume -= 5;
-
-        BASS_SetVolume((double)(volume / 100.0));
+        BASS_SetVolume(static_cast<double>(volume / 100.0));
     }
 
     if (volumeSizeButtons[1].isPressed(e) && volume <= 95)
     {
         volume += 5;
-
-        BASS_SetVolume((double)(volume / 100.0));
+        BASS_SetVolume(static_cast<double>(volume / 100.0));
     }
 }
 
 void OptionsVolume::update()
 {
-    volumeSizeLabel.setFont(package->getL("data/fonts/Calibri", 60, colour), std::to_string(volume).append("%").c_str());
+    const auto volumeText = std::to_string(volume).append("%");
+    volumeSizeLabel.setFont(package->getL("data/fonts/Calibri", 60, colour), volumeText.c_str());
     volumeSizeLabel.setArea(glm::vec2(1250, 250), ALIGNMENT::CENTER);
 }

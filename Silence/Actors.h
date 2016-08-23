@@ -1,6 +1,5 @@
 
-#ifndef __ACTORS_H_
-#define __ACTORS_H_
+#pragma once
 
 #include "OptionsField.h"
 #include "Background.h"
@@ -12,5 +11,3 @@
 #include "Headers.h"
 #include "Gate.h"
 #include "Player.h"
-
-#endif

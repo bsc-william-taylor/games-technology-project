@@ -1,6 +1,4 @@
 
-
-
 #pragma once
 
 #include "EngineLayer.h"
@@ -14,18 +12,16 @@ class Player;
 
 class Pickups
 {
-private:
-    Matrices matrices;
-    Music pickup3;
+    PointLight pointLights[2];
     Model rocks[2];
     Player * player;
-    PointLight pointLights[2];
+    Matrices matrices;
+    Music pickup3;
 public:
     Pickups();
     ~Pickups();
 
     void getLights(Lights *);
-
     void create(LocalAssetManager * package, World&, Player *);
     void render(ForwardRenderer& renderer);
     void update(Camera *);
