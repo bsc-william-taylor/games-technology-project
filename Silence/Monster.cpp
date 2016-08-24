@@ -1,19 +1,30 @@
 
 #include "Monster.h"
 
-Monster::Monster()
-    : position(glm::vec3(0.0, 0.0, 0.0))
+Monster::Monster() : 
+    enemy(nullptr), box(nullptr), updated(false)
 {
     intelligence.reset();
     spawnID = rand() % 4;
 
-    switch (spawnID) {
-        case 0: position = glm::vec3(0.0, 0.0, 0.0); break;
-        case 1: position = glm::vec3(127, 0.0, 0.0); break;
-        case 2: position = glm::vec3(0.0, 0.0, 127); break;
-        case 3: position = glm::vec3(127, 0.0, 127); break;
+    switch (spawnID) 
+    {
+        case 0: 
+            position = glm::vec3(0.0, 0.0, 0.0); 
+            break;
+        case 1: 
+            position = glm::vec3(127, 0.0, 0.0); 
+            break;
+        case 2: 
+            position = glm::vec3(0.0, 0.0, 127); 
+            break;
+        case 3: 
+            position = glm::vec3(127, 0.0, 127); 
+            break;
     
-        default: break;
+        default: 
+            position = vec3(0.0, 0.0, 0.0);
+            break;
     }
 
     enemyDirection = 0;
@@ -22,26 +33,42 @@ Monster::Monster()
 
 Monster::~Monster()
 {
+    if(box && enemy)
+    {
+        delete enemy;
+        delete box;
+    }
 }
 
 void Monster::create(LocalAssetManager * package)
 {
-    enemy = new AnimatedModel("data/models/enemy/archvile.md2", "data/models/enemy/archvile.png");
+    if(!enemy)
+    {
+        enemy = new AnimatedModel("data/models/enemy/archvile.md2", "data/models/enemy/archvile.png");
+        box = enemy->createbox(glm::mat4(1.0));
 
-    box = enemy->createbox(glm::mat4(1.0));
-
-    intelligence.setup(package);
+        intelligence.setup(package);
+    }
 }
 
 void Monster::reset()
 {
     switch (spawnID) {
-        case 0: position = glm::vec3(0.0, 0.0, 0.0); break;
-        case 1: position = glm::vec3(127, 0.0, 0.0); break;
-        case 2: position = glm::vec3(0.0, 0.0, 127); break;
-        case 3: position = glm::vec3(127, 0.0, 127); break;
+        case 0: 
+            position = vec3(0.0, 0.0, 0.0); 
+            break;
+        case 1: 
+            position = vec3(127, 0.0, 0.0); 
+            break;
+        case 2: 
+            position = vec3(0.0, 0.0, 127);
+            break;
+        case 3: 
+            position = vec3(127, 0.0, 127); 
+            break;
 
-        default: break;
+        default: 
+            break;
     }
 
     intelligence.reset();
@@ -52,9 +79,9 @@ float Monster::getTravel()
     return intelligence.getTravel();
 }
 
-bool Monster::isCloseToPlayer(glm::vec3 camera)
+bool Monster::isCloseToPlayer(vec3 camera)
 {
-    glm::vec3 monsterPosition = getPosition();
+    auto monsterPosition = getPosition();
     monsterPosition.y = 0;
 
     cameraPosition = camera;
@@ -65,13 +92,13 @@ bool Monster::isCloseToPlayer(glm::vec3 camera)
 
 void Monster::update(Camera * camera)
 {
-    updated = intelligence.applyUpdate(position, (FirstPersonCamera*)camera);
+    updated = intelligence.applyUpdate(position, static_cast<FirstPersonCamera *>(camera));
     enemyDirection = intelligence.getDirection();
 }
 
 bool Monster::hasKilledPlayer(glm::vec3 camera)
 {
-    glm::vec3 monsterPosition = getPosition();
+    auto monsterPosition = getPosition();
     monsterPosition.y = 0;
 
     cameraPosition = camera;
@@ -80,14 +107,14 @@ bool Monster::hasKilledPlayer(glm::vec3 camera)
     return(glm::distance(cameraPosition, monsterPosition) <= 15.0 && alpha >= 0.5 && intelligence.getTravel() >= 1.0);
 }
 
-void Monster::distract(glm::vec3 v)
+void Monster::distract(vec3 v)
 {
     intelligence.setTemporaryDestination(cameraPosition, v);
 }
 
-glm::vec3 Monster::to_scene_space(glm::vec3 vector)
+vec3 Monster::to_scene_space(vec3 vector)
 {
-    return(glm::vec3(-1024.0, 0.0, -1024.0) + (vector * glm::vec3(16.0, 16.0, 16.0)));
+    return(vec3(-1024.0, 0.0, -1024.0) + (vector * vec3(16.0, 16.0, 16.0)));
 }
 
 bool Monster::isActive()
@@ -95,7 +122,7 @@ bool Monster::isActive()
     return(intelligence.getTravel() >= 1.0);
 }
 
-glm::vec3 Monster::getPosition()
+vec3 Monster::getPosition()
 {
     return to_scene_space(position);
 }
@@ -108,20 +135,17 @@ void Monster::render(ForwardRenderer& renderer)
     matrices.rotate(-90.0f, glm::vec3(1.0, 0.0, 0.0));
     matrices.scale(glm::vec3(0.5, 0.5, 0.5));
 
-    if (intelligence.getTravel() >= 1.0) {
-        renderer.setAlpha(alpha);
-    } else {
-        renderer.setAlpha(0.0);
-    }
-
-    if (updated) {
+    if (updated) 
+    {
         alpha = 1.0;
         enemy->Animate(1, 0.1);
     }
-    else {
+    else 
+    {
         alpha -= 0.01;
     }
 
+    renderer.setAlpha(intelligence.getTravel() >= 1.0 ? alpha : 0.0);
     renderer.setModelMatrix(matrices);
     renderer.renderAnimatedModel(enemy);
     renderer.setAlpha(1.0);

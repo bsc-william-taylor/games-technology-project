@@ -20,25 +20,23 @@ public:
     Monster();
     ~Monster();
 
-    bool hasKilledPlayer(glm::vec3);
-    bool isCloseToPlayer(glm::vec3);
+    bool hasKilledPlayer(vec3);
+    bool isCloseToPlayer(vec3);
     bool isActive();
 
     void create(LocalAssetManager * package);
-    void update(Camera *);
     void render(ForwardRenderer& renderer);
-    void distract(glm::vec3);
+    void update(Camera *);
+    void distract(vec3);
     void reset();
 
     float getTravel();
 
-    glm::vec3 getPosition();
+    vec3 to_scene_space(vec3);
+    vec3 getPosition();
 private:
+    vec3 cameraPosition;
+    vec3 position;
     float enemyDirection;
-    glm::vec3 position;
-private:
-    glm::vec3 to_scene_space(glm::vec3);
-    glm::vec3 cameraPosition;
-
     int spawnID;
 };

@@ -1,25 +1,25 @@
 
 #include "Key.h"
 
-std::vector<glm::vec3> keySpawnPoints = {
-    glm::vec3(-600.0, 2.0, 500.0),
-    glm::vec3(525.0, 2.0, 525.0),
-    glm::vec3(-800.0, 2.0, -100.0),
-    glm::vec3(-800, 2.0, -500),
-    glm::vec3(800, 2.0, 800),
-    glm::vec3(-200, 2.0, -700),
+vector<vec3> keySpawnPoints = {
+    vec3(-600.0, 2.0, 500.0),
+    vec3(525.0, 2.0, 525.0),
+    vec3(-800.0, 2.0, -100.0),
+    vec3(-800, 2.0, -500),
+    vec3(800, 2.0, 800),
+    vec3(-200, 2.0, -700),
 };
 
-Key::Key()
+Key::Key() :
+    taken(false)
 {
-    point = NULL;
-    keyModel = NULL;
+    keyModel = nullptr;
+    point = nullptr;
     spawnID = 0;
 }
 
 Key::~Key()
 {
-
 }
 
 void Key::create(Model * key, LocalAssetManager * manager)
@@ -30,23 +30,22 @@ void Key::create(Model * key, LocalAssetManager * manager)
 
 void Key::spawn(World& world, PointLight * p)
 {
+    std::random_device randomDevice;
+    std::mt19937 gen(randomDevice());
+    std::uniform_int_distribution<> random(0, keySpawnPoints.size() - 1);
+
+    spawnID = random(gen);
     point = p;
     taken = false;
 
-    std::random_device randomDevice;
-    std::mt19937 gen(randomDevice());
-    std::uniform_int_distribution<> random(0, keySpawnPoints.size()-1);
-    spawnID = 0;//random(gen);
-
-    glm::mat4 mat = glm::mat4(1.0);
-
+    auto mat = glm::mat4(1.0);
     mat = glm::translate(mat, keySpawnPoints[spawnID]);
     mat = glm::rotate(mat, -90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 
     point->setPosition(keySpawnPoints[spawnID]);
 
     world.onHit(keyModel->createbox(mat), [&](Camera * c, SolidBox * b) {
-        if (point != NULL) {
+        if (point != nullptr) {
             pickup.reset();
             pickup.play();
             point->turnOff();
@@ -73,12 +72,11 @@ bool Key::hasBeenPickedUp()
 
 void Key::update()
 {
-
 }
 
 void Key::render(ForwardRenderer& renderer)
 {
-    if (keyModel != NULL && !taken)
+    if (keyModel != nullptr && !taken)
     {
         matrices.push();
         matrices.translate(keySpawnPoints[spawnID]);

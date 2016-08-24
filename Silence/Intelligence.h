@@ -1,13 +1,11 @@
 
 #pragma once
 
-
 #include "EngineLayer.h"
 #include "md2Model.h"
 #include "LocalAssetManager.h"
 #include "ForwardRenderer.h"
 #include "Ai.h"
-
 
 class Intelligence 
 {
@@ -23,10 +21,10 @@ public:
     double getTravel();
     double getDirection();
 
-    glm::vec3 to_scene_space(glm::vec3);
+    vec3 to_scene_space(vec3);
 
     void setTemporaryDestination(vec3, vec3);
-    bool applyUpdate(glm::vec3& position, FirstPersonCamera * camera);
+    bool applyUpdate(vec3& position, FirstPersonCamera * camera);
     void setup(LocalAssetManager * manager);
     void reset();
     void end();

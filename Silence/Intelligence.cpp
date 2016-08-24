@@ -25,12 +25,12 @@ glm::vec3 Intelligence::to_scene_space(glm::vec3 vector)
 bool Intelligence::applyUpdate(glm::vec3& position, FirstPersonCamera * camera)
 {
     bool makeVisible = true;
-    glm::vec3 cameraPos = camera->getPosition();
-    glm::vec3 vel = glm::vec3(0.0);
+    vec3 cameraPos = camera->getPosition();
+    vec3 vel = vec3(0.0);
     
     if (tempDest.y != -1.0) {
         if (glm::distance(position, tempDest) <= 5) {
-            tempDest = glm::vec3(0.0, -1.0, 0.0);
+            tempDest = vec3(0.0, -1.0, 0.0);
         }
     }
 

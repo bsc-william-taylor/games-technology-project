@@ -95,10 +95,10 @@
     <Filter Include="Game\Actors\Forest\Trees">
       <UniqueIdentifier>{107f6828-264f-4141-b728-0b28bfd33769}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Actors\Forest\Monster HERE">
+    <Filter Include="Game\Actors\Forest\Monster">
       <UniqueIdentifier>{32a2433d-f8e5-4194-bb44-b26efb9f088c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Actors\Forest\Monster HERE\Brain">
+    <Filter Include="Game\Actors\Forest\Monster\Brain">
       <UniqueIdentifier>{aa6876a3-2506-48cb-a166-0bb4518f5700}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -164,10 +164,10 @@
       <Filter>Game\Actors\Forest\Border</Filter>
     </ClCompile>
     <ClCompile Include="Intelligence.cpp">
-      <Filter>Game\Actors\Forest\Monster HERE\Brain</Filter>
+      <Filter>Game\Actors\Forest\Monster\Brain</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>Game\Actors\Forest\Monster HERE</Filter>
+      <Filter>Game\Actors\Forest\Monster</Filter>
     </ClCompile>
     <ClCompile Include="Trees.cpp">
       <Filter>Game\Actors\Forest\Trees</Filter>
@@ -247,10 +247,10 @@
       <Filter>Game\Actors\Forest\Border</Filter>
     </ClInclude>
     <ClInclude Include="Intelligence.h">
-      <Filter>Game\Actors\Forest\Monster HERE\Brain</Filter>
+      <Filter>Game\Actors\Forest\Monster\Brain</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>Game\Actors\Forest\Monster HERE</Filter>
+      <Filter>Game\Actors\Forest\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Trees.h">
       <Filter>Game\Actors\Forest\Trees</Filter>
