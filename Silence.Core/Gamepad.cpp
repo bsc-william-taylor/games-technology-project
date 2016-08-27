@@ -1,15 +1,20 @@
 
 #include "Gamepad.h"
 
-Gamepad::Gamepad()
-    : deadzone(DEADZONE_DEFAULT)
+Gamepad::Gamepad() :
+    controller(nullptr),
+    joystick(nullptr),
+    haptic(nullptr),
+    deadzone(DEADZONE_DEFAULT)
 {
-    controller = NULL;
     for (auto& f : axisValues)
+    {
         f = 0.0f;
+    }
 
-    for (int i = 0; i < SDL_CONTROLLER_BUTTON_MAX; i++) {
-        buttons[i] = GAMEPAD_BUTTON_NOT_PRESSED;
+    for (auto i = 0; i < SDL_CONTROLLER_BUTTON_MAX; i++) 
+    {
+        buttons[i] = GamepadButtonNotPressed;
     }
 }
 
@@ -20,20 +25,33 @@ Gamepad::~Gamepad()
 
 int Gamepad::getButtonValue(int button)
 {
-    if (SDL_GameControllerGetButton(controller, (SDL_GameControllerButton)button) == SDL_PRESSED) {
-        if (buttons[button] == GAMEPAD_BUTTON_PRESSED) {
-            buttons[button] = GAMEPAD_BUTTON_HOLDING;
-        } else if (buttons[button] == GAMEPAD_BUTTON_NOT_PRESSED || buttons[button] == GAMEPAD_BUTTON_RELEASED) {
-            buttons[button] = GAMEPAD_BUTTON_PRESSED;
+    auto controlButton = static_cast<SDL_GameControllerButton>(button);
+
+    if (SDL_GameControllerGetButton(controller, controlButton) == SDL_PRESSED)
+    {
+        if (buttons[button] == GamepadButtonPressed) 
+        {
+            buttons[button] = GamepadButtonHolding;
+        } 
+        else if (buttons[button] == GamepadButtonNotPressed || buttons[button] == GamepadButtonReleased) 
+        {
+            buttons[button] = GamepadButtonPressed;
         }
-    } else if (SDL_GameControllerGetButton(controller, (SDL_GameControllerButton)button) == SDL_RELEASED) {
-        if (buttons[button] == GAMEPAD_BUTTON_RELEASED) {
-            buttons[button] = GAMEPAD_BUTTON_NOT_PRESSED;
-        } else {
-            buttons[button] = GAMEPAD_BUTTON_RELEASED;
+    } 
+    else if (SDL_GameControllerGetButton(controller, controlButton) == SDL_RELEASED)
+    {
+        if (buttons[button] == GamepadButtonReleased) 
+        {
+            buttons[button] = GamepadButtonNotPressed;
+        } 
+        else 
+        {
+            buttons[button] = GamepadButtonReleased;
         }
-    } else {
-        buttons[button] = GAMEPAD_BUTTON_NOT_PRESSED;
+    } 
+    else 
+    {
+        buttons[button] = GamepadButtonNotPressed;
     }
 
     return buttons[button];
@@ -44,35 +62,36 @@ float Gamepad::getAxisValue(int i)
     return axisValues[i];
 }
 
-bool Gamepad::isConnected()
+bool Gamepad::isConnected() const
 {
-    return(controller != NULL);
+    return controller != nullptr;
 }
 
 bool Gamepad::close()
 {
-    if (controller != NULL)
+    if (controller != nullptr)
     {
         SDL_GameControllerClose(controller);
-        controller = NULL;
+        controller = nullptr;
         return true;
     }
 
     return false;
 }
 
-float Gamepad::getAxisValue(STICK_AXIS stick)
+float Gamepad::getAxisValue(ControllerStickAxis stick)
 {
     return axisValues[stick];
 }
 
 bool Gamepad::getState()
 {
-    if (controller != NULL)
+    if (controller != nullptr)
     {
-        for (int i = 0; i < SDL_CONTROLLER_AXIS_MAX; ++i)
+        for (auto i = 0; i < SDL_CONTROLLER_AXIS_MAX; ++i)
         {
-            Sint16 value = SDL_GameControllerGetAxis(controller, (SDL_GameControllerAxis)(i));
+            auto axis = static_cast<SDL_GameControllerAxis>(i);
+            auto value = SDL_GameControllerGetAxis(controller, axis);
 
             if ((value < -deadzone || value > deadzone))
             {
@@ -86,15 +105,13 @@ bool Gamepad::getState()
 
         return true;
     }
-    else
-    {
-        return false;
-    }
+    
+    return false;
 }
 
-void Gamepad::rumble(float strength, int ms)
+void Gamepad::rumble(float strength, int ms) const
 {
-    if (controller != NULL)
+    if (controller != nullptr)
     {
         SDL_HapticRumblePlay(haptic, strength, ms);
     }
@@ -102,16 +119,18 @@ void Gamepad::rumble(float strength, int ms)
 
 bool Gamepad::open()
 {
-    //
     controller = SDL_GameControllerOpen(NULL);
 
-    if (controller != 0)
+    if (controller != nullptr)
     {
         joystick = SDL_GameControllerGetJoystick(controller);
         haptic = SDL_HapticOpenFromJoystick(joystick);
-        SDL_HapticRumbleInit(haptic);
+
+        if(haptic != nullptr)
+        {
+            SDL_HapticRumbleInit(haptic);
+        }
     }
 
-    //
-    return(controller != NULL);
+    return controller != nullptr;
 }

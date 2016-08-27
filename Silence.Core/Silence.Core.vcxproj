@@ -20,9 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
-    <ClCompile Include="aStarException.cpp" />
-    <ClCompile Include="aStarMap.cpp" />
-    <ClCompile Include="aStarNode.cpp" />
+    <ClCompile Include="PathExcception.cpp" />
+    <ClCompile Include="PathMap.cpp" />
+    <ClCompile Include="PathNode.cpp" />
     <ClCompile Include="AudioFile.cpp" />
     <ClCompile Include="Button2D.cpp" />
     <ClCompile Include="Cube.cpp" />
@@ -44,14 +44,12 @@
     <ClCompile Include="GPU_Transfer.cpp" />
     <ClCompile Include="Heightmap.cpp" />
     <ClCompile Include="HighPrecisionTimer.cpp" />
-    <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Lights.cpp" />
     <ClCompile Include="LocalAssetManager.cpp" />
     <ClCompile Include="md2Model.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelFile.cpp" />
     <ClCompile Include="ModelSet.cpp" />
-    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="OrthoShader.cpp" />
     <ClCompile Include="PerFragmentShader.cpp" />
@@ -72,9 +70,9 @@
     <ClInclude Include="Ai.h" />
     <ClInclude Include="anorms.h" />
     <ClInclude Include="AssetManager.h" />
-    <ClInclude Include="aStarException.h" />
-    <ClInclude Include="aStarMap.h" />
-    <ClInclude Include="aStarNode.h" />
+    <ClInclude Include="PathException.h" />
+    <ClInclude Include="PathMap.h" />
+    <ClInclude Include="PathNode.h" />
     <ClInclude Include="AudioFile.h" />
     <ClInclude Include="Button2D.h" />
     <ClInclude Include="Camera.h" />
@@ -99,7 +97,6 @@
     <ClInclude Include="Heightmap.h" />
     <ClInclude Include="HighPrecisionTimer.h" />
     <ClInclude Include="HLGI.h" />
-    <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="LocalAssetManager.h" />
     <ClInclude Include="md2Model.h" />
@@ -107,7 +104,6 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelFile.h" />
     <ClInclude Include="ModelSet.h" />
-    <ClInclude Include="Mouse.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="OrthoShader.h" />
     <ClInclude Include="PerFragmentShader.h" />

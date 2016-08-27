@@ -1,6 +1,6 @@
 
 #pragma once
 
-#include "aStarException.h"
-#include "aStarNode.h"
-#include "aStarMap.h"
+#include "PathException.h"
+#include "PathNode.h"
+#include "PathMap.h"

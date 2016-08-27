@@ -1,25 +1,31 @@
 
 #include "Music.h"
 
-Music::Music()
+Music::Music() :
+    source(nullptr),
+    playing(false)
 {
-    source = NULL;
-    playing = false;
 }
 
 Music::~Music()
 {
-
 }
 
-void Music::open(AudioAsset * a)
+void Music::open(AudioAsset * asset)
 {
-    source = a;
+    if(asset)
+    {
+        source = asset;
+    }
+    else
+    {
+        throw Error(Component::Audio, "Asset provided was null", Author::William);
+    }
 }
 
 void Music::pause()
 {
-    if (this->hasAudioSource())
+    if (hasAudioSource())
     {
         if (source->isStream())
         {
@@ -34,14 +40,14 @@ void Music::pause()
     }
 }
 
-bool Music::hasAudioSource()
+bool Music::hasAudioSource() const
 {
-    return(source != NULL);
+    return source != nullptr;
 }
 
 void Music::play()
 {
-    if (this->hasAudioSource() && !playing)
+    if (hasAudioSource() && !playing)
     {
         if (source->isStream())
         {
@@ -49,8 +55,13 @@ void Music::play()
         }
         else
         {
-            if (!BASS_ChannelPlay(source->getChannel(), true)) {
-                std::cout << BASS_ErrorGetCode() << std::endl;
+            if (!BASS_ChannelPlay(source->getChannel(), true)) 
+            {
+                std::stringstream ss;
+                ss << "Error playing music: ";
+                ss << "BASS error code ";
+                ss << BASS_ErrorGetCode();
+                throw Error(Component::Audio, ss.str(), Author::William);
             }
         }
 
@@ -65,7 +76,7 @@ void Music::reset()
 
 void Music::stop()
 {
-    if (this->hasAudioSource() && playing)
+    if (hasAudioSource() && playing)
     {
         if (source->isStream())
         {

@@ -14,19 +14,19 @@ Intro::~Intro()
 
 void Intro::onUpdate()
 {
-    if (introTimer.elapsed(MS) >= 9000)
+    if (introTimer.elapsed(Milliseconds) >= 9000)
     {
         introTimer.clear();
-        auto sceneManager = system->aquireSceneManager();
+        auto sceneManager = system->acquireSceneManager();
         system->enableDoubleBuffering();
-        sceneManager->switchScene(as_int(SceneID::Menu));
+        sceneManager->switchScene(int(SceneID::Menu));
     }
 }
 
 void Intro::onEnter(int previous)
 {
     system->enableSingleBuffering();
-    system->aquireWindow().forceFullscreenMode();
+    system->acquireWindow().forceFullscreenMode();
 
     introTimer.start();
     introVideo.play();

@@ -30,9 +30,9 @@
 Options::Options(OperatingSystem * system)
 {
     // Aquire the scene manager
-    scenes = system->aquireSceneManager();
+    scenes = system->acquireSceneManager();
     // aquire a local asset manager for the scene
-    package = system->aquireAssetManager()->grabLocalManager();
+    package = system->acquireAssetManager()->grabLocalManager();
     // and grab these assets from disk
     package->grab({ "data/textures/options.png",
         "data/fonts/Calibri.ttf",
@@ -42,7 +42,7 @@ Options::Options(OperatingSystem * system)
         "data/textures/left.png"
     });
 
-    optionInputs = new OptionsField(&system->aquireWindow());
+    optionInputs = new OptionsField(&system->acquireWindow());
 }
 
 Options::~Options()
@@ -77,7 +77,7 @@ void Options::onCreate()
 
 void Options::onGamepadButton(int key, int state)
 {
-    if ((key == SDL_CONTROLLER_BUTTON_B || key == SDL_CONTROLLER_BUTTON_BACK) && state == GAMEPAD_BUTTON_PRESSED) {
+    if ((key == SDL_CONTROLLER_BUTTON_B || key == SDL_CONTROLLER_BUTTON_BACK) && state == GamepadButtonPressed) {
         scenes->switchScene((unsigned)SceneID::Menu);
     }
 

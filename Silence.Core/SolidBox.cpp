@@ -18,38 +18,42 @@ SolidBox::~SolidBox()
 {
 }
 
-
-glm::vec3 SolidBox::getMin()
+glm::vec3 SolidBox::getMin() const
 {
     return position;
 }
 
-glm::vec3 SolidBox::getMax()
+glm::vec3 SolidBox::getMax() const
 {
     return size;
 }
 
-bool SolidBox::collides(glm::vec3 vec)
+bool SolidBox::collides(glm::vec3 vec) const
 {
-    if (!reversed) {
-        if (vec.x >= position.x && vec.x <= size.x) {
+    if (!reversed) 
+    {
+        if (vec.x >= position.x && vec.x <= size.x) 
+        {
             //if (vec.y >= position.y && vec.y <= size.y)
-            if (vec.z >= position.z && vec.z <= size.z) {
+            if (vec.z >= position.z && vec.z <= size.z) 
+            {
                 return true;
             }
         }
 
         return false;
-    } else {
-        if (vec.x >= position.x && vec.x <= size.x) {
-            //if (vec.y >= position.y && vec.y <= size.y)
-            if (vec.z >= position.z && vec.z <= size.z) {
-                return false;
-            }
-        }
-
-        return true;
     }
+    
+    if (vec.x >= position.x && vec.x <= size.x) 
+    {
+        //if (vec.y >= position.y && vec.y <= size.y)
+        if (vec.z >= position.z && vec.z <= size.z) 
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 void SolidBox::setPositionVector(glm::vec3 p)
@@ -65,4 +69,9 @@ void SolidBox::setSizeVector(glm::vec3 s)
 void SolidBox::reverse()
 {
     reversed = true;
+}
+
+glm::vec3 SolidBox::getSlideVector() const
+{
+    return slide;
 }

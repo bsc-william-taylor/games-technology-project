@@ -28,7 +28,7 @@ void Pickups::create(LocalAssetManager * package, World& world, Player * player)
 {
     this->player = player;
 
-    pickup3.open(package->grabMusic("data/media/pickup3.mp3", LOAD));
+    pickup3.open(package->getS("data/media/pickup3.mp3", Load));
 
     rocks[0].setModel(package->getM("data/models/rocks/obj"));
     rocks[1].setModel(package->getM("data/models/rocks/obj"));

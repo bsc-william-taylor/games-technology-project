@@ -34,12 +34,12 @@ void OptionsWindowSize::onGamepadButton(int key, int state, int elementID)
     {
         colour = { 255, 0, 0 };
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GAMEPAD_BUTTON_PRESSED && !window->isFullscreen()) 
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GamepadButtonPressed && !window->isFullscreen()) 
         {
             decreaseResolution();
         }
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GAMEPAD_BUTTON_PRESSED && !window->isFullscreen()) 
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GamepadButtonPressed && !window->isFullscreen()) 
         {
             increaseResolution();
         }

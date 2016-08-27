@@ -99,8 +99,6 @@ void SceneManager::exit()
 
 void SceneManager::createScenes()
 {
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-
     gamepad.open();
 
     if (gamepad.isConnected())

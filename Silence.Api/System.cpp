@@ -12,7 +12,7 @@ OperatingSystem::~OperatingSystem()
 {
 }
 
-Gamepad * OperatingSystem::aquireGamepad()
+Gamepad * OperatingSystem::acquireGamepad()
 {
     return sceneManager.getGamepad();
 }
@@ -24,12 +24,12 @@ bool OperatingSystem::setupLibraries()
 
     if (SDL_Init(SDL_Params) != NULL) 
     {
-        throw Error(GAME, "Couldnt init SDL");
+        throw Error(Component::Game, "Couldnt init SDL");
     }
 
     if (TTF_Init() != NULL) 
     {
-        throw Error(GAME, "Couldnt init TTF");
+        throw Error(Component::Game, "Couldnt init TTF");
     }
     
     BASS_Init(-1, 44100, NULL, nullptr, nullptr);
@@ -85,7 +85,7 @@ void OperatingSystem::executeProgram()
 
             if (!windowManager.vsyncEnabled())
             {
-                while (frameTimer.elapsed(NS) <= static_cast<float>(1.0e9 / 60.0));
+                while (frameTimer.elapsed(Nanoseconds) <= static_cast<float>(1.0e9 / 60.0));
             }
         }
     }
@@ -103,17 +103,17 @@ void OperatingSystem::enableSingleBuffering()
     swapBuffers = false;
 }
 
-Window& OperatingSystem::aquireWindow()
+Window& OperatingSystem::acquireWindow()
 {
     return windowManager;
 }
 
-AssetManager * OperatingSystem::aquireAssetManager()
+AssetManager * OperatingSystem::acquireAssetManager()
 {
     return &assetManager;
 }
 
-SceneManager * OperatingSystem::aquireSceneManager()
+SceneManager * OperatingSystem::acquireSceneManager()
 {
     return &sceneManager;
 }

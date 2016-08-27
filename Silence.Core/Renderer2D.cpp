@@ -65,7 +65,7 @@ void Renderer2D::renderTexture(Texture2D * texture)
     else
     {
         // throws an exception if a null texture was passed
-        throw Error(RENDERER, "NULL texture object was passed to the renderer", William);
+        throw Error(Component::Renderer, "NULL texture object was passed to the renderer", Author::William);
     }
 }
 
@@ -89,7 +89,7 @@ void Renderer2D::renderLabel(Text2D* text)
     else
     {
         // throws an exception if a null text was passed
-        throw Error(RENDERER, "NULL text object was passed to the renderer", William);
+        throw Error(Component::Renderer, "NULL text object was passed to the renderer", Author::William);
     }
 }
 

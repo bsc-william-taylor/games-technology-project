@@ -230,7 +230,7 @@ void PerFragmentShader::compile()
         // compiles the shader source and throws exception is it fails
         if (!program->compile())
         {
-            throw Error(SYSTEM, "couldnt compile per fragment shader shader");
+            throw Error(Component::System, "couldnt compile per fragment shader shader");
         }
     }
 }

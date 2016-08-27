@@ -15,10 +15,10 @@ public:
     OperatingSystem();
     virtual ~OperatingSystem();
 
-    SceneManager * aquireSceneManager();
-    AssetManager * aquireAssetManager();
-    Gamepad * aquireGamepad();
-    Window& aquireWindow();
+    SceneManager * acquireSceneManager();
+    AssetManager * acquireAssetManager();
+    Gamepad * acquireGamepad();
+    Window& acquireWindow();
 
     bool setupLibraries();
 

@@ -44,7 +44,7 @@ Gameover::Gameover(OperatingSystem * system)
 {
     // Aquire the scene manager
     // aquire a local asset manager for the scene
-    package = system->aquireAssetManager()->grabLocalManager();
+    package = system->acquireAssetManager()->grabLocalManager();
     // and grab these assets from disk
     package->grab({
         "data/textures/button.png",
@@ -52,7 +52,7 @@ Gameover::Gameover(OperatingSystem * system)
         "data/textures/box.png"
     });
 
-    scenes = system->aquireSceneManager();
+    scenes = system->acquireSceneManager();
 }
 
 Gameover::~Gameover()
@@ -65,7 +65,7 @@ void Gameover::onEnter(int i)
 {
     survivorTimer = ((Forest *)scenes->getScene((int)SceneID::Forest))->getForestTime();
 
-    timeSurvived = "Time Survived : " + toStrMaxDecimals(survivorTimer->elapsed(SECONDS), 2).append("s");
+    timeSurvived = "Time Survived : " + toStrMaxDecimals(survivorTimer->elapsed(Seconds), 2).append("s");
 }
 
 // Handles when the scene is created
@@ -82,7 +82,7 @@ void Gameover::onCreate()
     header.setArea(glm::vec2(1920 / 2, 900), ALIGNMENT::CENTER);
 
     survivorTimer = ((Forest *)scenes->getScene((int)SceneID::Forest))->getForestTime();
-    std::string timeSurvived = "Time Survived : " + toStrMaxDecimals(survivorTimer->elapsed(SECONDS), 2).append("s");
+    std::string timeSurvived = "Time Survived : " + toStrMaxDecimals(survivorTimer->elapsed(Seconds), 2).append("s");
 
     time.setFont(package->getL("data/fonts/Calibri", 50, { 255, 255, 255 }), timeSurvived.c_str());
     time.setArea(glm::vec2(200, 550), ALIGNMENT::RIGHT);
@@ -99,12 +99,12 @@ void Gameover::onCreate()
 
 void Gameover::onGamepadButton(int key, int state)
 {
-    if (key == SDL_CONTROLLER_BUTTON_A && state == GAMEPAD_BUTTON_PRESSED)
+    if (key == SDL_CONTROLLER_BUTTON_A && state == GamepadButtonPressed)
     {
         scenes->switchScene((unsigned)SceneID::Menu);
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_B && state == GAMEPAD_BUTTON_PRESSED)
+    if (key == SDL_CONTROLLER_BUTTON_B && state == GamepadButtonPressed)
     {
         scenes->switchScene((unsigned)SceneID::Menu);
     }

@@ -1,37 +1,40 @@
 
-#ifndef __WORLD_H__
-#define __WORLD_H__
+#pragma once
 
 #include "EngineLayer.h"
 #include "SolidCylinder.h"
 #include "SolidBox.h"
 #include "Camera.h"
 
-struct BoxItem {
-    std::function<void(Camera *, SolidBox *)>  func;
+using CylinderHitFunction = std::function<void(Camera *, SolidCylinder *)>;
+using BoxHitFunction = std::function<void(Camera *, SolidBox *)>;
+
+struct BoxItem 
+{
+    using Callback = BoxHitFunction;
+    BoxHitFunction callback;
     SolidBox * box;
 };
 
-struct CylinderItem {
-    std::function<void(Camera *, SolidCylinder *)>  func;
+struct CylinderItem 
+{   
+    using Callback = CylinderHitFunction;
+    CylinderHitFunction callback;
     SolidCylinder * cylinder;
 };
 
 class SILENCE_EXPORT World
 {
-private:
-    std::vector<CylinderItem *> CylinderItems;
-    std::vector<BoxItem *> BoxItems;
+    std::vector<CylinderItem *> cylinderItems;
+    std::vector<BoxItem *> boxItems;
+
     Camera * camera;
 public:
     World();
-    ~World();
+    virtual ~World();
 
-    void setPlayerCamera(Camera *);
+    void onHit(SolidCylinder * cylinder, CylinderHitFunction callback);
+    void onHit(SolidBox * box, BoxHitFunction callback);
+    void setPlayerCamera(Camera * camera);
     void updateWorld();
-
-    void onHit(SolidCylinder *, std::function<void(Camera *, SolidCylinder *)>);
-    void onHit(SolidBox *, std::function<void(Camera *, SolidBox *)>);
 };
-
-#endif

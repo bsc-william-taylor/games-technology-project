@@ -34,7 +34,7 @@ void OptionsGraphics::onGamepadButton(int key, int state, int elementID)
     {
         colour = { 255, 0, 0 };
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GAMEPAD_BUTTON_PRESSED) 
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GamepadButtonPressed) 
         {
             switch (currentSettings) 
             {
@@ -49,7 +49,7 @@ void OptionsGraphics::onGamepadButton(int key, int state, int elementID)
             }
         }
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GAMEPAD_BUTTON_PRESSED) 
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GamepadButtonPressed) 
         {
             switch (currentSettings) 
             {

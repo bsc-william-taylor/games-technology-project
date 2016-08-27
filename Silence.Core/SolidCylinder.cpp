@@ -11,7 +11,6 @@ SolidCylinder::~SolidCylinder()
 {
 }
 
-
 void SolidCylinder::setPositionVector(glm::vec3 position)
 {
     this->position = position;
@@ -22,8 +21,7 @@ void SolidCylinder::setRadius(double r)
     radius = r;
 }
 
-bool SolidCylinder::collides(glm::vec3 vector)
+bool SolidCylinder::collides(glm::vec3 vector) const
 {
-    vector.y = 0.0;
-    return (abs(glm::length(vector - position)) <= radius);
+    return abs(glm::length(vector - position)) <= radius;
 }

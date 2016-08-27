@@ -6,19 +6,17 @@
 
 class SILENCE_EXPORT Music
 {
-private:
     AudioAsset * source;
-
     bool playing;
 public:
     Music();
-    ~Music();
+    virtual ~Music();
 
-    void open(AudioAsset *);
+    void open(AudioAsset * asset);
     void reset();
     void pause();
     void play();
     void stop();
 
-    bool hasAudioSource();
+    bool hasAudioSource() const;
 };

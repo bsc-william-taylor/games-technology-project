@@ -46,7 +46,7 @@ void Background::update()
         alpha += 0.01f;
     }
 
-    if (timer.elapsed(SECONDS) >= 10)
+    if (timer.elapsed(Seconds) >= 10)
     {
         alpha = 0.0f;
 

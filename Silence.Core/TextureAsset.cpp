@@ -49,7 +49,7 @@ void TextureAsset::grabFromFile(const char * filename)
 
     if (loadedBitmap == NULL)
     {
-        throw Error(FILE_IO, std::string(filename, " couldnt load a texture"), William);
+        throw Error(Component::FileIO, std::string(filename, " couldnt load a texture"), Author::William);
     }
 
     bitmap = FreeImage_ConvertTo32Bits(loadedBitmap);

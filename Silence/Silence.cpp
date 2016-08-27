@@ -5,7 +5,7 @@ int main(int argc, char * argv[])
 {
     return bootstrap([&](OperatingSystem * operatingSystem) 
     {
-        auto window = &operatingSystem->aquireWindow();
+        auto window = &operatingSystem->acquireWindow();
 
         window->setPosition(SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
         window->setWindowIcon("data/textures/icon.bmp");
@@ -13,7 +13,7 @@ int main(int argc, char * argv[])
         window->setSize(1280, 720);
         window->create();
 
-        auto scenes = operatingSystem->aquireSceneManager();
+        auto scenes = operatingSystem->acquireSceneManager();
 
         scenes->setStart(int(SceneID::Intro));
         scenes->packSceneList(

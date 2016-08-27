@@ -3,16 +3,16 @@
 
 #include "EngineLayer.h"
 
-enum State : unsigned int {
-    STATE_NO_GRAPH,
-    STATE_RUNNING,
-    STATE_STOPPED,
-    STATE_PAUSED,
+enum State 
+{
+    StateNoGraph,
+    StateRunning,
+    StateStopped,
+    StatePaused,
 };
 
 class SILENCE_EXPORT Video
 {
-private:
     IMFVideoDisplayControl * videoDisplayControl;
     IGraphBuilder * graphBuilder;
     IMediaControl * mediaControl;
@@ -24,7 +24,7 @@ private:
     BOOL show;
 public:
     Video();
-    ~Video();
+    virtual ~Video();
 
     void streamFrom(std::string);
     void display();
@@ -33,14 +33,13 @@ public:
     void stop();
     void play();
 private:
-    State playbackState;
     std::wstring filename;
-private:
-    HRESULT RemoveUnconnectedRenderer(IGraphBuilder *g, IBaseFilter * p);
-    HRESULT AddFilterByCLSID(IGraphBuilder * g, REFGUID c, IBaseFilter ** p, LPCWSTR n);
-    HRESULT InitializeEVR(IBaseFilter * e, HWND w, IMFVideoDisplayControl ** d);
-    
-    HRESULT FindConnectedPin(IBaseFilter * f, PIN_DIRECTION p, IPin ** ip);
-    HRESULT IsPinDirection(IPin * p, PIN_DIRECTION dir, BOOL * r);
-    HRESULT IsPinConnected(IPin * p, BOOL * r);
+    State playbackState;
+
+    HRESULT RemoveUnconnectedRenderer(IGraphBuilder *, IBaseFilter *);
+    HRESULT AddFilterByCLSID(IGraphBuilder *, REFGUID, IBaseFilter **, LPCWSTR);
+    HRESULT InitializeEVR(IBaseFilter *, HWND, IMFVideoDisplayControl **);
+    HRESULT FindConnectedPin(IBaseFilter *, PIN_DIRECTION, IPin **);
+    HRESULT IsPinDirection(IPin *, PIN_DIRECTION, BOOL *);
+    HRESULT IsPinConnected(IPin *, BOOL *);
 };

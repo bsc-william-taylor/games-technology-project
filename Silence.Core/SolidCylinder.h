@@ -1,22 +1,18 @@
 
-#ifndef __CYLINDER_BOX_H__
-#define __CYLINDER_BOX_H__
+#pragma once
 
 #include "EngineLayer.h"
 
 class SILENCE_EXPORT SolidCylinder
 {
-private:
     glm::vec3 position;
     double radius;
 public:
     SolidCylinder();
-    ~SolidCylinder();
+    virtual ~SolidCylinder();
 
-    void setPositionVector(glm::vec3);
-    void setRadius(double);
+    bool collides(glm::vec3 position) const;
 
-    bool collides(glm::vec3);
+    void setPositionVector(glm::vec3 position);
+    void setRadius(double areaRadious);
 };
-
-#endif

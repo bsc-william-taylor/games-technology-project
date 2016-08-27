@@ -30,10 +30,10 @@
 Menu::Menu(OperatingSystem * system)
 {
     // Aquire the scene manager
-    scenes = system->aquireSceneManager();
+    scenes = system->acquireSceneManager();
     // aquire a local asset manager for the scene
 
-    AssetManager * assets = system->aquireAssetManager();
+    AssetManager * assets = system->acquireAssetManager();
     package = assets->grabLocalManager();
     // and grab these assets from disk
     package->grab({ "data/textures/menu1.png",
@@ -43,8 +43,8 @@ Menu::Menu(OperatingSystem * system)
         "data/textures/button.png"
     });
 
-    menuMusic.open(package->grabMusic("data/media/menu.wav", STREAM_LOOP));
-    roar.open(package->grabMusic("data/media/roar.mp3", LOAD));
+    menuMusic.open(package->getS("data/media/menu.wav", StreamLoop));
+    roar.open(package->getS("data/media/roar.mp3", Load));
 
     entered = false;
     exited = false;
@@ -96,7 +96,7 @@ void Menu::onGamepadButton(int key, int state)
         }
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_BACK && state == GAMEPAD_BUTTON_PRESSED) {
+    if (key == SDL_CONTROLLER_BUTTON_BACK && state == GamepadButtonPressed) {
         scenes->exit();
     }
 }
@@ -112,7 +112,7 @@ void Menu::onGameEvent(SDL_Event& e)
         if (buttons.isPressed(i, e)) {
             switch (i) {
                 case 0:  menuMusic.stop(); roar.reset(); roar.play(); exited = true; return;
-                case 1: scenes->switchScene(as_int(SceneID::Options)); return;
+                case 1: scenes->switchScene(int(SceneID::Options)); return;
                 case 2: scenes->exit(); return;
 
                 default: break;
@@ -137,7 +137,7 @@ void Menu::onUpdate()
     if (exited) {
         if (alpha < -0.5) {
             exited = false;
-            scenes->switchScene(as_int(SceneID::Indoors));
+            scenes->switchScene(int(SceneID::Indoors));
         }
 
         alpha -= 0.005f;

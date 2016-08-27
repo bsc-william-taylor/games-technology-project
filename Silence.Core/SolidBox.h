@@ -1,34 +1,27 @@
 
-#ifndef __SOLID_BOX_H__
-#define __SOLID_BOX_H__
+#pragma once
 
 #include "EngineLayer.h"
 
 class SILENCE_EXPORT SolidBox
 {
-private:
     glm::vec3 position;
     glm::vec3 slide;
     glm::vec3 size;
 
     bool reversed;
 public:
-    SolidBox(glm::vec3 p, glm::vec3 s);
+    SolidBox(glm::vec3 position, glm::vec3 size);
     SolidBox();
-    ~SolidBox();
+    virtual ~SolidBox();
 
-    glm::vec3 getSlideVector() {
-        return slide;
-    }
+    glm::vec3 getSlideVector() const;
+    glm::vec3 getMin() const;
+    glm::vec3 getMax() const;
 
-    glm::vec3 getMin();
-    glm::vec3 getMax();
-
-    void setPositionVector(glm::vec3);
-    void setSizeVector(glm::vec3);
+    void setPositionVector(glm::vec3 position);
+    void setSizeVector(glm::vec3 size);
     void reverse();
 
-    bool collides(glm::vec3);
+    bool collides(glm::vec3 position) const;
 };
-
-#endif

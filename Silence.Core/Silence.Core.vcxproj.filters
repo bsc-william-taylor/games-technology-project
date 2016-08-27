@@ -23,17 +23,8 @@
     <Filter Include="Core\Input\Gamepad">
       <UniqueIdentifier>{a5633237-656c-4fb9-8809-54f50292c609}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Input\Keyboard">
-      <UniqueIdentifier>{2525d68e-728a-401a-9a9e-66e60223e058}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Input\Mouse">
-      <UniqueIdentifier>{3c0b2b6d-4968-4267-8695-4ff32a29708b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Graphics">
       <UniqueIdentifier>{9f8c9195-c615-4c29-971c-44478b097178}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Os">
-      <UniqueIdentifier>{54edebc3-c025-4c50-bcff-bb80bc6a9067}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Physics">
       <UniqueIdentifier>{a7ea6b68-d49b-42c1-a39d-cce17816c95e}</UniqueIdentifier>
@@ -49,12 +40,6 @@
     </Filter>
     <Filter Include="Core\Physics\SolidCylinder">
       <UniqueIdentifier>{91d76f41-431c-435c-97e3-cb469dc90b51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Os\Window">
-      <UniqueIdentifier>{97a9e2af-a1bb-43f7-a345-5b6737e5ef16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Os\Timer">
-      <UniqueIdentifier>{6ba1b2ca-865f-460e-b80d-3332979b550f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Loading\Local">
       <UniqueIdentifier>{b198b625-9b56-4629-bf39-58b8b4675d55}</UniqueIdentifier>
@@ -182,25 +167,19 @@
     <Filter Include="Core\Exception">
       <UniqueIdentifier>{0188b82b-545b-4997-bcfc-d7098ee5b50c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Systems">
+      <UniqueIdentifier>{54edebc3-c025-4c50-bcff-bb80bc6a9067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Systems\Window">
+      <UniqueIdentifier>{97a9e2af-a1bb-43f7-a345-5b6737e5ef16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Systems\Timer">
+      <UniqueIdentifier>{6ba1b2ca-865f-460e-b80d-3332979b550f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gamepad.cpp">
       <Filter>Core\Input\Gamepad</Filter>
-    </ClCompile>
-    <ClCompile Include="Keyboard.cpp">
-      <Filter>Core\Input\Keyboard</Filter>
-    </ClCompile>
-    <ClCompile Include="Mouse.cpp">
-      <Filter>Core\Input\Mouse</Filter>
-    </ClCompile>
-    <ClCompile Include="aStarException.cpp">
-      <Filter>Core\Ai\Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="aStarMap.cpp">
-      <Filter>Core\Ai\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="aStarNode.cpp">
-      <Filter>Core\Ai\Node</Filter>
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Core\Physics</Filter>
@@ -212,10 +191,10 @@
       <Filter>Core\Physics\SolidBox</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Core\Os\Window</Filter>
+      <Filter>Core\Systems\Window</Filter>
     </ClCompile>
     <ClCompile Include="HighPrecisionTimer.cpp">
-      <Filter>Core\Os\Timer</Filter>
+      <Filter>Core\Systems\Timer</Filter>
     </ClCompile>
     <ClCompile Include="AudioFile.cpp">
       <Filter>Core\Loading\Asset\Audio</Filter>
@@ -328,28 +307,22 @@
     <ClCompile Include="Exception.cpp">
       <Filter>Core\Exception</Filter>
     </ClCompile>
+    <ClCompile Include="PathNode.cpp">
+      <Filter>Core\Ai\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="PathMap.cpp">
+      <Filter>Core\Ai\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="PathExcception.cpp">
+      <Filter>Core\Ai\Exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gamepad.h">
       <Filter>Core\Input\Gamepad</Filter>
     </ClInclude>
-    <ClInclude Include="Keyboard.h">
-      <Filter>Core\Input\Keyboard</Filter>
-    </ClInclude>
-    <ClInclude Include="Mouse.h">
-      <Filter>Core\Input\Mouse</Filter>
-    </ClInclude>
     <ClInclude Include="Ai.h">
       <Filter>Core\Ai</Filter>
-    </ClInclude>
-    <ClInclude Include="aStarException.h">
-      <Filter>Core\Ai\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="aStarMap.h">
-      <Filter>Core\Ai\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="aStarNode.h">
-      <Filter>Core\Ai\Node</Filter>
     </ClInclude>
     <ClInclude Include="EngineLayer.h">
       <Filter>Core</Filter>
@@ -364,10 +337,10 @@
       <Filter>Core\Physics\SolidBox</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Core\Os\Window</Filter>
+      <Filter>Core\Systems\Window</Filter>
     </ClInclude>
     <ClInclude Include="HighPrecisionTimer.h">
-      <Filter>Core\Os\Timer</Filter>
+      <Filter>Core\Systems\Timer</Filter>
     </ClInclude>
     <ClInclude Include="AudioFile.h">
       <Filter>Core\Loading\Asset\Audio</Filter>
@@ -491,6 +464,15 @@
     </ClInclude>
     <ClInclude Include="HLGI.h">
       <Filter>Core\Graphics\High Level</Filter>
+    </ClInclude>
+    <ClInclude Include="PathNode.h">
+      <Filter>Core\Ai\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="PathMap.h">
+      <Filter>Core\Ai\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="PathException.h">
+      <Filter>Core\Ai\Exception</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

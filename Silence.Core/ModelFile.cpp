@@ -71,7 +71,7 @@ void ModelAsset::grabFromFile(const char * filename)
     if (scene == NULL)
     {
         // throw an exception
-        throw Error(SYSTEM, std::string("couldnt load model ", filename));
+        throw Error(Component::System, std::string("couldnt load model ", filename));
     }
     else
     {

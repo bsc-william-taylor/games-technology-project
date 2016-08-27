@@ -46,17 +46,17 @@ bool Player::hasRocks()
 
 void Player::onGamepadButton(FirstPersonCamera * camera, int key, int state)
 {
-    if (key == SDL_CONTROLLER_BUTTON_LEFTSHOULDER && state == GAMEPAD_BUTTON_PRESSED) 
+    if (key == SDL_CONTROLLER_BUTTON_LEFTSHOULDER && state == GamepadButtonPressed) 
     {
         camera->run();
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_LEFTSHOULDER && state == GAMEPAD_BUTTON_RELEASED) 
+    if (key == SDL_CONTROLLER_BUTTON_LEFTSHOULDER && state == GamepadButtonReleased) 
     {
         camera->walk();
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER && state == GAMEPAD_BUTTON_PRESSED && timeout == -1 && rocks-1 >= 0) 
+    if (key == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER && state == GamepadButtonPressed && timeout == -1 && rocks-1 >= 0) 
     {
         throwTimer.start();
         throwSound.reset();
@@ -92,15 +92,15 @@ void Player::onKeyEvent(FirstPersonCamera * camera, int key, int state)
 
 void Player::create(LocalAssetManager * package)
 {
-    throwSound.open(package->grabMusic("data/media/woosh_1.mp3", LOAD));
-    hitSound.open(package->grabMusic("data/media/hit.mp3", LOAD));
+    throwSound.open(package->getS("data/media/woosh_1.mp3", Load));
+    hitSound.open(package->getS("data/media/hit.mp3", Load));
 }
 
 void Player::update(FirstPersonCamera * camera, Monster * monster)
 {
     if (monster != nullptr) 
     {
-        if (throwTimer.elapsed(MS) >= timeout && timeout != -1) 
+        if (throwTimer.elapsed(Milliseconds) >= timeout && timeout != -1) 
         {
             throwTimer.clear();
             hitSound.reset();

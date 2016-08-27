@@ -151,7 +151,7 @@ void DeferredOutputShader::compile()
         // then compile the program
         if (!program->compile())
         {
-            throw Error(SYSTEM, "couldnt compile deferred output shader");
+            throw Error(Component::System, "couldnt compile deferred output shader");
         }
     }
 }

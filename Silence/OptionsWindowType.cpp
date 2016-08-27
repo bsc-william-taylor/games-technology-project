@@ -43,13 +43,13 @@ void OptionsWindowType::makeActive(unsigned int elementActiveID)
 
 void OptionsWindowType::onGamepadButton(int key, int state, int e)
 {
-    if (e == 0 && key == SDL_CONTROLLER_BUTTON_A && state == GAMEPAD_BUTTON_PRESSED)
+    if (e == 0 && key == SDL_CONTROLLER_BUTTON_A && state == GamepadButtonPressed)
     {
         window->forceWindowedMode();
         window->adjustViewport();
     }
 
-    if (e == 1 && key == SDL_CONTROLLER_BUTTON_A && state == GAMEPAD_BUTTON_PRESSED)
+    if (e == 1 && key == SDL_CONTROLLER_BUTTON_A && state == GamepadButtonPressed)
     {
         window->forceFullscreenMode();
         window->adjustViewport();

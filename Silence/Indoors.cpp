@@ -31,12 +31,12 @@
 Indoors::Indoors(OperatingSystem * engine)
 {
     // Aquire a pointer to the os's window
-    manager = engine->aquireSceneManager();
-    window = &engine->aquireWindow();
-    gamepad = engine->aquireGamepad();
+    manager = engine->acquireSceneManager();
+    window = &engine->acquireWindow();
+    gamepad = engine->acquireGamepad();
 
     // aquire a new local asset manager
-    package = engine->aquireAssetManager()->grabLocalManager();
+    package = engine->acquireAssetManager()->grabLocalManager();
 
     // and load the following assets
     package->grab({ "data/textures/brick.png",
@@ -49,14 +49,14 @@ Indoors::Indoors(OperatingSystem * engine)
         "data/models/rocks/obj.obj"
     });
 
-    indoorMusic.open(package->grabMusic("data/media/demo.wav", STREAM));
-    jumpSound.open(package->grabMusic("data/media/jump.wav", LOAD));
-    doorSound.open(package->grabMusic("data/media/door.wav", LOAD));
-    torchSound.open(package->grabMusic("data/media/torch.mp3", LOAD));
+    indoorMusic.open(package->getS("data/media/demo.wav", Stream));
+    jumpSound.open(package->getS("data/media/jump.wav", Load));
+    doorSound.open(package->getS("data/media/door.wav", Load));
+    torchSound.open(package->getS("data/media/torch.mp3", Load));
     
-    pickup1.open(package->grabMusic("data/media/pickup1.mp3", LOAD));
-    pickup2.open(package->grabMusic("data/media/pickup2.mp3", LOAD));
-    pickup3.open(package->grabMusic("data/media/pickup3.mp3", LOAD));
+    pickup1.open(package->getS("data/media/pickup1.mp3", Load));
+    pickup2.open(package->getS("data/media/pickup2.mp3", Load));
+    pickup3.open(package->getS("data/media/pickup3.mp3", Load));
     
     showTorchLight = false;
     showRocks = false;
@@ -72,12 +72,12 @@ Indoors::~Indoors()
 
 void Indoors::onGamepadButton(int key, int state)
 {
-    if (key == SDL_CONTROLLER_BUTTON_BACK && state == GAMEPAD_BUTTON_PRESSED)
+    if (key == SDL_CONTROLLER_BUTTON_BACK && state == GamepadButtonPressed)
     {
         manager->exit();
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_X && state == GAMEPAD_BUTTON_PRESSED)
+    if (key == SDL_CONTROLLER_BUTTON_X && state == GamepadButtonPressed)
     {
         if (showTorchLight) {
             torchSound.reset();

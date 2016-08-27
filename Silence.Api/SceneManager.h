@@ -12,11 +12,11 @@ public:
     virtual void onGameEvent(SDL_Event& e){}
     virtual void onGamepadAxis(int, float){}
     virtual void onGamepadButton(int, int){}
-    virtual void onRender(){}
-    virtual void onCreate(){}
-    virtual void onUpdate(){}
-    virtual void onExit(int){}
     virtual void onEnter(int){}
+    virtual void onExit(int) {}
+    virtual void onRender() {}
+    virtual void onCreate() {}
+    virtual void onUpdate() {}
     virtual ~Scene(){}
 };
 

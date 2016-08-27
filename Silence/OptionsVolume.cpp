@@ -18,13 +18,13 @@ void OptionsVolume::onGamepadButton(int key, int state, int elementID)
     {
         colour = { 255, 0, 0 };
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GAMEPAD_BUTTON_PRESSED && volume >= 5) 
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && state == GamepadButtonPressed && volume >= 5) 
         {
             volume -= 5;
             BASS_SetVolume(static_cast<double>(volume / 100.0));
         }
 
-        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GAMEPAD_BUTTON_PRESSED && volume <= 95) 
+        if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && state == GamepadButtonPressed && volume <= 95) 
         {
             volume += 5;
             BASS_SetVolume(static_cast<double>(volume / 100.0));

@@ -165,7 +165,7 @@ void ForwardRenderer::renderCube(Cube * cube)
     else
     {
         // else throw an exception that indicates the error
-        throw Error(RENDERER, "Error you tried to render a null cube pointer", William);
+        throw Error(Component::Renderer, "Error you tried to render a null cube pointer", Author::William);
     }
 }
 
@@ -208,7 +208,7 @@ void ForwardRenderer::renderMap(Heightmap * heightmap)
     else
     {
         // else throw an exception that indicates the error
-        throw Error(RENDERER, "Error you tried to render a null map pointer", William);
+        throw Error(Component::Renderer, "Error you tried to render a null map pointer", Author::William);
     }
 }
 
@@ -328,7 +328,7 @@ void ForwardRenderer::renderModel(Model * model)
     else
     {
         // else through an exception to say the pointer isnt valid
-        throw Error(RENDERER, "Error you tried to render a null model pointer", William);
+        throw Error(Component::Renderer, "Error you tried to render a null model pointer", Author::William);
     }
 }
 
@@ -375,6 +375,6 @@ void ForwardRenderer::renderSkybox(Skybox * skybox)
     else
     {
         // else through an exception to say the pointer isnt valid
-        throw Error(RENDERER, "Error you tried to render a null skybox pointer", William);
+        throw Error(Component::Renderer, "Error you tried to render a null skybox pointer", Author::William);
     }
 }

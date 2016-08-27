@@ -1,33 +1,7 @@
 
-/**
-*
-* Copyright (c) 2014 : William Taylor : wi11berto@yahoo.co.uk
-*
-* This software is provided 'as-is', without any
-* express or implied warranty. In no event will
-* the authors be held liable for any damages
-* arising from the use of this software.
-*
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute
-* it freely, subject to the following restrictions:
-*
-* 1. The origin of this software must not be misrepresented;
-*    you must not claim that you wrote the original software.
-*    If you use this software in a product, an acknowledgment
-*    in the product documentation would be appreciated but
-*    is not required.
-*
-* 2. Altered source versions must be plainly marked as such,
-*    and must not be misrepresented as being the original software.
-*
-* 3. This notice may not be removed or altered from any source distribution.
-*/
-
 #ifndef __FRAMEWORK_H_
 #define __FRAMEWORK_H_
 
-// Includes the following headers
 #include <Windows.h>
 #include <algorithm>
 #include <functional>
@@ -50,7 +24,6 @@
 #include <cmath>
 #include <map>
 
-// these are additional libraries that are not part of the C++ language
 #include "../Silence.Libs/SDL2/SDL.h"
 #include "../Silence.Libs/glew/glew.h"
 #include "../Silence.Libs/assimp/postprocess.h"   
@@ -63,7 +36,7 @@
 
 #include "Video.h"
 #include <gl\gl.h>
-// disable these warnings because there too F&*(^&* ANNOYING 
+
 #pragma warning(disable : 4305)
 #pragma warning(disable : 4018)
 #pragma warning(disable : 4244)
@@ -84,15 +57,9 @@
 #pragma comment(lib, "opengl32.lib")
 #pragma comment(lib, "Shcore.lib")
 
-// include GLM until I have the time to write my own math classes
 #include "../Silence.Libs/glm/glm.hpp"
 #include "../Silence.Libs/glm/gtc/matrix_transform.hpp"
 #include "../Silence.Libs/glm/gtc/type_ptr.hpp"
-
-// some simple macros to help with certain things
-#ifndef NULL
-    #define NULL 0
-#endif
 
 #ifndef SAFE_RELEASE
     #define SAFE_RELEASE(ptr) if(ptr) { delete ptr; ptr = 0; }

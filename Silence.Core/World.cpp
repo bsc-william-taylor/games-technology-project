@@ -2,24 +2,26 @@
 #include "World.h"
 
 World::World()
+    : camera(nullptr)
 {
-    camera = NULL;
 }
 
 World::~World()
 {
-    for (auto& item : CylinderItems) {
+    for (auto& item : cylinderItems) 
+    {
         delete item->cylinder;
         delete item;
     }
 
-    for (auto& item : BoxItems) {
+    for (auto& item : boxItems) 
+    {
         delete item->box;
         delete item;
     }
 
-    CylinderItems.clear();
-    BoxItems.clear();
+    cylinderItems.clear();
+    boxItems.clear();
 }
 
 void World::setPlayerCamera(Camera * c)
@@ -29,44 +31,44 @@ void World::setPlayerCamera(Camera * c)
 
 void World::updateWorld()
 {
-    if (camera != NULL)
+    if (camera != nullptr)
     {
-        for (auto& item : BoxItems)
+        for (auto& item : boxItems)
         {
             if (item->box->collides(camera->getPosition()))
             {
-                item->func(camera, item->box);
+                item->callback(camera, item->box);
             }
         }
 
-        for (auto& item : CylinderItems)
+        for (auto& item : cylinderItems)
         {
             if (item->cylinder->collides(camera->getPosition()))
             {
-                item->func(camera, item->cylinder);
+                item->callback(camera, item->cylinder);
             }
         }
     }
 }
 
-void World::onHit(SolidBox * box, std::function<void(Camera *, SolidBox *)> func)
+void World::onHit(SolidBox * box, BoxHitFunction callback)
 {
-    if (box != NULL && func != NULL) 
+    if (box != nullptr && callback != nullptr)
     {
-        BoxItem * worldItem = new BoxItem();
-        worldItem->func = func;
+        const auto worldItem = new BoxItem();
+        worldItem->callback = callback;
         worldItem->box = box;
-        BoxItems.push_back(worldItem);
+        boxItems.push_back(worldItem);
     }
 }
 
-void World::onHit(SolidCylinder * cy, std::function<void(Camera *, SolidCylinder *)> func)
+void World::onHit(SolidCylinder * cy, CylinderHitFunction callback)
 {
-    if (cy != NULL && func != NULL)
+    if (cy != nullptr && callback != nullptr)
     {
-        CylinderItem * worldItem = new CylinderItem();
-        worldItem->func = func;
+        const auto worldItem = new CylinderItem();
+        worldItem->callback = callback;
         worldItem->cylinder = cy;
-        CylinderItems.push_back(worldItem);
+        cylinderItems.push_back(worldItem);
     }
 }

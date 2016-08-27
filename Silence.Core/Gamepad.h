@@ -1,49 +1,49 @@
 
-#ifndef _GAMEPAD_H_
-#define _GAMEPAD_H_
+#pragma once
 
 #include "EngineLayer.h"
 
 #define DEADZONE_DEFAULT 6000
 
-enum STICK_AXIS {
-    LEFT_X, LEFT_Y, RIGHT_X, RIGHT_Y,
+enum ControllerStickAxis
+{
+    LeftX, 
+    LeftY, 
+    RightX, 
+    RightY,
 };
 
-enum BUTTON_STATE {
-    GAMEPAD_BUTTON_PRESSED,
-    GAMEPAD_BUTTON_HOLDING,
-    GAMEPAD_BUTTON_RELEASED,
-    GAMEPAD_BUTTON_NOT_PRESSED
+enum ControllerButtonState 
+{
+    GamepadButtonPressed,
+    GamepadButtonHolding,
+    GamepadButtonReleased,
+    GamepadButtonNotPressed
 };
 
 class SILENCE_EXPORT Gamepad 
 {
-private:
     SDL_GameController * controller;
     SDL_Joystick * joystick;
     SDL_Haptic * haptic;
 
+    ControllerButtonState buttons[SDL_CONTROLLER_BUTTON_MAX];
     float axisValues[SDL_CONTROLLER_AXIS_MAX];
-    
-    BUTTON_STATE buttons[SDL_CONTROLLER_BUTTON_MAX];
-
     int deadzone;
 public:
     Gamepad();
-    ~Gamepad();
+    virtual ~Gamepad();
 
-    void rumble(float, int);
+    int getButtonValue(int axisNumber);
 
-    int getButtonValue(int);
+    float getAxisValue(ControllerStickAxis axis);
+    float getAxisValue(int axis);
 
-    float getAxisValue(STICK_AXIS);
-    float getAxisValue(int);
+    void rumble(float strength, int ms) const;
 
-    bool isConnected();
+    bool isConnected() const;
     bool getState();
     bool close();
     bool open();
 };
 
-#endif

@@ -13,7 +13,7 @@ Buttons::~Buttons()
 
 void Buttons::create(LocalAssetManager * package)
 {
-    roarSound.open(package->grabMusic("data/media/roar.mp3", LOAD));
+    roarSound.open(package->getS("data/media/roar.mp3", Load));
     this->package = package;
     load(active);
 }
@@ -43,7 +43,7 @@ void Buttons::load(int active)
 
 void Buttons::onGamepadButton(int button, int state)
 {
-    if (button == SDL_CONTROLLER_BUTTON_DPAD_DOWN && state == GAMEPAD_BUTTON_PRESSED)
+    if (button == SDL_CONTROLLER_BUTTON_DPAD_DOWN && state == GamepadButtonPressed)
     {
         if (active == 2) 
         {
@@ -57,7 +57,7 @@ void Buttons::onGamepadButton(int button, int state)
         load(active);
     }
 
-    if (button == SDL_CONTROLLER_BUTTON_DPAD_UP && state == GAMEPAD_BUTTON_PRESSED)
+    if (button == SDL_CONTROLLER_BUTTON_DPAD_UP && state == GamepadButtonPressed)
     {
         if (active == 0) 
         {
@@ -74,7 +74,7 @@ void Buttons::onGamepadButton(int button, int state)
 
 bool Buttons::isPressed(int button, int i, int s)
 {
-    if (button == active && i == SDL_CONTROLLER_BUTTON_A && s == GAMEPAD_BUTTON_PRESSED)
+    if (button == active && i == SDL_CONTROLLER_BUTTON_A && s == GamepadButtonPressed)
     {
         if (button == NULL) 
         {

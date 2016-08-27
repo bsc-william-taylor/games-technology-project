@@ -30,10 +30,10 @@
 // Constructor & Deconstructor
 Forest::Forest(OperatingSystem * engine)
 {
-    manager = engine->aquireSceneManager();
-    gamepad = engine->aquireGamepad();
+    manager = engine->acquireSceneManager();
+    gamepad = engine->acquireGamepad();
     
-    package = engine->aquireAssetManager()->grabLocalManager();
+    package = engine->acquireAssetManager()->grabLocalManager();
     package->grab({ "data/fonts/Calibri.ttf",
         "data/models/house/br_house1.md3",
         "data/textures/grass.png",
@@ -46,8 +46,8 @@ Forest::Forest(OperatingSystem * engine)
         "data/models/rocks/obj.obj"
     });
 
-    backgroundMusic.open(package->grabMusic("data/media/main.wav", STREAM_LOOP));
-    torchSound.open(package->grabMusic("data/media/torch.mp3", LOAD));
+    backgroundMusic.open(package->getS("data/media/main.wav", StreamLoop));
+    torchSound.open(package->getS("data/media/torch.mp3", Load));
 }
 
 Forest::~Forest()
@@ -58,12 +58,12 @@ Forest::~Forest()
 
 void Forest::onGamepadButton(int key, int state)
 {
-    if (key == SDL_CONTROLLER_BUTTON_BACK && state == GAMEPAD_BUTTON_PRESSED)
+    if (key == SDL_CONTROLLER_BUTTON_BACK && state == GamepadButtonPressed)
     {
         manager->exit();
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_X && state == GAMEPAD_BUTTON_PRESSED) {
+    if (key == SDL_CONTROLLER_BUTTON_X && state == GamepadButtonPressed) {
         if (player->hasTorch()) {
             torchSound.reset();
             torchSound.play();
@@ -140,9 +140,9 @@ void Forest::onCreate()
     lights->pushPointLight(&point);
     lights->pushSpotLight(&torch);
 
-    footSteps.open(package->grabMusic("data/media/footsteps.mp3", LOAD_LOOP));
-    sign.open(package->grabMusic("data/media/sign.mp3", LOAD));
-    roar.open(package->grabMusic("data/media/roar.mp3", LOAD));
+    footSteps.open(package->getS("data/media/footsteps.mp3", LoadLoop));
+    sign.open(package->getS("data/media/sign.mp3", Load));
+    roar.open(package->getS("data/media/roar.mp3", Load));
 }
 
 // handle SDL events
@@ -197,14 +197,14 @@ void Forest::onUpdate()
     if (monster.isActive()) {
         float length = glm::length(glm::distance(monster.getPosition(), renderer3D.getCamera()->getPosition()));
 
-        if (gamepad->isConnected() && timer.elapsed(TimeType::MS) >= length) {
+        if (gamepad->isConnected() && timer.elapsed(TimeType::Milliseconds) >= length) {
             gamepad->rumble(0.75, 100);
             timer.clear();
             timer.start();
         }
     }
     else {
-        if (gamepad->isConnected() && timer.elapsed(TimeType::MS) >= 1000) {
+        if (gamepad->isConnected() && timer.elapsed(TimeType::Milliseconds) >= 1000) {
             gamepad->rumble(0.75, 100);
             timer.clear();
             timer.start();

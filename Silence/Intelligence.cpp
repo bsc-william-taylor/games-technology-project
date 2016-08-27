@@ -40,13 +40,13 @@ bool Intelligence::applyUpdate(glm::vec3& position, FirstPersonCamera * camera)
 
     if (travel >= 1.0) 
     {
-        A_StarPoint dest((cameraPos.x + 1024) / 16.0, (cameraPos.z + 1024) / 16.0);
+        PathPoint dest { (cameraPos.x + 1024) / 16.0, (cameraPos.z + 1024) / 16.0};
 
         if (tempDest.y == -1.0)
         {
             float div = (camera->getSpeed() / 15.0) * travel;
 
-            map->findPath(A_StarPoint(position.x, position.z), dest);
+            map->findPath({ (int)position.x, (int)position.z }, dest);
 
             vel = (position + glm::vec3(map->getPoint().x, 0.0, map->getPoint().y)) - position;
 
@@ -59,7 +59,7 @@ bool Intelligence::applyUpdate(glm::vec3& position, FirstPersonCamera * camera)
         }
         else
         {
-            map->findPath(A_StarPoint(position.x, position.z), A_StarPoint(tempDest.x, tempDest.z));
+            map->findPath({ (int)position.x, (int)position.z }, { (int)tempDest.x, (int)tempDest.z });
 
             vel = (position + glm::vec3(map->getPoint().x, 0.0, map->getPoint().y)) - position;
 
@@ -118,7 +118,7 @@ double Intelligence::getDirection()
 
 void Intelligence::setup(LocalAssetManager * package)
 {
-    map = new A_StarMap(package->getT("data/textures/ai_path2"));
+    map = new PathMap(package->getT("data/textures/ai_path2"));
 }
 
 void Intelligence::end()

@@ -3,7 +3,6 @@
 
 Video::Video()
 {
-
 }
 
 Video::~Video()
@@ -12,8 +11,8 @@ Video::~Video()
 
 HRESULT Video::InitializeEVR(IBaseFilter * pEVR, HWND hwnd, IMFVideoDisplayControl ** ppDisplayControl)
 {
-    IMFVideoDisplayControl * Display = NULL;
-    IMFGetService * pGS = NULL;
+    IMFVideoDisplayControl * Display = nullptr;
+    IMFGetService * pGS = nullptr;
 
     pEVR->QueryInterface(IID_PPV_ARGS(&pGS));
     pGS->GetService(MR_VIDEO_RENDER_SERVICE, IID_PPV_ARGS(&Display));
@@ -24,12 +23,12 @@ HRESULT Video::InitializeEVR(IBaseFilter * pEVR, HWND hwnd, IMFVideoDisplayContr
     *ppDisplayControl = Display;
     (*ppDisplayControl)->AddRef();
 
-    if (pGS != NULL)
+    if (pGS != nullptr)
     {
         pGS->Release();
     }
 
-    if (Display != NULL)
+    if (Display != nullptr)
     {
         Display->Release();
     }
@@ -39,7 +38,7 @@ HRESULT Video::InitializeEVR(IBaseFilter * pEVR, HWND hwnd, IMFVideoDisplayContr
 
 HRESULT Video::RemoveUnconnectedRenderer(IGraphBuilder *pGraph, IBaseFilter *pRenderer)
 {
-    IPin *pPin = NULL;
+    IPin *pPin = nullptr;
 
     HRESULT hr = FindConnectedPin(pRenderer, PINDIR_INPUT, &pPin);
 
@@ -55,7 +54,7 @@ HRESULT Video::RemoveUnconnectedRenderer(IGraphBuilder *pGraph, IBaseFilter *pRe
 
 HRESULT Video::IsPinConnected(IPin *pPin, BOOL *pResult)
 {
-    IPin *pTmp = NULL;
+    IPin *pTmp = nullptr;
     HRESULT hr = pPin->ConnectedTo(&pTmp);
     if (SUCCEEDED(hr))
     {
@@ -63,7 +62,6 @@ HRESULT Video::IsPinConnected(IPin *pPin, BOOL *pResult)
     }
     else if (hr == VFW_E_NOT_CONNECTED)
     {
-        // The pin is not connected. This is not an error for our purposes.
         *pResult = FALSE;
         hr = S_OK;
     }
@@ -85,10 +83,10 @@ HRESULT Video::IsPinDirection(IPin *pPin, PIN_DIRECTION dir, BOOL *pResult)
 
 HRESULT Video::FindConnectedPin(IBaseFilter *pFilter, PIN_DIRECTION PinDir, IPin **ppPin)
 {
-    *ppPin = NULL;
+    *ppPin = nullptr;
 
-    IEnumPins *pEnum = NULL;
-    IPin *pPin = NULL;
+    IEnumPins *pEnum = nullptr;
+    IPin *pPin = nullptr;
 
     HRESULT hr = pFilter->EnumPins(&pEnum);
     if (FAILED(hr))
@@ -97,7 +95,7 @@ HRESULT Video::FindConnectedPin(IBaseFilter *pFilter, PIN_DIRECTION PinDir, IPin
     }
 
     BOOL bFound = FALSE;
-    while (S_OK == pEnum->Next(1, &pPin, NULL))
+    while (S_OK == pEnum->Next(1, &pPin, nullptr))
     {
         BOOL bIsConnected;
         hr = IsPinConnected(pPin, &bIsConnected);
@@ -133,10 +131,10 @@ HRESULT Video::FindConnectedPin(IBaseFilter *pFilter, PIN_DIRECTION PinDir, IPin
 
 HRESULT Video::AddFilterByCLSID(IGraphBuilder *pGraph, REFGUID clsid, IBaseFilter **ppF, LPCWSTR wszName)
 {
-    IBaseFilter * pFilter = NULL;
-    *ppF = NULL;
+    IBaseFilter * pFilter = nullptr;
+    *ppF = nullptr;
 
-    HRESULT hr = CoCreateInstance(clsid, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pFilter));
+    HRESULT hr = CoCreateInstance(clsid, nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pFilter));
 
     hr = pGraph->AddFilter(pFilter, wszName);
     *ppF = pFilter;
@@ -153,7 +151,7 @@ void Video::unload()
     mediaControl->Release();
     mediaSeeking->Release();
 
-    mediaEvents->SetNotifyWindow((OAHWND)NULL, NULL, NULL);
+    mediaEvents->SetNotifyWindow((OAHWND)nullptr, 0, 0);
     mediaEvents->Release();
 
     videoDisplayControl->Release();
@@ -163,33 +161,32 @@ void Video::unload()
 void Video::streamFrom(std::string f)
 {
     BOOL RenderedAnyPin = FALSE;
-    IFilterGraph2 * Graph2 = NULL;
-    IBaseFilter * AudioRenderer = NULL;
-    IBaseFilter * pEVR = NULL;
-    IBaseFilter * Source = NULL;
-    IEnumPins * Enum = NULL;
-    IPin * Pin = NULL;
+    IFilterGraph2 * Graph2 = nullptr;
+    IBaseFilter * AudioRenderer = nullptr;
+    IBaseFilter * pEVR = nullptr;
+    IBaseFilter * Source = nullptr;
+    IEnumPins * Enum = nullptr;
+    IPin * Pin = nullptr;
 
-    int slength = (int)f.length() + 1;
-    int Length = MultiByteToWideChar(CP_ACP, 0, f.c_str(), slength, 0, 0);
-    
-    wchar_t * wideBuffer = new wchar_t[Length];
+    auto slength = f.length() + 1;
+    auto Length = MultiByteToWideChar(CP_ACP, 0, f.c_str(), slength, nullptr, 0);
+    auto wideBuffer = new wchar_t[Length];
     
     MultiByteToWideChar(CP_ACP, 0, f.c_str(), slength, wideBuffer, Length);
     filename = std::wstring(wideBuffer);
     
     delete[] wideBuffer;
 
-    playbackState = STATE_STOPPED;
+    playbackState = StateStopped;
     wndHwnd = GetActiveWindow();
 
-    CoCreateInstance(CLSID_FilterGraph, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&graphBuilder));
+    CoCreateInstance(CLSID_FilterGraph, nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&graphBuilder));
 
     graphBuilder->QueryInterface(IID_IMediaControl, (void**)&mediaControl);
     graphBuilder->QueryInterface(IID_IMediaEventEx, (void**)&mediaEvents);
     graphBuilder->QueryInterface(IID_IMediaSeeking, (void**)&mediaSeeking);
 
-    graphBuilder->AddSourceFilter(filename.c_str(), NULL, &Source);
+    graphBuilder->AddSourceFilter(filename.c_str(), nullptr, &Source);
     graphBuilder->QueryInterface(IID_PPV_ARGS(&Graph2));
     show = TRUE;
 
@@ -203,9 +200,9 @@ void Video::streamFrom(std::string f)
 
     Source->EnumPins(&Enum);
 
-    while (S_OK == Enum->Next(1, &Pin, NULL))
+    while (S_OK == Enum->Next(1, &Pin, nullptr))
     {
-        HRESULT Result = Graph2->RenderEx(Pin, AM_RENDEREX_RENDERTOEXISTINGRENDERERS, NULL);
+        auto Result = Graph2->RenderEx(Pin, AM_RENDEREX_RENDERTOEXISTINGRENDERERS, nullptr);
 
         Pin->Release();
 
@@ -226,24 +223,24 @@ void Video::streamFrom(std::string f)
 
 void Video::pause()
 {
-    if (playbackState == STATE_RUNNING)
+    if (playbackState == StateRunning)
     {
-        playbackState = STATE_PAUSED;
+        playbackState = StatePaused;
         mediaControl->Pause();
     }
 }
 
 void Video::stop()
 {
-    if (playbackState == STATE_RUNNING || playbackState == STATE_PAUSED)
+    if (playbackState == StateRunning || playbackState == StatePaused)
     {
-        LONGLONG StopTimes = NULL;
-        LONGLONG Start = NULL;
+        auto StopTimes = 0LL;
+        auto Start = 0LL;
 
-        playbackState = STATE_STOPPED;
+        playbackState = StateStopped;
         
         mediaControl->Stop();
-        mediaSeeking->GetPositions(NULL, &StopTimes);
+        mediaSeeking->GetPositions(nullptr, &StopTimes);
         mediaSeeking->SetPositions(&Start, 0x01 | 0x04, &StopTimes, 0x01 | 0x04);
     }
 
@@ -258,20 +255,20 @@ void Video::play()
     HDC hdc;
 
     GetClientRect(wndHwnd, &rc);
-    videoDisplayControl->SetVideoPosition(NULL, &rc);
+    videoDisplayControl->SetVideoPosition(nullptr, &rc);
 
     hdc = BeginPaint(wndHwnd, &ps);
 
-    if (playbackState != STATE_NO_GRAPH)
+    if (playbackState != StateNoGraph)
     {
         videoDisplayControl->RepaintVideo();
     }
 
     EndPaint(wndHwnd, &ps);
 
-    if (playbackState == STATE_PAUSED || playbackState == STATE_STOPPED)
+    if (playbackState == StatePaused || playbackState == StateStopped)
     {
-        playbackState = STATE_RUNNING;
+        playbackState = StateRunning;
         mediaControl->Run();
     }
 
@@ -284,6 +281,6 @@ void Video::display()
     {
         RECT rc;
         GetClientRect(wndHwnd, &rc);
-        videoDisplayControl->SetVideoPosition(NULL, &rc);
+        videoDisplayControl->SetVideoPosition(nullptr, &rc);
     }
 }

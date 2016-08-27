@@ -16,17 +16,17 @@ OptionsField::~OptionsField()
 
 void OptionsField::onGamepadButton(int key, int state)
 {
-    if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && active == 0 && state == GAMEPAD_BUTTON_PRESSED)
+    if (key == SDL_CONTROLLER_BUTTON_DPAD_RIGHT && active == 0 && state == GamepadButtonPressed)
     {
         ++active;
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && active == 1 && state == GAMEPAD_BUTTON_PRESSED)
+    if (key == SDL_CONTROLLER_BUTTON_DPAD_LEFT && active == 1 && state == GamepadButtonPressed)
     {
         --active;
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_DPAD_DOWN && state == GAMEPAD_BUTTON_PRESSED) 
+    if (key == SDL_CONTROLLER_BUTTON_DPAD_DOWN && state == GamepadButtonPressed) 
     {
         if (active == 4)
         {
@@ -38,7 +38,7 @@ void OptionsField::onGamepadButton(int key, int state)
         }
     }
 
-    if (key == SDL_CONTROLLER_BUTTON_DPAD_UP && state == GAMEPAD_BUTTON_PRESSED) 
+    if (key == SDL_CONTROLLER_BUTTON_DPAD_UP && state == GamepadButtonPressed) 
     {
         if (active == 0)
         {

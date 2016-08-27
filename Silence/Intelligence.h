@@ -11,7 +11,7 @@ class Intelligence
 {
 private:
     glm::vec3 tempDest;
-    A_StarMap * map;
+    PathMap * map;
     double direction; 
     double travel;
 public:
