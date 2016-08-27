@@ -55,7 +55,7 @@ private:
     // The transfer for the heightmap mesh
     GPU_Transfer * mesh;
     // The number of vertices inside in mesh
-    GPU_ID vertexCount;
+    GpuID vertexCount;
 public:
     // Constructor & Deconstructor
     Heightmap();

@@ -45,18 +45,18 @@ Indoors::Indoors(OperatingSystem * engine)
         "data/models/house/br_house1.md3",
         "data/models/torchlight/Linterna.obj",
         "data/models/door/door.obj",
-        "data/models/key/key.3DS",
+        "data/models/key/key.3ds",
         "data/models/rocks/obj.obj"
     });
 
-    indoorMusic.open(package->getS("data/media/demo.wav", Stream));
-    jumpSound.open(package->getS("data/media/jump.wav", Load));
-    doorSound.open(package->getS("data/media/door.wav", Load));
-    torchSound.open(package->getS("data/media/torch.mp3", Load));
+    indoorMusic.open(package->newAudio("data/media/demo.wav", Stream));
+    jumpSound.open(package->newAudio("data/media/jump.wav", Load));
+    doorSound.open(package->newAudio("data/media/door.wav", Load));
+    torchSound.open(package->newAudio("data/media/torch.mp3", Load));
     
-    pickup1.open(package->getS("data/media/pickup1.mp3", Load));
-    pickup2.open(package->getS("data/media/pickup2.mp3", Load));
-    pickup3.open(package->getS("data/media/pickup3.mp3", Load));
+    pickup1.open(package->newAudio("data/media/pickup1.mp3", Load));
+    pickup2.open(package->newAudio("data/media/pickup2.mp3", Load));
+    pickup3.open(package->newAudio("data/media/pickup3.mp3", Load));
     
     showTorchLight = false;
     showRocks = false;
@@ -104,13 +104,13 @@ void Indoors::onCreate()
     
     // load the terrain from the height map texture then set its X and Y scales
     cube.setArea(glm::vec3(-100, 0.0, -50), glm::vec3(200.0, 0.25, 100.0), 20);
-    cube.setTexture(package->getT("data/textures/brick"));
-    model.setModel(package->getM("data/models/house/br_house1"));
-    body.setModel(package->getM("data/models/hang/hang2"));
-    door.setModel(package->getM("data/models/door/door"));
-    key.setModel(package->getM("data/models/key/key"));
-    rocks.setModel(package->getM("data/models/rocks/obj"));
-    torchLight.setModel(package->getM("data/models/torchlight/Linterna"));
+    cube.setTexture(package->newTexture("data/textures/brick"));
+    model.setModel(package->newModel("data/models/house/br_house1"));
+    body.setModel(package->newModel("data/models/hang/hang2"));
+    door.setModel(package->newModel("data/models/door/door"));
+    key.setModel(package->newModel("data/models/key/key"));
+    rocks.setModel(package->newModel("data/models/rocks/obj"));
+    torchLight.setModel(package->newModel("data/models/torchlight/Linterna"));
     matrices.makeProjection3D(60.0f, glm::vec2(0.1f, 1000.0f));
 
     // then create our 3D renderer

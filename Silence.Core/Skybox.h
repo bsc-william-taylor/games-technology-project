@@ -54,9 +54,9 @@ public:
     void setDistance(float distance);
 
     // returns the ID for cubemap texture
-    GPU_ID getTextureID();
+    GpuID getTextureID();
     // returns the ID for mesh data
-    GPU_ID getDataID();
+    GpuID getDataID();
 private:
     // The vertices for the cube
     Vertices vertices;

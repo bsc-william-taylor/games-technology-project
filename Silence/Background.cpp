@@ -16,7 +16,7 @@ void Background::create(LocalAssetManager * package)
 {
     this->package = package;
 
-    background.setTexture(package->getT("data/textures/menu1"));
+    background.setTexture(package->newTexture("data/textures/menu1"));
     background.setArea(glm::vec4(0.0, 0.0, 1920, 1080));
 }
 
@@ -52,11 +52,11 @@ void Background::update()
 
         switch (++index)
         {
-            case 0: background.setTexture(package->getT("data/textures/menu1")); break;
-            case 1: background.setTexture(package->getT("data/textures/menu2")); break;
-            case 2: background.setTexture(package->getT("data/textures/menu3")); break;
+            case 0: background.setTexture(package->newTexture("data/textures/menu1")); break;
+            case 1: background.setTexture(package->newTexture("data/textures/menu2")); break;
+            case 2: background.setTexture(package->newTexture("data/textures/menu3")); break;
 
-            default: background.setTexture(package->getT("data/textures/menu1")); index = 0; break;
+            default: background.setTexture(package->newTexture("data/textures/menu1")); index = 0; break;
         }
 
         timer.clear();

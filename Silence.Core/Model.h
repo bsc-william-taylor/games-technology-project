@@ -38,7 +38,7 @@ class SILENCE_EXPORT Model
 {
 private:
     //
-    std::vector<GPU_ID> tIDs;
+    std::vector<GpuID> tIDs;
     // a vector of IDs for the textures
     GPU_Transfer * mesh;
     // The model asset file
@@ -64,7 +64,7 @@ public:
         return mesh;
     }
 
-    std::vector<GPU_ID>& getTextures() {
+    std::vector<GpuID>& getTextures() {
         return tIDs;
     }
 

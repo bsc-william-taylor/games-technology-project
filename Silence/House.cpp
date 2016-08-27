@@ -12,7 +12,7 @@ House::~House()
 
 void House::create(LocalAssetManager * manager)
 {
-    house.setModel(manager->getM("data/models/house/br_house1"));
+    house.setModel(manager->newModel("data/models/house/br_house1"));
 }
 
 void House::render(ForwardRenderer& renderer)

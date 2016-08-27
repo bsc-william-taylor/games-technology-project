@@ -11,8 +11,8 @@ Terrain::~Terrain()
 
 void Terrain::create(LocalAssetManager * package, World& world)
 {
-    terrain.create(package->getT("data/textures/grass"), "data/textures/heightmap.png", 16, 6);
-    terrain.pushOverlay(package->getT("data/textures/dirt"), package->getT("data/textures/pathways"));
+    terrain.create(package->newTexture("data/textures/grass"), "data/textures/heightmap.png", 16, 6);
+    terrain.pushOverlay(package->newTexture("data/textures/dirt"), package->newTexture("data/textures/pathways"));
 
     trees.setup(package, &terrain, world);
     border.create(package, world);	

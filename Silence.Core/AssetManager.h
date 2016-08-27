@@ -5,9 +5,6 @@
 #include "Media.h"
 #include "AudioFile.h"
 
-typedef SDL_Surface Texture;
-typedef SDL_Surface Font;
-
 class SILENCE_EXPORT AssetManager
 {
     vector<LocalAssetManager*> stateAssetManagers;
@@ -19,6 +16,8 @@ public:
     AssetManager();
     virtual ~AssetManager();
 
+    void recycle();
+
     vector<TextureAsset*>& getTextures();
     vector<ModelAsset*>& getModels();
     vector<AudioAsset*>& getAudio();
@@ -28,11 +27,10 @@ public:
     bool checkModel(std::string ext, std::string nm);
     bool checkLabel(std::string ext, std::string nm);
 
-    void recycle();
-    void push(TextureAsset*);
-    void push(AudioAsset*);
-    void push(ModelAsset*);
-    void push(FontAsset*);
+    void push(TextureAsset* asset);
+    void push(AudioAsset* asset);
+    void push(ModelAsset* asset);
+    void push(FontAsset* asset);
 
     LocalAssetManager * grabLocalManager();
 };

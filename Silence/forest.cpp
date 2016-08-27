@@ -46,8 +46,8 @@ Forest::Forest(OperatingSystem * engine)
         "data/models/rocks/obj.obj"
     });
 
-    backgroundMusic.open(package->getS("data/media/main.wav", StreamLoop));
-    torchSound.open(package->getS("data/media/torch.mp3", Load));
+    backgroundMusic.open(package->newAudio("data/media/main.wav", StreamLoop));
+    torchSound.open(package->newAudio("data/media/torch.mp3", Load));
 }
 
 Forest::~Forest()
@@ -140,9 +140,9 @@ void Forest::onCreate()
     lights->pushPointLight(&point);
     lights->pushSpotLight(&torch);
 
-    footSteps.open(package->getS("data/media/footsteps.mp3", LoadLoop));
-    sign.open(package->getS("data/media/sign.mp3", Load));
-    roar.open(package->getS("data/media/roar.mp3", Load));
+    footSteps.open(package->newAudio("data/media/footsteps.mp3", LoadLoop));
+    sign.open(package->newAudio("data/media/sign.mp3", Load));
+    roar.open(package->newAudio("data/media/roar.mp3", Load));
 }
 
 // handle SDL events

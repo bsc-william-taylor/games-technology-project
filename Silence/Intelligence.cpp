@@ -118,7 +118,7 @@ double Intelligence::getDirection()
 
 void Intelligence::setup(LocalAssetManager * package)
 {
-    map = new PathMap(package->getT("data/textures/ai_path2"));
+    map = new PathMap(package->newTexture("data/textures/ai_path2"));
 }
 
 void Intelligence::end()

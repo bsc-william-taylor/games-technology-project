@@ -2,8 +2,9 @@
 #include "LocalAssetManager.h"
 #include "AssetManager.h"
 
-LocalAssetManager::LocalAssetManager(AssetManager * assets)
-    : assets(assets)
+LocalAssetManager::LocalAssetManager(AssetManager * assets) : 
+    referenceCount(0), 
+    assets(assets)
 {
 }
 
@@ -11,7 +12,7 @@ LocalAssetManager::~LocalAssetManager()
 {
 }
 
-TextureAsset * LocalAssetManager::getT(std::string filename)
+TextureAsset * LocalAssetManager::newTexture(std::string filename)
 {
     const auto predicate = [&](TextureAsset* texture)
     {
@@ -29,7 +30,7 @@ void LocalAssetManager::recycle()
     assets->recycle();
 }
 
-AudioAsset * LocalAssetManager::getS(std::string filename, AudioCommand load)
+AudioAsset * LocalAssetManager::newAudio(std::string filename, AudioCommand load)
 {
     const auto audio = new AudioAsset(filename.substr(0, filename.length() - 4));
 
@@ -47,52 +48,55 @@ AudioAsset * LocalAssetManager::getS(std::string filename, AudioCommand load)
     return audio;
 }
 
-ModelAsset * LocalAssetManager::getM(std::string filename)
+ModelAsset * LocalAssetManager::newModel(std::string filename)
 {
+    auto predicate = [&](ModelAsset * m) { return m->getName() == filename; };
     auto models = assets->getModels();
+    auto begin = models.begin();
+    auto end = models.end();
 
-    for (auto& model : models) {
-        if (model->getName() == filename) {
-            return model;
-        }
-    }
-    
-    return nullptr;
+    auto iterator = std::find_if(begin, end, predicate);
+
+    return iterator == end ? nullptr : *iterator;
 }
 
-AudioAsset * LocalAssetManager::getA(std::string filename)
+AudioAsset * LocalAssetManager::newAudio(std::string filename)
 {
+    auto predicate = [&](AudioAsset * a) { return a->getName() == filename; };
     auto audioFiles = assets->getAudio();
+    auto begin = audioFiles.begin();
+    auto end = audioFiles.end();
+    
+    auto iterator = std::find_if(begin, end, predicate);
 
-    for (auto& audio : audioFiles) {
-        if (audio->getName() == filename) {
-            return audio;
-        }
-    }
-
-    return nullptr
+    return iterator == end ? nullptr : *iterator;
 ;
 }
 
-FontAsset * LocalAssetManager::getL(std::string font, int sz, SDL_Color c)
+FontAsset * LocalAssetManager::newFont(std::string font, int sz, SDL_Color c)
 {
+    auto predicate = [&](FontAsset * f) { return f->getName() == font; };
     auto fonts = assets->getFonts();
+    auto begin = fonts.begin();
+    auto end = fonts.end();
 
-    for (auto& label : fonts) {
-        if (label->getName() == font) {
-            label->openAtSize(sz);
-            label->setColour(c);
-            return label;
-        }
+    const auto iterator = std::find_if(begin, end, predicate);
+    
+    if(iterator == end)
+    {
+        return nullptr;
     }
-
-    return nullptr;
+    
+    const auto label = *iterator;
+    label->openAtSize(sz);
+    label->setColour(c);
+    return label;
 }
 
-unsigned int LocalAssetManager::grab(std::initializer_list<std::string> list)
+int LocalAssetManager::grab(std::initializer_list<std::string> list)
 {
     auto start = filenames.size();
-    auto loads = 0u;
+    auto loads = 0;
 
     filenames.insert(filenames.end(), list.begin(), list.end());
     

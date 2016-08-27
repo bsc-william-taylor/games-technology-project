@@ -14,7 +14,7 @@ void Hints::create(LocalAssetManager * package)
 {
     this->package = package;
 
-    hintRenderable.setFont(package->getL("data/fonts/Calibri", 45, { 255, 255, 255 }), this->hintText.c_str());
+    hintRenderable.setFont(package->newFont("data/fonts/Calibri", 45, { 255, 255, 255 }), this->hintText.c_str());
     hintRenderable.setArea(glm::vec2(960, 1000), ALIGNMENT::CENTER);
 }
 
@@ -76,12 +76,12 @@ void Hints::update()
 
     if ("Good luck..." == this->hintText) 
     {
-        hintRenderable.setFont(this->package->getL("data/fonts/Calibri", 70, { 255, 0, 0 }), this->hintText.c_str());
+        hintRenderable.setFont(this->package->newFont("data/fonts/Calibri", 70, { 255, 0, 0 }), this->hintText.c_str());
         hintRenderable.setArea(glm::vec2(960, 1080/2), ALIGNMENT::CENTER);
     } 
     else 
     {
-        hintRenderable.setFont(this->package->getL("data/fonts/Calibri", 45, { 255, 255, 255 }), this->hintText.c_str());
+        hintRenderable.setFont(this->package->newFont("data/fonts/Calibri", 45, { 255, 255, 255 }), this->hintText.c_str());
         hintRenderable.setArea(glm::vec2(960, 1000), ALIGNMENT::CENTER);
     }
 }

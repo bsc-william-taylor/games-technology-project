@@ -9,25 +9,26 @@
 
 class AssetManager;
 
-enum AudioCommand { Stream = 1, Load = 0, StreamLoop = 2, LoadLoop = 3 };
+enum AudioCommand { Load, Stream, StreamLoop, LoadLoop };
 enum LoadCommand { DuplicateFound, InvalidFormat, NotFound };
 
 class SILENCE_EXPORT LocalAssetManager
 {
     std::vector<std::string> filenames;
-    unsigned int referenceCount;
+    int referenceCount;
     AssetManager * assets;
 public:
     explicit LocalAssetManager(AssetManager *);
     ~LocalAssetManager();
     
-    unsigned int grab(std::initializer_list<std::string>);
+    int grab(std::initializer_list<std::string>);
    
-    TextureAsset * getT(std::string filename);
-    AudioAsset * getS(std::string filename, AudioCommand);
-    ModelAsset * getM(std::string filename);
-    FontAsset * getL(std::string font, int, SDL_Color);
-    AudioAsset * getA(std::string filename);
+    AudioAsset * newAudio(std::string filename, AudioCommand playbackStyle);
+    AudioAsset * newAudio(std::string filename);
 
+    TextureAsset * newTexture(std::string filename);
+    ModelAsset * newModel(std::string filename);
+    FontAsset * newFont(std::string font, int pt, SDL_Color colour);
+    
     void recycle();
 };

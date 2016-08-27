@@ -3,22 +3,29 @@
 
 AssetManager::AssetManager()
 {
-    stateAssetManagers.reserve(25);
-    textures.reserve(250);
-    models.reserve(250);
-    fonts.reserve(250);
 }
 
 AssetManager::~AssetManager()
 {
     for (auto& tex : textures)
+    {
         delete tex;
+    }
+
     for (auto& model : models)
+    {
         delete model;
+    }
+        
     for (auto& font : fonts)
+    {
         delete font;
+    }
+
     for (auto& audio : music)
+    {
         delete audio;
+    }
 
     stateAssetManagers.clear();
 }
@@ -40,17 +47,14 @@ LocalAssetManager * AssetManager::grabLocalManager()
 
 bool AssetManager::checkTexture(std::string ext, std::string nm)
 {
+    transform(ext.begin(), ext.end(), ext.begin(), tolower);
+
     if (ext == ".jpg" || ext == ".png" || ext == ".bmp")
     {
-        for (auto& texture : textures)
-        {
-            if (texture->getName() == nm)
-            {
-                return false;
-            }
-        }
+        const auto begin = textures.begin();
+        const auto end = textures.end();
 
-        return true;
+        return std::find_if(begin, end, [&](TextureAsset * t) { return t->getName() == nm; }) == end;
     }
 
     return false;
@@ -58,17 +62,14 @@ bool AssetManager::checkTexture(std::string ext, std::string nm)
 
 bool AssetManager::checkModel(std::string ext, std::string nm)
 {
-    if (ext == ".3DS" || ext == ".obj" || ext == ".3ds" || ext == ".md2" || ext == ".md3")
-    {
-        for (auto& model : models)
-        {
-            if (model->getName() == nm)
-            {
-                return false;
-            }
-        }
+    transform(ext.begin(), ext.end(), ext.begin(), tolower);
 
-        return true;
+    if (ext == ".3ds" || ext == ".obj" || ext == ".md2" || ext == ".md3")
+    {
+        const auto begin = models.begin();
+        const auto end = models.end();
+
+        return std::find_if(begin, end, [&](ModelAsset * m) { return m->getName() == nm; }) == end;
     }
 
     return false;
@@ -76,17 +77,14 @@ bool AssetManager::checkModel(std::string ext, std::string nm)
 
 bool AssetManager::checkLabel(std::string ext, std::string nm)
 {
+    transform(ext.begin(), ext.end(), ext.begin(), tolower);
+
     if (ext == ".ttf" || ext == ".otf")
     {
-        for (auto& label : fonts)
-        {
-            if (label->getName() == nm)
-            {
-                return false;
-            }
-        }
+        const auto begin = fonts.begin();
+        const auto end = fonts.end();
 
-        return true;
+        return std::find_if(begin, end, [&](FontAsset * f) { return f->getName() == nm; }) == end;
     }
 
     return false;

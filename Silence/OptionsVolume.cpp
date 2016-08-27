@@ -51,15 +51,15 @@ void OptionsVolume::create(LocalAssetManager * package)
 
     BASS_SetVolume(static_cast<double>(volume / 100.0));
 
-    volumeSize.setFont(package->getL("data/fonts/Calibri", 60, { 255, 255, 255 }), "Game Volume");
+    volumeSize.setFont(package->newFont("data/fonts/Calibri", 60, { 255, 255, 255 }), "Game Volume");
     volumeSize.setArea(glm::vec2(650, 250), ALIGNMENT::CENTER);
 
-    volumeSizeLabel.setFont(package->getL("data/fonts/Calibri", 60, colour ), std::to_string(volume).append("%").c_str());
+    volumeSizeLabel.setFont(package->newFont("data/fonts/Calibri", 60, colour ), std::to_string(volume).append("%").c_str());
     volumeSizeLabel.setArea(glm::vec2(1250, 250), ALIGNMENT::CENTER);
 
-    volumeSizeButtons[0].setButtonTexture(package->getT("data/textures/left"));
+    volumeSizeButtons[0].setButtonTexture(package->newTexture("data/textures/left"));
     volumeSizeButtons[0].setArea(glm::vec4(1250 - 300, 200, 70, 100), ALIGNMENT::CENTER);
-    volumeSizeButtons[1].setButtonTexture(package->getT("data/textures/right"));
+    volumeSizeButtons[1].setButtonTexture(package->newTexture("data/textures/right"));
     volumeSizeButtons[1].setArea(glm::vec4(1250 + 250, 200, 70, 100), ALIGNMENT::CENTER);
 }
 
@@ -88,6 +88,6 @@ void OptionsVolume::event(SDL_Event& e)
 void OptionsVolume::update()
 {
     const auto volumeText = std::to_string(volume).append("%");
-    volumeSizeLabel.setFont(package->getL("data/fonts/Calibri", 60, colour), volumeText.c_str());
+    volumeSizeLabel.setFont(package->newFont("data/fonts/Calibri", 60, colour), volumeText.c_str());
     volumeSizeLabel.setArea(glm::vec2(1250, 250), ALIGNMENT::CENTER);
 }

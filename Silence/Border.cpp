@@ -14,7 +14,7 @@ Border::~Border()
 
 void Border::create(LocalAssetManager * package, World& world)
 {
-    wall.setModel(package->getM("data/models/wall/wall"));
+    wall.setModel(package->newModel("data/models/wall/wall"));
 
     borderArea->setPositionVector(glm::vec3(-1020, -1020, -1020));
     borderArea->setSizeVector(glm::vec3(1020, 1020, 1020));

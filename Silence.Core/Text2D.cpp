@@ -129,13 +129,13 @@ void Text2D::setArea(glm::vec2 size)
 }
 
 // returns the ID for the texture
-GPU_ID Text2D::getTextureID()
+GpuID Text2D::getTextureID()
 {
     return texture->getID();
 }
 
 // returns the ID for the vertex data
-GPU_ID Text2D::getDataID()
+GpuID Text2D::getDataID()
 {
     return transfer->getID();
 }

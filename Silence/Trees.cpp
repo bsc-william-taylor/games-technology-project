@@ -11,8 +11,8 @@ Trees::~Trees()
 
 void Trees::setup(LocalAssetManager * package, Heightmap * map, World& world)
 {
-    auto tree = package->getM("data/models/tree/tree1a_lod0");
-    auto texture = package->getT("data/textures/pathways");
+    auto tree = package->newModel("data/models/tree/tree1a_lod0");
+    auto texture = package->newTexture("data/textures/pathways");
 
     treeModels.setModel(tree);
 

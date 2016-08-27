@@ -52,9 +52,9 @@ public:
     void setTexture(TextureAsset * asset);
 
     // returns the ID for the texture
-    GPU_ID getTextureID();
+    GpuID getTextureID();
     // returns the ID for the mesh
-    GPU_ID getDataID();
+    GpuID getDataID();
 };
 
 #endif

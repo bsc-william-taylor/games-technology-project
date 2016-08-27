@@ -24,7 +24,7 @@ Key::~Key()
 
 void Key::create(Model * key, LocalAssetManager * manager)
 {
-    pickup.open(manager->getS("data/media/pickup1.mp3", Load));
+    pickup.open(manager->newAudio("data/media/pickup1.mp3", Load));
     keyModel = key;
 }
 

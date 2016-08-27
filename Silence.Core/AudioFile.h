@@ -2,31 +2,27 @@
 #pragma once
 
 #include "EngineLayer.h"
-#include "TextureAsset.h"
-#include "math.h"
-
 
 class SILENCE_EXPORT AudioAsset 
 {
-private:
     std::string filename;
     std::string name;
 
-    HSTREAM stream;
     HCHANNEL channel;
+    HSTREAM stream;
     HSAMPLE sample;
 
-    bool _isStream;
+    bool isAudioStream;
 public:
-    AudioAsset(std::string str);
-    ~AudioAsset();
+    explicit AudioAsset(std::string filename);
+    virtual ~AudioAsset();
 
     void grabFromFile(std::string filename, bool stream, bool loop);
 
-    bool isStream();
+    bool isStream() const;
 
-    HSTREAM getStream();
-    HCHANNEL getChannel();
-
-    std::string getName();
+    HCHANNEL getChannel() const;
+    HSTREAM getStream() const;
+  
+    std::string getName() const;
 };

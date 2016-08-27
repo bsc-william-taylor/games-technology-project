@@ -15,7 +15,7 @@ Gate::~Gate()
 void Gate::create(LocalAssetManager * package, World& world, SceneManager * scenes)
 {
     this->scenes = scenes;
-    gate.setModel(package->getM("data/models/gate/SecurityGate"));
+    gate.setModel(package->newModel("data/models/gate/SecurityGate"));
 
     glm::mat4 mat = glm::mat4(1.0);
 

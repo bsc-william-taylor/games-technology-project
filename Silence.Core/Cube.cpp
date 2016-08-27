@@ -140,13 +140,13 @@ void Cube::setArea(glm::vec3 position, glm::vec3 size, int r)
 }
 
 // returns the ID for the cubes texture
-GPU_ID Cube::getTextureID()
+GpuID Cube::getTextureID()
 {
     return transfer->getID();
 }
 
 // returns the ID for the cubes vertices, normals etc
-GPU_ID Cube::getDataID()
+GpuID Cube::getDataID()
 {
     return texture->getID();
 }

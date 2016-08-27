@@ -89,13 +89,13 @@ void Texture2D::setArea(glm::vec4 size)
 }
 
 // returns the texture ID for the texture
-GPU_ID Texture2D::getTextureID()
+GpuID Texture2D::getTextureID()
 {
     return texture->getID();
 }
 
 // returns the object ID for the vertex data
-GPU_ID Texture2D::getDataID()
+GpuID Texture2D::getDataID()
 {
     return transfer->getID();
 }

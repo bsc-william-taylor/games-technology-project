@@ -39,13 +39,13 @@ class SILENCE_EXPORT ModelSet
 private:
     // a vector of IDs for the textures
     std::vector<glm::mat4> matrices;
-    std::vector<GPU_ID> tIDs;
+    std::vector<GpuID> tIDs;
     // The model asset file
     ModelAsset * file;
     // the transfer for the vertices etc
     GPU_Transfer * mesh;
     //
-    GPU_ID matricesID;
+    GpuID matricesID;
     //
     Vertex min, max;
     //
@@ -82,7 +82,7 @@ public:
         return matrices;
     }
 
-    std::vector<GPU_ID>& getTextures() {
+    std::vector<GpuID>& getTextures() {
         return tIDs;
     }
 

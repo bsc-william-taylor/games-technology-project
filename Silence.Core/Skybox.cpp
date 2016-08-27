@@ -110,13 +110,13 @@ void Skybox::setDistance(float distance)
 }
 
 // returns the cubemaps texture ID
-GPU_ID Skybox::getTextureID()
+GpuID Skybox::getTextureID()
 {
     return cubemap_texture->getID();
 }
 
 // returns the ID for the mesh
-GPU_ID Skybox::getDataID()
+GpuID Skybox::getDataID()
 {
     return cubemap_object_mesh->getID();
 }

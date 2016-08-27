@@ -92,8 +92,8 @@ void Player::onKeyEvent(FirstPersonCamera * camera, int key, int state)
 
 void Player::create(LocalAssetManager * package)
 {
-    throwSound.open(package->getS("data/media/woosh_1.mp3", Load));
-    hitSound.open(package->getS("data/media/hit.mp3", Load));
+    throwSound.open(package->newAudio("data/media/woosh_1.mp3", Load));
+    hitSound.open(package->newAudio("data/media/hit.mp3", Load));
 }
 
 void Player::update(FirstPersonCamera * camera, Monster * monster)

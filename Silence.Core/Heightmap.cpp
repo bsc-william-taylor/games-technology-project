@@ -72,13 +72,13 @@ GLfloat Heightmap::getY(FIBITMAP * sprite, int _x, int _y, float scale_y)
 }
 
 // returns the textures ID
-GPU_ID Heightmap::getTexture()
+GpuID Heightmap::getTexture()
 { 
     return texture->getID(); 
 }
 
 // returns the meshes ID
-GPU_ID Heightmap::getVertexID() 
+GpuID Heightmap::getVertexID() 
 { 
     return mesh->getID(); 
 }

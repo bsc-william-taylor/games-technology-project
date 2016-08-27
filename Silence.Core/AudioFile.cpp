@@ -1,74 +1,62 @@
 
 #include "AudioFile.h"
 
-AudioAsset::AudioAsset(std::string str)
+AudioAsset::AudioAsset(std::string name) :
+    isAudioStream(false),
+    sample(NULL),
+    stream(NULL),
+    name(name)
 {
-    this->name = str;
-    this->_isStream = false;
 }
 
 AudioAsset::~AudioAsset()
 {
-
 }
 
-void AudioAsset::grabFromFile(std::string filename, bool stream, bool loop)
+void AudioAsset::grabFromFile(std::string filename, bool isAudioStream, bool loop)
 {
-    this->_isStream = stream;
+    this->isAudioStream = isAudioStream;
     this->filename = filename;
-
-    if (_isStream)
+   
+    if (isAudioStream)
     {
-        if (loop)
-        {
-            this->stream = BASS_StreamCreateFile(FALSE, filename.c_str(), NULL, NULL, BASS_SAMPLE_LOOP);
-        }
-        else
-        {
-            this->stream = BASS_StreamCreateFile(FALSE, filename.c_str(), NULL, NULL, NULL);
-        }
+        this->stream = BASS_StreamCreateFile(FALSE, filename.c_str(), NULL, NULL, loop ? BASS_SAMPLE_LOOP : NULL);
     }
     else
     {
-        if (loop)
-        {
-            this->sample = BASS_SampleLoad(FALSE, filename.c_str(), 0, 0, 3, BASS_SAMPLE_OVER_POS | BASS_SAMPLE_LOOP);
-        }
-        else
-        {
-            this->sample = BASS_SampleLoad(FALSE, filename.c_str(), 0, 0, 3, BASS_SAMPLE_OVER_POS);
-        }
+        const auto args = loop ? BASS_SAMPLE_OVER_POS | BASS_SAMPLE_LOOP : BASS_SAMPLE_OVER_POS;
+        sample = BASS_SampleLoad(FALSE, filename.c_str(), 0, 0, 3, args);
     
-        if (this->sample == NULL)
+        if (sample == NULL)
         {
-            std::cout << "Error with SAMPLELOAD" << std::endl;
+            throw Error(Component::Audio, "Error with SAMPLELOAD", Author::William);
         }
 
-        this->channel = BASS_SampleGetChannel(sample, true);
+        channel = BASS_SampleGetChannel(sample, true);
 
-        if (this->channel == NULL)
+        if (channel == NULL)
         {
-            std::cout << "Error with SAMPLE CHANNEL" << std::endl;
+            throw Error(Component::Audio, "Error with SAMPLE CHANNEL", Author::William);
         }
     }
 }
 
-bool AudioAsset::isStream()
+bool AudioAsset::isStream() const
 {
-    return this->_isStream;
+    return this->isAudioStream;
 }
 
-HSTREAM AudioAsset::getStream()
+HSTREAM AudioAsset::getStream() const
 {
     return stream;
 }
 
-HCHANNEL AudioAsset::getChannel()
+HCHANNEL AudioAsset::getChannel() const
 {
     return channel;
 }
 
-std::string AudioAsset::getName() 
+std::string AudioAsset::getName() const
 {
     return this->name;
 }

@@ -57,18 +57,18 @@ void Options::onCreate()
     optionInputs->create(package);
 
     // Load all assets starting with the header
-    header.setFont(package->getL("data/fonts/Calibri", 225, { 255, 255, 255 }), "Options");
+    header.setFont(package->newFont("data/fonts/Calibri", 225, { 255, 255, 255 }), "Options");
     header.setArea(glm::vec2(1920 / 2, 900), ALIGNMENT::CENTER);
 
-    version.setFont(package->getL("data/fonts/Calibri", 25, { 255, 255, 255 }), "Version 1.0");
+    version.setFont(package->newFont("data/fonts/Calibri", 25, { 255, 255, 255 }), "Version 1.0");
     version.setArea(glm::vec2(1920 / 2, 100), ALIGNMENT::CENTER);
 
     // Load the play button set the font, text and location
-    backButton.setButtonTexture(package->getT("data/textures/back"));
+    backButton.setButtonTexture(package->newTexture("data/textures/back"));
     backButton.setArea(glm::vec4(10, 945, 125, 125), ALIGNMENT::RIGHT);
 
     // Load the background texture and make it fullscreen
-    background.setTexture(package->getT("data/textures/options"));
+    background.setTexture(package->newTexture("data/textures/options"));
     background.setArea(glm::vec4(0.0, 0.0, 1920, 1080));
 
     // finally create the 2D renderer

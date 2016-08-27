@@ -17,12 +17,6 @@
     <Filter Include="Core\Ai\Node">
       <UniqueIdentifier>{dde0b989-1ed4-43d6-82d4-9605fb0e1ed4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Input">
-      <UniqueIdentifier>{85a882af-731f-427e-8b85-f660adca91c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Input\Gamepad">
-      <UniqueIdentifier>{a5633237-656c-4fb9-8809-54f50292c609}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Graphics">
       <UniqueIdentifier>{9f8c9195-c615-4c29-971c-44478b097178}</UniqueIdentifier>
     </Filter>
@@ -176,10 +170,16 @@
     <Filter Include="Core\Systems\Timer">
       <UniqueIdentifier>{6ba1b2ca-865f-460e-b80d-3332979b550f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Graphics\Low Level\Input">
+      <UniqueIdentifier>{85a882af-731f-427e-8b85-f660adca91c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\Low Level\Input\Gamepad">
+      <UniqueIdentifier>{a5633237-656c-4fb9-8809-54f50292c609}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gamepad.cpp">
-      <Filter>Core\Input\Gamepad</Filter>
+      <Filter>Core\Graphics\Low Level\Input\Gamepad</Filter>
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Core\Physics</Filter>
@@ -319,7 +319,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gamepad.h">
-      <Filter>Core\Input\Gamepad</Filter>
+      <Filter>Core\Graphics\Low Level\Input\Gamepad</Filter>
     </ClInclude>
     <ClInclude Include="Ai.h">
       <Filter>Core\Ai</Filter>

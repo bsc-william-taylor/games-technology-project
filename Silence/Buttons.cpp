@@ -13,7 +13,7 @@ Buttons::~Buttons()
 
 void Buttons::create(LocalAssetManager * package)
 {
-    roarSound.open(package->getS("data/media/roar.mp3", Load));
+    roarSound.open(package->newAudio("data/media/roar.mp3", Load));
     this->package = package;
     load(active);
 }
@@ -25,15 +25,15 @@ void Buttons::load(int active)
 
     for (auto i = 0; i < 3; i++) 
     {
-        buttons[i].setButtonTexture(package->getT("data/textures/button"));
+        buttons[i].setButtonTexture(package->newTexture("data/textures/button"));
 
         if (active == i)
         {
-            buttons[i].setButtonText(package->getL("data/fonts/Calibri", 40, { 255, 0, 0 }), texts[i].c_str());
+            buttons[i].setButtonText(package->newFont("data/fonts/Calibri", 40, { 255, 0, 0 }), texts[i].c_str());
         }
         else
         {
-            buttons[i].setButtonText(package->getL("data/fonts/Calibri", 40, { 255, 255, 255 }), texts[i].c_str());
+            buttons[i].setButtonText(package->newFont("data/fonts/Calibri", 40, { 255, 255, 255 }), texts[i].c_str());
         }
 
         buttons[i].setArea(glm::vec4(300, y, 400, 225), ALIGNMENT::CENTER);

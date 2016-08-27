@@ -72,26 +72,26 @@ void Gameover::onEnter(int i)
 void Gameover::onCreate()
 {
     // Load all assets starting with the header
-    background.setTexture(package->getT("data/textures/menu3"));
+    background.setTexture(package->newTexture("data/textures/menu3"));
     background.setArea(glm::vec4(0, 0, 1920, 1080));
     
-    boxart.setTexture(package->getT("data/textures/box"));
+    boxart.setTexture(package->newTexture("data/textures/box"));
     boxart.setArea(glm::vec4(1100, 220, 700, 470));
 
-    header.setFont(package->getL("data/fonts/Calibri", 200, { 255, 255, 255 }), "Thanks for Playing");
+    header.setFont(package->newFont("data/fonts/Calibri", 200, { 255, 255, 255 }), "Thanks for Playing");
     header.setArea(glm::vec2(1920 / 2, 900), ALIGNMENT::CENTER);
 
     survivorTimer = ((Forest *)scenes->getScene((int)SceneID::Forest))->getForestTime();
     std::string timeSurvived = "Time Survived : " + toStrMaxDecimals(survivorTimer->elapsed(Seconds), 2).append("s");
 
-    time.setFont(package->getL("data/fonts/Calibri", 50, { 255, 255, 255 }), timeSurvived.c_str());
+    time.setFont(package->newFont("data/fonts/Calibri", 50, { 255, 255, 255 }), timeSurvived.c_str());
     time.setArea(glm::vec2(200, 550), ALIGNMENT::RIGHT);
 
-    message.setFont(package->getL("data/fonts/Calibri", 50, { 255, 255, 255 }), "Look for the full game sometime soon");
+    message.setFont(package->newFont("data/fonts/Calibri", 50, { 255, 255, 255 }), "Look for the full game sometime soon");
     message.setArea(glm::vec2(200, 450), ALIGNMENT::RIGHT);
 
-    back.setButtonTexture(package->getT("data/textures/button"));
-    back.setButtonText(package->getL("data/fonts/Calibri", 40, { 255, 255, 255 }), "Back to Menu");
+    back.setButtonTexture(package->newTexture("data/textures/button"));
+    back.setButtonText(package->newFont("data/fonts/Calibri", 40, { 255, 255, 255 }), "Back to Menu");
     back.setArea(glm::vec4(400, 200, 400, 225), ALIGNMENT::CENTER);
 
     renderer2D.createRenderer();
@@ -122,7 +122,7 @@ void Gameover::onGameEvent(SDL_Event& e)
 // nothing needs updating so this can be empty
 void Gameover::onUpdate()
 {
-    time.setFont(package->getL("data/fonts/Calibri", 50, { 255, 255, 255 }), timeSurvived.c_str());
+    time.setFont(package->newFont("data/fonts/Calibri", 50, { 255, 255, 255 }), timeSurvived.c_str());
     time.setArea(glm::vec2(200, 550), ALIGNMENT::RIGHT);
 }
 

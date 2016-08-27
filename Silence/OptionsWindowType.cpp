@@ -37,8 +37,8 @@ void OptionsWindowType::makeActive(unsigned int elementActiveID)
         colour2 = { 255, 255, 255 };
     }
     
-    windowModes[0].setButtonText(package->getL("data/fonts/Calibri", 40, colour1), "Windowed");
-    windowModes[1].setButtonText(package->getL("data/fonts/Calibri", 40, colour2 ), "Fullscreen");
+    windowModes[0].setButtonText(package->newFont("data/fonts/Calibri", 40, colour1), "Windowed");
+    windowModes[1].setButtonText(package->newFont("data/fonts/Calibri", 40, colour2 ), "Fullscreen");
 }
 
 void OptionsWindowType::onGamepadButton(int key, int state, int e)
@@ -62,15 +62,15 @@ void OptionsWindowType::create(LocalAssetManager * package)
 {
     this->package = package;
 
-    windowMode.setFont(package->getL("data/fonts/Calibri", 60, { 255, 255, 255 }), "Window Mode");
+    windowMode.setFont(package->newFont("data/fonts/Calibri", 60, { 255, 255, 255 }), "Window Mode");
     windowMode.setArea(glm::vec2(650, 700), ALIGNMENT::CENTER);
     
-    windowModes[0].setButtonTexture(package->getT("data/textures/button"));
-    windowModes[0].setButtonText(package->getL("data/fonts/Calibri", 40, { 255, 255, 255 }), "Windowed");
+    windowModes[0].setButtonTexture(package->newTexture("data/textures/button"));
+    windowModes[0].setButtonText(package->newFont("data/fonts/Calibri", 40, { 255, 255, 255 }), "Windowed");
     windowModes[0].setArea(glm::vec4(950, 600, 300, 200), ALIGNMENT::CENTER);
     
-    windowModes[1].setButtonTexture(package->getT("data/textures/button"));
-    windowModes[1].setButtonText(package->getL("data/fonts/Calibri", 40, { 255, 255, 255 }), "Fullscreen");
+    windowModes[1].setButtonTexture(package->newTexture("data/textures/button"));
+    windowModes[1].setButtonText(package->newFont("data/fonts/Calibri", 40, { 255, 255, 255 }), "Fullscreen");
     windowModes[1].setArea(glm::vec4(1250, 600, 300, 200), ALIGNMENT::CENTER);
 }
 

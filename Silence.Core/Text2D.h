@@ -61,9 +61,9 @@ public:
 
     std::string getText();
     // returns the ID for the texts texture
-    GPU_ID getTextureID();
+    GpuID getTextureID();
     // returns the ID for the vertex data
-    GPU_ID getDataID();
+    GpuID getDataID();
 private:
     std::string data;
 

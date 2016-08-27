@@ -43,8 +43,8 @@ Menu::Menu(OperatingSystem * system)
         "data/textures/button.png"
     });
 
-    menuMusic.open(package->getS("data/media/menu.wav", StreamLoop));
-    roar.open(package->getS("data/media/roar.mp3", Load));
+    menuMusic.open(package->newAudio("data/media/menu.wav", StreamLoop));
+    roar.open(package->newAudio("data/media/roar.mp3", Load));
 
     entered = false;
     exited = false;
