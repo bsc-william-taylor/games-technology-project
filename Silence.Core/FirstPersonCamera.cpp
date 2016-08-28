@@ -17,8 +17,10 @@ FirstPersonCamera::FirstPersonCamera()
     for (auto i = 0; i < 4; i++) 
     {
         keys[i] = FALSE;
+
         if (i < 2) 
         {
+            axisV[i] = 0.0;
             axis[i] = FALSE;
         }
     }
@@ -37,9 +39,15 @@ FirstPersonCamera::FirstPersonCamera(Camera * camera)
     enabled = true;
     gamepadEnabled = false;
 
-    for (int i = 0; i < 4; i++) {
+    for (auto i = 0; i < 4; i++) 
+    {
         keys[i] = FALSE;
-        if (i < 2) axis[i] = FALSE;
+
+        if (i < 2)
+        {
+            axisV[i] = 0.0;
+            axis[i] = FALSE;
+        }
     }
 
     translate = glm::vec3(0.0, -1000.0f, 0.0);

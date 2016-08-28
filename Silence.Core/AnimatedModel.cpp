@@ -1,9 +1,8 @@
 
 #include "AnimatedModel.h"
 #include "TextureAsset.h"
-#include "HighPrecisionTimer.h"
 
-md2vec3 anorms_table[162] = {
+MD2Vec3 anorms_table[162] = {
 #include "AnimatedNormals.h"
 };
 
@@ -44,7 +43,7 @@ AnimatedModel::AnimatedModel(const char * fn, const char * fn1)
 {
     min = Vertex(1000000, 1000000, 1000000);
     max = Vertex(-1000000, -1000000, -1000000);
-    ReadMD2Model(fn, fn1);
+    readModel(fn, fn1);
     currentAnim = 0;
     currentFrame = 0;
     nextFrame = 1;
@@ -53,14 +52,13 @@ AnimatedModel::AnimatedModel(const char * fn, const char * fn1)
 
 AnimatedModel::~AnimatedModel()
 {
-    FreeModel();
-    int i;
+    freeModel();
 
     SAFE_RELEASE(vertTransfer);
     SAFE_RELEASE(texture);
     SAFE_RELEASE(sampler);
 
-    for (i = 0; i<mdl.header.num_frames; ++i) 
+    for (auto i = 0; i<mdl.header.num_frames; ++i)
     {
         delete[] vertData[i];
     }
@@ -68,14 +66,13 @@ AnimatedModel::~AnimatedModel()
     delete[] animVerts;
 }
 
-/**
-* Load an MD2 model from file.
-*
-* Note: MD2 format stores model's data in little-endian ordering.  On
-* big-endian machines, you'll have to perform proper conversions.
-*/
-GLuint AnimatedModel::ReadMD2Model(const char *filename, const char * nm)
+void AnimatedModel::readModel(const char *filename, const char * nm)
 {
+    //if(!texture && !sampler)
+    {
+        //return;
+    }
+
     texture = new TextureAsset("no-name");
     texture->grabFromFile(nm);
 
@@ -91,85 +88,67 @@ GLuint AnimatedModel::ReadMD2Model(const char *filename, const char * nm)
 
     sampler->send();
 
-    FILE *fp;
-    int i;
+    auto fp = fopen(filename, "rb");
 
-    fp = fopen(filename, "rb");
     if (!fp)
     {
         fprintf(stderr, "Error: couldn't open \"%s\"!\n", filename);
-        return 0;
+        return;
     }
 
-    /* Read header */
-    fread(&mdl.header, 1, sizeof(struct md2_header_t), fp);
+    fread(&mdl.header, 1, sizeof(struct MD2Header), fp);
 
-    if ((mdl.header.ident != 844121161) ||
-        (mdl.header.version != 8))
+    if ((mdl.header.ident != 844121161) || (mdl.header.version != 8))
     {
-        /* Error! */
         fprintf(stderr, "Error: bad version or identifier\n");
         fclose(fp);
-        return 0;
+        return;
     }
 
-    /* Memory allocations */
-    mdl.skins = (struct md2_skin_t *)malloc(sizeof(struct md2_skin_t) * mdl.header.num_skins);
-    mdl.texcoords = (struct md2_texCoord_t *)malloc(sizeof(struct md2_texCoord_t) * mdl.header.num_st);
-    mdl.triangles = (struct md2_triangle_t *)malloc(sizeof(struct md2_triangle_t) * mdl.header.num_tris);
-    mdl.frames = (struct md2_frame_t *)malloc(sizeof(struct md2_frame_t) * mdl.header.num_frames);
+    mdl.skins = (struct MD2Skin *)malloc(sizeof(struct MD2Skin) * mdl.header.num_skins);
+    mdl.texcoords = (struct MD2TexCoord *)malloc(sizeof(struct MD2TexCoord) * mdl.header.num_st);
+    mdl.triangles = (struct MD2Triangle *)malloc(sizeof(struct MD2Triangle) * mdl.header.num_tris);
+    mdl.frames = (struct MD2Frame *)malloc(sizeof(struct MD2Frame) * mdl.header.num_frames);
     mdl.glcmds = (int *)malloc(sizeof(int) * mdl.header.num_glcmds);
 
-    /* Read model data */
     fseek(fp, mdl.header.offset_skins, SEEK_SET);
-    fread(mdl.skins, sizeof(struct md2_skin_t), mdl.header.num_skins, fp);
+    fread(mdl.skins, sizeof(struct MD2Skin), mdl.header.num_skins, fp);
 
     fseek(fp, mdl.header.offset_st, SEEK_SET);
-    fread(mdl.texcoords, sizeof(struct md2_texCoord_t), mdl.header.num_st, fp);
+    fread(mdl.texcoords, sizeof(struct MD2TexCoord), mdl.header.num_st, fp);
 
     fseek(fp, mdl.header.offset_tris, SEEK_SET);
-    fread(mdl.triangles, sizeof(struct md2_triangle_t), mdl.header.num_tris, fp);
+    fread(mdl.triangles, sizeof(struct MD2Triangle), mdl.header.num_tris, fp);
 
     fseek(fp, mdl.header.offset_glcmds, SEEK_SET);
     fread(mdl.glcmds, sizeof(int), mdl.header.num_glcmds, fp);
 
-    /* Read frames */
     fseek(fp, mdl.header.offset_frames, SEEK_SET);
-    for (i = 0; i < mdl.header.num_frames; ++i)
-    {
-        /* Memory allocation for vertices of this frame */
-        mdl.frames[i].verts = (struct md2_vertex_t *)
-            malloc(sizeof(struct md2_vertex_t) * mdl.header.num_vertices);
 
-        /* Read frame data */
-        fread(mdl.frames[i].scale, sizeof(md2vec3), 1, fp);
-        fread(mdl.frames[i].translate, sizeof(md2vec3), 1, fp);
+    for (auto i = 0; i < mdl.header.num_frames; ++i)
+    {
+        mdl.frames[i].verts = (struct MD2Vertex *)malloc(sizeof(struct MD2Vertex) * mdl.header.num_vertices);
+
+        fread(mdl.frames[i].scale, sizeof(MD2Vec3), 1, fp);
+        fread(mdl.frames[i].translate, sizeof(MD2Vec3), 1, fp);
         fread(mdl.frames[i].name, sizeof(char), 16, fp);
-        fread(mdl.frames[i].verts, sizeof(struct md2_vertex_t),
-            mdl.header.num_vertices, fp);
+        fread(mdl.frames[i].verts, sizeof(struct MD2Vertex), mdl.header.num_vertices, fp);
     }
 
     fclose(fp);
 
-    // now generate VBO data and create mesh
-    // then save the data we actually need and free all the stuff we no longer need
-    // this is required to allow the correct generation of normals etc
-
-    int j;
     GLfloat s, t;
-    md2vec3 v, *norm;
-    struct md2_frame_t *pframe;
-    struct md2_vertex_t *pvert;
-
+    MD2Vec3 v, *norm;
+    struct MD2Frame *pframe;
+    struct MD2Vertex *pvert;
     Vertices normals;
     Vertices tex_coords;
-
     pframe = &mdl.frames[0]; // first frame
 
-    for (i = 0; i < mdl.header.num_tris; ++i)
+    for (auto i = 0; i < mdl.header.num_tris; ++i)
     {
         // For each vertex 
-        for (j = 0; j < 3; ++j)
+        for (auto j = 0; j < 3; ++j)
         {
             tex_coords.push_back(glm::vec3((GLfloat)mdl.texcoords[mdl.triangles[i].st[j]].s / mdl.header.skinwidth, (GLfloat)mdl.texcoords[mdl.triangles[i].st[j]].t / mdl.header.skinheight, 0.0));
 
@@ -189,16 +168,15 @@ GLuint AnimatedModel::ReadMD2Model(const char *filename, const char * nm)
     }
 
     // now repeat for each frame...
-    int k = 0;
     GLfloat *verts;
     vertDataSize = mdl.header.num_tris * 9;
-    for (k = 0; k<mdl.header.num_frames; ++k) {
+    for (auto k = 0; k<mdl.header.num_frames; ++k) {
         verts = new GLfloat[vertDataSize];
         pframe = &mdl.frames[k]; // first frame
-        for (i = 0; i < mdl.header.num_tris; ++i)
+        for (auto i = 0; i < mdl.header.num_tris; ++i)
         {
             // For each vertex 
-            for (j = 0; j < 3; ++j)
+            for (auto j = 0; j < 3; ++j)
             {
                 // get current vertex
                 pvert = &pframe->verts[mdl.triangles[i].vertex[j]];
@@ -214,10 +192,8 @@ GLuint AnimatedModel::ReadMD2Model(const char *filename, const char * nm)
                     );
             }
 
-            int start = vertices.size() - 3;
-
+            //int start = vertices.size() - 3;
             //normals.push_back(glm::cross(vertices[start+1] - vertices[start], vertices[start + 2] - vertices[start]));	//glm::cross(v2 - v1, v3 - v1);
-
             //normals.push_back(glm::cross(vertices[start] - vertices[start+1], vertices[start + 2] - vertices[start+1])); //glm::cross(v2 - v1, v3 - v1);
             //normals.push_back(glm::cross(vertices[start] - vertices[start+2], vertices[start + 1] - vertices[start+2]));
         }
@@ -225,7 +201,6 @@ GLuint AnimatedModel::ReadMD2Model(const char *filename, const char * nm)
         vertData.push_back(verts);
     }
 
-    // initialise animVerts with frame 0 data
     animVerts = new GLfloat[vertDataSize];
     memcpy(animVerts, vertData[0], vertDataSize*sizeof(float));
 
@@ -236,15 +211,14 @@ GLuint AnimatedModel::ReadMD2Model(const char *filename, const char * nm)
     vertTransfer->send();
 
     this->verts.reserve(vertDataSize / 3);
-    FreeModel();
-    return NULL;
+    freeModel();
 }
 
 glm::vec3 AnimatedModel::getCenter(glm::mat4 mat)
 {
     for (auto& vb : vertices)
     {
-        glm::vec3 v = glm::vec3(mat * glm::vec4(vb, 1.0));
+        auto v = glm::vec3(mat * glm::vec4(vb, 1.0));
 
         if (v.x < min.x)	min.x = v.x;
         if (v.y < min.y)	min.y = v.y;
@@ -259,10 +233,11 @@ glm::vec3 AnimatedModel::getCenter(glm::mat4 mat)
 
 SolidBox * AnimatedModel::createbox(glm::mat4 mat)
 {
-    SolidBox * solid = new SolidBox();
+    const auto solid = new SolidBox();
+
     for (auto& vb : vertices)
     {
-        glm::vec3 v = glm::vec3(mat * glm::vec4(vb, 1.0));
+        auto v = glm::vec3(mat * glm::vec4(vb, 1.0));
 
         if (v.x < min.x)	min.x = v.x;
         if (v.y < min.y)	min.y = v.y;
@@ -277,58 +252,56 @@ SolidBox * AnimatedModel::createbox(glm::mat4 mat)
     return solid;
 }
 
-void AnimatedModel::FreeModel()
+void AnimatedModel::freeModel()
 {
-    int i;
-
     if (mdl.skins)
     {
         free(mdl.skins);
-        mdl.skins = NULL;
+        mdl.skins = nullptr;
     }
 
     if (mdl.texcoords)
     {
         free(mdl.texcoords);
-        mdl.texcoords = NULL;
+        mdl.texcoords = nullptr;
     }
 
     if (mdl.triangles)
     {
         free(mdl.triangles);
-        mdl.triangles = NULL;
+        mdl.triangles = nullptr;
     }
 
     if (mdl.glcmds)
     {
         free(mdl.glcmds);
-        mdl.glcmds = NULL;
+        mdl.glcmds = nullptr;
     }
 
     if (mdl.frames)
     {
-        for (i = 0; i < mdl.header.num_frames; ++i)
+        for (auto i = 0; i < mdl.header.num_frames; ++i)
         {
             free(mdl.frames[i].verts);
-            mdl.frames[i].verts = NULL;
+            mdl.frames[i].verts = nullptr;
         }
 
         free(mdl.frames);
-        mdl.frames = NULL;
+        mdl.frames = nullptr;
     }
 }
 
-void AnimatedModel::ResetAnimation()
+void AnimatedModel::resetAnimation()
 {
     interp = 0.0;
 }
 
-void AnimatedModel::Animate(int animation, float dt)
+void AnimatedModel::animate(int animation, float dt)
 {
-    int start = animFrameList[animation * 2];
-    int end = animFrameList[animation * 2 + 1];
+    auto start = animFrameList[animation * 2];
+    auto end = animFrameList[animation * 2 + 1];
 
-    if ((currentFrame < start) || (currentFrame > end))
+    if (currentFrame < start || currentFrame > end)
     {
         currentFrame = start;
         nextFrame = start + 1;
@@ -338,14 +311,14 @@ void AnimatedModel::Animate(int animation, float dt)
 
     if (interp >= 1.0f)
     {
-
-        // Move to next frame 
         interp = 0.0f;
         currentFrame = nextFrame;
         nextFrame++;
 
         if (nextFrame >= end + 1)
+        {
             nextFrame = start;
+        }
     }
 
 
@@ -355,7 +328,8 @@ void AnimatedModel::Animate(int animation, float dt)
     }
     else
     {
-        for (auto i = 0; i < vertDataSize; i += 3) {
+        for (auto i = 0; i < vertDataSize; i += 3)
+        {
             animVerts[i + 0] = vertData[currentFrame][i + 0] + interp*(vertData[nextFrame][i + 0] - vertData[currentFrame][i + 0]);
             animVerts[i + 1] = vertData[currentFrame][i + 1] + interp*(vertData[nextFrame][i + 1] - vertData[currentFrame][i + 1]);
             animVerts[i + 2] = vertData[currentFrame][i + 2] + interp*(vertData[nextFrame][i + 2] - vertData[currentFrame][i + 2]);
@@ -369,8 +343,43 @@ void AnimatedModel::Animate(int animation, float dt)
     }
 }
 
-void AnimatedModel::Cycle()
+void AnimatedModel::cycle()
 {
     currentFrame = 0;
     nextFrame = 1;
+}
+
+void AnimatedModel::animate(float dt)
+{
+    animate(currentAnim, dt);
+}
+
+GLfloat* AnimatedModel::getAnimVerts()
+{
+    return animVerts;
+}
+
+GLuint AnimatedModel::getVertDataSize()
+{
+    return vertDataSize;
+}
+
+GLuint AnimatedModel::getVertDataCount()
+{
+    return vertDataSize / 3;
+}
+
+GLuint AnimatedModel::getTextureID()
+{
+    return sampler->getID();
+}
+
+GLuint AnimatedModel::getVertexID()
+{
+    return vertTransfer->getID();
+}
+
+GLuint AnimatedModel::getCurrentAnim()
+{
+    return currentAnim;
 }

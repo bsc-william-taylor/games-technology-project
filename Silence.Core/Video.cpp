@@ -1,7 +1,17 @@
 
 #include "Video.h"
 
-Video::Video()
+
+Video::Video() :
+    videoDisplayControl(nullptr),
+    mediaControl(nullptr),
+    graphBuilder(nullptr),
+    mediaSeeking(nullptr),
+    mediaEvents(nullptr),
+    evrBaseFilter(nullptr),
+    wndHwnd(nullptr),
+    show(true),
+    playbackState(StateNoGraph)
 {
 }
 
@@ -147,15 +157,24 @@ HRESULT Video::AddFilterByCLSID(IGraphBuilder *pGraph, REFGUID clsid, IBaseFilte
 
 void Video::unload()
 {
-    graphBuilder->Release();
-    mediaControl->Release();
-    mediaSeeking->Release();
-
-    mediaEvents->SetNotifyWindow((OAHWND)nullptr, 0, 0);
-    mediaEvents->Release();
-
-    videoDisplayControl->Release();
-    evrBaseFilter->Release();
+    if(graphBuilder && mediaControl && mediaSeeking)
+    {
+        graphBuilder->Release();
+        mediaControl->Release();
+        mediaSeeking->Release();
+    }
+    
+    if(mediaEvents)
+    {
+        mediaEvents->SetNotifyWindow((OAHWND)nullptr, 0, 0);
+        mediaEvents->Release();
+    }
+   
+    if(videoDisplayControl && evrBaseFilter)
+    {
+        videoDisplayControl->Release();
+        evrBaseFilter->Release();
+    }
 }
 
 void Video::streamFrom(std::string f)

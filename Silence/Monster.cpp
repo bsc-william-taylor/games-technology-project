@@ -134,7 +134,7 @@ void Monster::render(ForwardRenderer& renderer)
     if (updated) 
     {
         alpha = 1.0;
-        enemy->Animate(1, 0.1);
+        enemy->animate(1, 0.1);
     }
     else 
     {
