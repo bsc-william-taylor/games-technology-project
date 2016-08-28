@@ -68,9 +68,9 @@ AnimatedModel::~AnimatedModel()
 
 void AnimatedModel::readModel(const char *filename, const char * nm)
 {
-    //if(!texture && !sampler)
+    if(!texture && !sampler)
     {
-        //return;
+        return;
     }
 
     texture = new TextureAsset("no-name");
@@ -84,7 +84,7 @@ void AnimatedModel::readModel(const char *filename, const char * nm)
         texture->getHeight(),
         texture->getBPP(),
         texture->getMask()
-        );
+    );
 
     sampler->send();
 
