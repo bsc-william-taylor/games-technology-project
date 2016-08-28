@@ -1,34 +1,8 @@
 
-/**
-*
-* Copyright (c) 2014 : William Taylor : wi11berto@yahoo.co.uk
-*
-* This software is provided 'as-is', without any
-* express or implied warranty. In no event will
-* the authors be held liable for any damages
-* arising from the use of this software.
-*
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute
-* it freely, subject to the following restrictions:
-*
-* 1. The origin of this software must not be misrepresented;
-*    you must not claim that you wrote the original software.
-*    If you use this software in a product, an acknowledgment
-*    in the product documentation would be appreciated but
-*    is not required.
-*
-* 2. Altered source versions must be plainly marked as such,
-*    and must not be misrepresented as being the original software.
-*
-* 3. This notice may not be removed or altered from any source distribution.
-*/
-
 #include "DeferredOutputShader.h"
 
-// Constructor & Deconstructor
 DeferredOutputShader::DeferredOutputShader()
-    : program(NULL)
+    : program(nullptr)
 {
 }
 
@@ -39,12 +13,9 @@ DeferredOutputShader::~DeferredOutputShader()
 
 void DeferredOutputShader::compile()
 {
-    // Make sure we only compile once
-    if (program == NULL)
+    if (program == nullptr)
     {
-        // Create the GPU program object
         program = new GPU_Program();
-        // Set the vertex source for the program
         program->setVertexSource(SRC(
             layout(location = 0) in vec3 positions;
             layout(location = 1) in vec3 normals;
@@ -59,7 +30,6 @@ void DeferredOutputShader::compile()
             }
         ));
 
-        // Set the fragment source for the program
         program->setFragmentSource(SRC(
             layout(location = 0) out vec4 fragment_colour;
 
@@ -148,7 +118,6 @@ void DeferredOutputShader::compile()
             }
         ));
 
-        // then compile the program
         if (!program->compile())
         {
             throw Error(Component::System, "couldnt compile deferred output shader");
@@ -159,42 +128,33 @@ void DeferredOutputShader::compile()
 void DeferredOutputShader::runIndex(int ID, int indicesSize)
 {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
-    glDrawElements(GL_TRIANGLES, indicesSize, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, indicesSize, GL_UNSIGNED_INT, nullptr);
 }
  
-// runs the program drawing vertexCount number of vertices
 void DeferredOutputShader::run(int vertexCount)
 {
     program->run(vertexCount);
 }
 
-// runs the program drawing the vertices through i to x
 void DeferredOutputShader::run(int i, int x)
 {
     program->run(i, x);
 }
 
-// prepares the program for execution
 void DeferredOutputShader::prepare(int ID)
 {
-    // prepares the object by binding an ID 
     program->prepare(ID);
 
-    // get the programs ID
-    GLuint programID = program->getID();
-
-    // bind the multiple textures needed for 
+    GLuint programID = program->getID(); 
     GLuint positionT = glGetUniformLocation(programID, "PositionTexture");
     GLuint normalT = glGetUniformLocation(programID, "NormalTexture");
     GLuint colourT = glGetUniformLocation(programID, "ColourTexture");
     
-    // then bind the texture IDs
     glUniform1i(positionT, 0);
     glUniform1i(normalT, 1);
     glUniform1i(colourT, 2);
 }
 
-// returns a pointer to the LLGI program object
 GPU_Program * DeferredOutputShader::getProgram()
 {
     return program;

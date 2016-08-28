@@ -9,7 +9,6 @@ Lights::Lights()
 
 Lights::~Lights()
 {
-
 }
 
 void Lights::pushDirectionalLight(DirectionalLight * directionalLight)
@@ -29,17 +28,20 @@ void Lights::pushSpotLight(SpotLight * spot)
 
 void Lights::sendLights(glm::vec3 cameraPosition, glm::vec3 cameraDirection, GPU_Program * p)
 {
-    if (directionalLight != nullptr) {
+    if (directionalLight != nullptr) 
+    {
         directionalLight->send(p);
     }
 
-    if (spotLight != nullptr) {
+    if (spotLight != nullptr) 
+    {
         spotLight->setPosition(cameraPosition);
         spotLight->setDirection(cameraDirection);
         spotLight->send(p);
     }
 
-    for (int i = 0; i < pointLights.size(); i++) {
+    for (auto i = 0; i < pointLights.size(); i++) 
+    {
         pointLights[i]->send(p, i);
     }
 }

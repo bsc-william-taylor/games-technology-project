@@ -2,6 +2,7 @@
 #include "DirectionalLight.h"
 
 DirectionalLight::DirectionalLight()
+    : directionalLightActive(true)
 {
     direction = glm::vec3(0.0, -1.0, 0.0);
     colour = glm::vec3(1.0, 1.0, 1.0);
@@ -23,7 +24,7 @@ void DirectionalLight::setColour(glm::vec3 colour)
 
 void DirectionalLight::send(GPU_Program * p)
 {
-    GLuint ID = p->getID();
+    auto ID = p->getID();
 
     if (ID != NULL && directionalLightActive)
     {
@@ -34,16 +35,16 @@ void DirectionalLight::send(GPU_Program * p)
 
     if (ID != NULL && !directionalLightActive)
     {
-        glUniform1f(glGetUniformLocation(ID, "sceneLight.active"), NULL);
+        glUniform1f(glGetUniformLocation(ID, "sceneLight.active"), 0);
     }
 }
 
 void DirectionalLight::turnOff()
 {
-    this->directionalLightActive = 0;
+    this->directionalLightActive = false;
 }
 
 void DirectionalLight::turnOn()
 {
-    this->directionalLightActive = 1;
+    this->directionalLightActive = true;
 }

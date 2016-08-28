@@ -118,7 +118,7 @@ void Indoors::onCreate()
     hints.create(package);
 
     // then set the initial camera for the scene and its position & the direction light
-    renderer3D.changeCamera(FIRST_PERSON);
+    renderer3D.changeCamera(CameraType::FirstPerson);
     renderer3D.setCameraArea(glm::vec4(-75.0f, -25.0f, 75.0, 25.0f));
     renderer3D.setCameraPosition(glm::vec3(0.0, 13.0, -25.0));
 

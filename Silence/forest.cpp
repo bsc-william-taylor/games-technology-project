@@ -90,7 +90,7 @@ void Forest::onCreate()
     
     // then set the initial camera for the scene and its position & the direction light
     renderer3D.createRenderer();
-    renderer3D.changeCamera(FIRST_PERSON);
+    renderer3D.changeCamera(CameraType::FirstPerson);
     renderer3D.setCameraDirection(180, 0);
     renderer3D.setCameraArea(glm::vec4(-7500.0f, -2500.0f, 7500.0, 2500.0f));
     renderer3D.setCameraPosition(glm::vec3(0.0, 8.0, -35.0));

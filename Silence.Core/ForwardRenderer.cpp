@@ -33,7 +33,7 @@ ForwardRenderer::ForwardRenderer()
     // setup the default camera for the renderer
     sceneCamera = new DefaultCamera();
     // the camera type
-    cameraType = DEFAULT_CAMERA;
+    cameraType = CameraType::DefaultCamera;
     fogEnabled = false;
 }
 
@@ -241,20 +241,20 @@ void ForwardRenderer::setModelMatrix(GPU_Matrices& matrices)
 
 
 // This function changes the camera type via the CAMERA enum
-void ForwardRenderer::changeCamera(CAMERA newCamera)
+void ForwardRenderer::changeCamera(CameraType newCamera)
 {
     // figure out which camera to change to
     switch (newCamera)
     {
         // if a first person camera
-        case FIRST_PERSON:
+        case CameraType::FirstPerson:
         {
             // allocate the new camera with a copy constructor
             auto newSceneCamera = new FirstPersonCamera(sceneCamera);
             SAFE_RELEASE(sceneCamera);
             sceneCamera = newSceneCamera;
             // and change the type variable
-            cameraType = FIRST_PERSON;
+            cameraType = CameraType::FirstPerson;
             break;
         }
 
@@ -270,7 +270,7 @@ void ForwardRenderer::setCameraPosition(glm::vec3 positions)
 }
 
 // returns teh type of camera being used
-CAMERA ForwardRenderer::getCameraType()
+CameraType ForwardRenderer::getCameraType()
 {
     return cameraType;
 }

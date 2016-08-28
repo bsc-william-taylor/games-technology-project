@@ -7,11 +7,9 @@
 
 class SILENCE_EXPORT Lights
 {
-private:
+    std::vector<PointLight *> pointLights;
     DirectionalLight * directionalLight;
     SpotLight * spotLight;
-
-    std::vector<PointLight *> pointLights;
 public:
     Lights();
     ~Lights();

@@ -14,8 +14,7 @@ LocalAssetManager::~LocalAssetManager()
 
 TextureAsset * LocalAssetManager::newTexture(std::string filename)
 {
-    const auto predicate = [&](TextureAsset* texture)
-    {
+    const auto predicate = [&](TextureAsset* texture) {
         return texture->getName() == filename;
     };
 
@@ -52,10 +51,9 @@ ModelAsset * LocalAssetManager::newModel(std::string filename)
 {
     auto predicate = [&](ModelAsset * m) { return m->getName() == filename; };
     auto models = assets->getModels();
-    auto begin = models.begin();
     auto end = models.end();
 
-    auto iterator = std::find_if(begin, end, predicate);
+    auto iterator = std::find_if(models.begin(), end, predicate);
 
     return iterator == end ? nullptr : *iterator;
 }
@@ -64,10 +62,9 @@ AudioAsset * LocalAssetManager::newAudio(std::string filename)
 {
     auto predicate = [&](AudioAsset * a) { return a->getName() == filename; };
     auto audioFiles = assets->getAudio();
-    auto begin = audioFiles.begin();
     auto end = audioFiles.end();
     
-    auto iterator = std::find_if(begin, end, predicate);
+    auto iterator = std::find_if(audioFiles.begin(), end, predicate);
 
     return iterator == end ? nullptr : *iterator;
 ;
@@ -77,10 +74,9 @@ FontAsset * LocalAssetManager::newFont(std::string font, int sz, SDL_Color c)
 {
     auto predicate = [&](FontAsset * f) { return f->getName() == font; };
     auto fonts = assets->getFonts();
-    auto begin = fonts.begin();
     auto end = fonts.end();
 
-    const auto iterator = std::find_if(begin, end, predicate);
+    const auto iterator = std::find_if(fonts.begin(), end, predicate);
     
     if(iterator == end)
     {
@@ -95,38 +91,36 @@ FontAsset * LocalAssetManager::newFont(std::string font, int sz, SDL_Color c)
 
 int LocalAssetManager::grab(std::initializer_list<std::string> list)
 {
-    auto start = filenames.size();
     auto loads = 0;
-
     filenames.insert(filenames.end(), list.begin(), list.end());
     
-    for (int i = start; i < filenames.size(); i++)
+    for(auto& filename : filenames)
     {
-        auto str = filenames[i].substr(filenames[i].length() - 4);
-        auto nm = filenames[i].substr(0, filenames[i].length() - 4);
-  
+        auto str = filename.substr(filename.length() - 4);
+        auto nm = filename.substr(0, filename.length() - 4);
+
         if (assets->checkTexture(str, nm))
         {
             const auto texture = new TextureAsset(nm);
-            texture->grabFromFile(filenames[i].c_str());
+            texture->grabFromFile(filename.c_str());
             assets->push(texture);
             ++loads;
         }
-        else if (assets->checkLabel(str, nm)) 
+        else if (assets->checkLabel(str, nm))
         {
             const auto font = new FontAsset(nm);
-            font->grabFromFile(filenames[i].c_str());
+            font->grabFromFile(filename.c_str());
             assets->push(font);
             ++loads;
-        } 
+        }
         else if (assets->checkModel(str, nm))
         {
             const auto model = new ModelAsset(nm);
-            model->grabFromFile(filenames[i].c_str());
+            model->grabFromFile(filename.c_str());
             assets->push(model);
             ++loads;
         }
     }
 
-    return(loads);
+    return loads;
 }

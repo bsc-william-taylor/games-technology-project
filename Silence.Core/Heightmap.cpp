@@ -364,3 +364,8 @@ void Heightmap::create(TextureAsset * file, std::string heightmapFilename, float
     vertexCount = list.size();
     FreeImage_Unload(bitmap);
 }
+
+GLfloat Heightmap::getScale() 
+{
+    return scale;
+}

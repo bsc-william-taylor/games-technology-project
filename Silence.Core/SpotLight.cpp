@@ -1,44 +1,45 @@
 
 #include "SpotLight.h"
 
-SpotLight::SpotLight()
+SpotLight::SpotLight() :
+    spotLightActive(true),
+    linearAttrib(0.0),
+    coneCosine(0.0)
 {
-
 }
 
 SpotLight::~SpotLight()
 {
-    
 }
 
 void SpotLight::setDirection(glm::vec3 direction)
 {
-    this->spotDirection = glm::normalize(direction);
+    spotDirection = glm::normalize(direction);
 }
 
 void SpotLight::setPosition(glm::vec3 position)
 {
-    this->spotPosition = position;
+    spotPosition = position;
 }
 
 void SpotLight::setColour(glm::vec3 colour)
 {
-    this->spotColour = colour;
+    spotColour = colour;
 }
 
 void SpotLight::setAttribuation(float attr)
 {
-    this->linearAttrib = attr;
+    linearAttrib = attr;
 }
 
 void SpotLight::setConeAngle(float angle)
 {
-    this->coneCosine = cos(angle * 3.1415 / 180.0);
+    coneCosine = cos(angle * 3.1415 / 180.0);
 }
 
 void SpotLight::send(GPU_Program * p)
 {
-    GLuint ID = p->getID();
+    auto ID = p->getID();
 
     if (ID != NULL && spotLightActive)
     {
@@ -65,10 +66,10 @@ void SpotLight::toggle()
 
 void SpotLight::turnOff()
 {
-    this->spotLightActive = false;
+    spotLightActive = false;
 }
 
 void SpotLight::turnOn()
 {
-    this->spotLightActive = true;
+    spotLightActive = true;
 }

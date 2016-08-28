@@ -4,11 +4,11 @@
 #include "EngineLayer.h"
 #include "GPU.h"
 
-class SILENCE_EXPORT DirectionalLight {
+class SILENCE_EXPORT DirectionalLight 
+{
+    bool directionalLightActive;
     glm::vec3 direction;
     glm::vec3 colour;
-
-    int directionalLightActive;
 public:
     DirectionalLight();
     ~DirectionalLight();

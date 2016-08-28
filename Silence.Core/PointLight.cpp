@@ -1,14 +1,13 @@
 
 #include "PointLight.h"
 
-PointLight::PointLight()
+PointLight::PointLight() :
+    pointLightActive(true)
 {
-
 }
 
 PointLight::~PointLight()
 {
-
 }
 
 void PointLight::setPosition(glm::vec3 position)
@@ -28,9 +27,8 @@ void PointLight::setAttribuation(glm::vec4 attr)
 
 void PointLight::send(GPU_Program * p, int index)
 {
-    GLuint ID = p->getID();
-
-    std::string sID = "pointLights[" + std::to_string(index) + "].";
+    auto sID = "pointLights[" + std::to_string(index) + "].";
+    auto ID = p->getID();
 
     if (ID != NULL && pointLightActive)
     {
@@ -53,10 +51,10 @@ void PointLight::toggle()
 
 void PointLight::turnOff()
 {
-    this->pointLightActive = false;
+    pointLightActive = false;
 }
 
 void PointLight::turnOn()
 {
-    this->pointLightActive = true;
+    pointLightActive = true;
 }

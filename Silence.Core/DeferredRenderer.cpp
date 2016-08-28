@@ -37,7 +37,7 @@ DeferredRenderer::DeferredRenderer()
     lightPosition = glm::vec3(1.0, 0.0, 0.0);
     lightColour = glm::vec3(0.4, 0.4, 0.4);
     // the camera type
-    cameraType = DEFAULT_CAMERA;
+    cameraType = CameraType::DefaultCamera;
 }
 
 DeferredRenderer::~DeferredRenderer()
@@ -397,20 +397,20 @@ void DeferredRenderer::setMatrixForObject(const char * name, glm::mat4& mat)
 }
 
 // This function changes the camera type via the CAMERA enum
-void DeferredRenderer::changeCamera(CAMERA newCamera)
+void DeferredRenderer::changeCamera(CameraType newCamera)
 {
     // figure out which camera to change to
     switch (newCamera) 
     {
         // if a first person camera
-        case FIRST_PERSON:
+        case CameraType::FirstPerson:
         {
             // allocate the new camera with a copy constructor
             auto newSceneCamera = new FirstPersonCamera(sceneCamera);
             SAFE_RELEASE(sceneCamera);
             sceneCamera = newSceneCamera;
             // and change the type variable
-            cameraType = FIRST_PERSON;
+            cameraType = CameraType::FirstPerson;
             break;
         }
 
@@ -426,7 +426,7 @@ void DeferredRenderer::setCameraPosition(glm::vec3 positions)
 }
 
 // returns teh type of camera being used
-CAMERA DeferredRenderer::getCameraType()
+CameraType DeferredRenderer::getCameraType()
 {
     return cameraType;
 }

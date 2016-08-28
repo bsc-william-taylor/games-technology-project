@@ -1,29 +1,4 @@
 
-/**
-*
-* Copyright (c) 2014 : William Taylor : wi11berto@yahoo.co.uk
-*
-* This software is provided 'as-is', without any
-* express or implied warranty. In no event will
-* the authors be held liable for any damages
-* arising from the use of this software.
-*
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute
-* it freely, subject to the following restrictions:
-*
-* 1. The origin of this software must not be misrepresented;
-*    you must not claim that you wrote the original software.
-*    If you use this software in a product, an acknowledgment
-*    in the product documentation would be appreciated but
-*    is not required.
-*
-* 2. Altered source versions must be plainly marked as such,
-*    and must not be misrepresented as being the original software.
-*
-* 3. This notice may not be removed or altered from any source distribution.
-*/
-
 #include "PerFragmentShader.h"
 
 const char * fragSource = SRC(
@@ -66,7 +41,6 @@ const char * fragSource = SRC(
     uniform float density = 0.0125;
     uniform float start = 1.0;
     uniform float end = 200.0;
-
 
     uniform int pointLightsCount;
     uniform int texture_count;
@@ -163,9 +137,8 @@ const char * fragSource = SRC(
 );
 
 
-// Constructor & Deconstructor
 PerFragmentShader::PerFragmentShader()
-    : program(NULL)
+    : program(nullptr)
 {
 }
 
@@ -176,15 +149,10 @@ PerFragmentShader::~PerFragmentShader()
 
 void PerFragmentShader::compile()
 {
-    // make sure the program only compiles once
     if (!program)
     {
-        // create the LLGI program object
         program = new GPU_Program();
-        // then set the fragment source for the shader
         program->setFragmentSource(fragSource);
-
-        // set the vertex source for the shader
         program->setVertexSource(SRC(
             layout(location = 0) in vec3 positions;
             layout(location = 1) in vec3 normals;
@@ -227,10 +195,9 @@ void PerFragmentShader::compile()
             }
         ));
 
-        // compiles the shader source and throws exception is it fails
         if (!program->compile())
         {
-            throw Error(Component::System, "couldnt compile per fragment shader shader");
+            throw Error(Component::System, "Couldnt compile per fragment shader shader");
         }
     }
 }
@@ -241,16 +208,14 @@ void PerFragmentShader::bind(std::string name, int ID, int value)
     glBindTexture(GL_TEXTURE_2D, value);
     glActiveTexture(GL_TEXTURE0);
 
-    this->program->setInteger((GLchar *)name.c_str(), ID);
+    this->program->setInteger(const_cast<char *>(name.c_str()), ID);
 }
 
-// runs the program and draws the vertexCount number of vertices
 void PerFragmentShader::run(int vertexCount)
 {
     program->run(vertexCount);
 }
 
-// prepares the object by binding the VAO
 void PerFragmentShader::prepare(int ID)
 {
     program->prepare(ID);
@@ -259,29 +224,25 @@ void PerFragmentShader::prepare(int ID)
 void PerFragmentShader::runIndex(int ID, int indicesSize)
 {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
-    glDrawElements(GL_TRIANGLES, indicesSize, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, indicesSize, GL_UNSIGNED_INT, nullptr);
 }
 
-// runs the program with these specified geometry type and draws all vertices through i to x
 void PerFragmentShader::run(int a, int i, int x)
 {
     program->run(a, i, x);
 }
 
-// runs the program drawing the vertices though i to x
 void PerFragmentShader::run(int i, int x)
 {
     program->run(GL_TRIANGLES, i, x);
 }
 
-// binds the vao and binds a texture as well
 void PerFragmentShader::prepare(int ID, int tID)
 {
     program->prepare(ID);
     program->bind(tID);
 }
 
-// returns a pointer to the GPU_Program
 GPU_Program * PerFragmentShader::getProgram()
 {
     return program;

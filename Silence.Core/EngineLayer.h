@@ -1,6 +1,5 @@
 
-#ifndef __FRAMEWORK_H_
-#define __FRAMEWORK_H_
+#pragma once
 
 #include <Windows.h>
 #include <algorithm>
@@ -81,6 +80,4 @@
     #define SILENCE_EXPORT __declspec(dllexport)
 #else
     #define SILENCE_EXPORT __declspec(dllimport)
-#endif
-
 #endif
