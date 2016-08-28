@@ -6,8 +6,8 @@
 
 class Trees
 {
-    ModelSet treeModels;
     vector<glm::mat4> matrices;
+    ModelSet treeModels;
 public:
     Trees();
     ~Trees();

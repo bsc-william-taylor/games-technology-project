@@ -10,13 +10,11 @@
 
 class Gate
 {
-private:
-    SceneManager * scenes;
     Matrices matrices;
     Model gate;
 
-    bool leave;
     bool exited;
+    bool leave;
 public:
     Gate();
     ~Gate();

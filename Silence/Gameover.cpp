@@ -1,51 +1,25 @@
 
-/**
-*
-* Copyright (c) 2014 : William Taylor : wi11berto@yahoo.co.uk
-*
-* This software is provided 'as-is', without any
-* express or implied warranty. In no event will
-* the authors be held liable for any damages
-* arising from the use of this software.
-*
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute
-* it freely, subject to the following restrictions:
-*
-* 1. The origin of this software must not be misrepresented;
-*    you must not claim that you wrote the original software.
-*    If you use this software in a product, an acknowledgment
-*    in the product documentation would be appreciated but
-*    is not required.
-*
-* 2. Altered source versions must be plainly marked as such,
-*    and must not be misrepresented as being the original software.
-*
-* 3. This notice may not be removed or altered from any source distribution.
-*/
-
 #include "Silence.h"
 #include <iomanip>
 
-std::string toStrMaxDecimals(double value, int decimals)
+std::string decimalToString(double value, int decimals)
 {
     std::stringstream ss;
     ss << std::fixed << std::setprecision(decimals) << value;
-    std::string s = ss.str();
-    if (decimals > 0 && s[s.find_last_not_of('0')] == '.') {
+    auto s = ss.str();
+
+    if (decimals > 0 && s[s.find_last_not_of('0')] == '.') 
+    {
         s.erase(s.size() - decimals + 1);
     }
 
     return s;
 }
 
-// Constructor & Deconstructor
 Gameover::Gameover(OperatingSystem * system)
+    : survivorTimer(nullptr)
 {
-    // Aquire the scene manager
-    // aquire a local asset manager for the scene
     package = system->acquireAssetManager()->grabLocalManager();
-    // and grab these assets from disk
     package->grab({
         "data/textures/button.png",
         "data/textures/menu3.png",
@@ -57,21 +31,18 @@ Gameover::Gameover(OperatingSystem * system)
 
 Gameover::~Gameover()
 {
-    // Packages need to be manually deleted
     SAFE_RELEASE(package);
 }
 
 void Gameover::onEnter(int i)
 {
-    survivorTimer = ((Forest *)scenes->getScene((int)SceneID::Forest))->getForestTime();
-
-    timeSurvived = "Time Survived : " + toStrMaxDecimals(survivorTimer->elapsed(Seconds), 2).append("s");
+    auto forestScene = static_cast<Forest *>(scenes->getScene(int(SceneID::Forest)));
+    survivorTimer = forestScene->getForestTime();
+    timeSurvived = "Time Survived : " + decimalToString(survivorTimer->elapsed(Seconds), 2).append("s");
 }
 
-// Handles when the scene is created
 void Gameover::onCreate()
 {
-    // Load all assets starting with the header
     background.setTexture(package->newTexture("data/textures/menu3"));
     background.setArea(glm::vec4(0, 0, 1920, 1080));
     
@@ -79,16 +50,16 @@ void Gameover::onCreate()
     boxart.setArea(glm::vec4(1100, 220, 700, 470));
 
     header.setFont(package->newFont("data/fonts/Calibri", 200, { 255, 255, 255 }), "Thanks for Playing");
-    header.setArea(glm::vec2(1920 / 2, 900), ALIGNMENT::CENTER);
+    header.setArea(vec2(1920 / 2, 900), ALIGNMENT::CENTER);
 
-    survivorTimer = ((Forest *)scenes->getScene((int)SceneID::Forest))->getForestTime();
-    std::string timeSurvived = "Time Survived : " + toStrMaxDecimals(survivorTimer->elapsed(Seconds), 2).append("s");
+    survivorTimer = static_cast<Forest *>(scenes->getScene(int(SceneID::Forest)))->getForestTime();
+    auto timeSurvived = "Time Survived : " + decimalToString(survivorTimer->elapsed(Seconds), 2).append("s");
 
     time.setFont(package->newFont("data/fonts/Calibri", 50, { 255, 255, 255 }), timeSurvived.c_str());
-    time.setArea(glm::vec2(200, 550), ALIGNMENT::RIGHT);
+    time.setArea(vec2(200, 550), ALIGNMENT::RIGHT);
 
     message.setFont(package->newFont("data/fonts/Calibri", 50, { 255, 255, 255 }), "Look for the full game sometime soon");
-    message.setArea(glm::vec2(200, 450), ALIGNMENT::RIGHT);
+    message.setArea(vec2(200, 450), ALIGNMENT::RIGHT);
 
     back.setButtonTexture(package->newTexture("data/textures/button"));
     back.setButtonText(package->newFont("data/fonts/Calibri", 40, { 255, 255, 255 }), "Back to Menu");
@@ -101,36 +72,33 @@ void Gameover::onGamepadButton(int key, int state)
 {
     if (key == SDL_CONTROLLER_BUTTON_A && state == GamepadButtonPressed)
     {
-        scenes->switchScene((unsigned)SceneID::Menu);
+        scenes->switchScene(int(SceneID::Menu));
     }
 
     if (key == SDL_CONTROLLER_BUTTON_B && state == GamepadButtonPressed)
     {
-        scenes->switchScene((unsigned)SceneID::Menu);
+        scenes->switchScene(int(SceneID::Menu));
     }
 }
 
-// Handle SDL / Game events
 void Gameover::onGameEvent(SDL_Event& e)
 {
     if (back.isPressed(e))
     {
-        scenes->switchScene((unsigned)SceneID::Menu);
+        scenes->switchScene(int(SceneID::Menu));
     }
 }
 
-// nothing needs updating so this can be empty
 void Gameover::onUpdate()
 {
     time.setFont(package->newFont("data/fonts/Calibri", 50, { 255, 255, 255 }), timeSurvived.c_str());
-    time.setArea(glm::vec2(200, 550), ALIGNMENT::RIGHT);
+    time.setArea(vec2(200, 550), ALIGNMENT::RIGHT);
 }
 
-// Handles when the scene is rendered
 void Gameover::onRender()
 {
-    glm::mat4 projectionMatrix = glm::mat4();
-    glm::mat4 modelMatrix = glm::mat4();
+    auto projectionMatrix = glm::mat4();
+    auto modelMatrix = glm::mat4();
 
     projectionMatrix = glm::ortho(0.0, 1920.0, 0.0, 1080.0);
 

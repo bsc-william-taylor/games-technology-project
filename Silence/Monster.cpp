@@ -2,7 +2,7 @@
 #include "Monster.h"
 
 Monster::Monster() : 
-    enemy(nullptr), box(nullptr), updated(false)
+    enemy(nullptr), updated(false)
 {
     intelligence.reset();
     spawnID = rand() % 4;
@@ -10,16 +10,16 @@ Monster::Monster() :
     switch (spawnID) 
     {
         case 0: 
-            position = glm::vec3(0.0, 0.0, 0.0); 
+            position = vec3(0.0, 0.0, 0.0); 
             break;
         case 1: 
-            position = glm::vec3(127, 0.0, 0.0); 
+            position = vec3(127, 0.0, 0.0); 
             break;
         case 2: 
-            position = glm::vec3(0.0, 0.0, 127); 
+            position = vec3(0.0, 0.0, 127); 
             break;
         case 3: 
-            position = glm::vec3(127, 0.0, 127); 
+            position = vec3(127, 0.0, 127); 
             break;
     
         default: 
@@ -33,11 +33,7 @@ Monster::Monster() :
 
 Monster::~Monster()
 {
-    if(box && enemy)
-    {
-        delete enemy;
-        delete box;
-    }
+    SAFE_RELEASE(enemy);
 }
 
 void Monster::create(LocalAssetManager * package)
@@ -45,7 +41,6 @@ void Monster::create(LocalAssetManager * package)
     if(!enemy)
     {
         enemy = new AnimatedModel("data/models/enemy/archvile.md2", "data/models/enemy/archvile.png");
-        box = enemy->createbox(glm::mat4(1.0));
 
         intelligence.setup(package);
     }
@@ -68,6 +63,7 @@ void Monster::reset()
             break;
 
         default: 
+            position = vec3(0.0, 0.0, 0.0);
             break;
     }
 
@@ -131,9 +127,9 @@ void Monster::render(ForwardRenderer& renderer)
 {
     matrices.push();
     matrices.translate(getPosition());
-    matrices.rotate(intelligence.getDirection(), glm::vec3(0.0, -1.0, 0.0));
-    matrices.rotate(-90.0f, glm::vec3(1.0, 0.0, 0.0));
-    matrices.scale(glm::vec3(0.5, 0.5, 0.5));
+    matrices.rotate(intelligence.getDirection(), vec3(0.0, -1.0, 0.0));
+    matrices.rotate(-90.0f, vec3(1.0, 0.0, 0.0));
+    matrices.scale(vec3(0.5, 0.5, 0.5));
 
     if (updated) 
     {

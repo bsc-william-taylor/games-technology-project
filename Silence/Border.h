@@ -3,10 +3,8 @@
 
 #include "InteractionLayer.h"
 
-
 class Border
 {
-private:
     SolidBox * borderArea;
     Matrices matrices;
     Model wall;

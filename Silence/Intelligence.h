@@ -9,11 +9,10 @@
 
 class Intelligence 
 {
-private:
-    glm::vec3 tempDest;
-    PathMap * map;
-    double direction; 
+    double direction;
     double travel;
+    PathMap * map;
+    vec3 tempDest;
 public:
     Intelligence();
     ~Intelligence();
@@ -21,11 +20,11 @@ public:
     double getTravel();
     double getDirection();
 
-    vec3 to_scene_space(vec3);
-
     void setTemporaryDestination(vec3, vec3);
     bool applyUpdate(vec3& position, FirstPersonCamera * camera);
     void setup(LocalAssetManager * manager);
     void reset();
     void end();
+
+    vec3 toSceneSpace(vec3);
 };

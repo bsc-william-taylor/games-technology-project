@@ -2,55 +2,58 @@
 #include "Intelligence.h"
 
 Intelligence::Intelligence()
+    : map(nullptr)
 {
     reset();
 }
 
 Intelligence::~Intelligence()
 {
-
+    SAFE_RELEASE(map);
 }
 
 void Intelligence::reset()
 {
-    tempDest = glm::vec3(0.0, -1.0, 0.0);
+    tempDest = vec3(0.0, -1.0, 0.0);
     travel = 0.0f;
 }
 
-glm::vec3 Intelligence::to_scene_space(glm::vec3 vector)
+vec3 Intelligence::toSceneSpace(vec3 vector)
 {
-    return(glm::vec3(-1024.0, 0.0, -1024.0) + (vector * glm::vec3(16.0, 16.0, 16.0)));
+    return vec3(-1024.0, 0.0, -1024.0) + (vector * vec3(16.0, 16.0, 16.0));
 }
 
 bool Intelligence::applyUpdate(glm::vec3& position, FirstPersonCamera * camera)
 {
-    bool makeVisible = true;
-    vec3 cameraPos = camera->getPosition();
-    vec3 vel = vec3(0.0);
+    auto cameraPosition = camera->getPosition();
+    auto velocity = vec3(0.0);
+    auto makeVisible = true;
     
-    if (tempDest.y != -1.0) {
-        if (glm::distance(position, tempDest) <= 5) {
+    if (tempDest.y != -1.0) 
+    {
+        if (glm::distance(position, tempDest) <= 5) 
+        {
             tempDest = vec3(0.0, -1.0, 0.0);
         }
     }
 
-    if (travel < 1.0) {
-        travel += (camera->getSpeed() / 4000.0); 
+    if (travel < 1.0) 
+    {
+        travel += (camera->getSpeed() / 2000.0); 
     }
 
     if (travel >= 1.0) 
     {
-        PathPoint dest { (cameraPos.x + 1024) / 16.0, (cameraPos.z + 1024) / 16.0};
+        PathPoint dest { (cameraPosition.x + 1024) / 16.0, (cameraPosition.z + 1024) / 16.0};
 
         if (tempDest.y == -1.0)
         {
             float div = (camera->getSpeed() / 15.0) * travel;
+            map->findPath({ static_cast<int>(position.x), static_cast<int>(position.z) }, dest);
+            velocity = (position + vec3(map->getPoint().x, 0.0, map->getPoint().y)) - position;
 
-            map->findPath({ (int)position.x, (int)position.z }, dest);
-
-            vel = (position + glm::vec3(map->getPoint().x, 0.0, map->getPoint().y)) - position;
-
-            if (camera->getSpeed() <= 0.01) {
+            if (camera->getSpeed() <= 0.01)     
+            {
                 makeVisible = false;
             }
 
@@ -59,19 +62,25 @@ bool Intelligence::applyUpdate(glm::vec3& position, FirstPersonCamera * camera)
         }
         else
         {
-            map->findPath({ (int)position.x, (int)position.z }, { (int)tempDest.x, (int)tempDest.z });
+            PathPoint p1 = { static_cast<int>(position.x), static_cast<int>(position.z) };
+            PathPoint p2 = { static_cast<int>(tempDest.x), static_cast<int>(tempDest.z) };
 
-            vel = (position + glm::vec3(map->getPoint().x, 0.0, map->getPoint().y)) - position;
+            map->findPath(p1, p2);
+
+            velocity = (position + vec3(map->getPoint().x, 0.0, map->getPoint().y)) - position;
 
             position.x += map->getPoint().x * 0.05;
             position.z += map->getPoint().y * 0.05;
         }
 
-        if (vel.x >= 0.0) {
-            double target = glm::degrees(atan((vel.z / vel.x)));
+        if (velocity.x >= 0.0) 
+        {
+            double target = glm::degrees(atan((velocity.z / velocity.x)));
             direction += (target - direction) / 10.0;
-        } else {
-            double target = (180.0f + glm::degrees(atan((vel.z / vel.x))));
+        } 
+        else 
+        {
+            double target = (180.0f + glm::degrees(atan((velocity.z / velocity.x))));
             direction += (target - direction) / 10.0;
         }
     }
@@ -88,24 +97,28 @@ void Intelligence::setTemporaryDestination(vec3 p, vec3 m)
 {
     if (travel >= 1.0)
     {
-        glm::vec3 camera = (glm::vec3((p.x + 1024) / 16.0, 0.0, (p.z + 1024) / 16.0)) + m;
+        auto camera = vec3((p.x + 1024) / 16.0, 0.0, (p.z + 1024) / 16.0) + m;
 
         tempDest = camera;
         tempDest.y = 0.0;
 
-        if (tempDest.x < 0) {
+        if (tempDest.x < 0) 
+        {
             tempDest.x = 5;
         }
         
-        if (tempDest.x > 127) {
+        if (tempDest.x > 127) 
+        {
             tempDest.x = 125;
         }
 
-        if (tempDest.z < 0) {
+        if (tempDest.z < 0) 
+        {
             tempDest.z = 5;
         }
         
-        if (tempDest.z > 127) {
+        if (tempDest.z > 127) 
+        {
             tempDest.z = 125;
         }
     }
@@ -118,7 +131,10 @@ double Intelligence::getDirection()
 
 void Intelligence::setup(LocalAssetManager * package)
 {
-    map = new PathMap(package->newTexture("data/textures/ai_path2"));
+    if(!map)
+    {
+        map = new PathMap(package->newTexture("data/textures/ai_path2"));
+    }
 }
 
 void Intelligence::end()

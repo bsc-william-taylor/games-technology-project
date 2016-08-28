@@ -1,63 +1,56 @@
 
 #include "Border.h"
 
-Border::Border()
+Border::Border()   
+    : borderArea(new SolidBox())
 {
-    borderArea = new SolidBox();
 }
 
 Border::~Border()
 {
-    delete(borderArea);
-    borderArea = NULL;
 }
 
 void Border::create(LocalAssetManager * package, World& world)
 {
     wall.setModel(package->newModel("data/models/wall/wall"));
 
-    borderArea->setPositionVector(glm::vec3(-1020, -1020, -1020));
-    borderArea->setSizeVector(glm::vec3(1020, 1020, 1020));
+    borderArea->setPositionVector(vec3(-1020, -1020, -1020));
+    borderArea->setSizeVector(vec3(1020, 1020, 1020));
     borderArea->reverse();
 
-    world.onHit(borderArea, [&](Camera * camera, SolidBox *) {
-        camera->cancelMovement();
-    });
+    const auto onHit = [&](Camera * camera, SolidBox *) { camera->cancelMovement(); };
+    world.onHit(borderArea, onHit);
 }
 
 void Border::renderLeftAndRight(ForwardRenderer& renderer)
 {
-
     matrices.push();
-    matrices.scale(glm::vec3(25, 25, 50));
-    matrices.rotate(90, glm::vec3(0.0, 1.0, 0.0));
+    matrices.scale(vec3(25, 25, 50));
+    matrices.rotate(90, vec3(0.0, 1.0, 0.0));
 
-    glm::vec3 translateValue = glm::vec3(-18, -0.2, 41); // glm::vec3(-39, -0.2, 20.5);
-    for (int i = 0; i < 8; i++)	{
-        
+    auto translateValue = vec3(-18, -0.2, 41);
+ 
+    for (auto i = 0; i < 8; i++)	
+    {
         matrices.translate(translateValue);
-
         renderer.setModelMatrix(matrices);
         renderer.renderModel(&wall);
-
-        translateValue = glm::vec3(5.5, 0.0, 0.0);
+        translateValue = vec3(5.5, 0.0, 0.0);
     }
 
     matrices.pop();
-
     matrices.push();
-    matrices.scale(glm::vec3(25, 25, 50));
-    matrices.rotate(90, glm::vec3(0.0, 1.0, 0.0));
+    matrices.scale(vec3(25, 25, 50));
+    matrices.rotate(90, vec3(0.0, 1.0, 0.0));
 
-    translateValue = glm::vec3(-18, -0.2, -41); // glm::vec3(-39, -0.2, 20.5);
-    for (int i = 0; i < 8; i++)	{
-
+    translateValue = vec3(-18, -0.2, -41);
+ 
+    for (auto i = 0; i < 8; i++)	
+    {
         matrices.translate(translateValue);
-
         renderer.setModelMatrix(matrices);
         renderer.renderModel(&wall);
-
-        translateValue = glm::vec3(5.5, 0.0, 0.0);
+        translateValue = vec3(5.5, 0.0, 0.0);
     }
 
     matrices.pop();
@@ -65,31 +58,28 @@ void Border::renderLeftAndRight(ForwardRenderer& renderer)
 
 void Border::renderBackAndFront(ForwardRenderer& renderer)
 {
-
     matrices.push();
-    matrices.scale(glm::vec3(50, 25, 25));
+    matrices.scale(vec3(50, 25, 25));
 
-    glm::vec3 translateValue = glm::vec3(-18, -0.2, -41);
-    for (int i = 0; i < 8; i++)	{
+    auto translateValue = vec3(-18, -0.2, -41);
+
+    for (auto i = 0; i < 8; i++)	
+    {
         matrices.translate(translateValue);
-
         renderer.setModelMatrix(matrices);
         renderer.renderModel(&wall);
-
-        translateValue = glm::vec3(5.5, 0.0, 0.0);
+        translateValue = vec3(5.5, 0.0, 0.0);
     }
 
-    
     matrices.pop();
-
     matrices.push();
-    matrices.scale(glm::vec3(185, 25, 25));
-    matrices.translate(glm::vec3(3.065, -0.2, 41));
+    matrices.scale(vec3(185, 25, 25));
+    matrices.translate(vec3(3.065, -0.2, 41));
 
     renderer.setModelMatrix(matrices);
     renderer.renderModel(&wall);
 
-    matrices.translate(glm::vec3(-6.13, 0.0, 0.0));
+    matrices.translate(vec3(-6.13, 0.0, 0.0));
 
     renderer.setModelMatrix(matrices);
     renderer.renderModel(&wall);

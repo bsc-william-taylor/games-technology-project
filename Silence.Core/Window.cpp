@@ -116,8 +116,6 @@ void Window::resizeWindow(int x, int y, int w, int h)
 
 SDL_Rect Window::getWindowDimensions()
 {
-    SDL_Rect size;
-
     auto w = 0;
     auto h = 0;
     auto x = 0;
@@ -126,10 +124,7 @@ SDL_Rect Window::getWindowDimensions()
     SDL_GetWindowSize(window, &w, &h);
     SDL_GetWindowPosition(window, &x, &y);
 
-    size.x = x;	size.y = y;
-    size.w = w;	size.h = h;
-
-    return size;
+    return { x, y, w, h};
 }
 
 int Window::getMaxHeight()

@@ -2,19 +2,12 @@
 #pragma once
 
 #include "EngineLayer.h"
-#include "LocalAssetManager.h"
-#include "ForwardRenderer.h"
-#include "Renderer2D.h"
 #include "HighPrecisionTimer.h"
+#include "LocalAssetManager.h"
+#include "Renderer2D.h"
 #include "Gamepad.h"
 
-enum HINT_TYPES 
-{
-    KEY_HINT,
-    ROCK_HINT,
-    TORCH_HINT,
-    EXIT_HINT,
-};
+enum HintTypes { KeyHint, RockHint, TorchHint, ExitHint };
 
 class Hints 
 {
@@ -30,6 +23,6 @@ public:
 
     void create(LocalAssetManager * package);
     void render(Renderer2D * renderer);
-    void throwHint(HINT_TYPES hint, Gamepad *);
+    void throwHint(HintTypes hint, Gamepad *);
     void update();
 };

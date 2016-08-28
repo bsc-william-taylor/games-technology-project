@@ -8,7 +8,6 @@
 
 class House
 {
-private:
     Matrices matrices;
     Model house;
 public:

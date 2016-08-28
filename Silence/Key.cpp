@@ -1,7 +1,8 @@
 
 #include "Key.h"
 
-vector<vec3> keySpawnPoints = {
+vector<vec3> keySpawnPoints = 
+{
     vec3(-600.0, 2.0, 500.0),
     vec3(525.0, 2.0, 525.0),
     vec3(-800.0, 2.0, -100.0),

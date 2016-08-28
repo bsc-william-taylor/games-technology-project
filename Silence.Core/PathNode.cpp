@@ -94,8 +94,14 @@ std::vector<PathNode *>& PathNode::getAjacentNodes(PathMap * map)
         map->get(position.x - 1, position.y-1),
     };
     
-    const auto notNull = [](PathNode * n) { return n != nullptr; };
-    std::copy_if(nodes.begin(), nodes.end(), ajacentNodes.begin(), notNull);
+    for(auto& node : nodes)
+    {
+        if(node != nullptr)
+        {
+            ajacentNodes.push_back(node);
+        }
+    }
+
     return ajacentNodes;
 }
 

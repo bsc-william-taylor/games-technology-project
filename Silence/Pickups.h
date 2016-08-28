@@ -5,18 +5,19 @@
 #include "md2Model.h"
 #include "LocalAssetManager.h"
 #include "ForwardRenderer.h"
-#include "Ai.h"
-#include "Intelligence.h"
 
 class Player;
 
 class Pickups
 {
-    PointLight pointLights[2];
-    Model rocks[2];
-    Player * player;
     Matrices matrices;
+    Player * player;
+    Model rocks[2];
     Music pickup3;
+    
+    PointLight pointLights[2];
+    vec3 position[2];
+    bool draw[2];
 public:
     Pickups();
     ~Pickups();
@@ -25,7 +26,4 @@ public:
     void create(LocalAssetManager * package, World&, Player *);
     void render(ForwardRenderer& renderer);
     void update(Camera *);
-private:
-    bool draw[2];
-    vec3 position[2];
 };

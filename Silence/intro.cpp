@@ -23,8 +23,8 @@ void Intro::onUpdate()
     }
 }
 
-void Intro::onEnter(int previous)
-{
+void Intro::onEnter(int)
+{    
     system->enableSingleBuffering();
     system->acquireWindow().forceFullscreenMode();
 

@@ -23,17 +23,8 @@
     <Filter Include="Game\Stages\Intro">
       <UniqueIdentifier>{309f82f0-11f5-4796-b5b3-7d9a9e435684}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Stages\Indoors">
-      <UniqueIdentifier>{5f555a2b-54e5-4634-97f5-63c037f90eb7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Stages\Forest">
-      <UniqueIdentifier>{76b28adc-bc94-44d2-9710-cf6087ec24fb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Actors\Forest">
       <UniqueIdentifier>{c0edb141-6b5c-401a-842b-2683f8f5d3ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Actors\Indoors">
-      <UniqueIdentifier>{2006484b-5003-4b0c-b95f-d1d29d9065da}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Actors\Menu">
       <UniqueIdentifier>{7fcfdfd8-d04e-463e-afb7-1050ed7f3bd6}</UniqueIdentifier>
@@ -71,9 +62,6 @@
     <Filter Include="Game\Actors\Options\OptionsFieldElement\WindowType">
       <UniqueIdentifier>{145a302a-f206-45c0-bdeb-f3eae4d9ab20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Actors\Indoors\Hints">
-      <UniqueIdentifier>{8b545372-4de3-4e75-9d43-106fab9b4a91}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Actors\Forest\Terrain">
       <UniqueIdentifier>{2f4f32c2-ad04-4875-b303-ce042f9dbb4e}</UniqueIdentifier>
     </Filter>
@@ -101,19 +89,22 @@
     <Filter Include="Game\Actors\Forest\Monster\Brain">
       <UniqueIdentifier>{aa6876a3-2506-48cb-a166-0bb4518f5700}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Stages\Forest">
+      <UniqueIdentifier>{76b28adc-bc94-44d2-9710-cf6087ec24fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stages\Indoors">
+      <UniqueIdentifier>{5f555a2b-54e5-4634-97f5-63c037f90eb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Actors\Hints">
+      <UniqueIdentifier>{8b545372-4de3-4e75-9d43-106fab9b4a91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gameover.cpp">
       <Filter>Game\Stages\Gameover</Filter>
     </ClCompile>
-    <ClCompile Include="menu.cpp">
-      <Filter>Game\Stages\Menu</Filter>
-    </ClCompile>
     <ClCompile Include="Indoors.cpp">
       <Filter>Game\Stages\Indoors</Filter>
-    </ClCompile>
-    <ClCompile Include="forest.cpp">
-      <Filter>Game\Stages\Forest</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Game\Actors\Player</Filter>
@@ -143,7 +134,7 @@
       <Filter>Game\Actors\Options\OptionsFieldElement\WindowType</Filter>
     </ClCompile>
     <ClCompile Include="Hints.cpp">
-      <Filter>Game\Actors\Indoors\Hints</Filter>
+      <Filter>Game\Actors\Hints</Filter>
     </ClCompile>
     <ClCompile Include="Gate.cpp">
       <Filter>Game\Actors\Forest\Gate</Filter>
@@ -181,19 +172,19 @@
     <ClCompile Include="Intro.cpp">
       <Filter>Game\Stages\Intro</Filter>
     </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Game\Stages\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Forest.cpp">
+      <Filter>Game\Stages\Forest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gameover.h">
       <Filter>Game\Stages\Gameover</Filter>
     </ClInclude>
-    <ClInclude Include="menu.h">
-      <Filter>Game\Stages\Menu</Filter>
-    </ClInclude>
     <ClInclude Include="Indoors.h">
       <Filter>Game\Stages\Indoors</Filter>
-    </ClInclude>
-    <ClInclude Include="forest.h">
-      <Filter>Game\Stages\Forest</Filter>
     </ClInclude>
     <ClInclude Include="Actors.h">
       <Filter>Game\Actors</Filter>
@@ -226,7 +217,7 @@
       <Filter>Game\Actors\Options\OptionsFieldElement\WindowType</Filter>
     </ClInclude>
     <ClInclude Include="Hints.h">
-      <Filter>Game\Actors\Indoors\Hints</Filter>
+      <Filter>Game\Actors\Hints</Filter>
     </ClInclude>
     <ClInclude Include="Gate.h">
       <Filter>Game\Actors\Forest\Gate</Filter>
@@ -263,6 +254,12 @@
     </ClInclude>
     <ClInclude Include="Intro.h">
       <Filter>Game\Stages\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Game\Stages\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest.h">
+      <Filter>Game\Stages\Forest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

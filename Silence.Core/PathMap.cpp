@@ -94,7 +94,9 @@ bool PathMap::checkAjacentNodes(PathPoint& point, PathPoint& destination)
     {
         PathNode * largestGainNode = nullptr;
 
-        for(auto& ajacentNode : map[point.x][point.y]->getAjacentNodes(this))
+        auto& ajacentNodes = map[point.x][point.y]->getAjacentNodes(this);
+        
+        for(auto& ajacentNode : ajacentNodes)
         {
             if (largestGainNode == nullptr)
             {

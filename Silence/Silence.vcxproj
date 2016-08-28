@@ -131,7 +131,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Border.cpp" />
     <ClCompile Include="Buttons.cpp" />
-    <ClCompile Include="forest.cpp" />
+    <ClCompile Include="Forest.cpp" />
     <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="Gate.cpp" />
     <ClCompile Include="Headers.cpp" />
@@ -141,7 +141,7 @@
     <ClCompile Include="Intelligence.cpp" />
     <ClCompile Include="Intro.cpp" />
     <ClCompile Include="Key.cpp" />
-    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="OptionsField.cpp" />
@@ -160,7 +160,7 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Border.h" />
     <ClInclude Include="Buttons.h" />
-    <ClInclude Include="forest.h" />
+    <ClInclude Include="Forest.h" />
     <ClInclude Include="Gameover.h" />
     <ClInclude Include="Gate.h" />
     <ClInclude Include="Headers.h" />
@@ -170,7 +170,7 @@
     <ClInclude Include="Intelligence.h" />
     <ClInclude Include="Intro.h" />
     <ClInclude Include="Key.h" />
-    <ClInclude Include="menu.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="OptionsField.h" />

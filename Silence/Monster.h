@@ -5,7 +5,6 @@
 #include "md2Model.h"
 #include "LocalAssetManager.h"
 #include "ForwardRenderer.h"
-#include "Ai.h"
 #include "Intelligence.h"
 
 class Monster
@@ -13,7 +12,6 @@ class Monster
     Intelligence intelligence;
     AnimatedModel * enemy;
     Matrices matrices;
-    SolidBox * box;
     bool updated;
     float alpha;
 public:

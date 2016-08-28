@@ -22,7 +22,8 @@ void Trees::setup(LocalAssetManager * package, Heightmap * map, World& world)
         {
             auto colour = texture->getPixelColour(x, y);
 
-            if (static_cast<GLfloat>(colour.rgbGreen) >= 200) {
+            if (static_cast<GLfloat>(colour.rgbGreen) >= 200) 
+            {
                 auto index = matrices.size();
                 auto treeX = 64.0 - x;
                 auto treeY = y - 64.0;

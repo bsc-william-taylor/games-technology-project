@@ -81,7 +81,8 @@ void Pickups::render(ForwardRenderer& renderer)
             {
                 matrices.push();
 
-                switch (z) {
+                switch (z) 
+                {
                     case 0: matrices.translate(position[i] + glm::vec3(3.0, 0.0, 0.0)); break;
                     case 1: matrices.translate(position[i] + glm::vec3(0.0, 0.0, 0.0)); break;
                     case 2: matrices.translate(position[i] + glm::vec3(0.0, 0.0, 3.0)); break;
