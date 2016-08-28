@@ -19,13 +19,13 @@ void OptionsGraphics::create(LocalAssetManager * package, Window * window)
     this->window = window;
 
     graphicsSize.setFont(package->newFont("data/fonts/Calibri", 60, colour ), "Game Graphics");
-    graphicsSize.setArea(glm::vec2(650, 400), ALIGNMENT::CENTER);
+    graphicsSize.setArea(glm::vec2(650, 400), Alignment::Center);
 
     graphicsSizeButtons[0].setButtonTexture(package->newTexture("data/textures/left"));
-    graphicsSizeButtons[0].setArea(glm::vec4(1250 - 300, 350, 70, 100), ALIGNMENT::CENTER);
+    graphicsSizeButtons[0].setArea(glm::vec4(1250 - 300, 350, 70, 100), Alignment::Center);
     
     graphicsSizeButtons[1].setButtonTexture(package->newTexture("data/textures/right"));
-    graphicsSizeButtons[1].setArea(glm::vec4(1250 + 250, 350, 70, 100), ALIGNMENT::CENTER);
+    graphicsSizeButtons[1].setArea(glm::vec4(1250 + 250, 350, 70, 100), Alignment::Center);
 }
 
 void OptionsGraphics::onGamepadButton(int key, int state, int elementID)
@@ -127,5 +127,5 @@ void OptionsGraphics::update()
     }
 
     graphicsizeLabel.setFont(package->newFont("data/fonts/Calibri", 60, colour ), setting.c_str());
-    graphicsizeLabel.setArea(glm::vec2(1250, 400), ALIGNMENT::CENTER);
+    graphicsizeLabel.setArea(glm::vec2(1250, 400), Alignment::Center);
 }

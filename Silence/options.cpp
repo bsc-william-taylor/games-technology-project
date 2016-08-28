@@ -27,13 +27,13 @@ void Options::onCreate()
     optionInputs->create(package);
 
     header.setFont(package->newFont("data/fonts/Calibri", 225, { 255, 255, 255 }), "Options");
-    header.setArea(glm::vec2(1920 / 2, 900), ALIGNMENT::CENTER);
+    header.setArea(glm::vec2(1920 / 2, 900), Alignment::Center);
 
     version.setFont(package->newFont("data/fonts/Calibri", 25, { 255, 255, 255 }), "Version 1.0");
-    version.setArea(glm::vec2(1920 / 2, 100), ALIGNMENT::CENTER);
+    version.setArea(glm::vec2(1920 / 2, 100), Alignment::Center);
 
     backButton.setButtonTexture(package->newTexture("data/textures/back"));
-    backButton.setArea(glm::vec4(10, 945, 125, 125), ALIGNMENT::RIGHT);
+    backButton.setArea(glm::vec4(10, 945, 125, 125), Alignment::Right);
 
     background.setTexture(package->newTexture("data/textures/options"));
     background.setArea(glm::vec4(0.0, 0.0, 1920, 1080));

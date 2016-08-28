@@ -55,15 +55,15 @@ void OptionsWindowSize::create(LocalAssetManager * package)
     this->package = package;
 
     windowSize.setFont(package->newFont("data/fonts/Calibri", 60, { 255, 255, 255 }), "Window Size");
-    windowSize.setArea(glm::vec2(650, 550), ALIGNMENT::CENTER);
+    windowSize.setArea(glm::vec2(650, 550), Alignment::Center);
     
     windowSizeLabel.setFont(package->newFont("data/fonts/Calibri", 60, { 255, 255, 255 }), "ERROR");
-    windowSizeLabel.setArea(glm::vec2(1250, 550), ALIGNMENT::CENTER);
+    windowSizeLabel.setArea(glm::vec2(1250, 550), Alignment::Center);
     
     windowSizeButtons[0].setButtonTexture(package->newTexture("data/textures/left"));
-    windowSizeButtons[0].setArea(glm::vec4(1250 - 300, 500, 70, 100), ALIGNMENT::CENTER);
+    windowSizeButtons[0].setArea(glm::vec4(1250 - 300, 500, 70, 100), Alignment::Center);
     windowSizeButtons[1].setButtonTexture(package->newTexture("data/textures/right"));
-    windowSizeButtons[1].setArea(glm::vec4(1250 + 250, 500, 70, 100), ALIGNMENT::CENTER);
+    windowSizeButtons[1].setArea(glm::vec4(1250 + 250, 500, 70, 100), Alignment::Center);
 }
 
 void OptionsWindowSize::render(Renderer2D * renderer)
@@ -97,7 +97,7 @@ void OptionsWindowSize::update()
     }
 
     windowSizeLabel.setFont(package->newFont("data/fonts/Calibri", 60, colour), label.c_str());
-    windowSizeLabel.setArea(glm::vec2(1250, 550), ALIGNMENT::CENTER);
+    windowSizeLabel.setArea(glm::vec2(1250, 550), Alignment::Center);
 }
 
 Resolution OptionsWindowSize::convert(std::string text)

@@ -2,7 +2,7 @@
 #pragma once
 
 #include "EngineLayer.h"
-#include "md2Model.h"
+#include "AnimatedModel.h"
 #include "LocalAssetManager.h"
 #include "ForwardRenderer.h"
 #include "Intelligence.h"

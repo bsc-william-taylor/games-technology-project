@@ -46,7 +46,7 @@
     <ClCompile Include="HighPrecisionTimer.cpp" />
     <ClCompile Include="Lights.cpp" />
     <ClCompile Include="LocalAssetManager.cpp" />
-    <ClCompile Include="md2Model.cpp" />
+    <ClCompile Include="AnimatedModel.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelFile.cpp" />
     <ClCompile Include="ModelSet.cpp" />
@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ai.h" />
-    <ClInclude Include="anorms.h" />
+    <ClInclude Include="AnimatedNormals.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="PathException.h" />
     <ClInclude Include="PathMap.h" />
@@ -99,7 +99,7 @@
     <ClInclude Include="HLGI.h" />
     <ClInclude Include="Lights.h" />
     <ClInclude Include="LocalAssetManager.h" />
-    <ClInclude Include="md2Model.h" />
+    <ClInclude Include="AnimatedModel.h" />
     <ClInclude Include="Media.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelFile.h" />

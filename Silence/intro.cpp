@@ -9,7 +9,7 @@ Intro::Intro(OperatingSystem * os)
 
 Intro::~Intro()
 {
-    introVideo.unload();
+    //introVideo.unload();
 }
 
 void Intro::onUpdate()

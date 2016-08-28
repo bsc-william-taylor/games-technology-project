@@ -3,16 +3,25 @@
 
 #include "EngineLayer.h"
 #include "ModelFile.h"
-#include "math.h"
 #include "GPU.h"
 
 struct HeightmapSurface 
 {
-    std::vector<Vertex> vertices;
+    vector<Vertex> vertices;
     Vertex normal;
 };
 
-enum class SIDE;
+enum class HightmapSide
+{
+    Top, 
+    TopRight, 
+    Right, 
+    BottomRight,
+    Bottom,     
+    BottomLeft,
+    Left, 
+    TopLeft
+};
 
 class SILENCE_EXPORT Heightmap
 {
@@ -20,13 +29,20 @@ class SILENCE_EXPORT Heightmap
     GPU_Sampler * plotTexture;
     GPU_Sampler * texture;
     GPU_Transfer * mesh;
+  
+    vec2 size;
 
-    GpuID vertexCount;
+    GLuint vertexCount;
+    GLuint scale;
+
+    vector<vector<HeightmapSurface *>> faces;
+    vector<vector<float>> terrain_heights;
+    vector<Vertex> vn;
 public:
     Heightmap();
     ~Heightmap();
 
-    glm::vec2 getHeightmapSize();
+    vec2 getHeightmapSize();
 
     GLvoid pushOverlay(TextureAsset * texture, TextureAsset * plotTextures);
     GLvoid create(TextureAsset * file, std::string, float _x, float _y);
@@ -41,16 +57,9 @@ public:
     GLfloat getHeightAt(int x, int y);
     GLfloat getScale();
 
-
     bool hasOverlay();
 private:
-    std::vector<std::vector<HeightmapSurface *>> faces;
-    std::vector<std::vector<float>> terrain_heights;
-    std::vector<Vertex> vn;
-    glm::vec2 size;
-
-    HeightmapSurface * getFace(SIDE side, GLuint x, GLuint b, GLuint size);
-    Vertex getSurfaceNormal(glm::vec3 v1, glm::vec3 v2, glm::vec3 v3);
-    GLvoid averageNormals(std::vector<Vertex>& vertices);
-    GLuint scale;
+    HeightmapSurface * getFace(HightmapSide side, GLuint x, GLuint b, GLuint size);
+    Vertex getSurfaceNormal(vec3 v1, vec3 v2, vec3 v3);
+    GLvoid averageNormals(vector<Vertex>& vertices);
 };

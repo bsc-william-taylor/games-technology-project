@@ -1,34 +1,7 @@
-
-/**
-*
-* Copyright (c) 2014 : William Taylor : wi11berto@yahoo.co.uk
-*
-* This software is provided 'as-is', without any
-* express or implied warranty. In no event will
-* the authors be held liable for any damages
-* arising from the use of this software.
-*
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute
-* it freely, subject to the following restrictions:
-*
-* 1. The origin of this software must not be misrepresented;
-*    you must not claim that you wrote the original software.
-*    If you use this software in a product, an acknowledgment
-*    in the product documentation would be appreciated but
-*    is not required.
-*
-* 2. Altered source versions must be plainly marked as such,
-*    and must not be misrepresented as being the original software.
-*
-* 3. This notice may not be removed or altered from any source distribution.
-*/
-
 #include "Model.h"
 
-// Constructor & Deconstructor
 Model::Model()
-    : mesh(NULL), file(NULL)
+    : mesh(nullptr), file(nullptr)
 {
     min = Vertex(1000000, 1000000, 1000000);
     max = Vertex(-1000000, -1000000, -1000000);
@@ -36,11 +9,14 @@ Model::Model()
 
 Model::~Model()
 {
-    min = Vertex(1000000, 1000000, 1000000);
-    max = Vertex(-1000000, -1000000, -1000000);
+    for(auto& sampler : samplers)
+    {
+        SAFE_RELEASE(sampler);
+    }
+
+    SAFE_RELEASE(mesh);
 }
 
-// returns a direct pointer to the model file used to generate the model
 ModelAsset * Model::getModelAsset()
 {
     return file;
@@ -53,8 +29,7 @@ GLuint Model::getMaterialID(GLuint i)
 
 void Model::setModel(ModelAsset * assets)
 {
-    // make sure the pointer is valid
-    if (assets != NULL && mesh == NULL)
+    if (assets != nullptr && mesh == nullptr)
     {
         auto meshes = assets->getMeshes();
         
@@ -65,18 +40,15 @@ void Model::setModel(ModelAsset * assets)
         mesh->setIndices(assets->getIndices());
         mesh->send();
 
-        // then get the list of textures the model uses
         auto textures = assets->getTextures();
 
-        // then loop through and transfer each textures data to the gpu
-        for (int i = 0; i < textures.size(); i++) 
+        for (auto i = 0; i < textures.size(); i++) 
         {
-            TextureAsset * texture_asset = textures[i];
+            const auto texture_asset = textures[i];
 
-            if (texture_asset != NULL)
+            if (texture_asset != nullptr)
             {
-                GPU_Sampler * texture = new GPU_Sampler(SINGLE_SAMPLER);
-
+                const auto texture = new GPU_Sampler(SINGLE_SAMPLER);
                 texture->setTransferQuality(GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
                 texture->setBitmapWrapping(GL_REPEAT, GL_REPEAT);
                 texture->setBitmapData(texture_asset->getPixels(),
@@ -88,12 +60,11 @@ void Model::setModel(ModelAsset * assets)
 
                 texture->send();
 
-                // then store the IDs in our vector so we can use them when drawing
-                tIDs.push_back(texture->getID());
+                samplers.push_back(texture);
             }
             else
             {
-                tIDs.push_back(NULL);
+                samplers.push_back(nullptr);
             }
         }
 
@@ -103,15 +74,14 @@ void Model::setModel(ModelAsset * assets)
 
 SolidCylinder * Model::createCylinder(glm::mat4 mat, double)
 {
-    SolidCylinder * solid = new SolidCylinder();
-
+    auto solid = new SolidCylinder();
     auto meshs = file->getMeshes();
 
-    for (int i = 0; i < meshs.size(); i++)
+    for (auto i = 0; i < meshs.size(); i++)
     {
         for (auto& vb : file->getVertices())
         {
-            glm::vec3 v = glm::vec3(mat * glm::vec4(vb, 1.0));
+            auto v = glm::vec3(mat * glm::vec4(vb, 1.0));
 
             if (v.x < min.x)	min.x = v.x;
             if (v.y < min.y)	min.y = v.y;
@@ -122,7 +92,7 @@ SolidCylinder * Model::createCylinder(glm::mat4 mat, double)
         }
     }
 
-    glm::vec3 center = (max - min) / glm::vec3(2, 2, 2);
+    auto center = (max - min) / glm::vec3(2, 2, 2);
     
     double radius = glm::length(max - center);
     
@@ -134,15 +104,14 @@ SolidCylinder * Model::createCylinder(glm::mat4 mat, double)
 
 SolidBox * Model::createbox(glm::mat4 mat)
 {
-    SolidBox * solid = new SolidBox();
-    
+    auto solid = new SolidBox();
     auto meshs = file->getMeshes();
 
-    for (int i = 0; i < meshs.size(); i++)
+    for (auto i = 0; i < meshs.size(); i++)
     {
         for (auto& vb : file->getVertices())
         {
-            glm::vec3 v = glm::vec3(mat * glm::vec4(vb, 1.0));
+            auto v = glm::vec3(mat * glm::vec4(vb, 1.0));
 
             if (v.x < min.x)	min.x = v.x;
             if (v.y < min.y)	min.y = v.y;
@@ -161,4 +130,19 @@ SolidBox * Model::createbox(glm::mat4 mat)
     max = Vertex(-1000000, -1000000, -1000000);
 
     return solid;
+}
+
+ModelAsset * Model::getMeshes() 
+{
+    return file;
+}
+
+GPU_Transfer * Model::getMesh() 
+{
+    return mesh;
+}
+
+vector<GPU_Sampler *>& Model::getTextures() 
+{
+    return samplers;
 }

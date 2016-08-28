@@ -19,7 +19,7 @@ public:
 
     void setButtonTexture(TextureAsset * texture);
     void setButtonText(FontAsset * font, const char * text);
-    void setArea(glm::vec4, ALIGNMENT);
+    void setArea(glm::vec4, Alignment);
     void setArea(glm::vec4);
     
     Texture2D * getTexture();

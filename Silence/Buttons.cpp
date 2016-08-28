@@ -36,7 +36,7 @@ void Buttons::load(int active)
             buttons[i].setButtonText(package->newFont("data/fonts/Calibri", 40, { 255, 255, 255 }), texts[i].c_str());
         }
 
-        buttons[i].setArea(glm::vec4(300, y, 400, 225), ALIGNMENT::CENTER);
+        buttons[i].setArea(glm::vec4(300, y, 400, 225), Alignment::Center);
         y -= 150;
     }
 }

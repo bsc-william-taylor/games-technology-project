@@ -14,9 +14,13 @@ FirstPersonCamera::FirstPersonCamera()
     gamepadEnabled = false;
     enabled = true;
 
-    for (int i = 0; i < 4; i++) {
+    for (auto i = 0; i < 4; i++) 
+    {
         keys[i] = FALSE;
-        if (i < 2) axis[i] = FALSE;
+        if (i < 2) 
+        {
+            axis[i] = FALSE;
+        }
     }
 
     terrainHeight = 0;
@@ -128,10 +132,8 @@ glm::vec3 FirstPersonCamera::getPosition()
 
 void FirstPersonCamera::updateCameraPosition(SDL_Event& e)
 {
-    // if we have a keydown event
     if (e.type == SDL_KEYDOWN) 
     {
-        // change the key state variable accordingly
         switch (e.key.keysym.sym) {
             case SDLK_w: keys[0] = TRUE;  break;
             case SDLK_s: keys[1] = TRUE;  break;
@@ -142,10 +144,8 @@ void FirstPersonCamera::updateCameraPosition(SDL_Event& e)
         }
     }
 
-    // if we have a key up event
     if (e.type == SDL_KEYUP) 
     {
-        // change the key state variable accordingly
         switch (e.key.keysym.sym) {
             case SDLK_w: keys[0] = FALSE;  break;
             case SDLK_s: keys[1] = FALSE;  break;
@@ -156,41 +156,41 @@ void FirstPersonCamera::updateCameraPosition(SDL_Event& e)
         }
     }
 
-    // if we have a mouse motion event we rotate the camera and calculate the pitch of the camera as well
     if (e.type == SDL_MOUSEMOTION) 
     {
-        // x magnitude = rotation
         rotation += e.motion.xrel;
-        // y magnitude = rotation
-        float next = pitch + e.motion.yrel;
-        if (next <= 55.0 && next >= -55.0) {
+        auto next = pitch + e.motion.yrel;
+        
+        if (next <= 55.0 && next >= -55.0) 
+        {
             pitch += e.motion.yrel;
         }
         
-        // make sure to keep the degrees in readable form
-        if (rotation < 0) {
+        if (rotation < 0) 
+        {
             rotation = 360;
         }
 
-        if (rotation > 360) {
+        if (rotation > 360) 
+        {
             rotation = 0;
         }
     }
 }
 
-// the following sets the new position of the camera
 void FirstPersonCamera::setPosition(glm::vec3 position)
 {
-    for (int i = 0; i < 4; i++) {
+    for (auto i = 0; i < 4; i++) 
+    {
         keys[i] = FALSE;
-        if (i < 2) axis[i] = FALSE;
+        if (i < 2) 
+        {
+            axis[i] = FALSE;
+        }
     }
 
-    // calculate where to translate the camera to
     translate = -position;
     translate.z = position.z;
-    
-    // calculate the height of the camera
     height = -position.y;
     terrainHeight = 0;
     cancel = false;
@@ -198,30 +198,24 @@ void FirstPersonCamera::setPosition(glm::vec3 position)
 
 void FirstPersonCamera::prepareCamera()
 {
-    static float f = 0.0f;
-    static bool s = true;
+    static auto f = 0.0f;
+    static auto s = true;
 
-    if (velocity > 0.1) {
-        if (speed >= 1.0) {
-            if (f >= 0.5f) {
-                s = false;
-            }
-
-            if (f <= -0.5f) {
-                s = true;
-            }
-
-            if (s) {
-                f += 0.05;
-            }
-            else {
-                f -= 0.05;
-            }
+    if (velocity > 0.1) 
+    {
+        if (speed >= 1.0) 
+        {
+            s = f >= 0.5f ? false : s;
+            s = f <= -0.5f ? true : s;
+            s ? f += 0.05 : -0.05;
         }
-        else {
+        else 
+        {
             f = 0.0;
         }
-    } else {
+    } 
+    else 
+    {
         f = 0.0;
     }
     
@@ -233,29 +227,35 @@ void FirstPersonCamera::prepareCamera()
     last = glm::vec3(translate);
     last.y += ((terrainHeight + height) - last.y) / 10.0;
 
-    if (keys[0]) {
+    if (keys[0]) 
+    {
         last += glm::vec3(glm::sin(glm::radians(-rotation)), 0.0, glm::cos(glm::radians(-rotation))) * speed;
     } 
     
-    if (keys[1]) {
+    if (keys[1]) 
+    {
         last += glm::vec3(-glm::sin(glm::radians(-rotation)), 0.0, -glm::cos(glm::radians(-rotation)))  * speed;
     } 
     
-    if (keys[2]) {
+    if (keys[2]) 
+    {
         last += glm::vec3(glm::cos(glm::radians(-rotation)), 0.0, -glm::sin(glm::radians(-rotation)))  * speed;
     }
 
-    if (keys[3]) {
+    if (keys[3]) 
+    {
         last += glm::vec3(-glm::cos(glm::radians(-rotation)), 0.0, glm::sin(glm::radians(-rotation)))  * speed;
     }
 
-    if (axis[0]) {
+    if (axis[0])
+    {
         last += glm::vec3(glm::cos(glm::radians(-rotation)), 0.0, -glm::sin(glm::radians(-rotation)))  * -axisV[0];
         axisV[0] = 0.0;
         axis[0] = FALSE;
     }
 
-    if (axis[1]) {
+    if (axis[1]) 
+    {
         last += glm::vec3(glm::sin(glm::radians(-rotation)), 0.0, glm::cos(glm::radians(-rotation))) * -axisV[1];
         axisV[1] = 0.0;
         axis[1] = FALSE;
@@ -281,8 +281,10 @@ void FirstPersonCamera::repositionCamera()
     viewMatrix = glm::translate(viewMatrix, translate);
     cancel = false;
 
-    if (gamepadEnabled) {
-        for (int i = 0; i < 4; i++) {
+    if (gamepadEnabled) 
+    {
+        for (auto i = 0; i < 4; i++) 
+        {
             keys[i] = FALSE;
         }
     }

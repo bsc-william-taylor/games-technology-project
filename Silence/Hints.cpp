@@ -17,7 +17,7 @@ void Hints::create(LocalAssetManager * package)
     this->package = package;
 
     hintRenderable.setFont(package->newFont("data/fonts/Calibri", 45, { 255, 255, 255 }), hintText.c_str());
-    hintRenderable.setArea(glm::vec2(960, 1000), ALIGNMENT::CENTER);
+    hintRenderable.setArea(glm::vec2(960, 1000), Alignment::Center);
 }
 
 void Hints::render(Renderer2D * renderer)
@@ -84,11 +84,11 @@ void Hints::update()
     if ("Good luck..." == hintText) 
     {
         hintRenderable.setFont(package->newFont("data/fonts/Calibri", 70, { 255, 0, 0 }), hintText.c_str());
-        hintRenderable.setArea(vec2(960, 1080/2), ALIGNMENT::CENTER);
+        hintRenderable.setArea(vec2(960, 1080/2), Alignment::Center);
     } 
     else 
     {
         hintRenderable.setFont(package->newFont("data/fonts/Calibri", 45, { 255, 255, 255 }), hintText.c_str());
-        hintRenderable.setArea(vec2(960, 1000), ALIGNMENT::CENTER);
+        hintRenderable.setArea(vec2(960, 1000), Alignment::Center);
     }
 }

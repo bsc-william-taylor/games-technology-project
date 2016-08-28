@@ -34,7 +34,7 @@ GPU_Sampler::~GPU_Sampler()
 
     for (auto& bitmap : bitmaps)
     {
-        delete bitmap;
+        SAFE_RELEASE(bitmap);
     }
 }
 

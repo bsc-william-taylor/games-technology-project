@@ -63,15 +63,15 @@ void OptionsWindowType::create(LocalAssetManager * package)
     this->package = package;
 
     windowMode.setFont(package->newFont("data/fonts/Calibri", 60, { 255, 255, 255 }), "Window Mode");
-    windowMode.setArea(glm::vec2(650, 700), ALIGNMENT::CENTER);
+    windowMode.setArea(glm::vec2(650, 700), Alignment::Center);
     
     windowModes[0].setButtonTexture(package->newTexture("data/textures/button"));
     windowModes[0].setButtonText(package->newFont("data/fonts/Calibri", 40, { 255, 255, 255 }), "Windowed");
-    windowModes[0].setArea(glm::vec4(950, 600, 300, 200), ALIGNMENT::CENTER);
+    windowModes[0].setArea(glm::vec4(950, 600, 300, 200), Alignment::Center);
     
     windowModes[1].setButtonTexture(package->newTexture("data/textures/button"));
     windowModes[1].setButtonText(package->newFont("data/fonts/Calibri", 40, { 255, 255, 255 }), "Fullscreen");
-    windowModes[1].setArea(glm::vec4(1250, 600, 300, 200), ALIGNMENT::CENTER);
+    windowModes[1].setArea(glm::vec4(1250, 600, 300, 200), Alignment::Center);
 }
 
 void OptionsWindowType::event(SDL_Event& e)

@@ -1,35 +1,9 @@
 
-
-/**
-*
-* Copyright (c) 2014 : William Taylor : wi11berto@yahoo.co.uk
-*
-* This software is provided 'as-is', without any
-* express or implied warranty. In no event will
-* the authors be held liable for any damages
-* arising from the use of this software.
-*
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute
-* it freely, subject to the following restrictions:
-*
-* 1. The origin of this software must not be misrepresented;
-*    you must not claim that you wrote the original software.
-*    If you use this software in a product, an acknowledgment
-*    in the product documentation would be appreciated but
-*    is not required.
-*
-* 2. Altered source versions must be plainly marked as such,
-*    and must not be misrepresented as being the original software.
-*
-* 3. This notice may not be removed or altered from any source distribution.
-*/
-
 #include "ModelSet.h"
 
-// Constructor & Deconstructor
-ModelSet::ModelSet()
-    : mesh(NULL), file(NULL)
+ModelSet::ModelSet() : 
+    file(nullptr),
+    mesh(nullptr)
 {
     min = Vertex(1000000, 1000000, 1000000);
     max = Vertex(-1000000, -1000000, -1000000);
@@ -37,11 +11,14 @@ ModelSet::ModelSet()
 
 ModelSet::~ModelSet()
 {
-    min = Vertex(1000000, 1000000, 1000000);
-    max = Vertex(-1000000, -1000000, -1000000);
+    SAFE_RELEASE(mesh);
+
+    for(auto& sampler : samplers)
+    {
+        SAFE_RELEASE(sampler);
+    }
 }
 
-// returns a direct pointer to the model file used to generate the model
 ModelAsset * ModelSet::getModelAsset()
 {
     return file;
@@ -59,8 +36,7 @@ GLuint ModelSet::getIndices()
 
 void ModelSet::setModel(ModelAsset * assets)
 {
-    // make sure the pointer is valid
-    if (assets != NULL && mesh == NULL)
+    if (assets != nullptr && mesh == nullptr)
     {
         auto meshes = assets->getMeshes();
 
@@ -73,18 +49,15 @@ void ModelSet::setModel(ModelAsset * assets)
 
         indices = assets->getIndices().size();
 
-        // then get the list of textures the model uses
         auto textures = assets->getTextures();
 
-        // then loop through and transfer each textures data to the gpu
-        for (int i = 0; i < textures.size(); i++)
+        for (auto i = 0; i < textures.size(); i++)
         {
-            TextureAsset * texture_asset = textures[i];
+            const auto texture_asset = textures[i];
 
-            if (texture_asset != NULL)
+            if (texture_asset != nullptr)
             {
-                GPU_Sampler * texture = new GPU_Sampler(SINGLE_SAMPLER);
-
+                const auto texture = new GPU_Sampler(SINGLE_SAMPLER);
                 texture->setTransferQuality(GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
                 texture->setBitmapWrapping(GL_REPEAT, GL_REPEAT);
                 texture->setBitmapData(texture_asset->getPixels(),
@@ -96,13 +69,11 @@ void ModelSet::setModel(ModelAsset * assets)
                 );
 
                 texture->send();
-
-                // then store the IDs in our vector so we can use them when drawing
-                tIDs.push_back(texture->getID());
+                samplers.push_back(texture);
             }
             else
             {
-                tIDs.push_back(NULL);
+                samplers.push_back(nullptr);
             }
         }
 
@@ -112,15 +83,14 @@ void ModelSet::setModel(ModelAsset * assets)
 
 SolidBox * ModelSet::createbox(glm::mat4 mat)
 {
-    SolidBox * solid = new SolidBox();
-
+    auto solid = new SolidBox();
     auto meshs = file->getMeshes();
 
-    for (int i = 0; i < meshs.size(); i++)
+    for (auto i = 0; i < meshs.size(); i++)
     {
         for (auto& vb : file->getVertices())
         {
-            glm::vec3 v = glm::vec3(mat * glm::vec4(vb, 1.0));
+            auto v = glm::vec3(mat * glm::vec4(vb, 1.0));
 
             if (v.x < min.x)	min.x = v.x;
             if (v.y < min.y)	min.y = v.y;
@@ -131,9 +101,8 @@ SolidBox * ModelSet::createbox(glm::mat4 mat)
         }
     }
 
-
-    solid->setPositionVector(glm::vec3(min));
-    solid->setSizeVector(glm::vec3(max));
+    solid->setPositionVector(vec3(min));
+    solid->setSizeVector(vec3(max));
 
     min = Vertex(1000000, 1000000, 1000000);
     max = Vertex(-1000000, -1000000, -1000000);
@@ -143,15 +112,14 @@ SolidBox * ModelSet::createbox(glm::mat4 mat)
 
 SolidCylinder * ModelSet::createCylinder(glm::mat4 mat, double div)
 {
-    SolidCylinder * solid = new SolidCylinder();
-
+    auto solid = new SolidCylinder();
     auto meshs = file->getMeshes();
 
-    for (int i = 0; i < meshs.size(); i++)
+    for (auto i = 0; i < meshs.size(); i++)
     {
         for (auto& vb : file->getVertices())
         {
-            glm::vec3 v = glm::vec3(mat * glm::vec4(vb, 1.0));
+            auto v = glm::vec3(mat * glm::vec4(vb, 1.0));
 
             if (v.x < min.x)	min.x = v.x;
             if (v.y < min.y)	min.y = 0.0;
@@ -178,7 +146,7 @@ SolidCylinder * ModelSet::createCylinder(glm::mat4 mat, double div)
 
 GLuint ModelSet::getSetSize()
 {
-    return setSize;
+    return size;
 }
 
 GLvoid ModelSet::bindModelMatrixArray()
@@ -192,11 +160,31 @@ void ModelSet::setMatrices(std::vector<glm::mat4> matrices)
     glGenBuffers(1, &matricesID);
     glBindBuffer(GL_ARRAY_BUFFER, matricesID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(glm::mat4) * matrices.size(), matrices.data(), GL_STATIC_DRAW);
-    setSize = matrices.size();
+    size = matrices.size();
 
-    for (unsigned int z = 0; z < 4; z++) {
+    for (auto z = 0; z < 4; z++) {
         glEnableVertexAttribArray(4 + z);
         glVertexAttribPointer(4 + z, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (const GLvoid*)(sizeof(GLfloat) * z * 4));
         glVertexAttribDivisor(4 + z, 1);
     }
+}
+
+ModelAsset * ModelSet::getMeshes() 
+{
+    return file;
+}
+
+GPU_Transfer * ModelSet::getMesh() 
+{
+    return mesh;
+}
+
+std::vector<glm::mat4>& ModelSet::getMatrices() 
+{
+    return matrices;
+}
+
+std::vector<GPU_Sampler *>& ModelSet::getTextures()
+{
+    return samplers;
 }

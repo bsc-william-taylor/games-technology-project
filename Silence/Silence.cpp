@@ -15,7 +15,7 @@ int main(int argc, char * argv[])
 
         auto scenes = operatingSystem->acquireSceneManager();
 
-        scenes->setStart(int(SceneID::Intro));
+        scenes->setStart(int(SceneID::Menu));
         scenes->packSceneList(
         {
             new Intro(operatingSystem),

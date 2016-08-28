@@ -12,6 +12,10 @@ SceneManager::SceneManager(Window * w)
 
 SceneManager::~SceneManager()
 {	
+    for (auto& scene : engineScenes)
+    {
+        SAFE_RELEASE(scene);
+    }
 }
 
 Scene * SceneManager::getScene(int ID)

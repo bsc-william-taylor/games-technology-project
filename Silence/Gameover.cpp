@@ -50,20 +50,20 @@ void Gameover::onCreate()
     boxart.setArea(glm::vec4(1100, 220, 700, 470));
 
     header.setFont(package->newFont("data/fonts/Calibri", 200, { 255, 255, 255 }), "Thanks for Playing");
-    header.setArea(vec2(1920 / 2, 900), ALIGNMENT::CENTER);
+    header.setArea(vec2(1920 / 2, 900), Alignment::Center);
 
     survivorTimer = static_cast<Forest *>(scenes->getScene(int(SceneID::Forest)))->getForestTime();
     auto timeSurvived = "Time Survived : " + decimalToString(survivorTimer->elapsed(Seconds), 2).append("s");
 
     time.setFont(package->newFont("data/fonts/Calibri", 50, { 255, 255, 255 }), timeSurvived.c_str());
-    time.setArea(vec2(200, 550), ALIGNMENT::RIGHT);
+    time.setArea(vec2(200, 550), Alignment::Right);
 
     message.setFont(package->newFont("data/fonts/Calibri", 50, { 255, 255, 255 }), "Look for the full game sometime soon");
-    message.setArea(vec2(200, 450), ALIGNMENT::RIGHT);
+    message.setArea(vec2(200, 450), Alignment::Right);
 
     back.setButtonTexture(package->newTexture("data/textures/button"));
     back.setButtonText(package->newFont("data/fonts/Calibri", 40, { 255, 255, 255 }), "Back to Menu");
-    back.setArea(glm::vec4(400, 200, 400, 225), ALIGNMENT::CENTER);
+    back.setArea(glm::vec4(400, 200, 400, 225), Alignment::Center);
 
     renderer2D.createRenderer();
 }
@@ -92,7 +92,7 @@ void Gameover::onGameEvent(SDL_Event& e)
 void Gameover::onUpdate()
 {
     time.setFont(package->newFont("data/fonts/Calibri", 50, { 255, 255, 255 }), timeSurvived.c_str());
-    time.setArea(vec2(200, 550), ALIGNMENT::RIGHT);
+    time.setArea(vec2(200, 550), Alignment::Right);
 }
 
 void Gameover::onRender()

@@ -125,56 +125,56 @@
     <Filter Include="Core\Input\Gamepad">
       <UniqueIdentifier>{a5633237-656c-4fb9-8809-54f50292c609}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Renderer HERE">
+    <Filter Include="Core\Graphics\High Level\Renderer">
       <UniqueIdentifier>{a0e3cae4-a842-4c7b-9d90-1dc318d2aff6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Renderer HERE\Deferred">
+    <Filter Include="Core\Graphics\High Level\Renderer\Deferred">
       <UniqueIdentifier>{97558435-4e1c-4434-b18c-4552bf5ae580}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Renderer HERE\Forward HERE">
+    <Filter Include="Core\Graphics\High Level\Renderer\Forward">
       <UniqueIdentifier>{4c1248a9-3d2f-4443-86f3-8c241312007e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Renderer HERE\Ortho">
+    <Filter Include="Core\Graphics\High Level\Renderer\Ortho">
       <UniqueIdentifier>{6c09b8fd-315b-4d8c-93cc-c5702e88d53c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Camera HERE">
+    <Filter Include="Core\Graphics\High Level\Camera">
       <UniqueIdentifier>{51e3a9b2-324c-4535-a846-5280a1fd2201}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Camera HERE\Default Camera">
+    <Filter Include="Core\Graphics\High Level\Camera\Default Camera">
       <UniqueIdentifier>{f5be4aa0-17f9-4e80-afd3-e8dcd05ec289}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Camera HERE\First Person">
+    <Filter Include="Core\Graphics\High Level\Camera\First Person">
       <UniqueIdentifier>{b78cb015-01c9-4729-ac2b-4737372ad351}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Actors HERE">
+    <Filter Include="Core\Graphics\High Level\Actors">
       <UniqueIdentifier>{1fb61bcc-229d-49f4-8d59-bcc5afc1fbd6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Actors HERE\Button">
+    <Filter Include="Core\Graphics\High Level\Actors\Button">
       <UniqueIdentifier>{3b53d5c1-d703-4319-bdd5-24d426355676}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Actors HERE\Cube">
+    <Filter Include="Core\Graphics\High Level\Actors\Cube">
       <UniqueIdentifier>{53b07219-5e0e-486b-b320-0a1d9ee2756c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Actors HERE\Heightmap">
+    <Filter Include="Core\Graphics\High Level\Actors\Heightmap">
       <UniqueIdentifier>{0db6872c-4e51-4ec4-823a-1672cb328c3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Actors HERE\MD2">
+    <Filter Include="Core\Graphics\High Level\Actors\MD2">
       <UniqueIdentifier>{69bb1a51-3e31-4577-a82c-90a4a642c19a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Actors HERE\Model">
-      <UniqueIdentifier>{2b554019-d9ac-42d2-8205-19f41ab76255}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Graphics\High Level\Actors HERE\ModelSet">
+    <Filter Include="Core\Graphics\High Level\Actors\ModelSet">
       <UniqueIdentifier>{beb12fe8-6a99-4de3-bd68-40f8b212c194}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Actors HERE\Skybox">
+    <Filter Include="Core\Graphics\High Level\Actors\Skybox">
       <UniqueIdentifier>{78d40fc0-bc82-46f4-8a66-8557f649a383}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Actors HERE\Text">
+    <Filter Include="Core\Graphics\High Level\Actors\Text">
       <UniqueIdentifier>{be427fbe-7ceb-4e1d-b82d-067c9be73a9c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Graphics\High Level\Actors HERE\Texture">
+    <Filter Include="Core\Graphics\High Level\Actors\Texture">
       <UniqueIdentifier>{b79572ec-de32-4939-a6b8-1b842a4d5d60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Graphics\High Level\Actors\Model">
+      <UniqueIdentifier>{2b554019-d9ac-42d2-8205-19f41ab76255}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -239,13 +239,13 @@
       <Filter>Core\Graphics\Low Level\Transfer</Filter>
     </ClCompile>
     <ClCompile Include="DeferredRenderer.cpp">
-      <Filter>Core\Graphics\High Level\Renderer HERE\Deferred</Filter>
+      <Filter>Core\Graphics\High Level\Renderer\Deferred</Filter>
     </ClCompile>
     <ClCompile Include="ForwardRenderer.cpp">
-      <Filter>Core\Graphics\High Level\Renderer HERE\Forward HERE</Filter>
+      <Filter>Core\Graphics\High Level\Renderer\Forward</Filter>
     </ClCompile>
     <ClCompile Include="Renderer2D.cpp">
-      <Filter>Core\Graphics\High Level\Renderer HERE\Ortho</Filter>
+      <Filter>Core\Graphics\High Level\Renderer\Ortho</Filter>
     </ClCompile>
     <ClCompile Include="DeferredInputShader.cpp">
       <Filter>Core\Graphics\High Level\Shaders\DeferredInputShader</Filter>
@@ -260,10 +260,10 @@
       <Filter>Core\Graphics\High Level\Shaders\Per Fragment</Filter>
     </ClCompile>
     <ClCompile Include="DefaultCamera.cpp">
-      <Filter>Core\Graphics\High Level\Camera HERE\Default Camera</Filter>
+      <Filter>Core\Graphics\High Level\Camera\Default Camera</Filter>
     </ClCompile>
     <ClCompile Include="FirstPersonCamera.cpp">
-      <Filter>Core\Graphics\High Level\Camera HERE\First Person</Filter>
+      <Filter>Core\Graphics\High Level\Camera\First Person</Filter>
     </ClCompile>
     <ClCompile Include="Lights.cpp">
       <Filter>Core\Graphics\High Level\Lights</Filter>
@@ -278,31 +278,28 @@
       <Filter>Core\Graphics\High Level\Lights\Spot</Filter>
     </ClCompile>
     <ClCompile Include="Button2D.cpp">
-      <Filter>Core\Graphics\High Level\Actors HERE\Button</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Button</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>Core\Graphics\High Level\Actors HERE\Cube</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Cube</Filter>
     </ClCompile>
     <ClCompile Include="Heightmap.cpp">
-      <Filter>Core\Graphics\High Level\Actors HERE\Heightmap</Filter>
-    </ClCompile>
-    <ClCompile Include="md2Model.cpp">
-      <Filter>Core\Graphics\High Level\Actors HERE\MD2</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Heightmap</Filter>
     </ClCompile>
     <ClCompile Include="Model.cpp">
-      <Filter>Core\Graphics\High Level\Actors HERE\Model</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Model</Filter>
     </ClCompile>
     <ClCompile Include="ModelSet.cpp">
-      <Filter>Core\Graphics\High Level\Actors HERE\ModelSet</Filter>
+      <Filter>Core\Graphics\High Level\Actors\ModelSet</Filter>
     </ClCompile>
     <ClCompile Include="Skybox.cpp">
-      <Filter>Core\Graphics\High Level\Actors HERE\Skybox</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Skybox</Filter>
     </ClCompile>
     <ClCompile Include="Text2D.cpp">
-      <Filter>Core\Graphics\High Level\Actors HERE\Text</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Text</Filter>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
-      <Filter>Core\Graphics\High Level\Actors HERE\Texture</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Texture</Filter>
     </ClCompile>
     <ClCompile Include="Exception.cpp">
       <Filter>Core\Exception</Filter>
@@ -315,6 +312,9 @@
     </ClCompile>
     <ClCompile Include="PathExcception.cpp">
       <Filter>Core\Ai\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedModel.cpp">
+      <Filter>Core\Graphics\High Level\Actors\MD2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -388,13 +388,13 @@
       <Filter>Core\Graphics\Low Level\Transfer</Filter>
     </ClInclude>
     <ClInclude Include="DeferredRenderer.h">
-      <Filter>Core\Graphics\High Level\Renderer HERE\Deferred</Filter>
+      <Filter>Core\Graphics\High Level\Renderer\Deferred</Filter>
     </ClInclude>
     <ClInclude Include="ForwardRenderer.h">
-      <Filter>Core\Graphics\High Level\Renderer HERE\Forward HERE</Filter>
+      <Filter>Core\Graphics\High Level\Renderer\Forward</Filter>
     </ClInclude>
     <ClInclude Include="Renderer2D.h">
-      <Filter>Core\Graphics\High Level\Renderer HERE\Ortho</Filter>
+      <Filter>Core\Graphics\High Level\Renderer\Ortho</Filter>
     </ClInclude>
     <ClInclude Include="DeferredInputShader.h">
       <Filter>Core\Graphics\High Level\Shaders\DeferredInputShader</Filter>
@@ -409,13 +409,13 @@
       <Filter>Core\Graphics\High Level\Shaders\Per Fragment</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Core\Graphics\High Level\Camera HERE</Filter>
+      <Filter>Core\Graphics\High Level\Camera</Filter>
     </ClInclude>
     <ClInclude Include="DefaultCamera.h">
-      <Filter>Core\Graphics\High Level\Camera HERE\Default Camera</Filter>
+      <Filter>Core\Graphics\High Level\Camera\Default Camera</Filter>
     </ClInclude>
     <ClInclude Include="FirstPersonCamera.h">
-      <Filter>Core\Graphics\High Level\Camera HERE\First Person</Filter>
+      <Filter>Core\Graphics\High Level\Camera\First Person</Filter>
     </ClInclude>
     <ClInclude Include="Lights.h">
       <Filter>Core\Graphics\High Level\Lights</Filter>
@@ -430,34 +430,28 @@
       <Filter>Core\Graphics\High Level\Lights\Spot</Filter>
     </ClInclude>
     <ClInclude Include="Button2D.h">
-      <Filter>Core\Graphics\High Level\Actors HERE\Button</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Button</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>Core\Graphics\High Level\Actors HERE\Cube</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Cube</Filter>
     </ClInclude>
     <ClInclude Include="Heightmap.h">
-      <Filter>Core\Graphics\High Level\Actors HERE\Heightmap</Filter>
-    </ClInclude>
-    <ClInclude Include="md2Model.h">
-      <Filter>Core\Graphics\High Level\Actors HERE\MD2</Filter>
-    </ClInclude>
-    <ClInclude Include="anorms.h">
-      <Filter>Core\Graphics\High Level\Actors HERE\MD2</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Heightmap</Filter>
     </ClInclude>
     <ClInclude Include="Model.h">
-      <Filter>Core\Graphics\High Level\Actors HERE\Model</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Model</Filter>
     </ClInclude>
     <ClInclude Include="ModelSet.h">
-      <Filter>Core\Graphics\High Level\Actors HERE\ModelSet</Filter>
+      <Filter>Core\Graphics\High Level\Actors\ModelSet</Filter>
     </ClInclude>
     <ClInclude Include="Skybox.h">
-      <Filter>Core\Graphics\High Level\Actors HERE\Skybox</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Skybox</Filter>
     </ClInclude>
     <ClInclude Include="Text2D.h">
-      <Filter>Core\Graphics\High Level\Actors HERE\Text</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Text</Filter>
     </ClInclude>
     <ClInclude Include="Texture2D.h">
-      <Filter>Core\Graphics\High Level\Actors HERE\Texture</Filter>
+      <Filter>Core\Graphics\High Level\Actors\Texture</Filter>
     </ClInclude>
     <ClInclude Include="Exception.h">
       <Filter>Core\Exception</Filter>
@@ -473,6 +467,12 @@
     </ClInclude>
     <ClInclude Include="PathException.h">
       <Filter>Core\Ai\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedModel.h">
+      <Filter>Core\Graphics\High Level\Actors\MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedNormals.h">
+      <Filter>Core\Graphics\High Level\Actors\MD2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

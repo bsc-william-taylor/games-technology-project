@@ -26,7 +26,7 @@ void Button2D::setButtonTexture(TextureAsset * text)
 
 void Button2D::setButtonText(FontAsset * f, const char * text)
 {
-    if (buttonText == NULL)
+    if (buttonText == nullptr)
     {	
         buttonText = new Text2D();
     }
@@ -47,13 +47,13 @@ void Button2D::setArea(glm::vec4 vec)
     }
 }
 
-void Button2D::setArea(glm::vec4 vec, ALIGNMENT alignment)
+void Button2D::setArea(glm::vec4 vec, Alignment alignment)
 {
     glm::vec2 position(vec[0], vec[1]);
 
     switch (alignment)
     {
-        case ALIGNMENT::CENTER:
+        case Alignment::Center:
         {
             position[0] = vec[0] + vec[2]/2;
             position[1] = vec[1] + vec[3]/2;

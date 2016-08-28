@@ -8,6 +8,11 @@ ModelAsset::ModelAsset(std::string name)
 
 ModelAsset::~ModelAsset()
 {
+    for(auto& mesh : meshes)
+    {
+        SAFE_RELEASE(mesh);
+    }
+
     for (auto& t : textures) 
     {
         SAFE_RELEASE(t);
