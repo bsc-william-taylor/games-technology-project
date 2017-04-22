@@ -1,7 +1,7 @@
 
 <img src='preview.gif' />
 
-<img src='Silence.Libs/Dependencies/data/textures/icon.bmp' width='150' height='150' align='right' />
+<img src='icon.png' width='150' height='150' align='right' />
 
 # Silence Enter The Forest
 
