@@ -1,3 +1,26 @@
+
+<img src='preview.gif' />
+
+<img src='Silence.Libs/Dependencies/data/textures/icon.bmp' width='150' height='150' align='right' />
+
+## Title &nbsp; 
+
+Quick overview
+ 
+### Assignment
+
+Requirements
+
+### Submission
+
+What was submitted
+
+### License
+
+State license
+
+
+
 # Silence Enter The Forest
 
 Silence is a game I had to make in the third year of university. It was written from scratch in C++ with various libraries such as OpenGL and SDL.
