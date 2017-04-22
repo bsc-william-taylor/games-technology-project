@@ -93,7 +93,7 @@ void ForwardRenderer::handleTerrainHeight(Heightmap * heightmap)
 
 void ForwardRenderer::renderAnimatedModel(AnimatedModel * model)
 {
-    if (model != nullptr)
+    if (model != nullptr && model->getVertDataSize() > 0)
     {
         glEnable(GL_CULL_FACE);
         glCullFace(GL_FRONT);

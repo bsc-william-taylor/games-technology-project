@@ -6,6 +6,9 @@ Silence.Core/*.obj
 Silence.Api/*.obj
 Silence/*.obj
 
+*.db
+*.opendb
+
 # Precompiled Headers
 *.gch
 *.pch

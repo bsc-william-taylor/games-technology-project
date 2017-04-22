@@ -29,7 +29,8 @@ static int animFrameList[40] = {
     190, 196 //death3
 };
 
-AnimatedModel::AnimatedModel()
+AnimatedModel::AnimatedModel() :
+    texture(nullptr), sampler(nullptr)
 {
     min = Vertex(1000000, 1000000, 1000000);
     max = Vertex(-1000000, -1000000, -1000000);
@@ -39,7 +40,8 @@ AnimatedModel::AnimatedModel()
     interp = 0.0f;
 }
 
-AnimatedModel::AnimatedModel(const char * fn, const char * fn1)
+AnimatedModel::AnimatedModel(const char * fn, const char * fn1) :
+    texture(nullptr), sampler(nullptr)
 {
     min = Vertex(1000000, 1000000, 1000000);
     max = Vertex(-1000000, -1000000, -1000000);
@@ -68,7 +70,7 @@ AnimatedModel::~AnimatedModel()
 
 void AnimatedModel::readModel(const char *filename, const char * nm)
 {
-    if(!texture && !sampler)
+    if(texture && sampler)
     {
         return;
     }

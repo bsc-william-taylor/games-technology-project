@@ -26,7 +26,7 @@ void Intro::onUpdate()
 void Intro::onEnter(int)
 {    
     system->enableSingleBuffering();
-    system->acquireWindow().forceFullscreenMode();
+    //system->acquireWindow().forceFullscreenMode();
 
     introTimer.start();
     introVideo.play();
