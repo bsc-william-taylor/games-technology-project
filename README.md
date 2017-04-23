@@ -5,11 +5,11 @@
 
 # Silence Enter The Forest
 
-Silence is a game I had to make in the third year of university. It was written from scratch in C++ with various libraries such as OpenGL and SDL.
+In the 3rd year of my course was the Games Technology Project which was a double module which spanned two trimesters. The module was an opportunity for a student to develop a game prototype in C++ 
  
 ## Assignment
 
-Requirements
+Details submission
 
 ## Submission
 
