@@ -7,10 +7,10 @@ enum TimeType { Seconds, Milliseconds, Nanoseconds };
 
 class SILENCE_EXPORT HighPrecisionTimer
 {
-    unsigned int m_current;
-    unsigned int m_start;
-    unsigned int m_stop;
-    unsigned int m_freq;
+    unsigned int currentTicks;
+    unsigned int startTicks;
+    unsigned int stopTicks;
+    unsigned int freq;
 public:
     HighPrecisionTimer();
     virtual ~HighPrecisionTimer();

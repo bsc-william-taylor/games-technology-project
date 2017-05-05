@@ -3,9 +3,9 @@
 
 HighPrecisionTimer::HighPrecisionTimer()
 {
-    m_freq = SDL_GetPerformanceFrequency();
-    m_start =- 1;
-    m_stop = - 1;
+    freq = SDL_GetPerformanceFrequency();
+    startTicks = -1;
+    stopTicks = -1;
 }
 
 HighPrecisionTimer::~HighPrecisionTimer()
@@ -14,29 +14,29 @@ HighPrecisionTimer::~HighPrecisionTimer()
 
 void HighPrecisionTimer::start()
 {
-    m_start = SDL_GetPerformanceCounter();
+    startTicks = SDL_GetPerformanceCounter();
 }
 
 void HighPrecisionTimer::stop()
 {
-    m_stop = SDL_GetPerformanceCounter();
+    stopTicks = SDL_GetPerformanceCounter();
 }
 
 float HighPrecisionTimer::elapsed(TimeType type)
 {
-    if (m_start != -1)
+    if (startTicks != -1)
     {
-        m_stop = SDL_GetPerformanceCounter();
+        stopTicks = SDL_GetPerformanceCounter();
         return(difference(type));
-    } 
-    
+    }
+
     return -1;
 }
 
 void HighPrecisionTimer::clear()
 {
-    m_start = -1;
-    m_stop = -1;
+    startTicks = -1;
+    stopTicks = -1;
 }
 
 float HighPrecisionTimer::difference(TimeType type) const
@@ -45,35 +45,35 @@ float HighPrecisionTimer::difference(TimeType type) const
 
     switch (type)
     {
-    case Seconds:
-    {
-        difference = static_cast<float>(m_stop - m_start);
-        break;
-    }
+        case Seconds:
+        {
+            difference = static_cast<float>(stopTicks - startTicks);
+            break;
+        }
 
-    case Milliseconds:
-    {
-        difference = static_cast<float>(1.0e3*(m_stop - m_start));
-        break;
-    }
+        case Milliseconds:
+        {
+            difference = static_cast<float>(1.0e3*(stopTicks - startTicks));
+            break;
+        }
 
-    case Nanoseconds:
-    {
-        difference = static_cast<float>(1.0e9*(m_stop - m_start));
-        break;
-    }
+        case Nanoseconds:
+        {
+            difference = static_cast<float>(1.0e9*(stopTicks - startTicks));
+            break;
+        }
     };
 
-    return(difference / m_freq);
+    return(difference / freq);
 }
 
 unsigned int HighPrecisionTimer::current()
 {
-    m_current = SDL_GetPerformanceCounter();
-    return(m_current);
+    currentTicks = SDL_GetPerformanceCounter();
+    return(currentTicks);
 }
 
 bool HighPrecisionTimer::hasStarted() const
 {
-    return m_start != -1;
+    return startTicks != -1;
 }
